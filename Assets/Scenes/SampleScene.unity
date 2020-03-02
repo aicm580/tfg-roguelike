@@ -233,8 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d255e9f85864dc641a3725539ae33a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 28
-  rows: 28
   numRooms:
     minVal: 6
     maxVal: 15
@@ -249,6 +247,8 @@ MonoBehaviour:
     maxVal: 15
   floorTiles:
   - {fileID: 6649283857379490074, guid: cb564dd0477a9d547aa4c786994e2c4e, type: 3}
+  corridorTiles:
+  - {fileID: 6649283857379490074, guid: c096d82013bb687439a7197ffc593bc1, type: 3}
 --- !u!114 &968516359
 MonoBehaviour:
   m_ObjectHideFlags: 0

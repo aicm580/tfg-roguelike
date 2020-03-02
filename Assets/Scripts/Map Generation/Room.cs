@@ -6,11 +6,14 @@ public class Room
 {
     public int xPos; //Coordenada X del tile inferior izquierdo de la sala
 
+    public int[] yPos;
+    public int[] columnHeight;
+
     public int roomWidth;
     private int roomHeight;
 
-    public int[] columnHeight;
-    public int[] yPos;
+    public Direction enteringCorridor; //dirección del pasillo que lleva a esta sala
+
 
     //Función usada para la creación del primer cuarto. No tiene el parámetro del pasillo, porque la primera sala no tiene pasillo que lleve hasta ella. 
     public void SetupRoom (IntRange widthRange, IntRange heightRange, int columns, int rows)

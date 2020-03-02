@@ -9,13 +9,13 @@ public class MapGenerator : MonoBehaviour
        Wall, Floor, Corridor, 
     } 
 
-    public IntRange numRooms = new IntRange (3, 10);
-    public IntRange roomWidth = new IntRange (5, 30);
-    public IntRange roomHeight = new IntRange (5, 25); 
+    public IntRange numRooms = new IntRange (4, 8);
+    public IntRange roomWidth = new IntRange (10, 30);
+    public IntRange roomHeight = new IntRange (10, 30); 
     public IntRange corridorLength = new IntRange (1, 15);
 
-    private int columns = 50;
-    private int rows = 50;
+    private int columns = 70;
+    private int rows = 70;
 
     public GameObject[] floorTiles;
 
@@ -78,27 +78,16 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < rooms.Length; i++)
         {
             Room currentRoom = rooms[i];
-            Debug.Log(i + ": " + currentRoom.roomWidth);
+            Debug.Log("Room " + i + ": Width " + currentRoom.roomWidth);
            
             for (int j = 0; j < currentRoom.roomWidth; j++)
             {
                 int xCoord = currentRoom.xPos + j;
-                int yCoord;
-                
-                if(currentRoom.yPos + 4 + currentRoom.roomGrid[j] < rows)
+
+                for (int k = 0; k < currentRoom.columnHeight[j]; k++)
                 {
-                    yCoord = Random.Range(currentRoom.yPos, currentRoom.yPos + 3);
-                    
-                }
-                else
-                {
-                    yCoord = currentRoom.yPos;
-                }
-                
-                for (int k = 0; k < currentRoom.roomGrid[j]; k++)
-                {
-                    yCoord += k;
-                    Debug.Log(yCoord);
+                    int yCoord = currentRoom.yPos[j] + k;
+                    Debug.Log(currentRoom.columnHeight[j]);
                     tiles[xCoord][yCoord] = TileType.Floor;
                 }
             }

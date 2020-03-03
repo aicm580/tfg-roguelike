@@ -234,16 +234,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms:
-    minVal: 6
-    maxVal: 15
+    minVal: 4
+    maxVal: 8
   roomWidth:
-    minVal: 5
+    minVal: 10
     maxVal: 30
   roomHeight:
-    minVal: 5
-    maxVal: 25
+    minVal: 10
+    maxVal: 30
   corridorLength:
-    minVal: 1
+    minVal: 4
     maxVal: 15
   floorTiles:
   - {fileID: 6649283857379490074, guid: cb564dd0477a9d547aa4c786994e2c4e, type: 3}

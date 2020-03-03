@@ -14,6 +14,8 @@ public class Corridor
 
     public int corridorLength;
 
+    public int randomX;
+
     public Direction direction;
 
     //Calculamos la posición X final del pasillo según su posición X inicial y su dirección
@@ -46,7 +48,7 @@ public class Corridor
         }
     }
 
-    public void SetupCorridor (Room room, IntRange length, IntRange roomWidth, IntRange roomHeight, int columns, int rows, bool firstCorridor)
+    public void SetupCorridor (Room room, IntRange length, IntRange roomWidth, IntRange roomHeight, bool firstCorridor)
     {
         //la dirección se decidirá de forma aleatoria
         direction = (Direction)Random.Range(0, 4);
@@ -60,36 +62,32 @@ public class Corridor
             directionInt = directionInt % 4;
             direction = (Direction)directionInt;
         }
+        
+        Debug.Log(direction);
 
         corridorLength = length.Randomize; //establecemos una longitud del pasillo aleatoria
-
-        int maxLength = length.maxVal; //la inicializamos con la longitud máxima establecida para los pasillos, pero modificaremos este valor en función de la dirección del pasillo, para evitar salir del tablero
-        int random;
 
         switch (direction)
         {
             case Direction.North: 
-                random = Random.Range(2, room.roomWidth - 2);
-                startXPos = room.xPos + random;
-                startYPos = room.yPos[random] + room.columnHeight[random];
-                maxLength = rows - startYPos - roomHeight.minVal;
+                randomX = Random.Range(2, room.roomWidth - 2);
+                startXPos = room.xPos + randomX;
+                startYPos = room.yPos[randomX] + room.columnHeight[randomX] - 1;
                 break;
             case Direction.South: 
-                random = Random.Range(2, room.roomWidth - 2);
-                startXPos = room.xPos + random;
-                startYPos = room.yPos[random];
-                maxLength = startYPos - roomHeight.minVal;
+                randomX = Random.Range(2, room.roomWidth - 2);
+                startXPos = room.xPos + randomX;
+                startYPos = room.yPos[randomX];
                 break;            
             case Direction.East: 
-                
+                startXPos = room.xPos + room.roomWidth - 1;
+                startYPos = Random.Range(room.yPos[room.roomWidth-1] + 2, room.yPos[room.roomWidth-1] + room.columnHeight[room.roomWidth-1] - 2);
                 break;
             case Direction.West: 
-               
+                startXPos = room.xPos;
+                startYPos = Random.Range(room.yPos[0] + 2, room.yPos[0] + room.columnHeight[0] - 2);
                 break;
         }
-
-        corridorLength = Mathf.Clamp(corridorLength, 1, maxLength);
-        Debug.Log(startXPos);
     }
 }
 

@@ -16,23 +16,86 @@ public class Room
 
 
     //Función usada para la creación del primer cuarto. No tiene el parámetro del pasillo, porque la primera sala no tiene pasillo que lleve hasta ella. 
-    public void SetupRoom (IntRange widthRange, IntRange heightRange, int columns, int rows)
+    public void SetupRoom (IntRange widthRange, IntRange heightRange)
     {
-        roomWidth = widthRange.Randomize; //establecemos una anchura random para la sala
+        //Establecemos una altura y una anchura aleatorias
+        roomWidth = widthRange.Randomize;
         roomHeight = heightRange.Randomize;
 
         columnHeight = new int[roomWidth];
         yPos = new int[roomWidth];
 
-        xPos = Mathf.RoundToInt(columns / 2f - roomWidth / 2f);
+        xPos = Random.Range(2, 30);
 
         for (int i = 0; i < roomWidth - 3; i = i + 4)
         {
-            yPos[i] = Mathf.RoundToInt(rows / 2f - roomHeight / 2f) + Random.Range(-1, 3);
+            yPos[i] = Mathf.RoundToInt(100 / 2f - roomHeight / 2f) + Random.Range(-1, 3);
             yPos[i+1] = yPos[i];
             yPos[i+2] = yPos[i];
             yPos[i+3] = yPos[i];
             
+            columnHeight[i] = roomHeight + Random.Range(-2, 4);
+            columnHeight[i+1] = columnHeight[i];
+            columnHeight[i+2] = columnHeight[i];
+            columnHeight[i+3] = columnHeight[i];
+        }
+    }
+
+    //Hacemos overload a la función SetupRoom, añadiendo el parámetro del pasillo
+    public void SetupRoom (IntRange widthRange, IntRange heightRange, Corridor corridor)
+    {
+        //Establecemos una altura y una anchura aleatorias
+        roomWidth = widthRange.Randomize;
+        roomHeight = heightRange.Randomize;
+
+        columnHeight = new int[roomWidth];
+        yPos = new int[roomWidth];
+
+        enteringCorridor = corridor.direction;
+
+
+        if (corridor.direction == Direction.East || corridor.direction == Direction.West)
+        {
+
+            if (corridor.direction == Direction.East)
+            {
+                xPos = corridor.EndPositionX - 1;
+            }
+            else
+            {
+                xPos = corridor.EndPositionX - roomWidth;
+            }
+        }
+        else if (corridor.direction == Direction.North || corridor.direction == Direction.South)
+        {
+            xPos = Random.Range(corridor.EndPositionX - roomWidth + 2, corridor.EndPositionX - 2);
+        }
+
+
+        for (int i = 0; i < roomWidth - 3; i = i + 4)
+        {
+            if (corridor.direction == Direction.East || corridor.direction == Direction.West)
+            {
+                yPos[i] = Random.Range(corridor.EndPositionY - roomHeight, corridor.EndPositionY);
+                yPos[i+1] = yPos[i];
+                yPos[i+2] = yPos[i];
+                yPos[i+3] = yPos[i];
+            }
+            else if (corridor.direction == Direction.North)
+            {
+                yPos[i] = corridor.EndPositionY;
+                yPos[i+1] = yPos[i] + Random.Range(-1, 3);
+                yPos[i+2] = yPos[i + 2];
+                yPos[i+3] = yPos[i + 2];
+            }
+            else
+            {
+                yPos[i] = corridor.EndPositionY - roomHeight + 1;
+                yPos[i+1] = yPos[i] + Random.Range(-1, 3);
+                yPos[i+2] = yPos[i + 2];
+                yPos[i+3] = yPos[i + 2];
+            }
+
             columnHeight[i] = roomHeight + Random.Range(-2, 4);
             columnHeight[i+1] = columnHeight[i];
             columnHeight[i+2] = columnHeight[i];

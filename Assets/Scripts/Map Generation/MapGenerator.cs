@@ -12,10 +12,10 @@ public class MapGenerator : MonoBehaviour
     public IntRange numRooms = new IntRange (4, 8);
     public IntRange roomWidth = new IntRange (10, 30);
     public IntRange roomHeight = new IntRange (10, 30); 
-    public IntRange corridorLength = new IntRange (1, 15);
+    public IntRange corridorLength = new IntRange (4, 15);
 
-    private int columns = 70;
-    private int rows = 70;
+    private int columns = 150;
+    private int rows = 150;
 
     public GameObject[] floorTiles;
     public GameObject[] corridorTiles;
@@ -40,7 +40,7 @@ public class MapGenerator : MonoBehaviour
         SetTilesValuesForCorridors();
         InstantiateTiles();
 
-        InitialiseList();
+     //   InitialiseList();
     }
     
 
@@ -66,14 +66,14 @@ public class MapGenerator : MonoBehaviour
         corridors[0] = new Corridor();
 
         //Establecemos las características del primer cuarto, que no tiene pasillo
-        rooms[0].SetupRoom(roomWidth, roomHeight, columns, rows);
+        rooms[0].SetupRoom(roomWidth, roomHeight);
         //Establecemos las características del primer pasillo usando el primer cuarto
-        corridors[0].SetupCorridor(rooms[0], corridorLength, roomWidth, roomHeight, columns, rows, true);
+        corridors[0].SetupCorridor(rooms[0], corridorLength, roomWidth, roomHeight, true);
 
         for (int i = 1; i < rooms.Length; i++)
         {
             rooms[i] = new Room();
-            
+            rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
         }
     }
 
@@ -167,7 +167,7 @@ public class MapGenerator : MonoBehaviour
     }
 
 
-    void InitialiseList() //CAMBIAR-HO PER SES POSICIONS QUE SIGUIN IGUAL A FLOOR
+   /* void InitialiseList() //CAMBIAR-HO PER SES POSICIONS QUE SIGUIN IGUAL A FLOOR
     {
         mapPositions.Clear();
 
@@ -179,5 +179,5 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-    
+    */
 }

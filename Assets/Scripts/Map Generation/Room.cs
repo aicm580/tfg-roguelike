@@ -72,34 +72,40 @@ public class Room
         }
 
 
-        for (int i = 0; i < roomWidth - 3; i = i + 4)
+        for (int i = 0; i < roomWidth; i++)
         {
             if (corridor.direction == Direction.East || corridor.direction == Direction.West)
             {
                 yPos[i] = Random.Range(corridor.EndPositionY - roomHeight, corridor.EndPositionY);
-                yPos[i+1] = yPos[i];
-                yPos[i+2] = yPos[i];
-                yPos[i+3] = yPos[i];
             }
             else if (corridor.direction == Direction.North)
             {
-                yPos[i] = corridor.EndPositionY;
-                yPos[i+1] = yPos[i] + Random.Range(-1, 3);
-                yPos[i+2] = yPos[i + 2];
-                yPos[i+3] = yPos[i + 2];
+                if(i == corridor.EndPositionX - xPos)
+                {
+                    yPos[i] = corridor.EndPositionY;
+                }
+                else if (i % 4 == 0) //si i es igual a 0, 4, 8, 12,...
+                {
+                    yPos[i] = corridor.EndPositionY +  Random.Range(-1, 3);
+                }
+                else{
+                    yPos[i] = yPos[i-1];
+                }
             }
             else
             {
                 yPos[i] = corridor.EndPositionY - roomHeight + 1;
-                yPos[i+1] = yPos[i] + Random.Range(-1, 3);
-                yPos[i+2] = yPos[i + 2];
-                yPos[i+3] = yPos[i + 2];
+               // yPos[i+1] = yPos[i] + Random.Range(-1, 3);
             }
 
+            
+           
             columnHeight[i] = roomHeight + Random.Range(-2, 4);
+             /*
             columnHeight[i+1] = columnHeight[i];
             columnHeight[i+2] = columnHeight[i];
             columnHeight[i+3] = columnHeight[i];
+            */
         }
     }
 }

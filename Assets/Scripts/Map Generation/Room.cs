@@ -54,17 +54,16 @@ public class Room
 
         enteringCorridor = corridor.direction;
 
-
+        //Calculamos la xPos en función de la dirección del pasillo
         if (corridor.direction == Direction.East || corridor.direction == Direction.West)
         {
-
             if (corridor.direction == Direction.East)
             {
                 xPos = corridor.EndPositionX - 1;
             }
             else
             {
-                xPos = corridor.EndPositionX - roomWidth;
+                xPos = corridor.EndPositionX - roomWidth + 2;
             }
         }
         else if (corridor.direction == Direction.North || corridor.direction == Direction.South)
@@ -72,41 +71,68 @@ public class Room
             xPos = Random.Range(corridor.EndPositionX - roomWidth + 2, corridor.EndPositionX - 2);
         }
 
-
+        //Calculamos los array yPos y columnHeight en función de la dirección del pasillo
         for (int i = 0; i < roomWidth; i++)
         {
+            if (i % 4 == 0 && i+1 < roomWidth)
+            {
+                columnHeight[i] = roomHeight + Random.Range(-2, 4);
+            }
+            else
+            {
+                columnHeight[i] = columnHeight[i-1];
+            }
+
+            //DIRECCIÓN ESTE u OESTE
             if (corridor.direction == Direction.East || corridor.direction == Direction.West)
             {
-                yPos[i] = Random.Range(corridor.EndPositionY - roomHeight, corridor.EndPositionY);
-            }
-            else if (corridor.direction == Direction.North)
-            {
-                if(i == corridor.EndPositionX - xPos)
+                if(i == 0)
                 {
-                    yPos[i] = corridor.EndPositionY;
+                    yPos[i] = Random.Range(corridor.EndPositionY - roomHeight + 2, corridor.EndPositionY - 2);
+                }
+                else if(i == roomWidth - 1 && corridor.direction == Direction.West)
+                {
+                    yPos[i] = yPos[0];
+                    yPos[i-1] = yPos[0];
+                }
+                else if(i % 4 == 0 && i+1 < roomWidth)
+                {
+                    yPos[i] = yPos[0] + Random.Range(-1, 3);
+                }
+                else{
+                    yPos[i] = yPos[i-1];
+                }
+                
+            }
+            else if (corridor.direction == Direction.North || corridor.direction == Direction.South)
+            {
+                if(i == corridor.EndPositionX - xPos) //si se trata de la columna que coincide con el pasillo
+                {
+                    if(corridor.direction == Direction.North)
+                    {
+                        yPos[i] = corridor.EndPositionY - 1;
+                    }
+                    else
+                    {
+                        yPos[i] = corridor.EndPositionY - roomHeight + 1;
+                        columnHeight[i] = roomHeight;
+                    }  
                 }
                 else if (i % 4 == 0 && i+1 < roomWidth) //si i es igual a 0, 4, 8, 12,... y no se trata de la última columna
                 {
-                    yPos[i] = corridor.EndPositionY +  Random.Range(-1, 3);
+                    if(corridor.direction == Direction.North)
+                    {
+                        yPos[i] = corridor.EndPositionY +  Random.Range(-1, 3);
+                    }
+                    else
+                    {
+                        yPos[i] = corridor.EndPositionY - roomHeight + 1 + Random.Range(-1, 3);
+                    }
                 }
                 else{
                     yPos[i] = yPos[i-1];
                 }
             }
-            else
-            {
-                yPos[i] = corridor.EndPositionY - roomHeight + 1;
-               // yPos[i+1] = yPos[i] + Random.Range(-1, 3);
-            }
-
-            
-           
-            columnHeight[i] = roomHeight + Random.Range(-2, 4);
-             /*
-            columnHeight[i+1] = columnHeight[i];
-            columnHeight[i+2] = columnHeight[i];
-            columnHeight[i+3] = columnHeight[i];
-            */
         }
     }
 }

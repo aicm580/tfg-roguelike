@@ -37,8 +37,7 @@ public class MapGenerator : MonoBehaviour
 
     void CreateRoomsAndCorridors()
     {
-     //   rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio
-        rooms = new Room[2];
+        rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio
         corridors = new Corridor[rooms.Length - 1]; //creamos el array de pasillos, que será igual al número de cuartos - 1, ya que el primer cuarto no tiene pasillo
 
         //Creamos el primer cuarto y el primer pasillo
@@ -47,7 +46,7 @@ public class MapGenerator : MonoBehaviour
 
         //Establecemos las características del primer cuarto, que no tiene pasillo
         rooms[0].SetupRoom(roomWidth, roomHeight);
-        SetTilesForRoom(rooms[0]);
+        SetTilesForRoom(0);
 
         //Establecemos las características del primer pasillo usando el primer cuarto
         corridors[0].SetupCorridor(rooms[0], corridorLength, roomWidth, roomHeight, true);
@@ -55,14 +54,26 @@ public class MapGenerator : MonoBehaviour
         for (int i = 1; i < rooms.Length; i++)
         {
             rooms[i] = new Room();
-            rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
-            SetTilesForRoom(rooms[i]);
+            
+            do
+            {
+                rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
+
+            } while (!PositionAvailable(rooms[i])); //cambiaremos las características de la sala actual hasta que esta sala que no se sitúe sobre una sala ya existente
+            
+            if (i < corridors.Length)
+            {
+                corridors[i] = new Corridor();
+                corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, false);
+            }
+            
+            SetTilesForRoom(i);
         }
     }
 
 
-    void SetTilesForRoom(Room currentRoom)
-    {        
+    bool PositionAvailable(Room currentRoom)
+    {
         for (int j = 0; j < currentRoom.roomWidth; j++)
         {
             int xCoord = currentRoom.xPos + j;
@@ -72,12 +83,36 @@ public class MapGenerator : MonoBehaviour
                 int yCoord = currentRoom.yPos[j] + k;
                 Vector2 pos = new Vector2(xCoord, yCoord);
 
+                if(tiles.Exists(x => x.pos == pos)) //Si la posición no está ocupada
+                {
+                    return false;
+                }
+            }
+        }
+        Debug.Log("Position Available");
+        return true;
+    }
+
+
+    void SetTilesForRoom(int i)
+    {        
+        Room currentRoom = rooms[i];
+        for (int j = 0; j < currentRoom.roomWidth; j++)
+        {
+            int xCoord = currentRoom.xPos + j;
+
+            for (int k = 0; k < currentRoom.columnHeight[j]; k++)
+            {
+                int yCoord = currentRoom.yPos[j] + k;
+                Vector2 pos = new Vector2(xCoord, yCoord);
+                
                 Tile newTile = new Tile(TileType.Floor, pos);
-                Debug.Log(newTile.tileType);
                 tiles.Add(newTile);
             }
         }
     }
+
+
 
 /*
     void SetTilesValuesForCorridors()

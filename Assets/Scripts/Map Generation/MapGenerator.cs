@@ -11,8 +11,8 @@ public class MapGenerator : MonoBehaviour
 
     public IntRange numRooms = new IntRange (4, 8);
     public IntRange roomWidth = new IntRange (10, 30);
-    public IntRange roomHeight = new IntRange (10, 30); 
-    public IntRange corridorLength = new IntRange (4, 15);
+    public IntRange roomHeight = new IntRange (8, 30); 
+    public IntRange corridorLength = new IntRange (4, 13);
 
     private int columns = 150;
     private int rows = 150;

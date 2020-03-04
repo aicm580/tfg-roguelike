@@ -27,17 +27,18 @@ public class Room
 
         xPos = Random.Range(2, 30);
 
-        for (int i = 0; i < roomWidth - 3; i = i + 4)
+        for (int i = 0; i < roomWidth; i++)
         {
-            yPos[i] = Mathf.RoundToInt(100 / 2f - roomHeight / 2f) + Random.Range(-1, 3);
-            yPos[i+1] = yPos[i];
-            yPos[i+2] = yPos[i];
-            yPos[i+3] = yPos[i];
-            
-            columnHeight[i] = roomHeight + Random.Range(-2, 4);
-            columnHeight[i+1] = columnHeight[i];
-            columnHeight[i+2] = columnHeight[i];
-            columnHeight[i+3] = columnHeight[i];
+            if (i % 4 == 0 && i+1 < roomWidth) //si la i es igual a 0, 4, 8, 12,... y no se trata de la última columna
+            {
+                yPos[i] = Mathf.RoundToInt(100 / 2f - roomHeight / 2f) + Random.Range(-1, 3);
+                columnHeight[i] = roomHeight + Random.Range(-2, 3);
+            }
+            else
+            {
+                yPos[i] = yPos[i-1];
+                columnHeight[i] = columnHeight[i-1];
+            }
         }
     }
 
@@ -84,7 +85,7 @@ public class Room
                 {
                     yPos[i] = corridor.EndPositionY;
                 }
-                else if (i % 4 == 0) //si i es igual a 0, 4, 8, 12,...
+                else if (i % 4 == 0 && i+1 < roomWidth) //si i es igual a 0, 4, 8, 12,... y no se trata de la última columna
                 {
                     yPos[i] = corridor.EndPositionY +  Random.Range(-1, 3);
                 }

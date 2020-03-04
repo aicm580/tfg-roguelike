@@ -240,7 +240,7 @@ MonoBehaviour:
     minVal: 10
     maxVal: 30
   roomHeight:
-    minVal: 10
+    minVal: 8
     maxVal: 30
   corridorLength:
     minVal: 4

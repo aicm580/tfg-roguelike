@@ -32,7 +32,7 @@ public class Room
             if (i % 4 == 0 && i+1 < roomWidth) //si la i es igual a 0, 4, 8, 12,... y no se trata de la última columna
             {
                 yPos[i] = Mathf.RoundToInt(100 / 2f - roomHeight / 2f) + Random.Range(-1, 3);
-                columnHeight[i] = roomHeight + Random.Range(-2, 3);
+                columnHeight[i] = roomHeight + Random.Range(-1, 4);
             }
             else
             {
@@ -76,7 +76,7 @@ public class Room
         {
             if (i % 4 == 0 && i+1 < roomWidth)
             {
-                columnHeight[i] = roomHeight + Random.Range(-2, 4);
+                columnHeight[i] = roomHeight + Random.Range(-1, 4);
             }
             else
             {
@@ -104,6 +104,7 @@ public class Room
                 }
                 
             }
+            //DIRECCIÓN NORTE o SUR
             else if (corridor.direction == Direction.North || corridor.direction == Direction.South)
             {
                 if(i == corridor.EndPositionX - xPos) //si se trata de la columna que coincide con el pasillo
@@ -114,7 +115,7 @@ public class Room
                     }
                     else
                     {
-                        yPos[i] = corridor.EndPositionY - roomHeight + 1;
+                        yPos[i] = corridor.EndPositionY - roomHeight + 2;
                         columnHeight[i] = roomHeight;
                     }  
                 }

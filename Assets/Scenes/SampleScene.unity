@@ -243,7 +243,7 @@ MonoBehaviour:
     minVal: 8
     maxVal: 30
   corridorLength:
-    minVal: 4
+    minVal: 6
     maxVal: 15
   floorTiles:
   - {fileID: 6649283857379490074, guid: cb564dd0477a9d547aa4c786994e2c4e, type: 3}

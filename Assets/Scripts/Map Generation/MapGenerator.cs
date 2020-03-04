@@ -4,54 +4,34 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public enum TileType
-    {
-       Wall, Floor, Corridor, 
-    } 
-
     public IntRange numRooms = new IntRange (4, 8);
     public IntRange roomWidth = new IntRange (10, 30);
     public IntRange roomHeight = new IntRange (8, 30); 
-    public IntRange corridorLength = new IntRange (4, 13);
+    public IntRange corridorLength = new IntRange (6, 15);
 
-    private int columns = 150;
-    private int rows = 150;
+    private Room[] rooms;
+    private Corridor[] corridors;
 
-    public GameObject[] floorTiles;
-    public GameObject[] corridorTiles;
+    private List <Tile> tiles = new List<Tile>();
+    private List <Vector2> mapPositions = new List<Vector2>();
 
     private GameObject mapHolder;
 
-    private TileType[][] tiles;
-    private Room[] rooms;
-    private Corridor[] corridors;
+    public GameObject[] floorTiles;
+    public GameObject[] corridorTiles;
     
-    private List <Vector3> mapPositions = new List<Vector3>();
-   
+
 
     public void SetupMap(int level)
     {
+        tiles.Clear();
+
         mapHolder = new GameObject("MapHolder");
-        
-        SetupTilesArray();
 
         CreateRoomsAndCorridors();
-        SetTilesValuesForRooms();
-        SetTilesValuesForCorridors();
         InstantiateTiles();
 
      //   InitialiseList();
-    }
-    
-
-    void SetupTilesArray()
-    {
-        tiles = new TileType[columns][];
-
-        for (int i = 0; i < tiles.Length; i++)
-        {
-            tiles[i] = new TileType[rows];
-        }
     }
 
 
@@ -59,7 +39,7 @@ public class MapGenerator : MonoBehaviour
     {
      //   rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio
         rooms = new Room[2];
-        corridors = new Corridor[rooms.Length - 1]; //creamos el array de pasillos, que será igual al número de cuartos - 1, ya que el pimer cuarto no tiene pasillo
+        corridors = new Corridor[rooms.Length - 1]; //creamos el array de pasillos, que será igual al número de cuartos - 1, ya que el primer cuarto no tiene pasillo
 
         //Creamos el primer cuarto y el primer pasillo
         rooms[0] = new Room();
@@ -67,6 +47,8 @@ public class MapGenerator : MonoBehaviour
 
         //Establecemos las características del primer cuarto, que no tiene pasillo
         rooms[0].SetupRoom(roomWidth, roomHeight);
+        SetTilesForRoom(rooms[0]);
+
         //Establecemos las características del primer pasillo usando el primer cuarto
         corridors[0].SetupCorridor(rooms[0], corridorLength, roomWidth, roomHeight, true);
 
@@ -74,31 +56,30 @@ public class MapGenerator : MonoBehaviour
         {
             rooms[i] = new Room();
             rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
+            SetTilesForRoom(rooms[i]);
         }
     }
 
 
-    void SetTilesValuesForRooms()
-    {
-        for (int i = 0; i < rooms.Length; i++)
+    void SetTilesForRoom(Room currentRoom)
+    {        
+        for (int j = 0; j < currentRoom.roomWidth; j++)
         {
-            Room currentRoom = rooms[i];
-            Debug.Log("Room " + i + ": Width " + currentRoom.roomWidth);
-           
-            for (int j = 0; j < currentRoom.roomWidth; j++)
-            {
-                int xCoord = currentRoom.xPos + j;
+            int xCoord = currentRoom.xPos + j;
 
-                for (int k = 0; k < currentRoom.columnHeight[j]; k++)
-                {
-                    int yCoord = currentRoom.yPos[j] + k;
-                    tiles[xCoord][yCoord] = TileType.Floor;
-                }
+            for (int k = 0; k < currentRoom.columnHeight[j]; k++)
+            {
+                int yCoord = currentRoom.yPos[j] + k;
+                Vector2 pos = new Vector2(xCoord, yCoord);
+
+                Tile newTile = new Tile(TileType.Floor, pos);
+                Debug.Log(newTile.tileType);
+                tiles.Add(newTile);
             }
         }
     }
 
-
+/*
     void SetTilesValuesForCorridors()
     {
         for (int i = 0; i < corridors.Length; i++)
@@ -131,26 +112,24 @@ public class MapGenerator : MonoBehaviour
 
         }
     }
-
+*/
 
     void InstantiateTiles()
     {
-        for (int i = 0; i < tiles.Length; i++)
+        foreach (Tile tile in tiles)
         {
-            for (int j = 0; j < tiles[i].Length; j++)
+            switch (tile.tileType)
             {
-                switch (tiles[i][j])
-                {
-                    case TileType.Floor:
-                        InstantiateFromArray(floorTiles, i, j);
-                        break;
+                case TileType.Floor:
+                    InstantiateFromArray(floorTiles, tile.pos.x, tile.pos.y);
+                    break;
 
-                    case TileType.Corridor: 
-                        InstantiateFromArray(corridorTiles, i, j);
-                        break;
-                }
-                    
+                case TileType.Corridor: 
+                    InstantiateFromArray(corridorTiles, tile.pos.x, tile.pos.y);
+                    break;
             }
+                    
+            
         }
     }
 
@@ -165,9 +144,9 @@ public class MapGenerator : MonoBehaviour
 
         tileInstance.transform.parent = mapHolder.transform;
     }
+/*
 
-
-   /* void InitialiseList() //CAMBIAR-HO PER SES POSICIONS QUE SIGUIN IGUAL A FLOOR
+    void InitialiseList() //CAMBIAR-HO PER SES POSICIONS QUE SIGUIN IGUAL A FLOOR
     {
         mapPositions.Clear();
 

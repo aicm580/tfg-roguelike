@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public IntRange numRooms = new IntRange (4, 7);
+    public IntRange numRooms = new IntRange (5, 8);
     public IntRange roomWidth = new IntRange (10, 30);
     public IntRange roomHeight = new IntRange (8, 30); 
     public IntRange corridorLength = new IntRange (7, 15);
+    public IntRange corridorWidth = new IntRange (3,5);
 
     private Room[] rooms;
     private Corridor[] corridors;
@@ -51,7 +52,7 @@ public class MapGenerator : MonoBehaviour
 
         //Establecemos las características del primer pasillo usando el primer cuarto
         int nDirection = Random.Range(0, 4);
-        corridors[0].SetupCorridor(rooms[0], corridorLength, roomWidth, roomHeight, nDirection, true);
+        corridors[0].SetupCorridor(rooms[0], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, true);
 
         for (int i = 1; i < rooms.Length; i++)
         {
@@ -63,8 +64,8 @@ public class MapGenerator : MonoBehaviour
                 if (attempt != 0 && attempt % 8 == 0)
                 {
                     nDirection = ((int)corridors[i-1].direction + 1) % 4;
-                    Debug.Log("NEED TO CHANGE LAST CORRIDOR DIRECTION FROM " + corridors[i-1].direction + " TO " + nDirection);
-                    corridors[i-1].SetupCorridor(rooms[i-1], corridorLength, roomWidth, roomHeight, nDirection, false);
+                    Debug.Log("NEED TO CHANGE LAST CORRIDOR DIRECTION (" + corridors[i-1].direction + ")");
+                    corridors[i-1].SetupCorridor(rooms[i-1], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, false);
                     
                     if (attempt >= 32 && i >= 2) //nos damos por vencidos y paramos la generación de terreno
                     {
@@ -88,7 +89,7 @@ public class MapGenerator : MonoBehaviour
             {
                 nDirection = Random.Range(0, 4);
                 corridors[i] = new Corridor();
-                corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, nDirection, false);
+                corridors[i].SetupCorridor(rooms[i], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, false);
             }
             
             if (i < rooms.Length)
@@ -146,32 +147,39 @@ public class MapGenerator : MonoBehaviour
         {
             Corridor currentCorridor = corridors[i];
 
-            for (int j = 0; j < currentCorridor.corridorLength; j++)
+            for (int j = 0; j < currentCorridor.corridorWidth; j++)
             {
-                int xCoord = currentCorridor.startXPos;
-                int yCoord = currentCorridor.startYPos;
-
-                switch (currentCorridor.direction)
+                for (int k = 0; k < currentCorridor.corridorLength; k++)
                 {
-                    case Direction.North: 
-                        yCoord += j;
-                        break;
-                    case Direction.South:
-                        yCoord -= j; 
-                        break;
-                    case Direction.East:
-                        xCoord += j;
-                        break;
-                    case Direction.West: 
-                        xCoord -= j;
-                        break;
+                    int xCoord = currentCorridor.startXPos;
+                    int yCoord = currentCorridor.startYPos;
+
+                    switch (currentCorridor.direction)
+                    {
+                        case Direction.North: 
+                            xCoord = currentCorridor.startXPos + j;
+                            yCoord += k;
+                            break;
+                        case Direction.South:
+                            xCoord = currentCorridor.startXPos + j;
+                            yCoord -= k; 
+                            break;
+                        case Direction.East:
+                            xCoord += k;
+                            yCoord = currentCorridor.startYPos + j;
+                            break;
+                        case Direction.West: 
+                            xCoord -= k;
+                            yCoord = currentCorridor.startYPos + j;
+                            break;
+                    }
+
+                    Vector2 pos = new Vector2(xCoord, yCoord);
+                    Tile newTile = new Tile(TileType.Corridor, pos);
+                    tiles.Add(newTile);
                 }
 
-                Vector2 pos = new Vector2(xCoord, yCoord);
-                Tile newTile = new Tile(TileType.Corridor, pos);
-                tiles.Add(newTile);
             }
-
         }
     }
 

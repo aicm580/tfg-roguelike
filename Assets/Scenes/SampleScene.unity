@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms:
-    minVal: 4
+    minVal: 5
     maxVal: 8
   roomWidth:
     minVal: 10

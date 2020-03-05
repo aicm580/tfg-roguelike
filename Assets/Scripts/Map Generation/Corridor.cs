@@ -13,6 +13,7 @@ public class Corridor
     public int startYPos;
 
     public int corridorLength;
+    public int corridorWidth;
 
     public int randomX;
 
@@ -48,7 +49,7 @@ public class Corridor
         }
     }
 
-    public void SetupCorridor (Room room, IntRange length, IntRange roomWidth, IntRange roomHeight, int nDirection, bool firstCorridor)
+    public void SetupCorridor (Room room, IntRange length, IntRange width, IntRange roomWidth, IntRange roomHeight, int nDirection, bool firstCorridor)
     {
         //la dirección se decidirá de forma aleatoria
         direction = (Direction)nDirection;
@@ -66,6 +67,7 @@ public class Corridor
         Debug.Log(direction);
 
         corridorLength = length.Randomize; //establecemos una longitud del pasillo aleatoria
+        corridorWidth = width.Randomize; //establecemos una anchura del pasillo aleatoria
 
         switch (direction)
         {

@@ -24,8 +24,6 @@ public class MapGenerator : MonoBehaviour
 
     public void SetupMap(int level)
     {
-        tiles.Clear();
-
         mapHolder = new GameObject("MapHolder");
 
         CreateRoomsAndCorridors();
@@ -37,6 +35,8 @@ public class MapGenerator : MonoBehaviour
 
     void CreateRoomsAndCorridors()
     {
+        tiles.Clear();
+
         rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio
         corridors = new Corridor[rooms.Length - 1]; //creamos el array de pasillos, que será igual al número de cuartos - 1, ya que el primer cuarto no tiene pasillo
         Debug.Log("ROOMS LENGTH: " + rooms.Length);
@@ -60,13 +60,13 @@ public class MapGenerator : MonoBehaviour
             int attempt = 0;
             do //cambiaremos las características de la sala actual hasta que esta sala que no se sitúe sobre una sala ya existente
             {
-                if (attempt != 0 && attempt % 10 == 0)
+                if (attempt != 0 && attempt % 8 == 0)
                 {
                     nDirection = ((int)corridors[i-1].direction + 1) % 4;
                     Debug.Log("NEED TO CHANGE LAST CORRIDOR DIRECTION FROM " + corridors[i-1].direction + " TO " + nDirection);
                     corridors[i-1].SetupCorridor(rooms[i-1], corridorLength, roomWidth, roomHeight, nDirection, false);
                     
-                    if (attempt >= 40 && i >= 2) //nos damos por vencidos y paramos la generación de terreno
+                    if (attempt >= 32 && i >= 2) //nos damos por vencidos y paramos la generación de terreno
                     {
                         System.Array.Resize(ref rooms, i);
                         System.Array.Resize(ref corridors, i - 1);
@@ -76,8 +76,11 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
 
-                rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
-                attempt += 1;
+                if (i < rooms.Length)
+                {
+                    rooms[i].SetupRoom(roomWidth, roomHeight, corridors[i-1]);
+                    attempt += 1;
+                }
 
             } while (!PositionAvailable(rooms[i])); 
             
@@ -88,7 +91,8 @@ public class MapGenerator : MonoBehaviour
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, nDirection, false);
             }
             
-            SetTilesForRoom(rooms[i]);
+            if (i < rooms.Length)
+                SetTilesForRoom(rooms[i]);
         }
 
         SetTilesForCorridors();

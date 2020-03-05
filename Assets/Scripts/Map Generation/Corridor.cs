@@ -48,10 +48,10 @@ public class Corridor
         }
     }
 
-    public void SetupCorridor (Room room, IntRange length, IntRange roomWidth, IntRange roomHeight, bool firstCorridor)
+    public void SetupCorridor (Room room, IntRange length, IntRange roomWidth, IntRange roomHeight, int nDirection, bool firstCorridor)
     {
         //la dirección se decidirá de forma aleatoria
-        direction = (Direction)Random.Range(0, 4);
+        direction = (Direction)nDirection;
 
         Direction oppositeDirection = (Direction)(((int)room.enteringCorridor + 2) % 4); //por ejemplo, si el pasillo que lleva a la habitación actual tiene dirección 2 (South), su contrario tendrá dirección 0 (North)
 

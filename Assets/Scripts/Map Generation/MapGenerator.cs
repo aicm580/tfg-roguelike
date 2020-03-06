@@ -14,12 +14,13 @@ public class MapGenerator : MonoBehaviour
     private Corridor[] corridors;
 
     private List <Tile> tiles = new List<Tile>();
-    private List <Vector2> mapPositions = new List<Vector2>();
+    private List <Vector2> emptyPositions = new List<Vector2>();
 
     private GameObject mapHolder;
 
     public GameObject[] floorTiles;
     public GameObject[] corridorTiles;
+    public GameObject[] corridorWallTiles;
     
 
 
@@ -30,7 +31,7 @@ public class MapGenerator : MonoBehaviour
         CreateRoomsAndCorridors();
         InstantiateTiles();
 
-     //   InitialiseList();
+        InitialisePositionsList();
     }
 
 
@@ -154,31 +155,51 @@ public class MapGenerator : MonoBehaviour
                     int xCoord = currentCorridor.startXPos;
                     int yCoord = currentCorridor.startYPos;
 
-                    switch (currentCorridor.direction)
+                    TileType currentTileType = TileType.CorridorFloor; 
+
+                    if (currentCorridor.direction == Direction.North || currentCorridor.direction == Direction.South)
                     {
-                        case Direction.North: 
+                        if (currentCorridor.direction == Direction.North)
+                        {
                             xCoord = currentCorridor.startXPos + j;
                             yCoord += k;
-                            break;
-                        case Direction.South:
+                        }
+                        else
+                        {
                             xCoord = currentCorridor.startXPos + j;
                             yCoord -= k; 
-                            break;
-                        case Direction.East:
+                        }
+
+                        if(xCoord == currentCorridor.startXPos || xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1) 
+                        {
+                            currentTileType = TileType.CorridorWall;
+                        }
+
+                    }
+                    else if (currentCorridor.direction == Direction.East || currentCorridor.direction == Direction.West)
+                    {
+                        if (currentCorridor.direction == Direction.East)
+                        {
                             xCoord += k;
                             yCoord = currentCorridor.startYPos + j;
-                            break;
-                        case Direction.West: 
+                        }
+                        else
+                        {
                             xCoord -= k;
                             yCoord = currentCorridor.startYPos + j;
-                            break;
+                        }
+
+                        if (yCoord == currentCorridor.startYPos || yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1)
+                        {
+                            currentTileType = TileType.CorridorWall;
+                        }
+                
                     }
 
                     Vector2 pos = new Vector2(xCoord, yCoord);
-                    Tile newTile = new Tile(TileType.Corridor, pos);
+                    Tile newTile = new Tile(currentTileType, pos);
                     tiles.Add(newTile);
                 }
-
             }
         }
     }
@@ -194,8 +215,12 @@ public class MapGenerator : MonoBehaviour
                     InstantiateFromArray(floorTiles, tile.pos.x, tile.pos.y);
                     break;
 
-                case TileType.Corridor: 
+                case TileType.CorridorFloor: 
                     InstantiateFromArray(corridorTiles, tile.pos.x, tile.pos.y);
+                    break;
+                
+                case TileType.CorridorWall:
+                    InstantiateFromArray(corridorWallTiles, tile.pos.x, tile.pos.y);
                     break;
             }
    
@@ -213,19 +238,19 @@ public class MapGenerator : MonoBehaviour
 
         tileInstance.transform.parent = mapHolder.transform;
     }
-/*
 
-    void InitialiseList() //CAMBIAR-HO PER SES POSICIONS QUE SIGUIN IGUAL A FLOOR
+
+    //Esta función añade al array emptyPositions todas las posiciones en que el tile es de tipo Floor
+    void InitialisePositionsList()
     {
-        mapPositions.Clear();
+        emptyPositions.Clear();
 
-        for (int x = 0; x < columns - 1; x++)
+        foreach (Tile tile in tiles)
         {
-            for (int y = 0; y < rows - 1; y++)
+            if (tile.tileType == TileType.Floor)
             {
-                mapPositions.Add(new Vector3(x, y, 0f)); 
+                emptyPositions.Add(new Vector2(tile.pos.x, tile.pos.y));
             }
-        }
+        }      
     }
-    */
 }

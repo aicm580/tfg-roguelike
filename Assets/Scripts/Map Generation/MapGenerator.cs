@@ -14,7 +14,7 @@ public class MapGenerator : MonoBehaviour
     private Corridor[] corridors;
 
     private List <Tile> tiles = new List<Tile>();
-    private List <Vector2> emptyPositions = new List<Vector2>();
+    public List <Vector2> emptyPositions = new List<Vector2>();
 
     private GameObject mapHolder;
 

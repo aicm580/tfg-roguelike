@@ -245,10 +245,16 @@ MonoBehaviour:
   corridorLength:
     minVal: 7
     maxVal: 15
+  corridorWidth:
+    minVal: 3
+    maxVal: 5
+  emptyPositions: []
   floorTiles:
   - {fileID: 6649283857379490074, guid: cb564dd0477a9d547aa4c786994e2c4e, type: 3}
   corridorTiles:
   - {fileID: 6649283857379490074, guid: c096d82013bb687439a7197ffc593bc1, type: 3}
+  corridorWallTiles:
+  - {fileID: 6649283857379490074, guid: 5487b02e32fccff4c9e2f206e39f408f, type: 3}
 --- !u!114 &968516359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 3002168867632701916, guid: f458abb6d6e5bdd4e9ab50b3cbff67c1, type: 3}
 --- !u!4 &968516360
 Transform:
   m_ObjectHideFlags: 0

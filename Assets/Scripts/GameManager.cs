@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,49 +10,65 @@ public class GameManager : MonoBehaviour
     private GameObject enemiesHolder;
 
     private int level = 1;
-    private List<GameObject> enemies = new List<GameObject>();
+    private string lvlName;
 
-    public GameObject prefab;
+    private List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> enemiesPrefabs;
     
     
     void Start()
     {
-        //Vaciamos la lista de enemigos
-        enemies.Clear();
-
         //Generamos el mapa del nivel
         mapGenerator = GetComponent<MapGenerator>();
-        mapGenerator.SetupMap(level);
+        mapGenerator.SetupMap();
 
+        LoadLevelEnemiesArray();
         enemiesHolder = new GameObject("EnemiesHolder");
-
-        CreateEnemiesAtRandom();
+        CreateEnemies();
     }
 
 
-    Vector3 RandomPosition()
+    Vector3 RandomPosition(int i)
     {
-        int randomIndex = Random.Range (0, mapGenerator.emptyPositions.Count);
+        int randomIndex = Random.Range(0, mapGenerator.rooms[i].emptyPositions.Count);
 
-        Vector3 randomPosition = new Vector3(mapGenerator.emptyPositions[randomIndex].x, mapGenerator.emptyPositions[randomIndex].y, 0f);
-        mapGenerator.emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
+        Vector3 randomPosition = new Vector3(mapGenerator.rooms[i].emptyPositions[randomIndex].x, mapGenerator.rooms[i].emptyPositions[randomIndex].y, 0f);
+        mapGenerator.rooms[i].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
 
         return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
     }
 
 
-    void CreateEnemiesAtRandom()
+    void CreateEnemies()
     {
-        Vector3 position = RandomPosition();
+        //Vaciamos la lista de enemigos
+        enemies.Clear();
 
-        GameObject enemy = Instantiate(prefab, position, Quaternion.identity) as GameObject;
+        for (int i = 0; i < mapGenerator.rooms.Length; i++)
+        {
+            Vector3 position = RandomPosition(i);
 
-        enemy.transform.parent = enemiesHolder.transform;
+            int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el máximo del Random.Range en enteros es exclusivo; el resultado máximo será enemiesPrefabs.Count-1
 
-        Debug.Log(enemy.GetComponent<Enemy>().enemyType);
+            GameObject enemy = Instantiate(enemiesPrefabs[randomEnemy], position, Quaternion.identity) as GameObject;
+            enemy.GetComponent<Enemy>().pos = new Vector2(position.x, position.y);
 
-        enemies.Add(enemy);
-        Debug.Log("Nº de enemigos creados: " + enemies.Count);
+            enemy.transform.parent = enemiesHolder.transform;
+
+            Debug.Log(enemy.GetComponent<Enemy>().enemyType);
+
+            enemies.Add(enemy);
+            Debug.Log("Nº de enemigos creados: " + enemies.Count);
+        }
+    }
+    
+
+    //El contenido del array de prefabs de los enemigos dependerá del nivel
+    void LoadLevelEnemiesArray()
+    {
+        enemiesPrefabs.Clear();
+        lvlName = "Level" + level;
+        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies").ToList();
     }
     
 }

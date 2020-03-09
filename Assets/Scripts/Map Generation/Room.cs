@@ -14,10 +14,15 @@ public class Room
 
     public Direction enteringCorridor; //dirección del pasillo que lleva a esta sala
 
+    public List <Vector2> emptyPositions = new List<Vector2>();
+
 
     //Función usada para la creación del primer cuarto. No tiene el parámetro del pasillo, porque la primera sala no tiene pasillo que lleve hasta ella. 
     public void SetupRoom (IntRange widthRange, IntRange heightRange)
     {
+        //Nos aseguramos de que la lista de posiciones no contiene ningún valor
+        emptyPositions.Clear();
+
         //Establecemos una altura y una anchura aleatorias
         roomWidth = widthRange.Randomize;
         roomHeight = heightRange.Randomize;
@@ -45,6 +50,9 @@ public class Room
     //Hacemos overload a la función SetupRoom, añadiendo el parámetro del pasillo
     public void SetupRoom (IntRange widthRange, IntRange heightRange, Corridor corridor)
     {
+        //Nos aseguramos de que la lista de posiciones no contiene ningún valor
+        emptyPositions.Clear();
+        
         //Establecemos una altura y una anchura aleatorias
         roomWidth = widthRange.Randomize;
         roomHeight = heightRange.Randomize;

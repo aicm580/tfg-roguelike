@@ -10,11 +10,10 @@ public class MapGenerator : MonoBehaviour
     public IntRange corridorLength = new IntRange (7, 15);
     public IntRange corridorWidth = new IntRange (3,5);
 
-    private Room[] rooms;
+    public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
     private Corridor[] corridors;
 
     private List <Tile> tiles = new List<Tile>();
-    public List <Vector2> emptyPositions = new List<Vector2>();
 
     private GameObject mapHolder;
 
@@ -24,14 +23,12 @@ public class MapGenerator : MonoBehaviour
     
 
 
-    public void SetupMap(int level)
+    public void SetupMap()
     {
         mapHolder = new GameObject("MapHolder");
 
         CreateRoomsAndCorridors();
         InstantiateTiles();
-
-        InitialisePositionsList();
     }
 
 
@@ -131,12 +128,20 @@ public class MapGenerator : MonoBehaviour
         {
             int xCoord = currentRoom.xPos + j;
 
+            TileType currentTileType = TileType.Floor; 
+
             for (int k = 0; k < currentRoom.columnHeight[j]; k++)
             {
                 int yCoord = currentRoom.yPos[j] + k;
                 Vector2 pos = new Vector2(xCoord, yCoord);
-                Tile newTile = new Tile(TileType.Floor, pos);
+                Tile newTile = new Tile(currentTileType, pos);
                 tiles.Add(newTile);
+
+                //Si se trata de un tile Floor, añadimos su posición a la lista de posiciones vacías de la sala
+                if (currentTileType == TileType.Floor)
+                {
+                    currentRoom.emptyPositions.Add(new Vector2(pos.x, pos.y));
+                }
             }
         }
     }
@@ -239,18 +244,4 @@ public class MapGenerator : MonoBehaviour
         tileInstance.transform.parent = mapHolder.transform;
     }
 
-
-    //Esta función añade al array emptyPositions todas las posiciones en que el tile es de tipo Floor
-    void InitialisePositionsList()
-    {
-        emptyPositions.Clear();
-
-        foreach (Tile tile in tiles)
-        {
-            if (tile.tileType == TileType.Floor)
-            {
-                emptyPositions.Add(new Vector2(tile.pos.x, tile.pos.y));
-            }
-        }      
-    }
 }

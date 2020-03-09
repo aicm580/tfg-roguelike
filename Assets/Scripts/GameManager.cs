@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < mapGenerator.rooms.Length; i++)
         {
+            Debug.Log("Nº enemigos a generar en la sala " + i + ": " + mapGenerator.rooms[i].nEnemies);
+            
             Vector3 position = RandomPosition(i);
 
             int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el máximo del Random.Range en enteros es exclusivo; el resultado máximo será enemiesPrefabs.Count-1
@@ -55,10 +57,7 @@ public class GameManager : MonoBehaviour
 
             enemy.transform.parent = enemiesHolder.transform;
 
-            Debug.Log(enemy.GetComponent<Enemy>().enemyType);
-
             enemies.Add(enemy);
-            Debug.Log("Nº de enemigos creados: " + enemies.Count);
         }
     }
     

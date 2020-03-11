@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
             randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
-        } while (!EnoughSpaceForFriends(randomPosition, room, friends) && NotEnemiesSurrounding(randomPosition, room));
+        } while (!EnoughSpaceForFriends(randomPosition, room, friends) && NotEnemiesNearby(randomPosition, room));
 
         mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
 
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
                 if (positionToCheck != randomPosition && CheckPosition(positionToCheck, room))
                 {
-                    freePos++;
+                    freePos++; 
 
                     if (freePos >= friends)
                     {
@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private bool NotEnemiesSurrounding(Vector3 randomPosition, int room)
+    //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo
+    private bool NotEnemiesNearby(Vector3 randomPosition, int room)
     {
         for (int i = -2; i <= 2; i++)
         {
@@ -90,15 +91,13 @@ public class GameManager : MonoBehaviour
             {
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
-                if (positionToCheck != randomPosition)
+                if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck))
                 {
-                    if (!CheckPosition(positionToCheck, room))
-                        Debug.Log("Enemies cannot be that close. Recalculating enemy position...");
-                        return false;
+                    Debug.Log("Enemies cannot be that close. Recalculating enemy position...");
+                    return false; 
                 }
             }
         }
-
         return true;
     }
 
@@ -168,9 +167,10 @@ public class GameManager : MonoBehaviour
                 }
                 
                 GameObject enemy = Instantiate(enemiesPrefabs[randomEnemy], position, Quaternion.identity) as GameObject;
-                enemy.GetComponent<Enemy>().pos = new Vector2(position.x, position.y);
-                enemy.GetComponent<Enemy>().calculatedFriends = friends;
+                enemy.transform.position = position;
                 enemy.transform.parent = enemiesHolder.transform;
+                enemy.GetComponent<Enemy>().calculatedFriends = friends;
+                
                 enemies.Add(enemy);
                 enemiesCreated++;
             }

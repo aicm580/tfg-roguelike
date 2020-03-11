@@ -20,8 +20,6 @@ public class Enemy : MonoBehaviour
 
     public int health;
 
-    public Vector2 pos = new Vector2();
-
     //private Animator anim;
 
 

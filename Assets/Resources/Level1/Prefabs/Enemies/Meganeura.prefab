@@ -93,8 +93,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  biome: 0
   friends:
     minVal: 1
-    maxVal: 3
+    maxVal: 6
+  calculatedFriends: 0
   health: 20
   pos: {x: 0, y: 0}

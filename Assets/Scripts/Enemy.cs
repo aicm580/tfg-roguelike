@@ -15,7 +15,8 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
     public Biome biome; 
 
-    public IntRange friends; //número de enemigos igual que éste que le acompañan
+    public IntRange friends; //rango de número de enemigos igual que éste que le acompañan
+    public int calculatedFriends;
 
     public int health;
 

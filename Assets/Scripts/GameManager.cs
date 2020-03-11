@@ -28,14 +28,78 @@ public class GameManager : MonoBehaviour
     }
 
 
-    Vector3 RandomPosition(int i)
+    Vector3 RandomPosition(int room, int friends)
     {
-        int randomIndex = Random.Range(0, mapGenerator.rooms[i].emptyPositions.Count);
+        int randomIndex;
+        Vector3 randomPosition;
 
-        Vector3 randomPosition = new Vector3(mapGenerator.rooms[i].emptyPositions[randomIndex].x, mapGenerator.rooms[i].emptyPositions[randomIndex].y, 0f);
-        mapGenerator.rooms[i].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
+        do
+        {
+            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+        } while (!EnoughSpaceForFriends(randomPosition, room, friends) && NotEnemiesSurrounding(randomPosition, room));
+
+        mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
 
         return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
+    }
+
+    
+    private bool CheckPosition(Vector3 positionToCheck, int room)
+    {
+        if (mapGenerator.rooms[room].emptyPositions.Contains(positionToCheck))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private bool EnoughSpaceForFriends(Vector3 randomPosition, int room, int friends)
+    {
+        int freePos = 0;
+
+        for (int i = -3; i <= 3; i++)
+        {
+            for (int j = -3; j <= 3; j++)
+            {
+                Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
+
+                if (positionToCheck != randomPosition && CheckPosition(positionToCheck, room))
+                {
+                    freePos++;
+
+                    if (freePos >= friends)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    private bool NotEnemiesSurrounding(Vector3 randomPosition, int room)
+    {
+        for (int i = -2; i <= 2; i++)
+        {
+            for (int j = -2; j <= 2; j++)
+            {
+                Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
+
+                if (positionToCheck != randomPosition)
+                {
+                    if (!CheckPosition(positionToCheck, room))
+                        Debug.Log("Enemies cannot be that close. Recalculating enemy position...");
+                        return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 
@@ -70,7 +134,8 @@ public class GameManager : MonoBehaviour
                 //Si ni siquiera poniendo el nº de amigos al mínimo cumplimos con el nEnemies calculado
                 if (enemiesCreated + enemiesPrefabs[randomEnemy].GetComponent<Enemy>().friends.minVal + 1 > nEnemies)
                 {
-                    //Pasamos a la próxima iteración sin haber creado ningún enemigo
+                    //Pasamos a la próxima iteración sin haber creado ningún enemigo.
+                    //Este continue no romperá el juego, puesto que en cada nivel habrá como mínimo 1 enemigo con un mínimo de 0 amigos
                     continue;
                 }
                 else
@@ -80,20 +145,31 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            Vector3 randomPos = RandomPosition(i, friends);
+
             for (int j = 0; j < friends + 1; j++)
             {
                 Vector3 position;
                 if (j == 0)
                 {
-                    position = RandomPosition(i);
+                    position = randomPos;
                 }
                 else
                 {
-                    position = RandomPosition(i);
+                    do
+                    {
+                        position.x = randomPos.x + Random.Range(-j, j);
+                        position.y = randomPos.y + Random.Range(-j, j);
+                        position.z = 0;
+
+                    } while (!CheckPosition(position, i));
+
+                    mapGenerator.rooms[i].emptyPositions.Remove(position);
                 }
                 
                 GameObject enemy = Instantiate(enemiesPrefabs[randomEnemy], position, Quaternion.identity) as GameObject;
                 enemy.GetComponent<Enemy>().pos = new Vector2(position.x, position.y);
+                enemy.GetComponent<Enemy>().calculatedFriends = friends;
                 enemy.transform.parent = enemiesHolder.transform;
                 enemies.Add(enemy);
                 enemiesCreated++;

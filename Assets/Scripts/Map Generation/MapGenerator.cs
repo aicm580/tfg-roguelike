@@ -109,7 +109,7 @@ public class MapGenerator : MonoBehaviour
                 int yCoord = currentRoom.yPos[j] + k;
                 Vector2 pos = new Vector2(xCoord, yCoord);
 
-                if(tiles.Exists(x => x.pos == pos)) //Si la posición no está ocupada
+                if(tiles.Exists(x => x.pos == pos)) //Si la posición está ocupada
                 {
                     Debug.Log("Need to recalculate room");
                     return false;
@@ -133,14 +133,14 @@ public class MapGenerator : MonoBehaviour
             for (int k = 0; k < currentRoom.columnHeight[j]; k++)
             {
                 int yCoord = currentRoom.yPos[j] + k;
-                Vector2 pos = new Vector2(xCoord, yCoord);
+                Vector3 pos = new Vector3(xCoord, yCoord, 0);
                 Tile newTile = new Tile(currentTileType, pos);
                 tiles.Add(newTile);
 
                 //Si se trata de un tile Floor, añadimos su posición a la lista de posiciones vacías de la sala
                 if (currentTileType == TileType.Floor)
                 {
-                    currentRoom.emptyPositions.Add(new Vector2(pos.x, pos.y));
+                    currentRoom.emptyPositions.Add(pos);
                 }
             }
         }

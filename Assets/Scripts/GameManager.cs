@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> enemiesPrefabs;
+    public GameObject bossPrefab;
     
     
     void Start()
@@ -22,18 +23,19 @@ public class GameManager : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         mapGenerator.SetupMap();
 
-        LoadLevelEnemiesArray();
+        LoadLevelEnemiesPrefabs();
         enemiesHolder = new GameObject("EnemiesHolder");
         GenerateEnemies();
     }
 
 
     //El contenido del array de prefabs de los enemigos dependerá del nivel
-    void LoadLevelEnemiesArray()
+    void LoadLevelEnemiesPrefabs()
     {
         enemiesPrefabs.Clear();
         lvlName = "Level" + level;
-        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies").ToList();
+        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies/BasicEnemies").ToList();
+        bossPrefab = Resources.Load<GameObject>(lvlName + "/Prefabs/Enemies/Boss");
     }
 
 
@@ -156,25 +158,40 @@ public class GameManager : MonoBehaviour
 
         while (enemiesCreated < nEnemies)
         {
-            int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
-            int friends = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().friends.Randomize; 
-            Biome enemyBiome = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().biome;
+            int friends;
+            GameObject enemyPrefab;
 
-            //Si no se puede crear el enemigo junto con su nº de amigos calculado
-            if (enemiesCreated + friends + 1 > nEnemies) 
+            //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
+            //puesto que en esta sala solo se encontrará 1 enemigo, el jefe final, que no tendrá amigos nunca
+            if (i != mapGenerator.rooms.Length - 1)
             {
-                //Si ni siquiera poniendo el nº de amigos al mínimo cumplimos con el nEnemies calculado
-                if (enemiesCreated + enemiesPrefabs[randomEnemy].GetComponent<Enemy>().friends.minVal + 1 > nEnemies)
+                int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
+                enemyPrefab = enemiesPrefabs[randomEnemy];
+                friends = enemyPrefab.GetComponent<Enemy>().friends.Randomize;
+                Biome enemyBiome = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().biome;
+
+
+                //Si no se puede crear el enemigo junto con su nº de amigos calculado
+                if (enemiesCreated + friends + 1 > nEnemies)
                 {
-                    //Pasamos a la próxima iteración sin haber creado ningún enemigo.
-                    //Este continue no romperá el juego, puesto que en cada nivel habrá como mínimo 1 enemigo con un mínimo de 0 amigos
-                    continue;
+                    //Si ni siquiera poniendo el nº de amigos al mínimo cumplimos con el nEnemies calculado
+                    if (enemiesCreated + enemyPrefab.GetComponent<Enemy>().friends.minVal + 1 > nEnemies)
+                    {
+                        //Pasamos a la próxima iteración sin haber creado ningún enemigo.
+                        //Este continue no romperá el juego, puesto que en cada nivel habrá como mínimo 1 enemigo con un mínimo de 0 amigos
+                        continue;
+                    }
+                    else
+                    {
+                        //Cambiamos el nº de amigos al menor posible
+                        friends = enemyPrefab.GetComponent<Enemy>().friends.minVal;
+                    }
                 }
-                else
-                {
-                    //Cambiamos el nº de amigos al menor posible
-                    friends = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().friends.minVal; 
-                }
+            }
+            else
+            {
+                friends = bossPrefab.GetComponent<Enemy>().friends.Randomize;
+                enemyPrefab = bossPrefab;
             }
 
             Vector3 randomPos = RandomPosition(i, friends);
@@ -198,12 +215,12 @@ public class GameManager : MonoBehaviour
 
                     mapGenerator.rooms[i].emptyPositions.Remove(position);
                 }
-                
-                GameObject enemy = Instantiate(enemiesPrefabs[randomEnemy], position, Quaternion.identity) as GameObject;
+            
+                GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
                 enemy.transform.position = position;
                 enemy.transform.parent = enemiesHolder.transform;
                 enemy.GetComponent<Enemy>().calculatedFriends = friends;
-                
+            
                 enemies.Add(enemy);
                 enemiesCreated++;
             }

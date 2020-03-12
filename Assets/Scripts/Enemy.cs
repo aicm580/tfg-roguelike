@@ -2,7 +2,7 @@
 
 public enum EnemyType
 {
-    Dilophosaurus, Meganeura,
+    Velociraptor, Dilophosaurus, Meganeura, Olghoïkhorkhoï, 
 } 
 
 public enum Biome

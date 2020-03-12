@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     private string lvlName;
 
     private List<GameObject> enemies = new List<GameObject>();
+
     public List<GameObject> enemiesPrefabs;
     public GameObject bossPrefab;
+    public GameObject player;
     
     
     void Start()
@@ -23,9 +25,22 @@ public class GameManager : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         mapGenerator.SetupMap();
 
+        player.transform.position = InitPlayerPosition();
+
         LoadLevelEnemiesPrefabs();
         enemiesHolder = new GameObject("EnemiesHolder");
         GenerateEnemies();
+    }
+
+
+    Vector3 InitPlayerPosition()
+    {
+        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 2.5f));
+        Vector3 randomPosition = mapGenerator.rooms[0].emptyPositions[randomIndex];
+
+        mapGenerator.rooms[0].emptyPositions.RemoveAt(randomIndex);
+
+        return randomPosition;
     }
 
 
@@ -36,23 +51,6 @@ public class GameManager : MonoBehaviour
         lvlName = "Level" + level;
         enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies/BasicEnemies").ToList();
         bossPrefab = Resources.Load<GameObject>(lvlName + "/Prefabs/Enemies/Boss");
-    }
-
-
-    Vector3 RandomPosition(int room, int friends)
-    {
-        int randomIndex;
-        Vector3 randomPosition;
-
-        do
-        {
-            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
-        } while (!EnoughSpaceForFriends(randomPosition, room, friends) || !NotEnemiesNearby(randomPosition, room));
-
-        mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
-
-        return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
     }
 
     
@@ -122,7 +120,24 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void GenerateEnemies()
+    Vector3 RandomPosition(int room, int friends)
+    {
+        int randomIndex;
+        Vector3 randomPosition;
+
+        do
+        {
+            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+        } while (!EnoughSpaceForFriends(randomPosition, room, friends) || !NotEnemiesNearby(randomPosition, room));
+
+        mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
+
+        return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
+    }
+
+
+    private void GenerateEnemies()
     {
         //Vaciamos la lista de enemigos
         enemies.Clear();

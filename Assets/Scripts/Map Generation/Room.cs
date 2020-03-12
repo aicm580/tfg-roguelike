@@ -10,20 +10,14 @@ public class Room
     public int[] columnHeight;
 
     public int roomWidth;
-    private int roomHeight;
+    public int roomHeight;
 
     public Direction enteringCorridor; //dirección del pasillo que lleva a esta sala
 
     public List <Vector3> emptyPositions = new List<Vector3>(); //posiciones en las que se podrán colocar enemigos o elementos
+
+    public int nEnemies = 1; //nº de enemigos que podrán generarse en la sala. Se inicializa a 1 para evitar problemas
     
-    public int nEnemies //nº de enemigos que deberán generarse en la sala
-    {
-        get
-        {
-            int maxEnemies = (int)System.Math.Ceiling((roomWidth + roomHeight) / 3.5f);
-            return Random.Range(2, maxEnemies);
-        }
-    }
 
 
     //Función usada para la creación del primer cuarto. No tiene el parámetro del pasillo, porque la primera sala no tiene pasillo que lleve hasta ella. 

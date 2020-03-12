@@ -28,6 +28,15 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //El contenido del array de prefabs de los enemigos dependerá del nivel
+    void LoadLevelEnemiesArray()
+    {
+        enemiesPrefabs.Clear();
+        lvlName = "Level" + level;
+        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies").ToList();
+    }
+
+
     Vector3 RandomPosition(int room, int friends)
     {
         int randomIndex;
@@ -37,7 +46,7 @@ public class GameManager : MonoBehaviour
         {
             randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
             randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
-        } while (!EnoughSpaceForFriends(randomPosition, room, friends) && NotEnemiesNearby(randomPosition, room));
+        } while (!EnoughSpaceForFriends(randomPosition, room, friends) || !NotEnemiesNearby(randomPosition, room));
 
         mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos de la lista
 
@@ -45,6 +54,7 @@ public class GameManager : MonoBehaviour
     }
 
     
+    //Esta función permite comprobar si una posición concreta de una sala concreta está disponible
     private bool CheckPosition(Vector3 positionToCheck, int room)
     {
         if (mapGenerator.rooms[room].emptyPositions.Contains(positionToCheck))
@@ -58,27 +68,36 @@ public class GameManager : MonoBehaviour
 
     private bool EnoughSpaceForFriends(Vector3 randomPosition, int room, int friends)
     {
-        int freePos = 0;
-
-        for (int i = -3; i <= 3; i++)
+        if (friends > 0)
         {
-            for (int j = -3; j <= 3; j++)
+            int freePos = 0;
+
+            for (int i = -friends; i <= friends; i++)
             {
-                Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
-
-                if (positionToCheck != randomPosition && CheckPosition(positionToCheck, room))
+                for (int j = -friends; j <= friends; j++)
                 {
-                    freePos++; 
+                    Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
-                    if (freePos >= friends)
+                    if (positionToCheck != randomPosition)
                     {
-                        return true;
+                        if (CheckPosition(positionToCheck, room))
+                        {
+                            freePos++;
+
+                            //Justo al llegar al nº de sitios necesarios, paramos el bucle
+                            if (freePos >= friends) 
+                                return true;
+                        }
                     }
                 }
             }
+            return false;
         }
-
-        return false;
+        else
+        {
+            return true;
+        }
+        
     }
 
 
@@ -93,7 +112,6 @@ public class GameManager : MonoBehaviour
 
                 if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck))
                 {
-                    Debug.Log("Enemies cannot be that close. Recalculating enemy position...");
                     return false; 
                 }
             }
@@ -110,13 +128,28 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < mapGenerator.rooms.Length; i++)
         {
             CreateEnemiesInRoom(i);
-            
         }
     }
 
+
     private void CreateEnemiesInRoom(int i)
     {
-        int nEnemies = mapGenerator.rooms[i].nEnemies;
+        int nEnemies;
+        if (i == 0 && level == 1) //si se trata de la primera sala del primer nivel
+        {
+            nEnemies = 2;
+        }    
+        else if (i == mapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
+        {
+            nEnemies = 1; 
+        }
+        else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
+        {
+            int maxEnemies = (int)System.Math.Ceiling((mapGenerator.rooms[i].roomWidth + mapGenerator.rooms[i].roomHeight) / 3f);
+            nEnemies = Random.Range(3, maxEnemies);
+        }
+
+        mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
         Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
 
         int enemiesCreated = 0;
@@ -175,15 +208,5 @@ public class GameManager : MonoBehaviour
                 enemiesCreated++;
             }
         }        
-    }
-    
-
-    //El contenido del array de prefabs de los enemigos dependerá del nivel
-    void LoadLevelEnemiesArray()
-    {
-        enemiesPrefabs.Clear();
-        lvlName = "Level" + level;
-        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies").ToList();
-    }
-    
+    }   
 }

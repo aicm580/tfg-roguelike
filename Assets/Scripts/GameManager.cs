@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo
+    //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo, y que tampoco el player esté muy cerca
     private bool NotEnemiesNearby(Vector3 randomPosition, int room)
     {
         for (int i = -2; i <= 2; i++)
@@ -110,7 +110,8 @@ public class GameManager : MonoBehaviour
             {
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
-                if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck))
+                if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck)
+                    || positionToCheck == player.transform.position)
                 {
                     return false; 
                 }
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour
         {
             randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
             randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
-        } while (!EnoughSpaceForFriends(randomPosition, room, friends) || !NotEnemiesNearby(randomPosition, room));
+        } while (!NotEnemiesNearby(randomPosition, room));
 
         mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
 
@@ -155,15 +156,17 @@ public class GameManager : MonoBehaviour
         if (i == 0 && level == 1) //si se trata de la primera sala del primer nivel
         {
             nEnemies = 2;
-        }    
+        }
         else if (i == mapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
         {
-            nEnemies = 1; 
+            nEnemies = 1;
         }
         else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
         {
-            int maxEnemies = (int)System.Math.Ceiling((mapGenerator.rooms[i].roomWidth + mapGenerator.rooms[i].roomHeight) / 3f);
-            nEnemies = Random.Range(3, maxEnemies);
+            int maxEnemies = mapGenerator.rooms[i].emptyPositions.Count / (mapGenerator.rooms[i].roomWidth - 1 + mapGenerator.rooms[i].roomHeight - 1);
+            int minEnemies = (int)System.Math.Floor(maxEnemies / 2f);
+            nEnemies = Random.Range(minEnemies, maxEnemies);
+            Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
         }
 
         mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
@@ -214,23 +217,36 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < friends + 1; j++)
             {
                 Vector3 position;
+                Vector3 lastPos = new Vector3();
                 if (j == 0)
                 {
                     position = randomPos;
+                    lastPos = position;
                 }
                 else
                 {
+                    int k = 1;
+                    int attempt = 0;
                     do
                     {
-                        position.x = randomPos.x + Random.Range(-j, j);
-                        position.y = randomPos.y + Random.Range(-j, j);
+                        Debug.Log("lastPos: " + lastPos);
+                        position.x = lastPos.x + Random.Range(-k, k);
+                        position.y = lastPos.y + Random.Range(-k, k);
                         position.z = 0;
+                        lastPos = position;
+                        Debug.Log("position: " + position);
+                        attempt++;
+
+                        if(attempt >= 5)
+                        {
+                            k++;
+                        }
 
                     } while (!CheckPosition(position, i));
 
                     mapGenerator.rooms[i].emptyPositions.Remove(position);
                 }
-            
+
                 GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
                 enemy.transform.position = position;
                 enemy.transform.parent = enemiesHolder.transform;
@@ -239,6 +255,6 @@ public class GameManager : MonoBehaviour
                 enemies.Add(enemy);
                 enemiesCreated++;
             }
-        }        
-    }   
+        }
+    }
 }

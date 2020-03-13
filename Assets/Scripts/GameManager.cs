@@ -66,41 +66,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private bool EnoughSpaceForFriends(Vector3 randomPosition, int room, int friends)
-    {
-        if (friends > 0)
-        {
-            int freePos = 0;
-
-            for (int i = -friends; i <= friends; i++)
-            {
-                for (int j = -friends; j <= friends; j++)
-                {
-                    Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
-
-                    if (positionToCheck != randomPosition)
-                    {
-                        if (CheckPosition(positionToCheck, room))
-                        {
-                            freePos++;
-
-                            //Justo al llegar al nº de sitios necesarios, paramos el bucle
-                            if (freePos >= friends) 
-                                return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-        
-    }
-
-
     //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo, y que tampoco el player esté muy cerca
     private bool NotEnemiesNearby(Vector3 randomPosition, int room)
     {
@@ -213,15 +178,15 @@ public class GameManager : MonoBehaviour
             }
 
             Vector3 randomPos = RandomPosition(i, friends);
+            Vector3 lastPos = new Vector3();
 
             for (int j = 0; j < friends + 1; j++)
             {
                 Vector3 position;
-                Vector3 lastPos = new Vector3();
+                
                 if (j == 0)
                 {
                     position = randomPos;
-                    lastPos = position;
                 }
                 else
                 {
@@ -229,12 +194,10 @@ public class GameManager : MonoBehaviour
                     int attempt = 0;
                     do
                     {
-                        Debug.Log("lastPos: " + lastPos);
                         position.x = lastPos.x + Random.Range(-k, k);
                         position.y = lastPos.y + Random.Range(-k, k);
                         position.z = 0;
-                        lastPos = position;
-                        Debug.Log("position: " + position);
+                        
                         attempt++;
 
                         if(attempt >= 5)
@@ -246,6 +209,8 @@ public class GameManager : MonoBehaviour
 
                     mapGenerator.rooms[i].emptyPositions.Remove(position);
                 }
+
+                lastPos = position;
 
                 GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
                 enemy.transform.position = position;

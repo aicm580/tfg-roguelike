@@ -227,10 +227,10 @@ GameObject:
   m_Component:
   - component: {fileID: 865276339}
   - component: {fileID: 865276338}
-  - component: {fileID: 865276340}
   - component: {fileID: 865276341}
   - component: {fileID: 865276343}
   - component: {fileID: 865276342}
+  - component: {fileID: 865276340}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -308,9 +308,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865276337}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 556353de72ef97e4bbbc6f4ed644b5de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

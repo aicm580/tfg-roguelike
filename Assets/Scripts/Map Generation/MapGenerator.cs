@@ -128,7 +128,7 @@ public class MapGenerator : MonoBehaviour
         {
             int xCoord = currentRoom.xPos + j;
 
-            TileType currentTileType = TileType.Floor; 
+            TileType currentTileType = TileType.RoomFloor; 
 
             for (int k = 0; k < currentRoom.columnHeight[j]; k++)
             {
@@ -138,7 +138,7 @@ public class MapGenerator : MonoBehaviour
                 tiles.Add(newTile);
 
                 //Si se trata de un tile Floor, añadimos su posición a la lista de posiciones vacías de la sala
-                if (currentTileType == TileType.Floor)
+                if (currentTileType == TileType.RoomFloor)
                 {
                     currentRoom.emptyPositions.Add(pos);
                 }
@@ -216,7 +216,7 @@ public class MapGenerator : MonoBehaviour
         {
             switch (tile.tileType)
             {
-                case TileType.Floor:
+                case TileType.RoomFloor:
                     InstantiateFromArray(floorTiles, tile.pos.x, tile.pos.y);
                     break;
 

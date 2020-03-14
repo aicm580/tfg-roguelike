@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2393236569930651904}
   - component: {fileID: 1914032276818704215}
-  - component: {fileID: 2570678034459063153}
+  - component: {fileID: 4495663995050255777}
   m_Layer: 0
   m_Name: FloorTile 2
   m_TagString: Untagged
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2570678034459063153
-BoxCollider2D:
+--- !u!60 &4495663995050255777
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0031751096, y: 0.02221179}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -104,6 +104,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8920463, y: 0.75249624}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.123658955, y: 0.3794493}
+      - {x: -0.34344822, y: 0.16947916}
+      - {x: -0.4464569, y: -0.13988975}
+      - {x: -0.26467445, y: -0.34537053}
+      - {x: -0.06750965, y: -0.3495893}
+      - {x: -0.0039082766, y: -0.34745193}
+      - {x: 0.16790783, y: -0.34745193}
+      - {x: 0.26967034, y: -0.32202727}
+      - {x: 0.43639848, y: -0.16947922}
+      - {x: 0.4092709, y: 0.068677306}
+      - {x: 0.11839086, y: 0.37287664}

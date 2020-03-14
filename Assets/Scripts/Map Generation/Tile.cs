@@ -2,7 +2,7 @@
 
 public enum TileType
 {
-    Wall, Floor, CorridorFloor, CorridorWall 
+    Surroundings, RoomTopWall, RoomBottomWall, RoomSideWall, RoomFloor, CorridorFloor, CorridorWall, 
 } 
 
 class Tile

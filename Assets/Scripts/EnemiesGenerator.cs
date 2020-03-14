@@ -10,7 +10,7 @@ public class EnemiesGenerator : MonoBehaviour
 
     private GameObject enemiesHolder;
 
-    private List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     public List<GameObject> enemiesPrefabs;
     public GameObject bossPrefab;
@@ -19,12 +19,19 @@ public class EnemiesGenerator : MonoBehaviour
     private string lvlName;
 
 
-    private void Start()
+    void SetupEnemies(int lvl)
     {
         mapGenerator = GetComponent<MapGenerator>();
         gameManager = GetComponent<GameManager>();
 
         enemiesHolder = new GameObject("EnemiesHolder");
+
+        //Vaciamos la lista de enemigos
+        enemies.Clear();
+
+        level = lvl;
+
+        LoadLevelEnemiesPrefabs();
     }
 
 
@@ -40,12 +47,7 @@ public class EnemiesGenerator : MonoBehaviour
 
     public void GenerateEnemies(int lvl)
     {
-        level = lvl;
-
-        //Vaciamos la lista de enemigos
-        enemies.Clear();
-
-        LoadLevelEnemiesPrefabs();
+        SetupEnemies(lvl);
 
         for (int i = 0; i < mapGenerator.rooms.Length; i++)
         {
@@ -54,112 +56,112 @@ public class EnemiesGenerator : MonoBehaviour
     }
 
 
-    private void CreateEnemiesInRoom(int i)
+    void CreateEnemiesInRoom(int i)
     {
-        int nEnemies;
-        if (i == 0 && level == 1) //si se trata de la primera sala del primer nivel
-        {
-            nEnemies = 2;
-        }
-        else if (i == mapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
-        {
-            nEnemies = 1;
-        }
-        else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
-        {
-            int maxEnemies = mapGenerator.rooms[i].emptyPositions.Count / (mapGenerator.rooms[i].roomWidth - 1 + mapGenerator.rooms[i].roomHeight - 1);
-            int minEnemies = (int)System.Math.Floor(maxEnemies / 2f);
-            nEnemies = Random.Range(minEnemies, maxEnemies);
-            Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
-        }
+         int nEnemies;
+         if (i == 0 && level == 1) //si se trata de la primera sala del primer nivel
+         {
+             nEnemies = 2;
+         }
+         else if (i == mapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
+         {
+             nEnemies = 1;
+         }
+         else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
+         {
+             int maxEnemies = mapGenerator.rooms[i].emptyPositions.Count / (mapGenerator.rooms[i].roomWidth - 1 + mapGenerator.rooms[i].roomHeight - 1);
+             int minEnemies = (int)System.Math.Floor(maxEnemies / 2f);
+             nEnemies = Random.Range(minEnemies, maxEnemies);
+             Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
+         }
 
-        mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
-        Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
+         mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
+         Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
 
-        int enemiesCreated = 0;
+         int enemiesCreated = 0;
 
-        while (enemiesCreated < nEnemies)
-        {
-            int friends;
-            GameObject enemyPrefab;
+         while (enemiesCreated < nEnemies)
+         {
+             int friends;
+             GameObject enemyPrefab;
 
-            //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
-            //puesto que en esta sala solo se encontrará 1 enemigo, el jefe final, que no tendrá amigos nunca
-            if (i != mapGenerator.rooms.Length - 1)
-            {
-                int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
-                enemyPrefab = enemiesPrefabs[randomEnemy];
-                friends = enemyPrefab.GetComponent<Enemy>().friends.Randomize;
-                Biome enemyBiome = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().biome;
+             //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
+             //puesto que en esta sala solo se encontrará 1 enemigo, el jefe final, que no tendrá amigos nunca
+             if (i != mapGenerator.rooms.Length - 1)
+             {
+                 int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
+                 enemyPrefab = enemiesPrefabs[randomEnemy];
+                 friends = enemyPrefab.GetComponent<Enemy>().friends.Randomize;
+                 Biome enemyBiome = enemiesPrefabs[randomEnemy].GetComponent<Enemy>().biome;
 
 
-                //Si no se puede crear el enemigo junto con su nº de amigos calculado
-                if (enemiesCreated + friends + 1 > nEnemies)
-                {
-                    //Si ni siquiera poniendo el nº de amigos al mínimo cumplimos con el nEnemies calculado
-                    if (enemiesCreated + enemyPrefab.GetComponent<Enemy>().friends.minVal + 1 > nEnemies)
-                    {
-                        //Pasamos a la próxima iteración sin haber creado ningún enemigo.
-                        //Este continue no romperá el juego, puesto que en cada nivel habrá como mínimo 1 enemigo con un mínimo de 0 amigos
-                        continue;
-                    }
-                    else
-                    {
-                        //Cambiamos el nº de amigos al menor posible
-                        friends = enemyPrefab.GetComponent<Enemy>().friends.minVal;
-                    }
-                }
-            }
-            else
-            {
-                friends = bossPrefab.GetComponent<Enemy>().friends.Randomize;
-                enemyPrefab = bossPrefab;
-            }
+                 //Si no se puede crear el enemigo junto con su nº de amigos calculado
+                 if (enemiesCreated + friends + 1 > nEnemies)
+                 {
+                     //Si ni siquiera poniendo el nº de amigos al mínimo cumplimos con el nEnemies calculado
+                     if (enemiesCreated + enemyPrefab.GetComponent<Enemy>().friends.minVal + 1 > nEnemies)
+                     {
+                         //Pasamos a la próxima iteración sin haber creado ningún enemigo.
+                         //Este continue no romperá el juego, puesto que en cada nivel habrá como mínimo 1 enemigo con un mínimo de 0 amigos
+                         continue;
+                     }
+                     else
+                     {
+                         //Cambiamos el nº de amigos al menor posible
+                         friends = enemyPrefab.GetComponent<Enemy>().friends.minVal;
+                     }
+                 }
+             }
+             else
+             {
+                 friends = bossPrefab.GetComponent<Enemy>().friends.Randomize;
+                 enemyPrefab = bossPrefab;
+             }
 
-            Vector3 randomPos = RandomPosition(i, friends);
-            Vector3 lastPos = new Vector3();
+             Vector3 randomPos = RandomPosition(i, friends);
+             Vector3 lastPos = new Vector3();
 
-            for (int j = 0; j < friends + 1; j++)
-            {
-                Vector3 position;
+             for (int j = 0; j < friends + 1; j++)
+             {
+                 Vector3 position;
 
-                if (j == 0)
-                {
-                    position = randomPos;
-                }
-                else
-                {
-                    int k = 1;
-                    int attempt = 0;
-                    do
-                    {
-                        position.x = lastPos.x + Random.Range(-k, k);
-                        position.y = lastPos.y + Random.Range(-k, k);
-                        position.z = 0;
+                 if (j == 0)
+                 {
+                     position = randomPos;
+                 }
+                 else
+                 {
+                     int k = 1;
+                     int attempt = 0;
+                     do
+                     {
+                         position.x = lastPos.x + Random.Range(-k, k);
+                         position.y = lastPos.y + Random.Range(-k, k);
+                         position.z = 0;
 
-                        attempt++;
+                         attempt++;
 
-                        if (attempt >= 5)
-                        {
-                            k++;
-                        }
+                         if (attempt >= 5)
+                         {
+                             k++;
+                         }
 
-                    } while (!gameManager.CheckPosition(position, i));
+                     } while (!gameManager.CheckPosition(position, i));
 
-                    mapGenerator.rooms[i].emptyPositions.Remove(position);
-                }
+                     mapGenerator.rooms[i].emptyPositions.Remove(position);
+                 }
 
-                lastPos = position;
+                 lastPos = position;
 
-                GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
-                enemy.transform.position = position;
-                enemy.transform.parent = enemiesHolder.transform;
-                enemy.GetComponent<Enemy>().calculatedFriends = friends;
+                 GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
+                 enemy.transform.position = position;
+                 enemy.transform.parent = enemiesHolder.transform;
+                 enemy.GetComponent<Enemy>().calculatedFriends = friends;
 
-                enemies.Add(enemy);
-                enemiesCreated++;
-            }
-        }
+                 enemies.Add(enemy);
+                 enemiesCreated++;
+             }
+         }
     }
 
 

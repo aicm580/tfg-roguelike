@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5604ef942d02513479ecbca08287c52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!50 &865276342
 Rigidbody2D:
   serializedVersion: 4
@@ -444,8 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesPrefabs: []
-  bossPrefab: {fileID: 0}
+  level: 1
   player: {fileID: 865276337}
 --- !u!4 &968516360
 Transform:
@@ -473,3 +473,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2a698ebe2bbe844baca97ed7896e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesPrefabs: []
+  bossPrefab: {fileID: 0}

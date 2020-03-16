@@ -1,27 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
+    private PlayerController playerController;
+
+    public GameObject player;
 
     public Texture2D cursorTexture;
 
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+    public int currentHealth;
+    public int numOfHearts;
     private int level = 1;
 
-    public GameObject player;
-    
-    
+
     void Start()
     {
         SetCursor(cursorTexture);
 
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
+        playerController = player.GetComponent<PlayerController>();
 
         InitLevel();
+
+        numOfHearts = playerController.hearts;
+        currentHealth = playerController.currentHealth;
     }
 
 
@@ -66,6 +78,13 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+
+
+    public void ModifyHearts(int heart)
+    {
+
     }
 
 }

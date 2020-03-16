@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MOVE_SPEED = 4f;
-    public int BULLET_DAMAGE = 5;
-    public float BULLET_SPEED = 5.0f;
-    public float BULLET_LIFETIME = 0.9f;
-    public float BULLET_DELAY = 0.25f;
+    public string playerName = "Rufo";
+    public int currentHealth = 3; 
+    public int hearts = 3; //nº de vidas del personaje
+    public float move_speed = 4f; //velocidad del personaje
+    public int bullet_damage = 5; //daño que inflingen las balas del personaje
+    public float bullet_speed = 5.0f; //velocidad de las balas del personaje
+    public float bullet_lifetime = 0.9f; //tiempo de vida de las balas del personaje
+    public float bullet_delay = 0.2f; //tiempo a esperar entre que se lanza una bala y la siguiente
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -49,7 +52,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Movimiento
-        rb.MovePosition(rb.position + movement * MOVE_SPEED * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * move_speed * Time.fixedDeltaTime);
 
         //Disparo
         lookDirection = (mousePos - rb.position).normalized;
@@ -60,8 +63,8 @@ public class PlayerController : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position + (Vector3)(lookDirection * 0.5f), Quaternion.identity);
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.velocity = new Vector2(lookDirection.x * BULLET_SPEED, lookDirection.y * BULLET_SPEED);
-        Destroy(bullet, BULLET_LIFETIME);
+        bulletRB.velocity = new Vector2(lookDirection.x * bullet_speed, lookDirection.y * bullet_speed);
+        Destroy(bullet, bullet_lifetime);
 
         canShoot = false;
         StartCoroutine(ShootDelay());
@@ -69,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ShootDelay()
     {
-        yield return new WaitForSeconds(BULLET_DELAY);
+        yield return new WaitForSeconds(bullet_delay);
         canShoot = true;
     }
 }

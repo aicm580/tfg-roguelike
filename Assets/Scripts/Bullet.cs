@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     //public GameObject explosionEffect;
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag != "Player")

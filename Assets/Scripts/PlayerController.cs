@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
     private Vector2 mousePos;
-    private Vector2 lookDir;
+    private Vector2 lookDirection;
     
 
 
@@ -31,14 +31,13 @@ public class PlayerController : MonoBehaviour
     {
         //Movimiento
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         //Disparo
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+        animator.SetFloat("Horizontal", lookDirection.x);
+        animator.SetFloat("Vertical", lookDirection.y);
+
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -57,17 +56,15 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        lookDir = (mousePos - rb.position).normalized;
-        crosshair.transform.localPosition = lookDir * SHOOTING_DISTANCE;
+        lookDirection = (mousePos - rb.position).normalized;
+        crosshair.transform.localPosition = lookDirection * SHOOTING_DISTANCE;
     }
 
 
     void Shoot()
     {
-        Vector2 shootingDirection = lookDir;
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + (Vector3)(shootingDirection * 0.5f), Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + (Vector3)(lookDirection * 0.5f), Quaternion.identity);
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.velocity = new Vector2(shootingDirection.x * BULLET_SPEED, shootingDirection.y * BULLET_SPEED);
+        bulletRB.velocity = new Vector2(lookDirection.x * BULLET_SPEED, lookDirection.y * BULLET_SPEED);
     }
 }

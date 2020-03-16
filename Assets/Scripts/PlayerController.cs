@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float MOVE_SPEED = 4f;
+    public int BULLET_DAMAGE = 5;
     public float BULLET_SPEED = 5.0f;
-    public float SHOOTING_DISTANCE = 2.0f;
+    public float BULLET_LIFETIME = 0.9f;
+    public float BULLET_DELAY = 0.25f;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -17,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
     private Vector2 mousePos;
     private Vector2 lookDirection;
-    
 
+    private bool canShoot = true;
 
     private void Start()
     {
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", lookDirection.x);
         animator.SetFloat("Vertical", lookDirection.y);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && canShoot)
         {
             Shoot();
         }
@@ -50,14 +52,7 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * MOVE_SPEED * Time.fixedDeltaTime);
 
         //Disparo
-        Aim();
-    }
-
-
-    void Aim()
-    {
         lookDirection = (mousePos - rb.position).normalized;
-        crosshair.transform.localPosition = lookDirection * SHOOTING_DISTANCE;
     }
 
 
@@ -66,5 +61,15 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position + (Vector3)(lookDirection * 0.5f), Quaternion.identity);
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
         bulletRB.velocity = new Vector2(lookDirection.x * BULLET_SPEED, lookDirection.y * BULLET_SPEED);
+        Destroy(bullet, BULLET_LIFETIME);
+
+        canShoot = false;
+        StartCoroutine(ShootDelay());
+    }
+
+    IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(BULLET_DELAY);
+        canShoot = true;
     }
 }

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
 
+    public Texture2D cursorTexture;
+
     private int level = 1;
 
     public GameObject player;
@@ -14,10 +16,22 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
+        SetCursor(cursorTexture);
+
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
 
         InitLevel();
+    }
+
+
+    void SetCursor(Texture2D tex)
+    {
+        CursorMode mode = CursorMode.ForceSoftware;
+        float xspot = tex.width / 2;
+        float yspot = tex.height / 2;
+        Vector2 hotSpot = new Vector2(xspot, yspot);
+        Cursor.SetCursor(tex, hotSpot, mode);
     }
 
 

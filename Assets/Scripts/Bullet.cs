@@ -8,8 +8,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        //Destroy(explosion, 5f); //esperamos 5f para destruir la explosion
-        Destroy(gameObject);
+        if(collision.gameObject.tag != "Player")
+        {
+            //GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            //Destroy(explosion, 5f); //esperamos 5f para destruir la explosion
+            Destroy(gameObject);
+        }
     }
 }

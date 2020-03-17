@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int currentHealth;
     public int numOfHearts;
+    
     private int level = 1;
 
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         numOfHearts = playerController.hearts;
         currentHealth = playerController.currentHealth;
+        SetUIHearts();
     }
 
 
@@ -82,9 +84,33 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void ModifyHearts(int heart)
+    public void SetUIHearts()
     {
+        if (currentHealth > numOfHearts)
+        {
+            currentHealth = numOfHearts;
+        }
 
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < currentHealth)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
     }
 
 }

@@ -93,13 +93,9 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < currentHealth)
+            if (i >= currentHealth)
             {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].GetComponent<Animator>().SetBool("empty", true);
             }
 
             if (i < numOfHearts)
@@ -116,6 +112,8 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife()
     {
+        hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
+        
         currentHealth -= 1;
         Debug.Log("YOU LOST A LIFE");
 

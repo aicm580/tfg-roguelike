@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4391275114948170600}
   - component: {fileID: 4391275114948170606}
   - component: {fileID: 4391275114948170607}
-  - component: {fileID: 4391275114948170605}
+  - component: {fileID: 7366575556826185832}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 1
---- !u!95 &4391275114948170605
+--- !u!95 &7366575556826185832
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 4391275114948170601}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69a61e32f5cd5b34eb91e78ec1ec6475, type: 2}
+  m_Controller: {fileID: 9100000, guid: 97823fc2fb09abc42939b18a2e8e7387, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

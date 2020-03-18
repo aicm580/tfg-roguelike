@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Text progressText; 
+    public Text progressText;
 
     public void Start()
     {

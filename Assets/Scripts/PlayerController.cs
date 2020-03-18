@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public string playerName = "Rufo";
-    public int currentHealth = 2; //nº de vidas con el que empieza el jugador
-    public int hearts = 3; //nº de vidas del personaje
+    public int initHealth = 2; //nº de vidas con el que empieza el jugador
+    public int initHearts = 3; //nº de vidas del personaje
     public int maxHearts = 10; //nº de corazones máximo que puede recolectar el personaje
     public float moveSpeed = 4f; //velocidad del personaje
     public int bulletDamage = 5; //daño que inflingen las balas del personaje

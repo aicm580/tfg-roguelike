@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
 
     public GameObject player;
+    public GameObject GameOverPanel;
 
     public Texture2D cursorTexture;
 
@@ -33,8 +34,8 @@ public class GameManager : MonoBehaviour
 
         InitLevel();
 
-        numOfHearts = playerController.hearts;
-        currentHealth = playerController.currentHealth;
+        numOfHearts = playerController.initHearts;
+        currentHealth = playerController.initHealth;
         SetUIHearts();
     }
 
@@ -83,7 +84,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     public void SetUIHearts()
     {
         if (currentHealth > numOfHearts)
@@ -111,6 +111,29 @@ public class GameManager : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+    }
+
+
+    public void LoseLife()
+    {
+        currentHealth -= 1;
+        Debug.Log("YOU LOST A LIFE");
+
+        CheckIfAlive();
+    }
+
+
+    private void CheckIfAlive()
+    {
+        if (currentHealth <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        GameOverPanel.SetActive(true);
     }
 
 }

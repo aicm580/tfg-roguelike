@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
 
     //private Animator anim;
 
+    [SerializeField]
+    private Transform popupDamageText;
+
 
     void Start()
     {
@@ -39,6 +42,13 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player" && touchDamage == true)
         {
             gameManager.LoseLife();
+        }
+
+        //Si una bala lanzada por el jugador toca al enemigo, este recibe daño
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Instantiate(popupDamageText, , Quaternion.identity);
+            health -= gameManager.playerController.bulletDamage;
         }
     }
 }

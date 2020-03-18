@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
-    private PlayerController playerController;
+    public PlayerController playerController;
 
     public GameObject player;
     public GameObject GameOverPanel;

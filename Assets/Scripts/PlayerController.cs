@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     public float bulletLifetime = 0.9f; //tiempo de vida de las balas del personaje
     public float bulletDelay = 0.2f; //tiempo a esperar entre que se lanza una bala y la siguiente
 
+    public GameObject gameManagObject;
+    private GameManager gameManager;
+
     private Rigidbody2D rb;
     private Animator animator;
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public GameObject crosshair;
 
     private Vector2 movement;
     private Vector2 mousePos;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        gameManager = gameManagObject.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -36,29 +39,35 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movimiento
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
-        //Disparo
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        animator.SetFloat("Horizontal", lookDirection.x);
-        animator.SetFloat("Vertical", lookDirection.y);
-
-        if (Input.GetButtonDown("Fire1") && canShoot)
+        if (gameManager.playerAlive) //si el jugador está vivo
         {
-            Shoot();
+            //Movimiento
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+
+            //Disparo
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            animator.SetFloat("Horizontal", lookDirection.x);
+            animator.SetFloat("Vertical", lookDirection.y);
+
+            if (Input.GetButtonDown("Fire1") && canShoot)
+            {
+                Shoot();
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        //Movimiento
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (gameManager.playerAlive) //si el jugador está vivo
+        {
+            //Movimiento
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        //Disparo
-        firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
-        lookDirection = (mousePos - firepointPos).normalized;
+            //Disparo
+            firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
+            lookDirection = (mousePos - firepointPos).normalized;
+        }
     }
 
 

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public int currentHealth;
     public int numOfHearts;
-
+    public bool playerAlive;
     
 
     private int level = 1;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
         InitLevel();
 
+        playerAlive = true;
         numOfHearts = playerController.initHearts;
         currentHealth = playerController.initHealth;
         SetUIHearts();
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        playerAlive = false;
         GameOverPanel.SetActive(true);
     }
 

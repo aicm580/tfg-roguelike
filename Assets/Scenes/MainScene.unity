@@ -744,6 +744,7 @@ MonoBehaviour:
     type: 3}
   currentHealth: 2
   numOfHearts: 3
+  playerAlive: 0
 --- !u!4 &576787813
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,10 +1046,10 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletLifetime: 0.9
   bulletDelay: 0.2
+  gameManagObject: {fileID: 576787809}
   firePoint: {fileID: 676274083}
   bulletPrefab: {fileID: 5404156109973140040, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
     type: 3}
-  crosshair: {fileID: 0}
 --- !u!95 &1198681084
 Animator:
   serializedVersion: 3

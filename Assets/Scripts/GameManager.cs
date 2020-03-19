@@ -117,10 +117,9 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
-        
         currentHealth -= 1;
         Debug.Log("YOU LOST A LIFE");
-
+        
         CheckIfAlive();
     }
 

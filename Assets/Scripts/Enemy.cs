@@ -45,11 +45,16 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             int damage = gameManager.playerController.bulletDamage;
-            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.3f);
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.4f);
             Transform damagePopupTransform = Instantiate(gameManager.popupDamageText, pos, Quaternion.identity);
             DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
             damagePopup.Setup(damage);
             health -= damage;
+
+            if(health <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

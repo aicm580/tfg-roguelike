@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public string playerName = "Rufo";
-    public int initHealth = 2; //nº de vidas con el que empieza el jugador
+    public int initHealth = 3; //nº de vidas con el que empieza el jugador
     public int initHearts = 3; //nº de vidas del personaje
     public int maxHearts = 10; //nº de corazones máximo que puede recolectar el personaje
     public float moveSpeed = 4f; //velocidad del personaje
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
     private Vector2 mousePos;
+    private Vector2 firepointPos;
     private Vector2 lookDirection;
 
     private bool canShoot = true;
@@ -56,7 +57,8 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         //Disparo
-        lookDirection = (mousePos - rb.position).normalized;
+        firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
+        lookDirection = (mousePos - firepointPos).normalized;
     }
 
 

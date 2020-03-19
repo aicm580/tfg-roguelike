@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8251177431334997216}
   - component: {fileID: 4497462193642829504}
   - component: {fileID: 4045706773292937544}
-  m_Layer: 0
+  - component: {fileID: 1618742624564692034}
+  m_Layer: 8
   m_Name: DamagePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.2, y: 192.1}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: 21.157, y: 189.841}
+  m_SizeDelta: {x: 1.916, y: 1.959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &689421445227770269
 CanvasRenderer:
@@ -140,14 +141,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.0821228, w: 0}
   m_textInfo:
     textComponent: {fileID: 4045706773292937544}
     characterCount: 3
@@ -204,3 +205,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &1618742624564692034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763640314702897185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea1232b52ee7974e8a782297d434584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

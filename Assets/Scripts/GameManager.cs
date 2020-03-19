@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
 
     public GameObject player;
+    public Transform popupDamageText;
     public GameObject GameOverPanel;
 
     public Texture2D cursorTexture;
@@ -20,7 +21,9 @@ public class GameManager : MonoBehaviour
 
     public int currentHealth;
     public int numOfHearts;
+
     
+
     private int level = 1;
 
 

@@ -723,6 +723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   player: {fileID: 1198681082}
+  popupDamageText: {fileID: 2051161855633349860, guid: 9804427d724cfcb4d84f2e8258da798c,
+    type: 3}
   GameOverPanel: {fileID: 1427408104}
   cursorTexture: {fileID: 2800000, guid: d1c1523651c71449cb32c2c7933acf8c, type: 3}
   hearts:

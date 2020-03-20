@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 5.0f; //velocidad de las balas del personaje
     public float bulletLifetime = 0.9f; //tiempo de vida de las balas del personaje
     public float bulletDelay = 0.2f; //tiempo a esperar entre que se lanza una bala y la siguiente
+    public float abilityDuration = 3f; //tiempo que permanece activa la habilidad especial
 
     public GameObject gameManagObject;
     private GameManager gameManager;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookDirection;
 
     private bool canShoot = true;
+    private bool abilityActive = false; 
 
     private void Start()
     {
@@ -50,9 +52,16 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
 
-            if (Input.GetButtonDown("Fire1") && canShoot)
+            if (Input.GetButtonDown("Fire1") && canShoot && !abilityActive)
             {
                 Shoot();
+            }
+
+            //Habilidad especial
+            if (Input.GetKeyDown(KeyCode.Space) && !abilityActive)
+            {
+                abilityActive = true;
+                StartCoroutine(DisableAbility());
             }
         }
     }
@@ -86,5 +95,12 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(bulletDelay);
         canShoot = true;
+    }
+
+    IEnumerator DisableAbility()
+    {
+        yield return new WaitForSeconds(abilityDuration);
+        abilityActive = false;
+        Debug.Log("HABILIDAD ESPECIAL DESACTIVADA");
     }
 }

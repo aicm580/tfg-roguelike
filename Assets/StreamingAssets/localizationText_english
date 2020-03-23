@@ -1,0 +1,9 @@
+{"items":[
+	{"key": "newTravel_button", "value": "New travel"},  
+	{"key": "loadTravel_button", "value": "Load travel"}, 
+	{"key": "stats", "value": "Stats"}, 
+	{"key": "options", "value": "Options"}, 
+	{"key": "language", "value": "Language"},
+	{"key": "music", "value": "Music"}, 
+	{"key": "sounds", "value": "Sounds"}
+]}

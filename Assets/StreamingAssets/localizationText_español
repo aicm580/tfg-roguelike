@@ -1,0 +1,7 @@
+{"items":[
+	{"key": "newTravel_button", "value": "Nuevo viaje"},  
+	{"key": "loadTravel_button", "value": "Cargar viaje"}, 
+	{"key": "stats", "value": "Estadísticas"}, 
+	{"key": "options", "value": "Opciones"}, 
+	{"key": "language", "value": "Idioma"}
+]}

@@ -8,6 +8,7 @@ public class LocalizationManager : MonoBehaviour
     public static LocalizationManager instance; 
     
     private Dictionary<string, string> localizedText;
+    private string language;
     private string missingText = "Key not found";
     private bool isReady = false;
 
@@ -26,13 +27,44 @@ public class LocalizationManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("UserLanguage"))
+        {
+            language = PlayerPrefs.GetString("UserLanguage");
+        }
+        else
+        {
+            //Si el idioma del sistema del usuario es español o catalán, cargamos los textos en español.
+            if (Application.systemLanguage == SystemLanguage.Spanish || Application.systemLanguage == SystemLanguage.Catalan)
+            {
+                language = "spanish";
+            }
+            else
+            {
+                language = "english";
+            }
+
+            PlayerPrefs.SetString("UserLanguage", language);
+        }
+
+        if (language == "spanish")
+        {
+            LoadLocalizedText("localizationText_es.json");
+        }
+        else if (language == "english")
+        {
+            LoadLocalizedText("localizationText_en.json");
+        }
+        
+    }
+
     public void  LoadLocalizedText(string fileName)
     {
         localizedText = new Dictionary<string, string>();
 
         //Combinamos el path de la carpeta StreamingAssets con el nombre del archivo
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
-        Debug.Log(filePath);
 
         if(File.Exists(filePath))
         {

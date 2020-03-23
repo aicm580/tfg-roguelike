@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 25695569}
   - component: {fileID: 25695570}
   m_Layer: 0
-  m_Name: LocalizationStartupManager
+  m_Name: StartupManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

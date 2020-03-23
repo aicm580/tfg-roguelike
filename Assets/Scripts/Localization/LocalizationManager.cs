@@ -32,6 +32,7 @@ public class LocalizationManager : MonoBehaviour
 
         //Combinamos el path de la carpeta StreamingAssets con el nombre del archivo
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
+        Debug.Log(filePath);
 
         if(File.Exists(filePath))
         {

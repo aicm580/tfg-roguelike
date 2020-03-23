@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     public int health;
 
     public bool touchDamage; //si es true, significa que al tocarlo el player recibirá daño
-    private float touchDelay = 0.4f; //tiempo a esperar para que la colisión vuelva a hacer daño
+    private float touchDelay = 0.3f; //tiempo a esperar para que la colisión vuelva a hacer daño
     private bool canTouch = true;
 
     //private Animator anim;

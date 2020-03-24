@@ -114,4 +114,14 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetString("UserLanguage", languages[selectedLang]);
         }
     }
+
+    public void SetMusicVolume()
+    {
+
+    }
+
+    public void SetSfxVolume()
+    {
+
+    }
 }

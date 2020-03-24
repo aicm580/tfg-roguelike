@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameInstance;
+
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
     public PlayerController playerController;
@@ -26,6 +28,20 @@ public class GameManager : MonoBehaviour
 
     private int level = 1;
 
+    private void Awake()
+    {
+        //Nos aseguramos de que solo haya 1 GameManager
+        if (gameInstance == null)
+        {
+            gameInstance = this;
+        }
+        else if (gameInstance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {

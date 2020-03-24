@@ -1047,6 +1047,7 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletLifetime: 0.9
   bulletDelay: 0.2
+  abilityDuration: 3
   gameManagObject: {fileID: 576787809}
   firePoint: {fileID: 676274083}
   bulletPrefab: {fileID: 5404156109973140040, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
@@ -1958,9 +1959,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

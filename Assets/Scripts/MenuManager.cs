@@ -9,8 +9,11 @@ public class MenuManager : MonoBehaviour
 {
     public Toggle fullscreenToggle;
     public Dropdown resolutionDropdown;
+    public Text languageText;
 
     private Resolution[] resolutions;
+    private string[] languages = {"spanish", "english"};
+    private int selectedLang;
 
     void Start()
     {
@@ -64,5 +67,39 @@ public class MenuManager : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void LanguageLeftArrow()
+    {
+        if (selectedLang > 0)
+        {
+            selectedLang--;
+        }
+        else
+        {
+            selectedLang = languages.Length - 1; 
+        }
+
+        ChangeLanguage();
+    }
+
+    public void LanguageRightArrow()
+    {
+        if (selectedLang < languages.Length - 1)
+        {
+            selectedLang++;
+        }
+        else
+        {
+            selectedLang = 0;
+        }
+
+        ChangeLanguage();
+    }
+
+    private void ChangeLanguage()
+    {
+        languageText.text = languages[selectedLang];
+       // LocalizationManager.instance.LoadLocalizedText();
     }
 }

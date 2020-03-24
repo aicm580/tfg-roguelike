@@ -59,7 +59,7 @@ public class LocalizationManager : MonoBehaviour
         
     }
 
-    public void  LoadLocalizedText(string fileName)
+    public void LoadLocalizedText(string fileName)
     {
         localizedText = new Dictionary<string, string>();
 

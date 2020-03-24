@@ -12,11 +12,12 @@ public class MenuManager : MonoBehaviour
     public Text languageText;
 
     private Resolution[] resolutions;
-    private string[] languages = {"spanish", "english"};
-    private int selectedLang;
+    private string[] languages = {"español", "english"};
+    private int selectedLang = 0;
 
     void Start()
     {
+        //APARTADO "RESOLUCIONES"
         resolutions = Screen.resolutions.Select(resolution => new Resolution
         {
             width = resolution.width,
@@ -44,6 +45,14 @@ public class MenuManager : MonoBehaviour
         resolutionDropdown.AddOptions(resolutionOptions);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        //APARTADO "IDIOMAS"
+        if (PlayerPrefs.HasKey("UserLanguage"))
+        {
+            selectedLang = System.Array.IndexOf(languages, PlayerPrefs.GetString("UserLanguage"));
+        }
+
+        languageText.text = languages[selectedLang];
     }
 
     public void StartNewLevel()
@@ -80,7 +89,7 @@ public class MenuManager : MonoBehaviour
             selectedLang = languages.Length - 1; 
         }
 
-        ChangeLanguage();
+        languageText.text = languages[selectedLang];
     }
 
     public void LanguageRightArrow()
@@ -94,12 +103,15 @@ public class MenuManager : MonoBehaviour
             selectedLang = 0;
         }
 
-        ChangeLanguage();
+        languageText.text = languages[selectedLang];
     }
 
-    private void ChangeLanguage()
+    public void ChangeLanguage()
     {
-        languageText.text = languages[selectedLang];
-       // LocalizationManager.instance.LoadLocalizedText();
+        if (PlayerPrefs.GetString("UserLanguage") != languages[selectedLang])
+        {
+            LocalizationManager.instance.LoadLocalizedText(languages[selectedLang]);
+            PlayerPrefs.SetString("UserLanguage", languages[selectedLang]);
+        }
     }
 }

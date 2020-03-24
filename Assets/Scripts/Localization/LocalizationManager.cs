@@ -38,7 +38,7 @@ public class LocalizationManager : MonoBehaviour
             //Si el idioma del sistema del usuario es español o catalán, cargamos los textos en español.
             if (Application.systemLanguage == SystemLanguage.Spanish || Application.systemLanguage == SystemLanguage.Catalan)
             {
-                language = "spanish";
+                language = "español";
             }
             else
             {
@@ -48,20 +48,25 @@ public class LocalizationManager : MonoBehaviour
             PlayerPrefs.SetString("UserLanguage", language);
         }
 
-        if (language == "spanish")
-        {
-            LoadLocalizedText("localizationText_es.json");
-        }
-        else if (language == "english")
-        {
-            LoadLocalizedText("localizationText_en.json");
-        }
+        LoadLocalizedText(language);
         
     }
 
-    public void LoadLocalizedText(string fileName)
+    public void LoadLocalizedText(string lang)
     {
         localizedText = new Dictionary<string, string>();
+
+        string fileName;
+        switch (lang)
+        {
+            case "español":
+                fileName = "localizationText_es.json";
+                break;
+
+            default:
+                fileName = "localizationText_en.json";
+                break;
+        }
 
         //Combinamos el path de la carpeta StreamingAssets con el nombre del archivo
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
@@ -75,6 +80,7 @@ public class LocalizationManager : MonoBehaviour
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
+            Debug.Log("dictionary ready");
         }
         else
         {

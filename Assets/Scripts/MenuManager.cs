@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using System.Linq;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions.Select(resolution => new Resolution
+        {
+            width = resolution.width,
+            height = resolution.height
+        }).Where(resolution => resolution.width > 400 && resolution.height > 350).Distinct().ToArray(); //esto evitará que aparezcan resoluciones duplicadas
+
         resolutionDropdown.ClearOptions();
 
         //Debemos crear una lista de strings, porque el dropdown solo acepta strings

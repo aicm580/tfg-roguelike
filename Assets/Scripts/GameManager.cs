@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameInstance;
+    public static GameManager instance;
 
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
@@ -13,7 +14,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public Transform popupDamageText;
-    public GameObject GameOverPanel;
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
     public Texture2D cursorTexture;
 
@@ -24,23 +26,21 @@ public class GameManager : MonoBehaviour
     public int currentHealth;
     public int numOfHearts;
     public bool playerAlive;
-    
+    public bool isPaused;
 
-    private int level = 1;
+    private int level;
 
     private void Awake()
     {
         //Nos aseguramos de que solo haya 1 GameManager
-        if (gameInstance == null)
+        if (instance == null)
         {
-            gameInstance = this;
+            instance = this;
         }
-        else if (gameInstance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -51,14 +51,23 @@ public class GameManager : MonoBehaviour
         enemiesGenerator = GetComponent<EnemiesGenerator>();
         playerController = player.GetComponent<PlayerController>();
 
-        InitLevel();
-
-        playerAlive = true;
-        numOfHearts = playerController.initHearts;
-        currentHealth = playerController.initHealth;
-        SetUIHearts();
+        InitRun();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isPaused) //si ya está pausado, reanudamos
+            {
+                Resume();
+            }
+            else //si no está pausado, pausamos
+            {
+                Pause();
+            }
+        }
+    }
 
     void SetCursor(Texture2D tex)
     {
@@ -69,9 +78,8 @@ public class GameManager : MonoBehaviour
         Cursor.SetCursor(tex, hotSpot, mode);
     }
 
-
     void InitLevel()
-    {
+    { 
         //Generamos el mapa del nivel
         mapGenerator.SetupMap();
         //Indicamos la posición inicial del jugador
@@ -80,6 +88,19 @@ public class GameManager : MonoBehaviour
         enemiesGenerator.GenerateEnemies(level);
     }
 
+    public void InitRun()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pausePanel.SetActive(false);
+        level = 1; 
+        InitLevel();
+
+        playerAlive = true;
+        numOfHearts = playerController.initHearts;
+        currentHealth = playerController.initHealth;
+        SetUIHearts();
+    }
 
     Vector3 InitPlayerPosition()
     {
@@ -90,7 +111,6 @@ public class GameManager : MonoBehaviour
 
         return randomPosition;
     }
-
     
     //Esta función permite comprobar si una posición concreta de una sala concreta está disponible
     public bool CheckPosition(Vector3 positionToCheck, int room)
@@ -102,7 +122,6 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-
 
     public void SetUIHearts()
     {
@@ -129,7 +148,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void LoseLife()
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
@@ -138,7 +156,6 @@ public class GameManager : MonoBehaviour
         
         CheckIfAlive();
     }
-
 
     private void CheckIfAlive()
     {
@@ -151,7 +168,27 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         playerAlive = false;
-        GameOverPanel.SetActive(true);
+        gameOverPanel.SetActive(true);
     }
 
+    public void Resume()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+
+    private void Pause()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    public void LoadMenu()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        SceneManager.LoadScene("MenuScene");
+    }
 }

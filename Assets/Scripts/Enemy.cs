@@ -13,8 +13,6 @@ public enum Biome
 
 public class Enemy : MonoBehaviour
 {
-    private GameManager gameManager; 
-
     public EnemyType enemyType;
     public Biome biome;
 
@@ -32,7 +30,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         //anim = GetComponent<Animator>();
     }
 
@@ -42,7 +39,7 @@ public class Enemy : MonoBehaviour
         //Si el enemigo colisiona con el jugador y este enemigo hace daño al ser tocado
         if (collision.gameObject.tag == "Player" && touchDamage == true && canTouch == true)
         {
-            gameManager.LoseLife();
+            GameManager.instance.LoseLife();
             canTouch = false;
             StartCoroutine(TouchDelay());
         }
@@ -50,9 +47,9 @@ public class Enemy : MonoBehaviour
         //Si una bala lanzada por el jugador toca al enemigo, este recibe daño
         if (collision.gameObject.tag == "Bullet")
         {
-            int damage = gameManager.playerController.bulletDamage;
+            int damage = GameManager.instance.playerController.bulletDamage;
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.4f);
-            Transform damagePopupTransform = Instantiate(gameManager.popupDamageText, pos, Quaternion.identity);
+            Transform damagePopupTransform = Instantiate(GameManager.instance.popupDamageText, pos, Quaternion.identity);
             DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
             damagePopup.Setup(damage);
             health -= damage;

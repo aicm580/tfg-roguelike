@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     public float bulletDelay = 0.2f; //tiempo a esperar entre que se lanza una bala y la siguiente
     public float abilityDuration = 3f; //tiempo que permanece activa la habilidad especial
 
-    public GameObject gameManagObject;
-    private GameManager gameManager;
-
     private Rigidbody2D rb;
     private Animator animator;
     public Transform firePoint;
@@ -33,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        gameManager = gameManagObject.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -41,7 +37,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.playerAlive) //si el jugador está vivo
+        if (GameManager.instance.playerAlive) //si el jugador está vivo
         {
             //Movimiento
             movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -52,7 +48,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
 
-            if (Input.GetButtonDown("Fire1") && canShoot && !abilityActive)
+            if (Input.GetButtonDown("Fire1") && canShoot && !abilityActive && !GameManager.instance.isPaused)
             {
                 Shoot();
             }
@@ -68,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameManager.playerAlive) //si el jugador está vivo
+        if (GameManager.instance.playerAlive) //si el jugador está vivo
         {
             //Movimiento
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

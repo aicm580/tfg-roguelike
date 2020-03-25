@@ -5,5 +5,9 @@
 	{"key": "options", "value": "Options"}, 
 	{"key": "language", "value": "Language"},
 	{"key": "musicVol", "value": "Music Volume"}, 
-	{"key": "sfxVol", "value": "Sound Effects Volume"}
+	{"key": "sfxVol", "value": "Sound Effects Volume"},
+	{"key": "restart", "value": "Restart"},
+	{"key": "resume", "value": "Resume"},
+	{"key": "quit", "value": "Quit"}, 
+	{"key": "menu", "value": "Menu"}
 ]}

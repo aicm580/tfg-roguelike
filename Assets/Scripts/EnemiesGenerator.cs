@@ -23,9 +23,20 @@ public class EnemiesGenerator : MonoBehaviour
     {
         mapGenerator = GetComponent<MapGenerator>();
         gameManager = GetComponent<GameManager>();
-
-        enemiesHolder = new GameObject("EnemiesHolder");
-
+        
+        if (GameObject.Find("EnemiesHolder"))
+        {
+            enemiesHolder = GameObject.Find("EnemiesHolder");
+            foreach (Transform child in enemiesHolder.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            enemiesHolder = new GameObject("EnemiesHolder");
+        }
+        
         //Vaciamos la lista de enemigos
         enemies.Clear();
 

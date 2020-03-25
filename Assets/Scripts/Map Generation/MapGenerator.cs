@@ -25,7 +25,18 @@ public class MapGenerator : MonoBehaviour
 
     public void SetupMap()
     {
-        mapHolder = new GameObject("MapHolder");
+        if (GameObject.Find("MapHolder"))
+        {
+            mapHolder = GameObject.Find("MapHolder");
+            foreach (Transform child in mapHolder.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            mapHolder = new GameObject("MapHolder");
+        }
 
         CreateRoomsAndCorridors();
         InstantiateTiles();

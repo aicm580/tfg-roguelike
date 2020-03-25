@@ -5,6 +5,10 @@
 	{"key": "options", "value": "Opciones"}, 
 	{"key": "language", "value": "Idioma"}, 
 	{"key": "musicVol", "value": "Volumen Música"}, 
-	{"key": "sfxVol", "value": "Volumen Efectos de Sonidos"}
+	{"key": "sfxVol", "value": "Volumen Efectos de Sonidos"},
+	{"key": "restart", "value": "Reiniciar"},
+	{"key": "resume", "value": "Reanudar"},
+	{"key": "quit", "value": "Salir"},
+	{"key": "menu", "value": "Menu"}
 	
 ]}

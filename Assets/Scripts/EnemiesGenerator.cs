@@ -40,9 +40,13 @@ public class EnemiesGenerator : MonoBehaviour
         //Vaciamos la lista de enemigos
         enemies.Clear();
 
-        level = lvl;
-
-        LoadLevelEnemiesPrefabs();
+        //Si en la última partida el último nivel cargado fue este, no cargamos de nuevo los prefabs.
+        //Si no fue este, cargamos los prefabs del nivel.
+        if (level != lvl) 
+        {
+            level = lvl;
+            LoadLevelEnemiesPrefabs();
+        }
     }
 
 

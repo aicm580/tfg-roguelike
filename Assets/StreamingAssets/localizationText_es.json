@@ -4,7 +4,7 @@
 	{"key": "stats", "value": "Estadísticas"}, 
 	{"key": "options", "value": "Opciones"}, 
 	{"key": "language", "value": "Idioma"}, 
-	{"key": "music", "value": "Música"}, 
-	{"key": "sounds", "value": "Sonidos"}
+	{"key": "musicVol", "value": "Volumen Música"}, 
+	{"key": "sfxVol", "value": "Volumen Efectos de Sonidos"}
 	
 ]}

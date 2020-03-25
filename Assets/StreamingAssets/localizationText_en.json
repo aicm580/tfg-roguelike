@@ -4,6 +4,6 @@
 	{"key": "stats", "value": "Stats"}, 
 	{"key": "options", "value": "Options"}, 
 	{"key": "language", "value": "Language"},
-	{"key": "music", "value": "Music"}, 
-	{"key": "sounds", "value": "Sounds"}
+	{"key": "musicVol", "value": "Music Volume"}, 
+	{"key": "sfxVol", "value": "Sound Effects Volume"}
 ]}

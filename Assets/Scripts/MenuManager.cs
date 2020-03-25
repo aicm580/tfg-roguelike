@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public Toggle fullscreenToggle;
     public Dropdown resolutionDropdown;
     public Text languageText;
+    public AudioMixer audioMixer;
 
     private Resolution[] resolutions;
     private string[] languages = {"español", "english"};
@@ -115,13 +116,13 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void SetMusicVolume()
+    public void SetMusicVolume(float sliderValue)
     {
-
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
     }
 
-    public void SetSfxVolume()
+    public void SetSfxVolume(float sliderValue)
     {
-
+        audioMixer.SetFloat("SfxVol", Mathf.Log10(sliderValue) * 20);
     }
 }

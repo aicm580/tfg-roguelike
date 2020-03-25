@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     public Texture2D cursorTexture;
 
     public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
 
     public int currentHealth;
     public int numOfHearts;
@@ -135,6 +133,10 @@ public class GameManager : MonoBehaviour
             if (i >= currentHealth)
             {
                 hearts[i].GetComponent<Animator>().SetBool("empty", true);
+            }
+            else
+            {
+                hearts[i].GetComponent<Animator>().SetBool("empty", false);
             }
 
             if (i < numOfHearts)

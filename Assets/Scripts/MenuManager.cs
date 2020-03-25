@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class MenuManager : MonoBehaviour
@@ -13,10 +14,10 @@ public class MenuManager : MonoBehaviour
     public AudioMixer audioMixer;
 
     private Resolution[] resolutions;
-    private string[] languages = {"español", "english"};
+    private string[] languages = { "español", "english" };
     private int selectedLang = 0;
 
-    void Start()
+    private void Start()
     {
         //APARTADO "RESOLUCIONES"
         resolutions = Screen.resolutions.Select(resolution => new Resolution
@@ -30,7 +31,7 @@ public class MenuManager : MonoBehaviour
         //Debemos crear una lista de strings, porque el dropdown solo acepta strings
         List<string> resolutionOptions = new List<string>();
 
-        int currentResolutionIndex = 0; 
+        int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
@@ -56,9 +57,16 @@ public class MenuManager : MonoBehaviour
         languageText.text = languages[selectedLang];
     }
 
+
     public void StartNewLevel()
     {
         SceneManager.LoadScene("LoadScene");
+    }
+       
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void ApplyFullScreen()
@@ -71,12 +79,6 @@ public class MenuManager : MonoBehaviour
         {
             Screen.fullScreen = false;
         }
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void LanguageLeftArrow()
@@ -124,5 +126,11 @@ public class MenuManager : MonoBehaviour
     public void SetSfxVolume(float sliderValue)
     {
         audioMixer.SetFloat("SfxVol", Mathf.Log10(sliderValue) * 20);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }

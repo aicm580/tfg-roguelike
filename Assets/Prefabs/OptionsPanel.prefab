@@ -168,7 +168,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: SetSfxVolume
         m_Mode: 0
         m_Arguments:
@@ -288,8 +288,8 @@ RectTransform:
   - {fileID: 1477953422546368535}
   - {fileID: 1477953423594089608}
   - {fileID: 1477953422652255610}
-  - {fileID: 1477953423409711021}
   - {fileID: 1477953423889637960}
+  - {fileID: 1477953423409711021}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: LanguageLeftArrow
         m_Mode: 1
         m_Arguments:
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: ApplyFullScreen
         m_Mode: 1
         m_Arguments:
@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: LanguageRightArrow
         m_Mode: 1
         m_Arguments:
@@ -2153,7 +2153,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1477953422121997556}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2240,7 +2240,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: ChangeLanguage
         m_Mode: 1
         m_Arguments:
@@ -2619,7 +2619,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4794777615356153073}
         m_MethodName: SetResolution
         m_Mode: 0
         m_Arguments:
@@ -2959,7 +2959,7 @@ RectTransform:
   - {fileID: 1477953422839457254}
   - {fileID: 1477953422032402893}
   m_Father: {fileID: 1477953422121997556}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

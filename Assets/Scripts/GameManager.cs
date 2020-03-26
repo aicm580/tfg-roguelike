@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private EnemiesGenerator enemiesGenerator;
     public PlayerController playerController;
 
-    public GameObject player;
     public Transform popupDamageText;
+    public GameObject player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
 
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public int currentHealth;
     public int numOfHearts;
+   
     public bool playerAlive;
     public bool isPaused;
 
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
             {
                 Resume();
             }
-            else //si no está pausado, pausamos
+            else if (playerAlive) //si no está pausado y el jugador sigue vivo, pausamos
             {
                 Pause();
             }
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
         level = 1; 
         InitLevel();
 
@@ -153,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
+        hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", true);
         currentHealth -= 1;
         Debug.Log("YOU LOST A LIFE");
         

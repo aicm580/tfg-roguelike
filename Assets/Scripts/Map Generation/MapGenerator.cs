@@ -20,8 +20,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] floorTiles;
     public GameObject[] corridorTiles;
     public GameObject[] corridorWallTiles;
-    
-
+   
 
     public void SetupMap()
     {

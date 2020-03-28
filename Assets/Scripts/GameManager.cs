@@ -29,6 +29,18 @@ public class GameManager : MonoBehaviour
 
     private int level;
 
+    public int damageDone;
+    public int totalDeaths;
+    public int deathsByBoss;
+    public int deathsByNormalEnemies;
+    public int totalKills;
+    public int normalEnemiesKilled;
+    public int bossesKilled;
+    public int wins;
+    public int travels;
+    public int timePlayed;
+    public int maxLevelReached;
+
     private void Awake()
     {
         //Nos aseguramos de que solo haya 1 GameManager

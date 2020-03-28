@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1477953422032402893}
   - component: {fileID: 1477953422032402892}
   m_Layer: 5
-  m_Name: SoundSlider
+  m_Name: SfxSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,6 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullscreenToggle: {fileID: 1477953422546368534}
   resolutionDropdown: {fileID: 1477953423594089611}
+  musicSlider: {fileID: 1477953422364183181}
+  sfxSlider: {fileID: 1477953422032402892}
   languageText: {fileID: 1477953422423270812}
   audioMixer: {fileID: 24100000, guid: de311265fe3e5cf4ca43d3af94138e1d, type: 2}
 --- !u!1 &1477953422201755077
@@ -2241,7 +2243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4794777615356153073}
-        m_MethodName: ChangeLanguage
+        m_MethodName: SaveOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

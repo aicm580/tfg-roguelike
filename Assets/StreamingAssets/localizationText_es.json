@@ -9,6 +9,13 @@
 	{"key": "restart", "value": "Reiniciar"},
 	{"key": "resume", "value": "Reanudar"},
 	{"key": "quit", "value": "Salir"},
-	{"key": "menu", "value": "Menu"}
+	{"key": "menu", "value": "Menu"},
+	{"key": "dmgDone", "value": "Daño inflingido"},
+	{"key": "deaths", "value": "Muertes"},
+	{"key": "kills", "value": "Asesinatos"},
+	{"key": "wins", "value": "Victorias"},
+	{"key": "timePlayed", "value": "Tiempo jugado"},
+	{"key": "timeRecord", "value": "Tiempo récord"},
+	{"key": "travels", "value": "Viajes"}
 	
 ]}

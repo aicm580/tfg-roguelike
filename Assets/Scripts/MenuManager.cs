@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour
 {
     public Toggle fullscreenToggle;
     public Dropdown resolutionDropdown;
+    public Slider musicSlider;
+    public Slider sfxSlider;
     public Text languageText;
     public AudioMixer audioMixer;
 
@@ -17,8 +19,15 @@ public class MenuManager : MonoBehaviour
     private string[] languages = { "español", "english" };
     private int selectedLang = 0;
 
+    private float musicVol;
+    private float sfxVol;
+    
+
     private void Start()
     {
+        //APARTADO "FULL SCREEN"
+        fullscreenToggle.isOn = Screen.fullScreen;
+
         //APARTADO "RESOLUCIONES"
         resolutions = Screen.resolutions.Select(resolution => new Resolution
         {
@@ -27,9 +36,8 @@ public class MenuManager : MonoBehaviour
         }).Where(resolution => resolution.width > 400 && resolution.height > 350).Distinct().ToArray(); //esto evitará que aparezcan resoluciones duplicadas
 
         resolutionDropdown.ClearOptions();
-
-        //Debemos crear una lista de strings, porque el dropdown solo acepta strings
-        List<string> resolutionOptions = new List<string>();
+                
+        List<string> resolutionOptions = new List<string>(); //Debemos crear una lista de strings, porque el dropdown solo acepta strings
 
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
@@ -55,6 +63,12 @@ public class MenuManager : MonoBehaviour
         }
 
         languageText.text = languages[selectedLang];
+
+        //APARTADO "SONIDO"
+        audioMixer.GetFloat("MusicVol", out musicVol);
+        musicSlider.value = Mathf.Pow(10.0f, musicVol / 20.0f);
+        audioMixer.GetFloat("SfxVol", out sfxVol);
+        sfxSlider.value = Mathf.Pow(10.0f, sfxVol / 20.0f);
     }
 
 
@@ -120,12 +134,26 @@ public class MenuManager : MonoBehaviour
 
     public void SetMusicVolume(float sliderValue)
     {
-        audioMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+        musicVol = Mathf.Log10(sliderValue) * 20;
+        audioMixer.SetFloat("MusicVol", musicVol);
     }
 
     public void SetSfxVolume(float sliderValue)
     {
-        audioMixer.SetFloat("SfxVol", Mathf.Log10(sliderValue) * 20);
+        sfxVol = Mathf.Log10(sliderValue) * 20;
+        audioMixer.SetFloat("SfxVol", sfxVol);
+    }
+
+    public void SaveOptions()
+    {
+        ChangeLanguage();
+
+        PlayerPrefs.SetFloat("MusicVol", musicVol);
+        PlayerPrefs.SetFloat("SfxVol", sfxVol);
+
+        PlayerPrefs.SetInt("FullScreen", fullscreenToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("ScreenWidth", Screen.width);
+        PlayerPrefs.SetInt("ScreenHeight", Screen.height);
     }
 
     public void QuitGame()

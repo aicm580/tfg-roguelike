@@ -9,5 +9,12 @@
 	{"key": "restart", "value": "Restart"},
 	{"key": "resume", "value": "Resume"},
 	{"key": "quit", "value": "Quit"}, 
-	{"key": "menu", "value": "Menu"}
+	{"key": "menu", "value": "Menu"},
+	{"key": "dmgDone", "value": "Damage Done"},
+	{"key": "deaths", "value": "Deaths"},
+	{"key": "kills", "value": "Kills"},
+	{"key": "wins", "value": "Wins"},
+	{"key": "timePlayed", "value": "Time Played"},
+	{"key": "timeRecord", "value": "Time Record"},
+	{"key": "travels", "value": "Travels"}
 ]}

@@ -17,4 +17,17 @@
 	{"key": "timePlayed", "value": "Time Played"},
 	{"key": "timeRecord", "value": "Time Record"},
 	{"key": "travels", "value": "Travels"}
+
+	{"key": "dmgDone", "value": "Damage Done:"},
+	{"key": "totalDeaths", "value": "Total Deaths:"},
+	{"key": "normalDeaths", "value": "Deaths by Normal Enemies:"},
+	{"key": "bossDeaths", "value": "Deaths by Final Bosses:"},
+	{"key": "totalKills", "value": "Total Kills:"},
+	{"key": "normalKills", "value": "Normal Enemies Killed"},
+	{"key": "bossKills", "value": "Final Bosses Killed:"},
+	{"key": "wins", "value": "Wins:"},
+	{"key": "timePlayed", "value": "Time Played:"},
+	{"key": "timeRecord", "value": "Time Record:"},
+	{"key": "travels", "value": "Travels:"},
+	{"key": "maxLevel", "value": "Max Level Reached:"}
 ]}

@@ -817,7 +817,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 576787812}
-        m_MethodName: InitRun
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -949,7 +949,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 576787812}
-        m_MethodName: InitRun
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1291,6 +1291,17 @@ MonoBehaviour:
   numOfHearts: 3
   playerAlive: 0
   isPaused: 0
+  damageDone: 0
+  totalDeaths: 0
+  deathsByBoss: 0
+  deathsByNormalEnemies: 0
+  totalKills: 0
+  normalEnemiesKilled: 0
+  bossesKilled: 0
+  wins: 0
+  travels: 0
+  timePlayed: 0
+  maxLevelReached: 0
 --- !u!4 &576787813
 Transform:
   m_ObjectHideFlags: 0
@@ -3533,7 +3544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1427408105
 RectTransform:
   m_ObjectHideFlags: 0

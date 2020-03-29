@@ -20,8 +20,6 @@ public class StatsPanelManager : MonoBehaviour
         {
             damageDoneText.text += ": 0";
         }
-        
-        
     }
 
 }

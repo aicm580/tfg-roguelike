@@ -42,7 +42,7 @@ public static class SaveManager
         }
         else
         {
-            Debug.LogError("File not found in " + path);
+            Debug.Log("File not found in " + path);
 
             return null;
         }

@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public int timePlayed;
     public int maxLevelReached;
 
+
     private void Awake()
     {
         //Nos aseguramos de que solo haya 1 GameManager
@@ -101,6 +102,18 @@ public class GameManager : MonoBehaviour
 
     public void InitRun()
     {
+        damageDone = 0;
+        totalDeaths = 0;
+        deathsByBoss = 0;
+        deathsByNormalEnemies = 0;
+        totalKills = 0;
+        normalEnemiesKilled = 0;
+        bossesKilled = 0;
+        wins = 0;
+        travels = 0;
+        timePlayed = 0;
+        maxLevelReached = level;
+
         Time.timeScale = 1f;
         isPaused = false;
         pausePanel.SetActive(false);
@@ -186,6 +199,7 @@ public class GameManager : MonoBehaviour
     {
         playerAlive = false;
         gameOverPanel.SetActive(true);
+        SaveStats();
     }
 
     public void Resume()
@@ -193,6 +207,12 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void Restart()
+    {
+        SaveStats();
+        InitRun();
     }
 
     private void Pause()
@@ -207,5 +227,34 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         SceneManager.LoadScene("MenuScene");
+    }
+
+    private void SaveStats()
+    {
+        StatsData stats = SaveManager.LoadStats();
+        if (stats != null)
+        {
+            damageDone += stats.damageDone;
+            totalDeaths += stats.totalDeaths;
+            deathsByBoss += stats.deathsByBoss;
+            deathsByNormalEnemies += stats.deathsByNormalEnemies;
+            totalKills += stats.totalKills;
+            normalEnemiesKilled += stats.normalEnemiesKilled;
+            bossesKilled += stats.bossesKilled;
+            wins += stats.wins;
+            travels = stats.travels + 1; 
+            //timePlayed;
+
+            if (stats.maxLevelReached <= level)
+            {
+                maxLevelReached = level;
+            }
+            else
+            {
+                maxLevelReached = stats.maxLevelReached;
+            }  
+        }
+
+        SaveManager.SaveStats(this);
     }
 }

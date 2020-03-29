@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private int level;
 
-    private float timer;
+    public float timePlayed;
     private bool timerActive = false;
 
     public int damageDone;
@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     public int bossesKilled;
     public int wins;
     public int travels;
-    public int timePlayed;
     public int maxLevelReached;
 
     private StatsData stats;
@@ -88,11 +87,11 @@ public class GameManager : MonoBehaviour
 
         if (timerActive)
         {
-            timer += Time.deltaTime;
-            int intTime = (int)timer;
+            timePlayed += Time.deltaTime;
+            int intTime = (int)timePlayed;
             int minutes = intTime / 60;
             int seconds = intTime % 60;
-            float ms = timer * 1000;
+            float ms = timePlayed * 1000;
             ms = ms % 1000;
 
             string timeTxt = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, ms/10);
@@ -132,7 +131,6 @@ public class GameManager : MonoBehaviour
         bossesKilled = 0;
         wins = 0;
         travels = 0;
-        timePlayed = 0;
         maxLevelReached = level;
 
         Time.timeScale = 1f;
@@ -146,6 +144,8 @@ public class GameManager : MonoBehaviour
         numOfHearts = playerController.initHearts;
         currentHealth = playerController.initHealth;
         SetUIHearts();
+
+        timePlayed = 0;
         timerActive = true;
     }
 
@@ -273,8 +273,8 @@ public class GameManager : MonoBehaviour
             normalEnemiesKilled += stats.normalEnemiesKilled;
             bossesKilled += stats.bossesKilled;
             wins += stats.wins;
-            travels = stats.travels + 1; 
-            //timePlayed;
+            travels = stats.travels + 1;
+            timePlayed += stats.timePlayed;
 
             if (stats.maxLevelReached <= level)
             {

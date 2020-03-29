@@ -14,7 +14,7 @@ public class StatsData
     public int bossesKilled;
     public int wins;
     public int travels;
-    public int timePlayed;
+    public float timePlayed;
     public int maxLevelReached;
 
 

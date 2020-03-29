@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,8 +35,14 @@ public class StatsPanelManager : MonoBehaviour
             bossKillsScore.text = stats.bossesKilled.ToString();
             winsScore.text = stats.wins.ToString();
             travelsScore.text = stats.travels.ToString();
-            timePlayedScore.text = stats.timePlayed.ToString();
             maxLevelScore.text = stats.maxLevelReached.ToString();
+
+            //Convertimos el tiempo jugado a horas, minutos y segundos
+            float timePlayed = stats.timePlayed;
+
+            TimeSpan timeSpan = TimeSpan.FromSeconds(timePlayed);
+            string timeText = string.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+            timePlayedScore.text = timeText;
         }
     }
 

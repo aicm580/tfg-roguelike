@@ -6,6 +6,8 @@
 	{"key": "language", "value": "Idioma"}, 
 	{"key": "musicVol", "value": "Volumen Música"}, 
 	{"key": "sfxVol", "value": "Volumen Efectos de Sonidos"},
+	{"key": "fullScreen", "value": "Pantalla Completa"},
+	{"key": "timerActive", "value": "Mostrar cronómetro"},
 	{"key": "restart", "value": "Reiniciar"},
 	{"key": "resume", "value": "Reanudar"},
 	{"key": "quit", "value": "Salir"},

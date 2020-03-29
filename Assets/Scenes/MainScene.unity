@@ -1355,6 +1355,7 @@ MonoBehaviour:
   player: {fileID: 1198681082}
   gameOverPanel: {fileID: 1427408104}
   pausePanel: {fileID: 1116039872}
+  timerToogle: {fileID: 1202983313}
   timerText: {fileID: 505898312}
   cursorTexture: {fileID: 2800000, guid: d1c1523651c71449cb32c2c7933acf8c, type: 3}
   hearts:
@@ -1372,6 +1373,7 @@ MonoBehaviour:
   numOfHearts: 3
   playerAlive: 0
   isPaused: 0
+  timePlayed: 0
   damageDone: 0
   totalDeaths: 0
   deathsByBoss: 0
@@ -1381,7 +1383,6 @@ MonoBehaviour:
   bossesKilled: 0
   wins: 0
   travels: 0
-  timePlayed: 0
   maxLevelReached: 0
 --- !u!4 &576787813
 Transform:
@@ -3043,6 +3044,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 576787812}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableOrDisableTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3, type: 3}
 --- !u!224 &1202983311 stripped
@@ -3057,6 +3088,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1202983310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202983313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5382868864595043443, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1202983310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1249194143
 PrefabInstance:
   m_ObjectHideFlags: 0

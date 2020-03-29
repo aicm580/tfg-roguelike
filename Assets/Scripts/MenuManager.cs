@@ -8,6 +8,7 @@ using System.Linq;
 
 public class MenuManager : MonoBehaviour
 {
+    public Toggle timerToogle;
     public Toggle fullscreenToggle;
     public Dropdown resolutionDropdown;
     public Slider musicSlider;
@@ -25,6 +26,16 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        //APARTADO "TIMER ACTIVE"
+        if (PlayerPrefs.HasKey("TimerActive"))
+        {
+            timerToogle.isOn = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
+        }
+        else
+        {
+            timerToogle.isOn = false;
+        }
+        
         //APARTADO "FULL SCREEN"
         fullscreenToggle.isOn = Screen.fullScreen;
 
@@ -154,6 +165,8 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetInt("FullScreen", fullscreenToggle.isOn ? 1 : 0);
         PlayerPrefs.SetInt("ScreenWidth", Screen.width);
         PlayerPrefs.SetInt("ScreenHeight", Screen.height);
+
+        PlayerPrefs.SetInt("TimerActive", timerToogle.isOn ? 1 : 0);
     }
 
     public void QuitGame()

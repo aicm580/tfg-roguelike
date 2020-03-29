@@ -54,8 +54,9 @@ public class Enemy : MonoBehaviour
             DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
             damagePopup.Setup(damage);
             health -= damage;
+            GameManager.instance.damageDone += damage;
 
-            if(health <= 0)
+            if (health <= 0)
             {
                 if (finalBoss)
                 {

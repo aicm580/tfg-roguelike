@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    public Toggle timerToogle;
     public Text timerText;
 
     public Texture2D cursorTexture;
@@ -67,6 +68,9 @@ public class GameManager : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
         playerController = player.GetComponent<PlayerController>();
+
+        bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
+        timerText.gameObject.SetActive(showTimer);
 
         InitRun();
     }
@@ -244,6 +248,11 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+    }
+
+    public void EnableOrDisableTimer()
+    {
+        timerText.gameObject.SetActive(timerToogle.isOn);
     }
 
     public void LoadMenu()

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    public Text timerText;
 
     public Texture2D cursorTexture;
 
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     private int level;
 
+    private float timer;
+    private bool timerActive = false;
+
     public int damageDone;
     public int totalDeaths;
     public int deathsByBoss;
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour
     public int travels;
     public int timePlayed;
     public int maxLevelReached;
+
+    private StatsData stats;
 
 
     private void Awake()
@@ -79,6 +85,19 @@ public class GameManager : MonoBehaviour
                 Pause();
             }
         }
+
+        if (timerActive)
+        {
+            timer += Time.deltaTime;
+            int intTime = (int)timer;
+            int minutes = intTime / 60;
+            int seconds = intTime % 60;
+            float ms = timer * 1000;
+            ms = ms % 1000;
+
+            string timeTxt = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, ms/10);
+            timerText.text = timeTxt;
+        }
     }
 
     void SetCursor(Texture2D tex)
@@ -102,6 +121,8 @@ public class GameManager : MonoBehaviour
 
     public void InitRun()
     {
+        stats = SaveManager.LoadStats();
+
         damageDone = 0;
         totalDeaths = 0;
         deathsByBoss = 0;
@@ -125,6 +146,7 @@ public class GameManager : MonoBehaviour
         numOfHearts = playerController.initHearts;
         currentHealth = playerController.initHealth;
         SetUIHearts();
+        timerActive = true;
     }
 
     Vector3 InitPlayerPosition()
@@ -197,9 +219,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        timerActive = false;
         playerAlive = false;
         gameOverPanel.SetActive(true);
-        SaveStats();
     }
 
     public void Resume()
@@ -207,6 +229,7 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        timerActive = true;
     }
 
     public void Restart()
@@ -217,6 +240,7 @@ public class GameManager : MonoBehaviour
 
     private void Pause()
     {
+        timerActive = false;
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -224,14 +248,21 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
+        SaveStats();
         Time.timeScale = 1f;
         isPaused = false;
         SceneManager.LoadScene("MenuScene");
     }
 
+    public void SaveAndQuit()
+    {
+        SaveStats();
+        Debug.Log("Quitting game...");
+        Application.Quit();
+    }
+
     private void SaveStats()
     {
-        StatsData stats = SaveManager.LoadStats();
         if (stats != null)
         {
             damageDone += stats.damageDone;

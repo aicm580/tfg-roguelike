@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public int calculatedFriends;
 
     public int health;
+    public bool finalBoss; 
 
     public bool touchDamage; //si es true, significa que al tocarlo el player recibirá daño
     private float touchDelay = 0.3f; //tiempo a esperar para que la colisión vuelva a hacer daño
@@ -56,6 +57,15 @@ public class Enemy : MonoBehaviour
 
             if(health <= 0)
             {
+                if (finalBoss)
+                {
+                    GameManager.instance.bossesKilled += 1;
+                }
+                else
+                {
+                    GameManager.instance.normalEnemiesKilled += 1;
+                }
+                GameManager.instance.totalKills += 1;
                 Destroy(gameObject);
             }
         }

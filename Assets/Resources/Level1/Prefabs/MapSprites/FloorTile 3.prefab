@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2393236569930651904}
   - component: {fileID: 1914032276818704215}
   m_Layer: 0
-  m_Name: FloorTile
+  m_Name: FloorTile 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,8 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4450536985475645136, guid: ad5dd4b8ffe139c469557e53fb5a5a60,
-    type: 3}
+  m_Sprite: {fileID: 130582615652167446, guid: ad5dd4b8ffe139c469557e53fb5a5a60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

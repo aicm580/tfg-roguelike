@@ -1330,9 +1330,11 @@ MonoBehaviour:
     minVal: 3
     maxVal: 5
   floorTiles:
-  - {fileID: 6649283857379490074, guid: cb564dd0477a9d547aa4c786994e2c4e, type: 3}
+  - {fileID: 6649283857379490074, guid: 114bba4a70f08c1408cf3962dc6b069b, type: 3}
   - {fileID: 6649283857379490074, guid: 07ae6a476d3af8347abaae1284f8692d, type: 3}
-  - {fileID: 6649283857379490074, guid: d2625a6b1ef90944a8f8f7819dc01385, type: 3}
+  - {fileID: 6649283857379490074, guid: 3067e7b817444f24d831a99aa5dad6b7, type: 3}
+  - {fileID: 6649283857379490074, guid: a528425251c38e645b5fb65ec24bb1bb, type: 3}
+  - {fileID: 6649283857379490074, guid: 76371ed5aa8f28c4cade3b16f84c3ddd, type: 3}
   corridorTiles:
   - {fileID: 6649283857379490074, guid: c096d82013bb687439a7197ffc593bc1, type: 3}
   corridorWallTiles:
@@ -4423,7 +4425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1899458193
 RectTransform:
   m_ObjectHideFlags: 0

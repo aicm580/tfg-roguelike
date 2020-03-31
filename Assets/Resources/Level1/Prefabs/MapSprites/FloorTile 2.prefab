@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2393236569930651904}
   - component: {fileID: 1914032276818704215}
-  - component: {fileID: 4495663995050255777}
   m_Layer: 0
   m_Name: FloorTile 2
   m_TagString: Untagged
@@ -69,7 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3106341853739790030, guid: cb68c336cf0b7114d8a8329ef98cd797,
+  m_Sprite: {fileID: 1597525571399422490, guid: ad5dd4b8ffe139c469557e53fb5a5a60,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,36 +80,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4495663995050255777
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6649283857379490074}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.105463915, y: 0.36732793}
-      - {x: -0.18334886, y: 0.3195291}
-      - {x: -0.324245, y: 0.16180548}
-      - {x: -0.4426162, y: -0.13988975}
-      - {x: 0.4341386, y: -0.13889138}
-      - {x: 0.38501084, y: 0.040206183}
-      - {x: 0.17295313, y: 0.29912302}
-      - {x: 0.07593575, y: 0.36681595}

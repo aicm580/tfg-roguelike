@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
 
     Vector3 InitPlayerPosition()
     {
-        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 2.5f));
+        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 2.8f));
         Vector3 randomPosition = mapGenerator.rooms[0].emptyPositions[randomIndex];
 
         mapGenerator.rooms[0].emptyPositions.RemoveAt(randomIndex);

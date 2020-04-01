@@ -1315,17 +1315,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms:
-    minVal: 5
-    maxVal: 8
+    minVal: 6
+    maxVal: 9
   roomWidth:
     minVal: 10
-    maxVal: 30
+    maxVal: 26
   roomHeight:
-    minVal: 8
-    maxVal: 30
+    minVal: 10
+    maxVal: 23
   corridorLength:
     minVal: 7
-    maxVal: 15
+    maxVal: 13
   corridorWidth:
     minVal: 3
     maxVal: 5

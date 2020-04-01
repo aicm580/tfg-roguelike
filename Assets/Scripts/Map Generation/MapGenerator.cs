@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public IntRange numRooms = new IntRange (5, 8);
-    public IntRange roomWidth = new IntRange (10, 30);
-    public IntRange roomHeight = new IntRange (8, 30); 
-    public IntRange corridorLength = new IntRange (7, 15);
+    public IntRange numRooms = new IntRange (6, 9);
+    public IntRange roomWidth = new IntRange (10, 26);
+    public IntRange roomHeight = new IntRange (10, 23); 
+    public IntRange corridorLength = new IntRange (7, 13);
     public IntRange corridorWidth = new IntRange (3,5);
 
     public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
@@ -55,7 +55,8 @@ public class MapGenerator : MonoBehaviour
         corridors[0] = new Corridor();
 
         //Establecemos las características del primer cuarto, que no tiene pasillo
-        rooms[0].SetupRoom(roomWidth, roomHeight);
+        rooms[0].SetupRoom(roomWidth.minVal, roomHeight.minVal);
+        Debug.Log("Room width min val: " + roomWidth.minVal);
         SetTilesForRoom(rooms[0]);
 
         //Establecemos las características del primer pasillo usando el primer cuarto
@@ -114,9 +115,9 @@ public class MapGenerator : MonoBehaviour
         {
             int xCoord = currentRoom.xPos + j;
 
-            for (int k = 0; k < currentRoom.columnHeight[j]; k++)
+            for (int k = 0; k < currentRoom.roomHeight; k++)
             {
-                int yCoord = currentRoom.yPos[j] + k;
+                int yCoord = currentRoom.yPos + k;
                 Vector2 pos = new Vector2(xCoord, yCoord);
 
                 if(tiles.Exists(x => x.pos == pos)) //Si la posición está ocupada
@@ -140,9 +141,9 @@ public class MapGenerator : MonoBehaviour
 
             TileType currentTileType = TileType.RoomFloor; 
 
-            for (int k = 0; k < currentRoom.columnHeight[j]; k++)
+            for (int k = 0; k < currentRoom.roomHeight; k++)
             {
-                int yCoord = currentRoom.yPos[j] + k;
+                int yCoord = currentRoom.yPos + k;
                 Vector3 pos = new Vector3(xCoord, yCoord, 0);
                 Tile newTile = new Tile(currentTileType, pos);
                 tiles.Add(newTile);

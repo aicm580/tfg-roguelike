@@ -15,8 +15,6 @@ public class Corridor
     public int corridorLength;
     public int corridorWidth;
 
-    public int randomX;
-
     public Direction direction;
 
     //Calculamos la posición X final del pasillo según su posición X inicial y su dirección
@@ -72,22 +70,20 @@ public class Corridor
         switch (direction)
         {
             case Direction.North: 
-                randomX = Random.Range(2, room.roomWidth - 2);
-                startXPos = room.xPos + randomX;
-                startYPos = room.yPos[randomX] + room.columnHeight[randomX] - 1;
+                startXPos = Random.Range(room.xPos, room.xPos + room.roomWidth - corridorWidth);
+                startYPos = room.yPos + room.roomHeight - 1;
                 break;
-            case Direction.South: 
-                randomX = Random.Range(2, room.roomWidth - 2);
-                startXPos = room.xPos + randomX;
-                startYPos = room.yPos[randomX];
+            case Direction.South:
+                startXPos = Random.Range(room.xPos, room.xPos + room.roomWidth - corridorWidth);
+                startYPos = room.yPos;
                 break;            
             case Direction.East: 
                 startXPos = room.xPos + room.roomWidth - 1;
-                startYPos = Random.Range(room.yPos[room.roomWidth-1] + 2, room.yPos[room.roomWidth-1] + room.columnHeight[room.roomWidth-1] - 2);
+                startYPos = Random.Range(room.yPos, room.yPos + room.roomHeight - corridorWidth - 3);
                 break;
             case Direction.West: 
                 startXPos = room.xPos;
-                startYPos = Random.Range(room.yPos[0] + 2, room.yPos[0] + room.columnHeight[0] - 2);
+                startYPos = Random.Range(room.yPos + corridorWidth, room.yPos + room.roomHeight - corridorWidth - 3);
                 break;
         }
     }

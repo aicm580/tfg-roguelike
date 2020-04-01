@@ -1329,12 +1329,28 @@ MonoBehaviour:
   corridorWidth:
     minVal: 3
     maxVal: 5
+  basicFloorTile: {fileID: 6649283857379490074, guid: 114bba4a70f08c1408cf3962dc6b069b,
+    type: 3}
+  rareFloorTile: {fileID: 6649283857379490074, guid: 76371ed5aa8f28c4cade3b16f84c3ddd,
+    type: 3}
   floorTiles:
-  - {fileID: 6649283857379490074, guid: 114bba4a70f08c1408cf3962dc6b069b, type: 3}
   - {fileID: 6649283857379490074, guid: 07ae6a476d3af8347abaae1284f8692d, type: 3}
   - {fileID: 6649283857379490074, guid: 3067e7b817444f24d831a99aa5dad6b7, type: 3}
   - {fileID: 6649283857379490074, guid: a528425251c38e645b5fb65ec24bb1bb, type: 3}
-  - {fileID: 6649283857379490074, guid: 76371ed5aa8f28c4cade3b16f84c3ddd, type: 3}
+  topFloorTiles:
+  - {fileID: 6649283857379490074, guid: 3e36351950760bf45b32915eb3a5e6e9, type: 3}
+  - {fileID: 6649283857379490074, guid: cd584a2fd4916aa44aa6d7441475ca2a, type: 3}
+  - {fileID: 6649283857379490074, guid: f286cce24697b4641a3e83251e4a5917, type: 3}
+  - {fileID: 6649283857379490074, guid: b0b28cd91e044364e9d606b5b20ddcd4, type: 3}
+  leftWallTiles: []
+  rightWallTiles: []
+  topWallTiles:
+  - {fileID: 6649283857379490074, guid: 434a261f106b54a4885872377ac37bfe, type: 3}
+  - {fileID: 6649283857379490074, guid: 526ec74bdc234b646a8ac255ceb3767b, type: 3}
+  bottomWallTiles:
+  - {fileID: 6649283857379490074, guid: a37350bcdd16cd344bf2ef5b6fe31cdd, type: 3}
+  - {fileID: 6649283857379490074, guid: 3daa93518d8fac041bab945ba2c63670, type: 3}
+  - {fileID: 6649283857379490074, guid: ab29203c6c1d0f54ba86a21096f67a25, type: 3}
   corridorTiles:
   - {fileID: 6649283857379490074, guid: c096d82013bb687439a7197ffc593bc1, type: 3}
   corridorWallTiles:

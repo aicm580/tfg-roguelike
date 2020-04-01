@@ -18,14 +18,15 @@ public class MapGenerator : MonoBehaviour
     private GameObject mapHolder;
 
     public GameObject basicFloorTile;
-    public GameObject rareFloorTile;
     public GameObject[] floorTiles;
+    public GameObject[] rareFloorTiles;
+    public GameObject basicTopFloorTile;
     public GameObject[] topFloorTiles;
     public GameObject[] leftWallTiles;
     public GameObject[] rightWallTiles;
     public GameObject[] topWallTiles;
     public GameObject[] bottomWallTiles;
-    public GameObject[] corridorTiles;
+    
     public GameObject[] corridorWallTiles;
    
 
@@ -153,11 +154,11 @@ public class MapGenerator : MonoBehaviour
                 int yCoord = currentRoom.yPos + k;
                 currentTileType = TileType.RoomFloor;
 
-                if (j == 0 && k == 0) //si se trata de la primera columna de tiles de la sala
+                if (j == 0 && k == 0 && currentRoom.enteringCorridor != Direction.East) //si se trata de la primera columna de tiles de la sala
                 {
                     
                 }
-                else if (k == 0)
+                else if (k == 0 && currentRoom.enteringCorridor != Direction.North)
                 {
                     currentTileType = TileType.BottomWall;
                 }
@@ -256,11 +257,11 @@ public class MapGenerator : MonoBehaviour
             switch (tile.tileType)
             {
                 case TileType.RoomFloor:
-                    InstantiateFromArray(basicFloorTile, floorTiles, rareFloorTile, tile.pos.x, tile.pos.y);
+                    InstantiateFromArray(basicFloorTile, floorTiles, rareFloorTiles, tile.pos.x, tile.pos.y);
                     break;
 
                 case TileType.TopFloor:
-                    InstantiateFromArray(topFloorTiles, tile.pos.x, tile.pos.y);
+                    InstantiateFromArray(basicTopFloorTile, topFloorTiles, tile.pos.x, tile.pos.y);
                     break;
 
                 /* case TileType.LeftWall:
@@ -314,7 +315,7 @@ public class MapGenerator : MonoBehaviour
         tileInstance.transform.parent = mapHolder.transform;
     }
 
-    void InstantiateFromArray(GameObject mostComunPrefab, GameObject[] comunPrefabs, GameObject rarePrefab, float xCoord, float yCoord)
+    void InstantiateFromArray(GameObject mostComunPrefab, GameObject[] comunPrefabs, GameObject[] rarePrefabs, float xCoord, float yCoord)
     {
         GameObject tileInstance;
         Vector3 position = new Vector3(xCoord, yCoord, 0f);
@@ -324,14 +325,15 @@ public class MapGenerator : MonoBehaviour
         {
             tileInstance = Instantiate(mostComunPrefab, position, Quaternion.identity) as GameObject;
         }
-        else if (random <= 0.95f)
+        else if (random <= 0.96f)
         {
             int randomIndex = Random.Range(0, comunPrefabs.Length);
             tileInstance = Instantiate(comunPrefabs[randomIndex], position, Quaternion.identity) as GameObject;
         }
         else
         {
-            tileInstance = Instantiate(rarePrefab, position, Quaternion.identity) as GameObject;
+            int randomIndex = Random.Range(0, rarePrefabs.Length);
+            tileInstance = Instantiate(rarePrefabs[randomIndex], position, Quaternion.identity) as GameObject;
         }
 
         tileInstance.transform.parent = mapHolder.transform;

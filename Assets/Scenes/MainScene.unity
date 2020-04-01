@@ -1331,14 +1331,16 @@ MonoBehaviour:
     maxVal: 5
   basicFloorTile: {fileID: 6649283857379490074, guid: 114bba4a70f08c1408cf3962dc6b069b,
     type: 3}
-  rareFloorTile: {fileID: 6649283857379490074, guid: 76371ed5aa8f28c4cade3b16f84c3ddd,
-    type: 3}
   floorTiles:
   - {fileID: 6649283857379490074, guid: 07ae6a476d3af8347abaae1284f8692d, type: 3}
   - {fileID: 6649283857379490074, guid: 3067e7b817444f24d831a99aa5dad6b7, type: 3}
   - {fileID: 6649283857379490074, guid: a528425251c38e645b5fb65ec24bb1bb, type: 3}
+  rareFloorTiles:
+  - {fileID: 6649283857379490074, guid: 76371ed5aa8f28c4cade3b16f84c3ddd, type: 3}
+  - {fileID: 6649283857379490074, guid: 6d7783c1cf059be4fac7a892f84ac483, type: 3}
+  basicTopFloorTile: {fileID: 6649283857379490074, guid: 3e36351950760bf45b32915eb3a5e6e9,
+    type: 3}
   topFloorTiles:
-  - {fileID: 6649283857379490074, guid: 3e36351950760bf45b32915eb3a5e6e9, type: 3}
   - {fileID: 6649283857379490074, guid: cd584a2fd4916aa44aa6d7441475ca2a, type: 3}
   - {fileID: 6649283857379490074, guid: f286cce24697b4641a3e83251e4a5917, type: 3}
   - {fileID: 6649283857379490074, guid: b0b28cd91e044364e9d606b5b20ddcd4, type: 3}

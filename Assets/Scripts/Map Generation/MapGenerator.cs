@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -28,7 +29,16 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] bottomWallTiles;
     
     public GameObject[] corridorWallTiles;
-   
+
+    [SerializeField]
+    private Tilemap groundMap;
+    [SerializeField]
+    private Tilemap wallMap;
+    [SerializeField]
+    private Tile groundTile;
+    [SerializeField]
+    private Tile wallTile;
+
 
     public void SetupMap()
     {
@@ -156,7 +166,7 @@ public class MapGenerator : MonoBehaviour
 
                 if (j == 0 && k == 0 && currentRoom.enteringCorridor != Direction.East) //si se trata de la primera columna de tiles de la sala
                 {
-                    
+                    currentTileType = TileType.LeftWall;
                 }
                 else if (k == 0 && currentRoom.enteringCorridor != Direction.North)
                 {

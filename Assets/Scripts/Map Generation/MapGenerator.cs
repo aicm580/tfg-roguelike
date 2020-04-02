@@ -9,14 +9,12 @@ public class MapGenerator : MonoBehaviour
     public IntRange roomWidth = new IntRange (10, 26);
     public IntRange roomHeight = new IntRange (10, 23); 
     public IntRange corridorLength = new IntRange (7, 13);
-    public IntRange corridorWidth = new IntRange (3,5);
+    public IntRange corridorWidth = new IntRange (5,7);
 
     public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
     private Corridor[] corridors;
 
     private List <Tile> tiles = new List<Tile>();
-
-    private GameObject mapHolder;
 
     [SerializeField]
     private Tilemap groundMap;
@@ -30,18 +28,9 @@ public class MapGenerator : MonoBehaviour
 
     public void SetupMap()
     {
-        if (GameObject.Find("MapHolder"))
-        {
-            mapHolder = GameObject.Find("MapHolder");
-            foreach (Transform child in mapHolder.transform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-        else
-        {
-            mapHolder = new GameObject("MapHolder");
-        }
+        //Limpiamos los tilemaps
+        wallMap.ClearAllTiles();
+        groundMap.ClearAllTiles();
 
         CreateRoomsAndCorridors();
         InstantiateTiles();
@@ -178,9 +167,9 @@ public class MapGenerator : MonoBehaviour
         {
             Corridor currentCorridor = corridors[i];
 
-            for (int j = 0; j < currentCorridor.corridorWidth; j++)
+            for (int j = -1; j <= currentCorridor.corridorWidth + 1; j++)
             {
-                for (int k = 0; k < currentCorridor.corridorLength; k++)
+                for (int k = -1; k <= currentCorridor.corridorLength + 1; k++)
                 {
                     int xCoord = currentCorridor.startXPos;
                     int yCoord = currentCorridor.startYPos;
@@ -200,7 +189,13 @@ public class MapGenerator : MonoBehaviour
                             yCoord -= k; 
                         }
 
-                        if(xCoord == currentCorridor.startXPos || xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1) 
+                        if(
+                           xCoord == currentCorridor.startXPos - 1 || 
+                           xCoord == currentCorridor.startXPos ||
+                           xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1 || 
+                           xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth ||
+                           xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth + 1 
+                           ) 
                         {
                             currentTileType = TileType.Wall;
                         }
@@ -219,7 +214,13 @@ public class MapGenerator : MonoBehaviour
                             yCoord = currentCorridor.startYPos + j;
                         }
 
-                        if (yCoord == currentCorridor.startYPos || yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1)
+                        if (
+                            yCoord == currentCorridor.startYPos - 1 || 
+                            yCoord == currentCorridor.startYPos || 
+                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1 ||
+                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth ||
+                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth + 1 
+                            )
                         {
                             currentTileType = TileType.Wall;
                         }

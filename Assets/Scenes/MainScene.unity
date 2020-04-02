@@ -1327,8 +1327,8 @@ MonoBehaviour:
     minVal: 7
     maxVal: 13
   corridorWidth:
-    minVal: 3
-    maxVal: 5
+    minVal: 5
+    maxVal: 7
   groundMap: {fileID: 1969577271}
   groundTile: {fileID: 11400000, guid: fbb90dab2ef8c1249930fab3544d24a4, type: 2}
   wallMap: {fileID: 1729511995}
@@ -4153,7 +4153,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -4178,6 +4178,12 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -4329,7 +4335,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: -5.540436e-12, g: -5.540436e-12, b: -5.540436e-12, a: -5.540436e-12}
   - m_RefCount: 0
-    m_Data: {r: -365.46777, g: -365.46777, b: -365.46777, a: -365.46777}
+    m_Data: {r: -5.5477845e-12, g: -5.5477845e-12, b: -5.5477845e-12, a: -5.5477845e-12}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}

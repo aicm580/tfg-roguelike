@@ -18,26 +18,14 @@ public class MapGenerator : MonoBehaviour
 
     private GameObject mapHolder;
 
-    public GameObject basicFloorTile;
-    public GameObject[] floorTiles;
-    public GameObject[] rareFloorTiles;
-    public GameObject basicTopFloorTile;
-    public GameObject[] topFloorTiles;
-    public GameObject[] leftWallTiles;
-    public GameObject[] rightWallTiles;
-    public GameObject[] topWallTiles;
-    public GameObject[] bottomWallTiles;
-    
-    public GameObject[] corridorWallTiles;
-
     [SerializeField]
     private Tilemap groundMap;
     [SerializeField]
+    private TileBase groundTile;
+    [SerializeField]
     private Tilemap wallMap;
     [SerializeField]
-    private Tile groundTile;
-    [SerializeField]
-    private Tile wallTile;
+    private TileBase wallTile;
 
 
     public void SetupMap()
@@ -136,7 +124,7 @@ public class MapGenerator : MonoBehaviour
             for (int k = 0; k < currentRoom.roomHeight; k++)
             {
                 int yCoord = currentRoom.yPos + k;
-                Vector2 pos = new Vector2(xCoord, yCoord);
+                Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
 
                 if(tiles.Exists(x => x.pos == pos)) //Si la posición está ocupada
                 {
@@ -153,37 +141,24 @@ public class MapGenerator : MonoBehaviour
 
     void SetTilesForRoom(Room currentRoom)
     {        
-        for (int j = 0; j < currentRoom.roomWidth; j++)
+        for (int j = -1; j <= currentRoom.roomWidth; j++)
         {
             int xCoord = currentRoom.xPos + j;
 
             TileType currentTileType; 
 
-            for (int k = 0; k <= currentRoom.roomHeight; k++)
+            for (int k = -1; k <= currentRoom.roomHeight; k++)
             {
                 int yCoord = currentRoom.yPos + k;
                 currentTileType = TileType.RoomFloor;
 
-                if (j == 0 && k == 0 && currentRoom.enteringCorridor != Direction.East) //si se trata de la primera columna de tiles de la sala
+                if (j == -1 || j == 0 || j == currentRoom.roomWidth - 1 || j == currentRoom.roomWidth ||
+                    k == -1 || k == 0 || k == currentRoom.roomHeight - 1 || k == currentRoom.roomHeight)
                 {
-                    currentTileType = TileType.LeftWall;
-                }
-                else if (k == 0 && currentRoom.enteringCorridor != Direction.North)
-                {
-                    currentTileType = TileType.BottomWall;
+                    currentTileType = TileType.Wall;
                 }
 
-                if (k == currentRoom.roomHeight - 1)
-                {
-                    currentTileType = TileType.TopWall;
-                } 
-                else if (k == currentRoom.roomHeight)
-                {
-                    currentTileType = TileType.TopFloor;
-                }
-                
-
-                Vector2 pos = new Vector2(xCoord, yCoord);
+                Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
                 Tile newTile = new Tile(currentTileType, pos);
                 tiles.Add(newTile);
 
@@ -227,7 +202,7 @@ public class MapGenerator : MonoBehaviour
 
                         if(xCoord == currentCorridor.startXPos || xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1) 
                         {
-                            currentTileType = TileType.CorridorWall;
+                            currentTileType = TileType.Wall;
                         }
 
                     }
@@ -246,12 +221,12 @@ public class MapGenerator : MonoBehaviour
 
                         if (yCoord == currentCorridor.startYPos || yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1)
                         {
-                            currentTileType = TileType.CorridorWall;
+                            currentTileType = TileType.Wall;
                         }
                 
                     }
 
-                    Vector2 pos = new Vector2(xCoord, yCoord);
+                    Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
                     Tile newTile = new Tile(currentTileType, pos);
                     tiles.Add(newTile);
                 }
@@ -264,88 +239,19 @@ public class MapGenerator : MonoBehaviour
     {
         foreach (Tile tile in tiles)
         {
+            Vector3Int pos = new Vector3Int((int)tile.pos.x, (int)tile.pos.y, 0);
+            Vector3Int currentCell = groundMap.WorldToCell(transform.position);
+            
             switch (tile.tileType)
             {
                 case TileType.RoomFloor:
-                    InstantiateFromArray(basicFloorTile, floorTiles, rareFloorTiles, tile.pos.x, tile.pos.y);
+                    groundMap.SetTile(pos, groundTile);
                     break;
 
-                case TileType.TopFloor:
-                    InstantiateFromArray(basicTopFloorTile, topFloorTiles, tile.pos.x, tile.pos.y);
-                    break;
-
-                /* case TileType.LeftWall:
-                     InstantiateFromArray(leftWallTiles, tile.pos.x, tile.pos.y);
-                     break;*/
-
-                case TileType.TopWall:
-                    InstantiateFromArray(topWallTiles, tile.pos.x, tile.pos.y);
-                    break;
-
-                case TileType.BottomWall:
-                    InstantiateFromArray(bottomWallTiles, tile.pos.x, tile.pos.y);
-                    break;
-                
-                case TileType.CorridorWall:
-                    InstantiateFromArray(corridorWallTiles, tile.pos.x, tile.pos.y);
+                case TileType.Wall:
+                    wallMap.SetTile(pos, wallTile);
                     break;
             }
-   
         }
-    }
-
-
-    void InstantiateFromArray (GameObject[] prefabs, float xCoord, float yCoord)
-    {
-        int randomIndex = Random.Range(0, prefabs.Length);
-
-        Vector3 position = new Vector3(xCoord, yCoord, 0f);
-
-        GameObject tileInstance = Instantiate(prefabs[randomIndex], position, Quaternion.identity) as GameObject;
-
-        tileInstance.transform.parent = mapHolder.transform;
-    }
-
-    void InstantiateFromArray(GameObject mostComunPrefab, GameObject[] comunPrefabs, float xCoord, float yCoord)
-    {
-        GameObject tileInstance;
-        Vector3 position = new Vector3(xCoord, yCoord, 0f);
-
-        float random = Random.Range(0f, 1f);
-        if (random <= 0.75f)
-        {
-            tileInstance = Instantiate(mostComunPrefab, position, Quaternion.identity) as GameObject;
-        }
-        else
-        {
-            int randomIndex = Random.Range(0, comunPrefabs.Length);
-            tileInstance = Instantiate(comunPrefabs[randomIndex], position, Quaternion.identity) as GameObject;
-        }
-
-        tileInstance.transform.parent = mapHolder.transform;
-    }
-
-    void InstantiateFromArray(GameObject mostComunPrefab, GameObject[] comunPrefabs, GameObject[] rarePrefabs, float xCoord, float yCoord)
-    {
-        GameObject tileInstance;
-        Vector3 position = new Vector3(xCoord, yCoord, 0f);
-
-        float random = Random.Range(0f, 1f);
-        if (random <= 0.78f)
-        {
-            tileInstance = Instantiate(mostComunPrefab, position, Quaternion.identity) as GameObject;
-        }
-        else if (random <= 0.96f)
-        {
-            int randomIndex = Random.Range(0, comunPrefabs.Length);
-            tileInstance = Instantiate(comunPrefabs[randomIndex], position, Quaternion.identity) as GameObject;
-        }
-        else
-        {
-            int randomIndex = Random.Range(0, rarePrefabs.Length);
-            tileInstance = Instantiate(rarePrefabs[randomIndex], position, Quaternion.identity) as GameObject;
-        }
-
-        tileInstance.transform.parent = mapHolder.transform;
     }
 }

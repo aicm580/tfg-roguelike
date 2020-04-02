@@ -2,15 +2,15 @@
 
 public enum TileType
 {
-    TopFloor, TopWall, BottomWall, LeftWall, RightWall, RoomFloor, CorridorWall, 
+    TopFloor, Wall, RoomFloor, 
 } 
 
 class Tile
 {
     public TileType tileType;
-    public Vector2 pos = new Vector2();
+    public Vector3Int pos = new Vector3Int();
 
-    public Tile(TileType tiletype, Vector2 v)
+    public Tile(TileType tiletype, Vector3Int v)
     {
         tileType = tiletype;
         pos = v;

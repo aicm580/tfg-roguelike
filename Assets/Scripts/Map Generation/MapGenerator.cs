@@ -28,6 +28,8 @@ public class MapGenerator : MonoBehaviour
     private Tilemap obstacleMap;
     [SerializeField]
     private TileBase smallObstacleTile;
+    [SerializeField]
+    private TileBase waterTile;
 
 
     public void SetupMap()
@@ -155,31 +157,54 @@ public class MapGenerator : MonoBehaviour
 
                 if (j == 0 || j == currentRoom.roomWidth - 1 || k == 0 || k == currentRoom.roomHeight - 1)
                 {
+                    //Añadimos paredes a la sala
                     currentTileType = TileType.Wall;
                 }
-
-                float random = Random.Range(0f, 10f);
-                if (random > 9.65f)
+                else
                 {
+                    //Añadimos piedras a la sala
                     Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
                     Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
                     Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
                     Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
 
-                    if (bottomTile != null && bottomTile.tileType == TileType.RoomFloor && smallObstacles < maxSmallObstacles)
+                    float random = Random.Range(0f, 10f);
+                    if (random > 9.65f)
                     {
-                        if((leftTile != null && leftTile.tileType == TileType.RoomFloor &&
-                            bottomLeftTile != null && bottomLeftTile.tileType == TileType.RoomFloor &&
-                            topLeftTile != null && topLeftTile.tileType == TileType.RoomFloor) 
-                            ||
-                            (leftTile == null && bottomTile != null) 
-                            ||
-                            (leftTile != null && leftTile.tileType == TileType.RoomFloor && topLeftTile == null)
-                        )
+                        if (bottomTile != null && bottomTile.tileType == TileType.RoomFloor && smallObstacles < maxSmallObstacles)
                         {
-                            currentTileType = TileType.SmallObstacle;
-                            smallObstacles++;
+                            if ((leftTile != null && leftTile.tileType == TileType.RoomFloor &&
+                                bottomLeftTile != null && bottomLeftTile.tileType == TileType.RoomFloor &&
+                                topLeftTile != null && topLeftTile.tileType == TileType.RoomFloor)
+                                ||
+                                (leftTile == null && bottomTile != null)
+                                ||
+                                (leftTile != null && leftTile.tileType == TileType.RoomFloor && topLeftTile == null)
+                            )
+                            {
+                                currentTileType = TileType.SmallObstacle;
+                                smallObstacles++;
+                            }
                         }
+                    }
+
+                    //Añadimos agua a la sala
+                    random = Random.Range(0f, 10f);
+                    if (random > 9.3f && random < 9.65f)
+                    {
+                        //Agua de 2 tiles
+                        if (leftTile != null && leftTile.tileType == TileType.RoomFloor)
+                        {
+                            currentTileType = TileType.Water;
+                        }
+                        else if (leftTile != null && leftTile.tileType == TileType.Water)
+                        {
+                            currentTileType = TileType.Water;
+                        }
+                    }
+                    else if (random >= 9.65f)
+                    {
+                        //Agua de 4 tiles
                     }
                 }
 
@@ -293,6 +318,10 @@ public class MapGenerator : MonoBehaviour
 
                 case TileType.SmallObstacle:
                     obstacleMap.SetTile(pos, smallObstacleTile);
+                    break;
+
+                case TileType.Water:
+                    obstacleMap.SetTile(pos, waterTile);
                     break;
             }
         }

@@ -108,6 +108,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         SetTilesForCorridors();
+        SetTilesForOuterWalls();
     }
 
 
@@ -312,6 +313,36 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    void SetTilesForOuterWalls()
+    {
+        TileType currentTileType = TileType.OuterWall;
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            Room currentRoom = rooms[i];
+            
+            for (int j = -8; j < currentRoom.roomWidth + 8; j++)
+            {
+                int xCoord = currentRoom.xPos + j;
+
+                for (int k = -8; k < currentRoom.roomHeight + 8; k++)
+                {
+                    //si se trata del interior de la sala, no lo revisamos
+                    if (j >= 0 && j < currentRoom.roomWidth && k >= 0 && k < currentRoom.roomHeight) 
+                        continue;
+
+                    int yCoord = currentRoom.yPos + k;
+                    Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
+
+                    if (!tiles.Exists(x => x.pos == pos)) //Si la posición no está ocupada
+                    {
+                        Tile newTile = new Tile(currentTileType, pos);
+                        tiles.Add(newTile);
+                    }
+                }
+            }
+        }
+    }
 
     void InstantiateTiles()
     {
@@ -327,6 +358,10 @@ public class MapGenerator : MonoBehaviour
                     break;
 
                 case TileType.Wall:
+                    wallMap.SetTile(pos, wallTile);
+                    break;
+
+                case TileType.OuterWall:
                     wallMap.SetTile(pos, wallTile);
                     break;
 

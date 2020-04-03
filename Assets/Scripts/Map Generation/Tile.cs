@@ -2,7 +2,7 @@
 
 public enum TileType
 {
-    TopFloor, Wall, RoomFloor, 
+    TopFloor, Wall, RoomFloor, SmallObstacle //indicamos que se trata de un Small Obstacle, por si en el futuro queremos añadir BigObstacles (ej:árbol)
 } 
 
 class Tile

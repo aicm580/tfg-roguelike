@@ -24,6 +24,10 @@ public class MapGenerator : MonoBehaviour
     private Tilemap wallMap;
     [SerializeField]
     private TileBase wallTile;
+    [SerializeField]
+    private Tilemap obstacleMap;
+    [SerializeField]
+    private TileBase smallObstacleTile;
 
 
     public void SetupMap()
@@ -133,6 +137,11 @@ public class MapGenerator : MonoBehaviour
     {
         Room currentRoom = rooms[i];
 
+        //Calculamos el nº máximo de pequeños obstáculos que puede haber en la sala
+        int maxSmallObstacles = (int)((currentRoom.roomHeight * currentRoom.roomWidth) / (currentRoom.roomHeight / 1.25f + currentRoom.roomWidth / 1.25f));
+        int smallObstacles = 0;
+        Debug.Log("ROOM " + i + " MaxSmallObstacles: " + maxSmallObstacles);
+
         for (int j = 0; j < currentRoom.roomWidth; j++)
         {
             int xCoord = currentRoom.xPos + j;
@@ -147,6 +156,31 @@ public class MapGenerator : MonoBehaviour
                 if (j == 0 || j == currentRoom.roomWidth - 1 || k == 0 || k == currentRoom.roomHeight - 1)
                 {
                     currentTileType = TileType.Wall;
+                }
+
+                float random = Random.Range(0f, 10f);
+                if (random > 9.65f)
+                {
+                    Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
+                    Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
+                    Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
+                    Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
+
+                    if (bottomTile != null && bottomTile.tileType == TileType.RoomFloor && smallObstacles < maxSmallObstacles)
+                    {
+                        if((leftTile != null && leftTile.tileType == TileType.RoomFloor &&
+                            bottomLeftTile != null && bottomLeftTile.tileType == TileType.RoomFloor &&
+                            topLeftTile != null && topLeftTile.tileType == TileType.RoomFloor) 
+                            ||
+                            (leftTile == null && bottomTile != null) 
+                            ||
+                            (leftTile != null && leftTile.tileType == TileType.RoomFloor && topLeftTile == null)
+                        )
+                        {
+                            currentTileType = TileType.SmallObstacle;
+                            smallObstacles++;
+                        }
+                    }
                 }
 
                 Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
@@ -255,6 +289,10 @@ public class MapGenerator : MonoBehaviour
 
                 case TileType.Wall:
                     wallMap.SetTile(pos, wallTile);
+                    break;
+
+                case TileType.SmallObstacle:
+                    obstacleMap.SetTile(pos, smallObstacleTile);
                     break;
             }
         }

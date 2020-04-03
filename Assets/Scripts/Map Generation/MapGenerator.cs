@@ -133,120 +133,21 @@ public class MapGenerator : MonoBehaviour
     {
         Room currentRoom = rooms[i];
 
-        for (int j = -1; j <= currentRoom.roomWidth; j++)
+        for (int j = 0; j < currentRoom.roomWidth; j++)
         {
             int xCoord = currentRoom.xPos + j;
 
             TileType currentTileType; 
 
-            for (int k = -1; k <= currentRoom.roomHeight; k++)
+            for (int k = 0; k < currentRoom.roomHeight; k++)
             {
                 int yCoord = currentRoom.yPos + k;
                 currentTileType = TileType.RoomFloor;
 
-                if(k == 0 || k == -1)
+                if (j == 0 || j == currentRoom.roomWidth - 1 || k == 0 || k == currentRoom.roomHeight - 1)
+                {
                     currentTileType = TileType.Wall;
-                /*
-                if (j == -1 || j == 0)
-                {
-                    if (i != 0 && i < corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.East && corridors[i].direction != Direction.West)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == 0)
-                    {
-                        Debug.Log("CORRIDOR[0] DIRECTION: " + corridors[i].direction);
-                        if (corridors[i].direction != Direction.West)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.East)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
                 }
-
-                if (j == currentRoom.roomWidth - 1 || j == currentRoom.roomWidth)
-                {
-                    if (i != 0 && i < corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.West && corridors[i].direction != Direction.East)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == 0)
-                    {
-                        if (corridors[i].direction != Direction.East)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.West)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                }
-                
-                if (k == -1 || k == 0)
-                {
-                    if (i != 0 && i < corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.North && corridors[i].direction != Direction.South)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == 0)
-                    {
-                        if (corridors[i].direction != Direction.South)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.North)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                }
-
-                if (k == currentRoom.roomHeight - 1 || k == currentRoom.roomHeight)
-                {
-                    if (i != 0 && i < corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.South && corridors[i].direction != Direction.North)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == 0)
-                    {
-                        if (corridors[i].direction != Direction.North)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                    else if (i == corridors.Length)
-                    {
-                        if (currentRoom.enteringCorridor != Direction.South)
-                        {
-                            currentTileType = TileType.Wall;
-                        }
-                    }
-                }*/
 
                 Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
                 Tile newTile = new Tile(currentTileType, pos);
@@ -268,9 +169,9 @@ public class MapGenerator : MonoBehaviour
         {
             Corridor currentCorridor = corridors[i];
             
-            for (int j = -1; j <= currentCorridor.corridorWidth + 1; j++)
+            for (int j = 0; j < currentCorridor.corridorWidth; j++)
             {
-                for (int k = -1; k <= currentCorridor.corridorLength + 1; k++)
+                for (int k = 0; k <= currentCorridor.corridorLength; k++)
                 {
                     int xCoord = currentCorridor.startXPos;
                     int yCoord = currentCorridor.startYPos;
@@ -290,23 +191,9 @@ public class MapGenerator : MonoBehaviour
                             yCoord -= k; 
                         }
 
-                        if( xCoord != currentCorridor.startXPos - 1 && xCoord != currentCorridor.startXPos &&
-                            xCoord != currentCorridor.startXPos + currentCorridor.corridorWidth - 1 &&
-                            xCoord != currentCorridor.startXPos + currentCorridor.corridorWidth &&
-                            xCoord != currentCorridor.startXPos + currentCorridor.corridorWidth + 1 &&
-                            yCoord == currentCorridor.startYPos - 1 ||
-                            yCoord == currentCorridor.startYPos
-                           )
-                        {
-                            currentTileType = TileType.RoomFloor;
-                        }
-                        else if (
-                               xCoord == currentCorridor.startXPos - 1 || 
-                               xCoord == currentCorridor.startXPos ||
-                               xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1 || 
-                               xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth ||
-                               xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth + 1 
-                               ) 
+                        if (xCoord == currentCorridor.startXPos ||
+                            xCoord == currentCorridor.startXPos + currentCorridor.corridorWidth - 1
+                            ) 
                         {
                             currentTileType = TileType.Wall;
                         }
@@ -325,12 +212,8 @@ public class MapGenerator : MonoBehaviour
                             yCoord = currentCorridor.startYPos + j;
                         }
 
-                        if (
-                            yCoord == currentCorridor.startYPos - 1 || 
-                            yCoord == currentCorridor.startYPos || 
-                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1 ||
-                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth ||
-                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth + 1 
+                        if (yCoord == currentCorridor.startYPos || 
+                            yCoord == currentCorridor.startYPos + currentCorridor.corridorWidth - 1
                             )
                         {
                             currentTileType = TileType.Wall;
@@ -339,8 +222,18 @@ public class MapGenerator : MonoBehaviour
                     }
 
                     Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
-                    Tile newTile = new Tile(currentTileType, pos);
-                    tiles.Add(newTile);
+
+                    Tile t = tiles.Find(x => x.pos == pos); //miramos si ya hay un tile guardado con esta posición 
+                    if (t != null) //si se ha guardado ya un tile con esta posición
+                    {
+                        tiles[tiles.IndexOf(t)].tileType = currentTileType;
+                    }
+                    else
+                    {
+                        Tile newTile = new Tile(currentTileType, pos);
+                        tiles.Add(newTile);
+                    }
+                 
                 }
             }
         }

@@ -142,6 +142,8 @@ public class MapGenerator : MonoBehaviour
         //Calculamos el nº máximo de pequeños obstáculos que puede haber en la sala
         int maxSmallObstacles = (int)((currentRoom.roomHeight * currentRoom.roomWidth) / (currentRoom.roomHeight / 1.25f + currentRoom.roomWidth / 1.25f));
         int smallObstacles = 0;
+        int maxWater = 2;
+        int water = 0;
         Debug.Log("ROOM " + i + " MaxSmallObstacles: " + maxSmallObstacles);
 
         for (int j = 0; j < currentRoom.roomWidth; j++)
@@ -164,47 +166,59 @@ public class MapGenerator : MonoBehaviour
                 {
                     //Añadimos piedras a la sala
                     Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
+                    Tile leftLeftTile = tiles.Find(x => x.pos.x == xCoord - 2 && x.pos.y == yCoord);
                     Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
+                    Tile bottomBottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 2);
                     Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
                     Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
 
                     float random = Random.Range(0f, 10f);
                     if (random > 9.65f)
-                    {
-                        if (bottomTile != null && bottomTile.tileType == TileType.RoomFloor && smallObstacles < maxSmallObstacles)
+                    {  
+                        if (smallObstacles < maxSmallObstacles &&
+                            leftTile.tileType != TileType.SmallObstacle &&
+                            bottomTile.tileType != TileType.SmallObstacle &&
+                            bottomLeftTile.tileType != TileType.SmallObstacle &&
+                            topLeftTile.tileType != TileType.SmallObstacle
+                           )
                         {
-                            if ((leftTile != null && leftTile.tileType == TileType.RoomFloor &&
-                                bottomLeftTile != null && bottomLeftTile.tileType == TileType.RoomFloor &&
-                                topLeftTile != null && topLeftTile.tileType == TileType.RoomFloor)
-                                ||
-                                (leftTile == null && bottomTile != null)
-                                ||
-                                (leftTile != null && leftTile.tileType == TileType.RoomFloor && topLeftTile == null)
-                            )
-                            {
-                                currentTileType = TileType.SmallObstacle;
-                                smallObstacles++;
-                            }
+                            currentTileType = TileType.SmallObstacle;
+                            smallObstacles++;
                         }
                     }
 
                     //Añadimos agua a la sala
                     random = Random.Range(0f, 10f);
-                    if (random > 9.3f && random < 9.65f)
+
+                    if (water < maxWater &&
+                        leftTile.tileType == TileType.RoomFloor &&
+                        bottomLeftTile.tileType != TileType.Water &&
+                        topLeftTile.tileType != TileType.Water &&
+                        bottomTile.tileType == TileType.RoomFloor &&
+                        ((leftLeftTile != null &&
+                        leftLeftTile.tileType != TileType.Water) ||
+                        leftLeftTile == null) &&
+                        ((bottomBottomTile != null &&
+                        bottomBottomTile.tileType != TileType.Water) ||
+                        bottomBottomTile == null)
+                    )
                     {
-                        //Agua de 2 tiles
-                        if (leftTile != null && leftTile.tileType == TileType.RoomFloor)
+                        if (random > 9.7f && random < 9.9f)
                         {
+                            //Agua de 2 tiles
                             currentTileType = TileType.Water;
+                            tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
+                            water++;
                         }
-                        else if (leftTile != null && leftTile.tileType == TileType.Water)
+                        else if (random >= 9.9f)
                         {
+                            //Agua de 4 tiles
                             currentTileType = TileType.Water;
+                            tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
+                            tiles[tiles.IndexOf(bottomLeftTile)].tileType = currentTileType;
+                            tiles[tiles.IndexOf(bottomTile)].tileType = currentTileType;
+                            water++;
                         }
-                    }
-                    else if (random >= 9.65f)
-                    {
-                        //Agua de 4 tiles
                     }
                 }
 

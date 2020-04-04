@@ -1319,13 +1319,13 @@ MonoBehaviour:
     maxVal: 9
   roomWidth:
     minVal: 10
-    maxVal: 26
+    maxVal: 19
   roomHeight:
     minVal: 10
-    maxVal: 23
+    maxVal: 18
   corridorLength:
     minVal: 7
-    maxVal: 13
+    maxVal: 9
   corridorWidth:
     minVal: 5
     maxVal: 7
@@ -1815,7 +1815,7 @@ Grid:
   m_GameObject: {fileID: 885824165}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellGap: {x: -0.001, y: -0.001, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &885824167
@@ -2805,7 +2805,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.010826111}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.18246841
 --- !u!1 &1200497876
@@ -4322,30 +4322,30 @@ Tilemap:
     m_Data:
       e00: NaN
       e01: NaN
-      e02: 1
-      e03: 1
+      e02: 0.08046436
+      e03: 6.4145043e-13
       e10: NaN
       e11: NaN
-      e12: 0
-      e13: 8.5e-44
-      e20: 0
+      e12: 6.25e-43
+      e13: 4.5908e-41
+      e20: 1.2098394e-33
       e21: 0
-      e22: 0
+      e22: 6.4145087e-13
       e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
+      e30: 6.25e-43
+      e31: 3.8e-44
+      e32: 4.5908e-41
       e33: 0
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: -5.540436e-12, g: -5.540436e-12, b: -5.540436e-12, a: -5.540436e-12}
   - m_RefCount: 0
-    m_Data: {r: -5.5477845e-12, g: -5.5477845e-12, b: -5.5477845e-12, a: -5.5477845e-12}
+    m_Data: {r: 3.2013136e-37, g: 3.2013136e-37, b: 3.2013136e-37, a: 3.2013136e-37}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 177, y: 163, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_Origin: {x: 0, y: -7, z: 0}
+  m_Size: {x: 177, y: 170, z: 1}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -4532,7 +4532,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 62, y: 63, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -5114,7 +5114,7 @@ Tilemap:
       e10: NaN
       e11: NaN
       e12: 0
-      e13: 8.5e-44
+      e13: 2.38e-43
       e20: 0
       e21: 0
       e22: 0
@@ -5125,12 +5125,12 @@ Tilemap:
       e33: 0
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: -5.521611e-12, g: -5.521611e-12, b: -5.521611e-12, a: -5.521611e-12}
+    m_Data: {r: 3.1573582e-37, g: 3.1573582e-37, b: 3.1573582e-37, a: 3.1573582e-37}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 166, y: 156, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_Origin: {x: 0, y: -5, z: 0}
+  m_Size: {x: 166, y: 161, z: 1}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1

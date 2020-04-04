@@ -6,9 +6,9 @@ using UnityEngine.Tilemaps;
 public class MapGenerator : MonoBehaviour
 {
     public IntRange numRooms = new IntRange (6, 9);
-    public IntRange roomWidth = new IntRange (10, 26);
-    public IntRange roomHeight = new IntRange (10, 23); 
-    public IntRange corridorLength = new IntRange (7, 13);
+    public IntRange roomWidth = new IntRange (10, 19);
+    public IntRange roomHeight = new IntRange (10, 18); 
+    public IntRange corridorLength = new IntRange (7, 9);
     public IntRange corridorWidth = new IntRange (5,7);
 
     public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
@@ -74,16 +74,15 @@ public class MapGenerator : MonoBehaviour
             {
                 if (attempt != 0 && attempt % 8 == 0)
                 {
+                    //Cambiamos la dirección del último corredor
                     nDirection = ((int)corridors[i-1].direction + 1) % 4;
-                    Debug.Log("NEED TO CHANGE LAST CORRIDOR DIRECTION (" + corridors[i-1].direction + ")");
                     corridors[i-1].SetupCorridor(rooms[i-1], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, false);
                     
                     if (attempt >= 32 && i >= 2) //nos damos por vencidos y paramos la generación de terreno
                     {
+                        //Cambiamos el número de salas
                         System.Array.Resize(ref rooms, i);
                         System.Array.Resize(ref corridors, i - 1);
-                        
-                        Debug.Log("NUMBER OF ROOMS HAS CHANGED TO " + rooms.Length);
                         break;
                     }
                 }
@@ -145,7 +144,6 @@ public class MapGenerator : MonoBehaviour
         int smallObstacles = 0;
         int maxWater = 2;
         int water = 0;
-        Debug.Log("ROOM " + i + " MaxSmallObstacles: " + maxSmallObstacles);
 
         for (int j = 0; j < currentRoom.roomWidth; j++)
         {

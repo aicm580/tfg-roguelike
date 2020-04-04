@@ -134,6 +134,7 @@ public class EnemiesGenerator : MonoBehaviour
              }
 
              Vector3 randomPos = RandomPosition(i, friends);
+             Debug.Log("RANDOM POS: " + randomPos);
              Vector3 lastPos = new Vector3();
 
              for (int j = 0; j < friends + 1; j++)

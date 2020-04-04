@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapGenerator : MonoBehaviour
 {
     public IntRange numRooms = new IntRange (6, 9);
-    public IntRange roomWidth = new IntRange (10, 19);
+    public IntRange roomWidth = new IntRange (11, 19);
     public IntRange roomHeight = new IntRange (10, 18); 
     public IntRange corridorLength = new IntRange (7, 9);
     public IntRange corridorWidth = new IntRange (5,7);
@@ -14,7 +14,9 @@ public class MapGenerator : MonoBehaviour
     public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
     private Corridor[] corridors;
 
-    private List <Tile> tiles = new List<Tile>();
+    [HideInInspector]
+    public List<Tile> tiles = new List<Tile>();
+    private List<Vector3Int> positions = new List<Vector3Int>();
 
     [SerializeField]
     private Tilemap groundMap;
@@ -37,16 +39,16 @@ public class MapGenerator : MonoBehaviour
         //Limpiamos los tilemaps
         wallMap.ClearAllTiles();
         groundMap.ClearAllTiles();
+        obstacleMap.ClearAllTiles();
 
         CreateRoomsAndCorridors();
         InstantiateTiles();
     }
-
-
+   
     void CreateRoomsAndCorridors()
     {
         tiles.Clear();
-
+        
         rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio
         corridors = new Corridor[rooms.Length - 1]; //creamos el array de pasillos, que será igual al número de cuartos - 1, ya que el primer cuarto no tiene pasillo
         Debug.Log("ROOMS LENGTH: " + rooms.Length);
@@ -54,16 +56,12 @@ public class MapGenerator : MonoBehaviour
         //Creamos el primer cuarto y el primer pasillo
         rooms[0] = new Room();
         corridors[0] = new Corridor();
-
         //Establecemos las características del primer cuarto, que no tiene pasillo
         rooms[0].SetupRoom(roomWidth.minVal, roomHeight.minVal);
-        Debug.Log("Room width min val: " + roomWidth.minVal);
-
+        SetPositionsForRoom(0);
         //Establecemos las características del primer pasillo usando el primer cuarto
         int nDirection = Random.Range(0, 4);
         corridors[0].SetupCorridor(rooms[0], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, true);
-
-        SetTilesForRoom(0);
 
         for (int i = 1; i < rooms.Length; i++)
         {
@@ -101,15 +99,31 @@ public class MapGenerator : MonoBehaviour
                 corridors[i] = new Corridor();
                 corridors[i].SetupCorridor(rooms[i], corridorLength, corridorWidth, roomWidth, roomHeight, nDirection, false);
             }
-            
-            if (i < rooms.Length)
-                SetTilesForRoom(i);
-        }
 
+            if (i < rooms.Length)
+                SetPositionsForRoom(i);
+        }
+        SetTilesForRooms();
         SetTilesForCorridors();
         SetTilesForOuterWalls();
     }
 
+    void SetPositionsForRoom(int i)
+    {
+        Room currentRoom = rooms[i];
+
+        for (int j = 0; j < currentRoom.roomWidth; j++)
+        {
+            int xCoord = currentRoom.xPos + j;
+
+            for (int k = 0; k < currentRoom.roomHeight; k++)
+            {
+                int yCoord = currentRoom.yPos + k;
+                Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
+                positions.Add(pos);
+            }
+        }
+    }
 
     bool PositionAvailable(Room currentRoom)
     {
@@ -121,119 +135,194 @@ public class MapGenerator : MonoBehaviour
             {
                 int yCoord = currentRoom.yPos + k;
                 Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
-
-                if(tiles.Exists(x => x.pos == pos)) //Si la posición está ocupada
+                
+                //Si la posición está ocupada
+                if (positions.Exists(x => x == pos)) 
                 {
                     Debug.Log("Need to recalculate room");
                     return false;
                 }
             }
         }
-        
-        Debug.Log("Position available");
         return true;
     }
 
-
-    void SetTilesForRoom(int i)
+    void RemoveFromEmptyList(Room currentRoom, Vector3Int pos)
     {
-        Room currentRoom = rooms[i];
-
-        //Calculamos el nº máximo de pequeños obstáculos que puede haber en la sala
-        int maxSmallObstacles = (int)((currentRoom.roomHeight * currentRoom.roomWidth) / (currentRoom.roomHeight / 1.25f + currentRoom.roomWidth / 1.25f));
-        int smallObstacles = 0;
-        int maxWater = 2;
-        int water = 0;
-
-        for (int j = 0; j < currentRoom.roomWidth; j++)
+        if (currentRoom.emptyPositions.Contains(pos))
         {
-            int xCoord = currentRoom.xPos + j;
+            currentRoom.emptyPositions.Remove(pos);
+        }
+    }
 
-            TileType currentTileType; 
+    void SetTilesForRooms()
+    {
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            Room currentRoom = rooms[i];
 
-            for (int k = 0; k < currentRoom.roomHeight; k++)
+            //Calculamos el nº máximo de pequeños obstáculos que puede haber en la sala
+            int maxSmallObstacles = (int)((currentRoom.roomHeight * currentRoom.roomWidth) / (currentRoom.roomHeight / 1.25f + currentRoom.roomWidth / 1.25f));
+            int smallObstacles = 0;
+            int water = 0;
+            int maxWater = 2;
+
+            for (int j = 0; j < currentRoom.roomWidth; j++)
             {
-                int yCoord = currentRoom.yPos + k;
-                currentTileType = TileType.RoomFloor;
+                int xCoord = currentRoom.xPos + j;
 
-                if (j == 0 || j == currentRoom.roomWidth - 1 || k == 0 || k == currentRoom.roomHeight - 1)
+                TileType currentTileType;
+
+                for (int k = 0; k < currentRoom.roomHeight; k++)
                 {
-                    //Añadimos paredes a la sala
-                    currentTileType = TileType.Wall;
-                }
-                else
-                {
-                    //Añadimos piedras a la sala
-                    Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
-                    Tile leftLeftTile = tiles.Find(x => x.pos.x == xCoord - 2 && x.pos.y == yCoord);
-                    Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
-                    Tile bottomBottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 2);
-                    Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
-                    Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
+                    int yCoord = currentRoom.yPos + k;
+                    currentTileType = TileType.RoomFloor;
+                    float random = Random.Range(0f, 1f);
 
-                    float random = Random.Range(0f, 10f);
-                    if (random > 9.65f)
-                    {  
-                        if (smallObstacles < maxSmallObstacles &&
-                            leftTile.tileType != TileType.SmallObstacle &&
-                            bottomTile.tileType != TileType.SmallObstacle &&
-                            bottomLeftTile.tileType != TileType.SmallObstacle &&
-                            topLeftTile.tileType != TileType.SmallObstacle
-                           )
-                        {
-                            currentTileType = TileType.SmallObstacle;
-                            smallObstacles++;
-                        }
-                    }
-
-                    //Añadimos agua a la sala
-                    random = Random.Range(0f, 10f);
-
-                    if (water < maxWater &&
-                        leftTile.tileType == TileType.RoomFloor &&
-                        bottomLeftTile.tileType != TileType.Water &&
-                        topLeftTile.tileType != TileType.Water &&
-                        bottomTile.tileType == TileType.RoomFloor &&
-                        ((leftLeftTile != null &&
-                        leftLeftTile.tileType != TileType.Water) ||
-                        leftLeftTile == null) &&
-                        ((bottomBottomTile != null &&
-                        bottomBottomTile.tileType != TileType.Water) ||
-                        bottomBottomTile == null)
-                    )
+                    if (j == 0 || j == currentRoom.roomWidth - 1 || k == 0 || k == currentRoom.roomHeight - 1)
                     {
-                        if (random > 9.7f && random < 9.9f)
+                        currentTileType = TileType.Wall; //Añadimos paredes a la sala
+                    }
+                    else if ((j == 1 || j == currentRoom.roomWidth - 2) && k >= 2)
+                    {
+                        bool addVerticalWall = false;
+
+                        if (random > 0.85f && i != 0 && i != rooms.Length - 1)
                         {
-                            //Agua de 2 tiles
-                            currentTileType = TileType.Water;
-                            tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
-                            water++;
+                            if ((j == 1 && k >= 2 && currentRoom.enteringCorridor != Direction.East && corridors[i].direction != Direction.West) ||
+                                (j == currentRoom.roomHeight - 2 && k >= 2 && currentRoom.enteringCorridor != Direction.West && corridors[i].direction != Direction.East))
+                            {
+                                addVerticalWall = true;
+                            }
                         }
-                        else if (random >= 9.9f)
+                        else if (random > 0.85f && i != 0)
                         {
-                            //Agua de 4 tiles
-                            currentTileType = TileType.Water;
-                            tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
-                            tiles[tiles.IndexOf(bottomLeftTile)].tileType = currentTileType;
+                            if ((j == 1 && k >= 2 && currentRoom.enteringCorridor != Direction.East) ||
+                                (j == currentRoom.roomHeight - 2 && k >= 2 && currentRoom.enteringCorridor != Direction.West))
+                            {
+                                addVerticalWall = true;
+                            }
+                        }
+
+                        if (addVerticalWall)
+                        {
+                            currentTileType = TileType.Wall;
+                            Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
                             tiles[tiles.IndexOf(bottomTile)].tileType = currentTileType;
-                            water++;
+                            tiles[tiles.IndexOf(bottomTile) - 1].tileType = currentTileType;
+                            RemoveFromEmptyList(currentRoom, bottomTile.pos);
+                            RemoveFromEmptyList(currentRoom, tiles[tiles.IndexOf(bottomTile) - 1].pos);
                         }
                     }
-                }
+                    else if ((k == 1 || k == currentRoom.roomHeight - 2) && j >= 2)
+                    {
+                        bool addHorizontalWall = false;
 
-                Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
-                Tile newTile = new Tile(currentTileType, pos);
-                tiles.Add(newTile);
+                        if (random > 0.85f && i != 0 && i != rooms.Length - 1)
+                        {
+                            if ((k == 1 && currentRoom.enteringCorridor != Direction.North && corridors[i].direction != Direction.South) ||
+                                (k == currentRoom.roomHeight - 2 && currentRoom.enteringCorridor != Direction.South && corridors[i].direction != Direction.North))
+                            {
+                                addHorizontalWall = true;
+                            }
+                        }
+                        else if (random > 0.85f && i != 0)
+                        {
+                            if ((k == 1 && currentRoom.enteringCorridor != Direction.North) ||
+                                (k == currentRoom.roomHeight - 2 && currentRoom.enteringCorridor != Direction.South))
+                            {
+                                addHorizontalWall = true;
+                            }
+                        }
 
-                //Si se trata de un tile Floor, añadimos su posición a la lista de posiciones vacías de la sala
-                if (currentTileType == TileType.RoomFloor)
-                {
-                    currentRoom.emptyPositions.Add(pos);
+                        if (addHorizontalWall)
+                        {
+                            currentTileType = TileType.Wall;
+                            Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
+                            tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
+                            Tile leftLeftTile = tiles.Find(x => x.pos.x == xCoord - 2 && x.pos.y == yCoord);
+                            tiles[tiles.IndexOf(leftLeftTile)].tileType = currentTileType;
+                            RemoveFromEmptyList(currentRoom, leftTile.pos);
+                            RemoveFromEmptyList(currentRoom, leftLeftTile.pos);
+                        }
+                    }
+                    else if (j >= 2 && k >= 2 && j < currentRoom.roomWidth - 2 && k < currentRoom.roomHeight - 2)
+                    {
+                        //Añadimos piedras a la sala
+                        Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);
+                        Tile leftLeftTile = tiles.Find(x => x.pos.x == xCoord - 2 && x.pos.y == yCoord);
+                        Tile bottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 1);
+                        Tile bottomBottomTile = tiles.Find(x => x.pos.x == xCoord && x.pos.y == yCoord - 2);
+                        Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
+                        Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
+
+                        if (random > 0.965f)
+                        {
+                            if (smallObstacles < maxSmallObstacles &&
+                                leftTile.tileType != TileType.SmallObstacle &&
+                                bottomTile.tileType != TileType.SmallObstacle &&
+                                bottomLeftTile.tileType != TileType.SmallObstacle &&
+                                topLeftTile.tileType != TileType.SmallObstacle)
+                            {
+                                currentTileType = TileType.SmallObstacle;
+                                smallObstacles++;
+                            }
+                        }
+
+                        //Añadimos agua a la sala
+                        if (water < maxWater &&
+                            leftTile.tileType == TileType.RoomFloor &&
+                            bottomLeftTile.tileType != TileType.Water &&
+                            topLeftTile.tileType != TileType.Water &&
+                            bottomTile.tileType == TileType.RoomFloor &&
+                            ((leftLeftTile != null &&
+                            leftLeftTile.tileType != TileType.Water) ||
+                            leftLeftTile == null) &&
+                            ((bottomBottomTile != null &&
+                            bottomBottomTile.tileType != TileType.Water) ||
+                            bottomBottomTile == null))
+                        {
+                            if (random > 0.97f)
+                            {
+                                currentTileType = TileType.Water;
+                                water++;
+
+                                if (random > 0.97f && random < 0.99f)
+                                {
+                                    //Agua de 2 tiles
+                                    tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
+                                    water++;
+                                    //Si la posición del leftTile pertenecía a la lista de emptyPositions, la eliminamos de esta
+                                    RemoveFromEmptyList(currentRoom, leftTile.pos);
+                                }
+                                else if (random >= 0.99f)
+                                {
+                                    tiles[tiles.IndexOf(leftTile)].tileType = currentTileType;
+                                    tiles[tiles.IndexOf(bottomLeftTile)].tileType = currentTileType;
+                                    tiles[tiles.IndexOf(bottomTile)].tileType = currentTileType;
+                                    water++;
+
+                                    RemoveFromEmptyList(currentRoom, leftTile.pos);
+                                    RemoveFromEmptyList(currentRoom, bottomLeftTile.pos);
+                                    RemoveFromEmptyList(currentRoom, bottomTile.pos);
+                                }
+                            }
+                        }
+                    }
+
+                    Vector3Int pos = new Vector3Int(xCoord, yCoord, 0);
+                    Tile newTile = new Tile(currentTileType, pos);
+                    tiles.Add(newTile);
+
+                    //Si se trata de un tile Floor, añadimos su posición a la lista de posiciones vacías de la sala
+                    if (currentTileType == TileType.RoomFloor)
+                    {
+                        currentRoom.emptyPositions.Add(pos);
+                    }
                 }
             }
         }
     }
-
 
     void SetTilesForCorridors()
     {
@@ -248,7 +337,7 @@ public class MapGenerator : MonoBehaviour
                     int xCoord = currentCorridor.startXPos;
                     int yCoord = currentCorridor.startYPos;
 
-                    TileType currentTileType = TileType.RoomFloor; 
+                    TileType currentTileType = TileType.RoomFloor;
 
                     if (currentCorridor.direction == Direction.North || currentCorridor.direction == Direction.South)
                     {
@@ -305,7 +394,6 @@ public class MapGenerator : MonoBehaviour
                         Tile newTile = new Tile(currentTileType, pos);
                         tiles.Add(newTile);
                     }
-                 
                 }
             }
         }
@@ -323,7 +411,7 @@ public class MapGenerator : MonoBehaviour
             {
                 int xCoord = currentRoom.xPos + j;
 
-                for (int k = -8; k < currentRoom.roomHeight + 8; k++)
+                for (int k = -7; k < currentRoom.roomHeight + 7; k++)
                 {
                     //si se trata del interior de la sala, no lo revisamos
                     if (j >= 0 && j < currentRoom.roomWidth && k >= 0 && k < currentRoom.roomHeight) 

@@ -12,7 +12,7 @@ public class Room
 
     public Direction enteringCorridor; //dirección del pasillo que lleva a esta sala
 
-    public List <Vector3> emptyPositions = new List<Vector3>(); //posiciones en las que se podrán colocar enemigos o elementos
+    public List<Vector3> emptyPositions = new List<Vector3>(); //posiciones en las que se podrán colocar enemigos o elementos
 
     public int nEnemies = 1; //nº de enemigos que podrán generarse en la sala. Se inicializa a 1 para evitar problemas
     

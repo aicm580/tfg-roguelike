@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     public Slider sfxSlider;
     public Text languageText;
     public AudioMixer audioMixer;
+    public GameObject optionsPanel;
 
     private Resolution[] resolutions;
     private string[] languages = { "español", "english" };
@@ -142,6 +143,15 @@ public class MenuManager : MonoBehaviour
         {
             LocalizationManager.localizationInstance.LoadLocalizedText(languages[selectedLang]);
             PlayerPrefs.SetString("UserLanguage", languages[selectedLang]);
+
+            Text[] sceneTexts = FindObjectsOfType<Text>();
+            foreach (Text text in sceneTexts)
+            {
+                if (text.GetComponent<LocalizedText>() != null)
+                {
+                    text.GetComponent<LocalizedText>().UpdateText();
+                }
+            }
         }
     }
 
@@ -169,6 +179,8 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetInt("ScreenHeight", Screen.height);
 
         PlayerPrefs.SetInt("TimerActive", timerToogle.isOn ? 1 : 0);
+
+        optionsPanel.SetActive(false);
     }
 
     public void QuitGame()

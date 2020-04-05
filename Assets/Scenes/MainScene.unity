@@ -1031,10 +1031,10 @@ RectTransform:
   m_Father: {fileID: 190870850}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: -58}
-  m_SizeDelta: {x: 250.3, y: 115.2}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -139, y: -60}
+  m_SizeDelta: {x: 250.30005, y: 115.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505898312
 MonoBehaviour:
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.31132078, g: 0.06530074, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1238,7 +1238,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  popupDamageText: {fileID: 2051161855633349860, guid: 9804427d724cfcb4d84f2e8258da798c,
+  popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
   player: {fileID: 1198681082}
   gameOverPanel: {fileID: 1427408104}
@@ -4230,7 +4230,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

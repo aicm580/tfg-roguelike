@@ -50,6 +50,7 @@ public class StartupManager : MonoBehaviour
         {
             yield return null;
         }
+        yield return new WaitForSeconds(0.85f); //para que de tiempo a ver el logo
 
         SceneManager.LoadScene("MenuScene");
     }

@@ -54,8 +54,8 @@ public class EnemiesGenerator : MonoBehaviour
     {
         enemiesPrefabs.Clear();
         lvlName = "Level" + level;
-        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Prefabs/Enemies/BasicEnemies").ToList();
-        bossPrefab = Resources.Load<GameObject>(lvlName + "/Prefabs/Enemies/Boss");
+        enemiesPrefabs = Resources.LoadAll<GameObject>(lvlName + "/Enemies/BasicEnemies").ToList();
+        bossPrefab = Resources.Load<GameObject>(lvlName + "/Enemies/Boss");
     }
 
     public void GenerateEnemies(int lvl)

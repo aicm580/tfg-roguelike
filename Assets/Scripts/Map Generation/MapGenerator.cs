@@ -47,6 +47,7 @@ public class MapGenerator : MonoBehaviour
    
     void CreateRoomsAndCorridors()
     {
+        positions.Clear();
         tiles.Clear();
         
         rooms = new Room[numRooms.Randomize]; //creamos el array de cuartos con un tamaño aleatorio

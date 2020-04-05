@@ -26,6 +26,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
+
         //APARTADO "TIMER ACTIVE"
         if (PlayerPrefs.HasKey("TimerActive"))
         {
@@ -138,7 +140,7 @@ public class MenuManager : MonoBehaviour
     {
         if (PlayerPrefs.GetString("UserLanguage") != languages[selectedLang])
         {
-            LocalizationManager.instance.LoadLocalizedText(languages[selectedLang]);
+            LocalizationManager.localizationInstance.LoadLocalizedText(languages[selectedLang]);
             PlayerPrefs.SetString("UserLanguage", languages[selectedLang]);
         }
     }

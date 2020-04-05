@@ -5,7 +5,7 @@ using System.IO; //lo necesitamos porque trabajaremos con archivos y su path
 
 public class LocalizationManager : MonoBehaviour
 {
-    public static LocalizationManager instance; 
+    public static LocalizationManager localizationInstance; 
     
     private Dictionary<string, string> localizedText;
     private string language;
@@ -15,11 +15,11 @@ public class LocalizationManager : MonoBehaviour
     private void Awake()
     {
         //Nos aseguramos de que solo haya 1 LocalizationManager
-        if (instance == null)
+        if (localizationInstance == null)
         {
-            instance = this;
+            localizationInstance = this;
         }
-        else if (instance != this)
+        else if (localizationInstance != this)
         {
             Destroy(gameObject);
         }

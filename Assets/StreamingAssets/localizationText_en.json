@@ -23,5 +23,6 @@
 	{"key": "timePlayed", "value": "Time Played:"},
 	{"key": "timeRecord", "value": "Time Record:"},
 	{"key": "travels", "value": "Travels:"},
-	{"key": "maxLevel", "value": "Max Level Reached:"}
+	{"key": "maxLevel", "value": "Max Level Reached:"},
+	{"key": "loadingTravel", "value": "Preparing time machine ..."}
 ]}

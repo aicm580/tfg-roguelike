@@ -207,6 +207,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87efeece11b37ec4aa769dbd332feca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1593383546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593383548}
+  - component: {fileID: 1593383547}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1593383547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593383546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfddbc11c7b56e4eb7bb3f59dc48af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameCursorTexture: {fileID: 2800000, guid: 0e2795984ae0d834c87264e597d8a2d0, type: 3}
+  basicCursorTexture: {fileID: 2800000, guid: 81f7bbaa08a1f9f46b890bbaf3a838ee, type: 3}
+--- !u!4 &1593383548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593383546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 410.1923, y: 125.84334, z: -623.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1620774953
 GameObject:
   m_ObjectHideFlags: 0

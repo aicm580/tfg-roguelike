@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour
 {
     public void Start()
     {
+        Cursor.visible = false;
         StartCoroutine(LoadGameAsync());
     }
 

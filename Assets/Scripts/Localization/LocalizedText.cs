@@ -11,6 +11,6 @@ public class LocalizedText : MonoBehaviour
     void Start()
     {
         Text text = GetComponent<Text>(); //cogemos el texto del objeto
-        text.text = LocalizationManager.instance.GetLocalizedValue(key); //cambiamos el texto
+        text.text = LocalizationManager.localizationInstance.GetLocalizedValue(key); //cambiamos el texto
     }
 }

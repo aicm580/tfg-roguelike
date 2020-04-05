@@ -23,6 +23,7 @@
 	{"key": "timePlayed", "value": "Tiempo jugado:"},
 	{"key": "timeRecord", "value": "Tiempo récord:"},
 	{"key": "travels", "value": "Viajes:"},
-	{"key": "maxLevel", "value": "Nivel máx. alcanzado:"}
+	{"key": "maxLevel", "value": "Nivel máx. alcanzado:"},
+	{"key": "loadingTravel", "value": "Preparando máquina del tiempo ..."}
 	
 ]}

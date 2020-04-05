@@ -16,11 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    public GameObject loadPanel;
     public Toggle timerToogle;
     public Text timerText;
-
-    public Texture2D cursorTexture;
-
+    
     public Image[] hearts;
 
     public int currentHealth;
@@ -28,6 +27,7 @@ public class GameManager : MonoBehaviour
    
     public bool playerAlive;
     public bool isPaused;
+    private bool runIsReady = false;
 
     private int level;
 
@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SetCursor(cursorTexture);
-
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
         playerController = player.GetComponent<PlayerController>();
@@ -72,6 +70,9 @@ public class GameManager : MonoBehaviour
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
 
+        Cursor.visible = false;
+        loadPanel.SetActive(true);
+        StartCoroutine(DisableLoadPanel());
         InitRun();
     }
 
@@ -103,15 +104,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SetCursor(Texture2D tex)
-    {
-        CursorMode mode = CursorMode.ForceSoftware;
-        float xspot = tex.width / 2;
-        float yspot = tex.height / 2;
-        Vector2 hotSpot = new Vector2(xspot, yspot);
-        Cursor.SetCursor(tex, hotSpot, mode);
-    }
-
     void InitLevel()
     { 
         //Generamos el mapa del nivel
@@ -125,7 +117,6 @@ public class GameManager : MonoBehaviour
     public void InitRun()
     {
         stats = SaveManager.LoadStats();
-
         damageDone = 0;
         totalDeaths = 0;
         deathsByBoss = 0;
@@ -151,6 +142,20 @@ public class GameManager : MonoBehaviour
 
         timePlayed = 0;
         timerActive = true;
+
+        runIsReady = true;
+    }
+
+    IEnumerator DisableLoadPanel()
+    {
+        while (!runIsReady)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
+        loadPanel.SetActive(false);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursorTexture);
+        Cursor.visible = true;
     }
 
     Vector3 InitPlayerPosition()
@@ -226,11 +231,13 @@ public class GameManager : MonoBehaviour
         timerActive = false;
         playerAlive = false;
         gameOverPanel.SetActive(true);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
     }
 
     public void Resume()
     {
         pausePanel.SetActive(false);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursorTexture);
         Time.timeScale = 1f;
         isPaused = false;
         timerActive = true;
@@ -238,13 +245,17 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        loadPanel.SetActive(true);
+        runIsReady = false;
         SaveStats();
+        StartCoroutine(DisableLoadPanel());
         InitRun();
     }
 
     private void Pause()
     {
         timerActive = false;
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;

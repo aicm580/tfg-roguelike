@@ -46,7 +46,7 @@ public class StartupManager : MonoBehaviour
 
     private IEnumerator StartIntro()
     {
-        while (!LocalizationManager.instance.GetIsReady())
+        while (!LocalizationManager.localizationInstance.GetIsReady())
         {
             yield return null;
         }

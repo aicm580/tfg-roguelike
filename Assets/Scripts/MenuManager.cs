@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
 
         //APARTADO "TIMER ACTIVE"
         if (PlayerPrefs.HasKey("TimerActive"))

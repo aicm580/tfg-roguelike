@@ -6,8 +6,11 @@ public class CursorManager : MonoBehaviour
 {
     public static CursorManager cursorInstance;
 
-    public Texture2D gameCursorTexture;
-    public Texture2D basicCursorTexture;
+    public Texture2D gameCursor;
+    public Texture2D basicCursor;
+    private Texture2D cursorTexture;
+    private int cursorSizeX = 26;
+    private int cursorSizeY = 26;
 
     private void Awake()
     {
@@ -27,12 +30,19 @@ public class CursorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetCursor(basicCursorTexture);
+        Cursor.visible = false;
+        cursorTexture = basicCursor;
     }
 
-    public void SetCursor(Texture2D tex)
+    private void OnGUI()
     {
-        CursorMode mode = CursorMode.ForceSoftware;
-        Cursor.SetCursor(tex, Vector2.zero, mode);
+        GUI.DrawTexture(new Rect(Event.current.mousePosition.x - cursorSizeX/2,
+                        Event.current.mousePosition.y - cursorSizeY/2, 
+                        cursorSizeX, cursorSizeY), cursorTexture);
+    }
+
+    public void SetCursor(Texture2D texture)
+    {
+        cursorTexture = texture;
     }
 }

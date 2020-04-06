@@ -69,8 +69,7 @@ public class GameManager : MonoBehaviour
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
-
-        Cursor.visible = false;
+        
         loadPanel.SetActive(true);
         StartCoroutine(DisableLoadPanel());
         InitRun();
@@ -154,8 +153,7 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
         loadPanel.SetActive(false);
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursorTexture);
-        Cursor.visible = true;
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
     }
 
     Vector3 InitPlayerPosition()
@@ -231,13 +229,13 @@ public class GameManager : MonoBehaviour
         timerActive = false;
         playerAlive = false;
         gameOverPanel.SetActive(true);
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
     }
 
     public void Resume()
     {
         pausePanel.SetActive(false);
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursorTexture);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
         Time.timeScale = 1f;
         isPaused = false;
         timerActive = true;
@@ -255,7 +253,7 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         timerActive = false;
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursorTexture);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;

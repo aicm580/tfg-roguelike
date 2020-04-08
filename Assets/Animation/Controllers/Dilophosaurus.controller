@@ -79,13 +79,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isFollowing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010b29fac8e185d45a8f5b7c2f204394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 10
+  attackRange: 5
 --- !u!1107 &9181667088873781315
 AnimatorStateMachine:
   serializedVersion: 5

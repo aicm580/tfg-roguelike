@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PatrolBehaviour : StateMachineBehaviour
 {
-    public float detectionRange;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,11 +17,12 @@ public class PatrolBehaviour : StateMachineBehaviour
         {
             animator.SetBool("isPatrolling", false);
         }
-
-        RaycastHit hit;
-        Vector3 directionOfLine = (PlayerController.playerInstance.transform.position - animator.transform.position).normalized;
-        Debug.DrawRay(animator.transform.position, directionOfLine * detectionRange, Color.red);
         
+        if (animator.GetComponentInParent<Enemy>().DetectPlayer())
+        {
+            animator.SetBool("isFollowing", true);
+            Debug.Log("Enemy is following player");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

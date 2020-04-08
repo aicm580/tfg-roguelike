@@ -21,21 +21,15 @@ public class Enemy : MonoBehaviour
     public int calculatedFriends;
 
     public int health;
-    public bool finalBoss; 
+    public bool finalBoss;
 
+    public float detectionRange; //distancia a la que el enemigo ve al jugador
+    public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
     public bool touchDamage; //si es true, significa que al tocarlo el player recibirá daño
     private float touchDelay = 0.3f; //tiempo a esperar para que la colisión vuelva a hacer daño
     private bool canTouch = true;
 
-    //private Animator anim;
-
-
-    void Start()
-    {
-        //anim = GetComponent<Animator>();
-    }
-
-
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Si el enemigo colisiona con el jugador y este enemigo hace daño al ser tocado
@@ -78,5 +72,27 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(touchDelay);
         canTouch = true;
         Debug.Log(canTouch);
+    }
+
+    public bool DetectPlayer()
+    {
+        Vector2 direction = (PlayerController.playerInstance.transform.position - transform.position).normalized;
+        Debug.DrawRay(transform.position, direction * detectionRange, Color.red);
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, 1 << LayerMask.NameToLayer("BlockingLayer"));
+      
+        if (hit != null)
+        {
+            if (hit.transform.tag == "Player")
+            {
+                Debug.Log(hit.transform.tag);
+                return true;
+            }
+            else
+            {
+                Debug.Log(hit.transform.name);
+            }
+        }
+        return false;
     }
 }

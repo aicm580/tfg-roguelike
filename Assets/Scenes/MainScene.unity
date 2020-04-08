@@ -1348,10 +1348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
-  player: {fileID: 1198681082}
   gameOverPanel: {fileID: 1427408104}
   pausePanel: {fileID: 1116039872}
   loadPanel: {fileID: 670345714}
@@ -4270,7 +4268,7 @@ GameObject:
   - component: {fileID: 1729511995}
   - component: {fileID: 1729511994}
   - component: {fileID: 1729511996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallsTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4561,7 +4559,7 @@ GameObject:
   - component: {fileID: 1744379945}
   - component: {fileID: 1744379944}
   - component: {fileID: 1744379946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstaclesTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController playerInstance;
+
     public string playerName = "Rufo";
     public int initHealth = 3; //nº de vidas con el que empieza el jugador
     public int initHearts = 3; //nº de vidas del personaje
@@ -26,7 +28,20 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookDirection;
 
     private bool canShoot = true;
-    private bool abilityActive = false; 
+    private bool abilityActive = false;
+
+    private void Awake()
+    {
+        //Nos aseguramos de que solo haya 1 GameManager
+        if (playerInstance == null)
+        {
+            playerInstance = this;
+        }
+        else if (playerInstance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

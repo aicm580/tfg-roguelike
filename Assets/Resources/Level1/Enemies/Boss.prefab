@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3002168867632701919}
   - component: {fileID: -1385795010597343007}
   - component: {fileID: -351665198365209284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.35}
+    oldSize: {x: 1.9375, y: 2.1875}
     newSize: {x: 0.24, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3002168867632701919}
   - component: {fileID: 6157136335596524443}
   - component: {fileID: 5191958406930640144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Meganeura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.32}
+    oldSize: {x: 0.46875, y: 0.5}
     newSize: {x: 0.24, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -10,10 +10,8 @@ public class GameManager : MonoBehaviour
 
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
-    public PlayerController playerController;
 
     public Transform popupDamageText;
-    public GameObject player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
@@ -65,7 +63,6 @@ public class GameManager : MonoBehaviour
     {
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
-        playerController = player.GetComponent<PlayerController>();
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
@@ -108,7 +105,7 @@ public class GameManager : MonoBehaviour
         //Generamos el mapa del nivel
         mapGenerator.SetupMap();
         //Indicamos la posición inicial del jugador
-        player.transform.position = InitPlayerPosition();
+        PlayerController.playerInstance.transform.position = InitPlayerPosition();
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
     }
@@ -135,8 +132,8 @@ public class GameManager : MonoBehaviour
         InitLevel();
 
         playerAlive = true;
-        numOfHearts = playerController.initHearts;
-        currentHealth = playerController.initHealth;
+        numOfHearts = PlayerController.playerInstance.initHearts;
+        currentHealth = PlayerController.playerInstance.initHealth;
         SetUIHearts();
 
         timePlayed = 0;

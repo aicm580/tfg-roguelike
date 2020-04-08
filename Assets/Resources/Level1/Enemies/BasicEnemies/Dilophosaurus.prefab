@@ -101,7 +101,7 @@ MonoBehaviour:
   calculatedFriends: 0
   health: 20
   finalBoss: 0
-  detectionRange: 8
+  detectionRange: 6
   attackRange: 0
   touchDamage: 1
 --- !u!1 &9140904020923553037

@@ -31,6 +31,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private TileBase smallObstacleTile;
     [SerializeField]
+    private Tilemap waterMap;
+    [SerializeField]
     private TileBase waterTile;
 
 
@@ -40,6 +42,7 @@ public class MapGenerator : MonoBehaviour
         wallMap.ClearAllTiles();
         groundMap.ClearAllTiles();
         obstacleMap.ClearAllTiles();
+        waterMap.ClearAllTiles();
 
         CreateRoomsAndCorridors();
         InstantiateTiles();
@@ -457,7 +460,7 @@ public class MapGenerator : MonoBehaviour
                     break;
 
                 case TileType.Water:
-                    obstacleMap.SetTile(pos, waterTile);
+                    waterMap.SetTile(pos, waterTile);
                     break;
             }
         }

@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
             canTouch = false;
             StartCoroutine(TouchDelay());
         }
-
+        /*
         //Si una bala lanzada por el jugador toca al enemigo, este recibe daño
         if (collision.gameObject.tag == "Bullet")
         {
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
                 GameManager.instance.totalKills += 1;
                 Destroy(gameObject);
             }
-        }
+        }*/
     }
 
     IEnumerator TouchDelay()

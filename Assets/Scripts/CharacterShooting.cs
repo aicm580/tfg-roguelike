@@ -7,6 +7,7 @@ public class CharacterShooting : MonoBehaviour
     protected float shootDelay = 0.2f;
     [SerializeField]
     protected Bullet bulletPrefab;
+
     private bool canShoot = true;
 
     public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation)

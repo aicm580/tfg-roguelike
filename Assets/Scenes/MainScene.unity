@@ -2894,8 +2894,8 @@ GameObject:
   - component: {fileID: 1198681084}
   - component: {fileID: 1198681083}
   - component: {fileID: 1198681091}
-  - component: {fileID: 1198681090}
   - component: {fileID: 1198681092}
+  - component: {fileID: 1198681090}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2919,12 +2919,7 @@ MonoBehaviour:
   initHealth: 3
   initHearts: 3
   maxHearts: 10
-  bulletDamage: 5
-  bulletDelay: 0.2
   abilityDuration: 3
-  firePoint: {fileID: 676274083}
-  bulletPrefab: {fileID: 5404156109973140040, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
-    type: 3}
 --- !u!95 &1198681084
 Animator:
   serializedVersion: 3

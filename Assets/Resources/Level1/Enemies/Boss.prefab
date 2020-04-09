@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -351665198365209284}
   m_Layer: 8
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,8 @@ MonoBehaviour:
   calculatedFriends: 0
   health: 100
   finalBoss: 1
+  detectionRange: 0
+  attackRange: 0
   touchDamage: 1
 --- !u!61 &-1385795010597343007
 BoxCollider2D:

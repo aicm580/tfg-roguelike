@@ -18,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        characteShooting = GetComponent<CharacterShooting>();
         animator = GetComponent<Animator>();
     }
 
@@ -31,9 +32,10 @@ public class PlayerInputController : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         animator.SetFloat("Horizontal", lookDirection.x);
         animator.SetFloat("Vertical", lookDirection.y);
+
         if (Input.GetButtonDown("Fire1"))
         {
-            characteShooting.Shoot(bulletOrigin, Quaternion.identity);
+            characteShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity);
         }
     }
 

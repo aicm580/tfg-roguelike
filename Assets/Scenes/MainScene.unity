@@ -2895,6 +2895,7 @@ GameObject:
   - component: {fileID: 1198681083}
   - component: {fileID: 1198681091}
   - component: {fileID: 1198681090}
+  - component: {fileID: 1198681092}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2918,10 +2919,7 @@ MonoBehaviour:
   initHealth: 3
   initHearts: 3
   maxHearts: 10
-  moveSpeed: 4
   bulletDamage: 5
-  bulletSpeed: 5
-  bulletLifetime: 0.9
   bulletDelay: 0.2
   abilityDuration: 3
   firePoint: {fileID: 676274083}
@@ -3084,6 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4d26659ebcc3f45b621a8afbbeb5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 676274083}
 --- !u!114 &1198681091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3097,6 +3096,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+--- !u!114 &1198681092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198681082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootDelay: 0.22
+  bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
+    type: 3}
 --- !u!1 &1200497876
 GameObject:
   m_ObjectHideFlags: 0

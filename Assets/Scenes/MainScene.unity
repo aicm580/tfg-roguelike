@@ -2896,6 +2896,7 @@ GameObject:
   - component: {fileID: 1198681091}
   - component: {fileID: 1198681092}
   - component: {fileID: 1198681090}
+  - component: {fileID: 1198681093}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2919,7 +2920,6 @@ MonoBehaviour:
   initHealth: 3
   initHearts: 3
   maxHearts: 10
-  abilityDuration: 3
 --- !u!95 &1198681084
 Animator:
   serializedVersion: 3
@@ -3078,6 +3078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 676274083}
+  abilityDuration: 3
 --- !u!114 &1198681091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3106,6 +3107,22 @@ MonoBehaviour:
   shootDelay: 0.22
   bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
     type: 3}
+--- !u!114 &1198681093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198681082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dddc2623c88c5d47a6e0f4f90d41014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHealth: 3
+  currentHealth: 3
+  initHearts: 3
+  maxHearts: 10
 --- !u!1 &1200497876
 GameObject:
   m_ObjectHideFlags: 0

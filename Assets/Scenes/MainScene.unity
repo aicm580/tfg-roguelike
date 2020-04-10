@@ -2892,7 +2892,6 @@ GameObject:
   - component: {fileID: 1198681089}
   - component: {fileID: 1198681085}
   - component: {fileID: 1198681084}
-  - component: {fileID: 1198681083}
   - component: {fileID: 1198681091}
   - component: {fileID: 1198681092}
   - component: {fileID: 1198681090}
@@ -2904,22 +2903,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1198681083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198681082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5604ef942d02513479ecbca08287c52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: Rufo
-  initHealth: 3
-  initHearts: 3
-  maxHearts: 10
 --- !u!95 &1198681084
 Animator:
   serializedVersion: 3

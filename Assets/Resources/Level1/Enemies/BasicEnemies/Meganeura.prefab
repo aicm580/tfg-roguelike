@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3002168867632701921}
   - component: {fileID: 3002168867632701918}
-  - component: {fileID: 3002168867632701919}
   - component: {fileID: 6157136335596524443}
   - component: {fileID: 5191958406930640144}
+  - component: {fileID: 3002168867632701919}
+  - component: {fileID: 471042489203671136}
   m_Layer: 8
   m_Name: Meganeura
   m_TagString: Enemy
@@ -82,29 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3002168867632701919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 2
-  biome: 1
-  friends:
-    minVal: 1
-    maxVal: 6
-  calculatedFriends: 0
-  health: 20
-  finalBoss: 0
-  detectionRange: 0
-  attackRange: 0
-  touchDamage: 1
 --- !u!61 &6157136335596524443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,3 +130,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3002168867632701919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  biome: 1
+  friends:
+    minVal: 1
+    maxVal: 6
+  calculatedFriends: 0
+  health: 20
+  finalBoss: 0
+  detectionRange: 0
+  attackRange: 0
+  touchDamage: 1
+--- !u!114 &471042489203671136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a02001d4d2f5f54794c4de71c673038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHealth: 20

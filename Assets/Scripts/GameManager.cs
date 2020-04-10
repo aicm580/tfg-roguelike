@@ -11,17 +11,11 @@ public class GameManager : MonoBehaviour
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
 
-    public Transform popupDamageText;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
     public Toggle timerToogle;
     public Text timerText;
-    
-    public Image[] hearts;
-
-    public int currentHealth;
-    public int numOfHearts;
    
     public bool playerAlive;
     public bool isPaused;
@@ -132,9 +126,6 @@ public class GameManager : MonoBehaviour
         InitLevel();
 
         playerAlive = true;
-        numOfHearts = PlayerController.playerInstance.initHearts;
-        currentHealth = PlayerController.playerInstance.initHealth;
-        SetUIHearts();
 
         timePlayed = 0;
         timerActive = true;
@@ -173,45 +164,7 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-
-    public void SetUIHearts()
-    {
-        if (currentHealth > numOfHearts)
-        {
-            currentHealth = numOfHearts;
-        }
-
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i >= currentHealth)
-            {
-                hearts[i].GetComponent<Animator>().SetBool("empty", true);
-            }
-            else
-            {
-                hearts[i].GetComponent<Animator>().SetBool("empty", false);
-            }
-
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
-    }
-
-    public void LoseLife()
-    {
-        hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
-        hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", true);
-        currentHealth -= 1;
-        Debug.Log("YOU LOST A LIFE");
-        
-        CheckIfAlive();
-    }
+    
 
     private void CheckIfAlive()
     {

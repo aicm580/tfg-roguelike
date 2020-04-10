@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
     public IntRange friends; //rango de número de enemigos igual que éste que le acompañan
     public int calculatedFriends;
 
-    public int health;
     public bool finalBoss;
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador

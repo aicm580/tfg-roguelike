@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 
-public class CharacterHealth : MonoBehaviour
+public abstract class CharacterHealth : MonoBehaviour
 {
     [SerializeField]
     protected int initHealth;
     
     protected int currentHealth;
+    protected Animator animator;
 
-    private void Start()
+    protected virtual void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = initHealth;
     }
 
-    public void TakeDamage(int dmgAmount)
+    protected virtual void TakeDamage(int dmgAmount)
     {
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
@@ -21,8 +23,9 @@ public class CharacterHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected void Die()
     {
+        animator.SetBool("dead", true);
         Destroy(gameObject);
     }
 }

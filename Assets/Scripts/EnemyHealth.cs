@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class NormalEnemyHealth : CharacterHealth
+public class EnemyHealth : CharacterHealth
 {
     [SerializeField]
     protected Transform popupDamageText;
 
-    protected override void TakeDamage(int dmgAmount)
+    public override void TakeDamage(int dmgAmount)
     {
         PopupDamage(dmgAmount);
         base.TakeDamage(dmgAmount);
@@ -17,5 +17,11 @@ public class NormalEnemyHealth : CharacterHealth
         Transform damagePopupTransform = Instantiate(popupDamageText, pos, Quaternion.identity);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(dmgAmount);
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Destroy(gameObject);
     }
 }

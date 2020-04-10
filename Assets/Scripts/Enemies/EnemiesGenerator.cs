@@ -159,7 +159,7 @@ public class EnemiesGenerator : MonoBehaviour
                             k++;
                         }
 
-                    } while (!gameManager.CheckPosition(position, i));
+                    } while (!mapGenerator.CheckPosition(position, i));
 
                     mapGenerator.rooms[i].emptyPositions.Remove(position);
                 }
@@ -186,7 +186,7 @@ public class EnemiesGenerator : MonoBehaviour
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
                 if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck)
-                    || positionToCheck == PlayerController.playerInstance.transform.position)
+                    || positionToCheck == GameManager.instance.player.transform.position)
                 {
                     return false;
                 }

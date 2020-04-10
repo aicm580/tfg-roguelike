@@ -12,7 +12,7 @@ public class NormalEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerController.playerInstance.transform;
+       // target = PlayerController.playerInstance.transform;
         
     }
 

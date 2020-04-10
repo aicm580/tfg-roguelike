@@ -1536,26 +1536,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
-    type: 3}
+  player: {fileID: 1198681088}
   gameOverPanel: {fileID: 1427408104}
   pausePanel: {fileID: 1116039872}
   loadPanel: {fileID: 670345714}
   timerToogle: {fileID: 1202983313}
   timerText: {fileID: 505898312}
-  hearts:
-  - {fileID: 1249194145}
-  - {fileID: 363685823}
-  - {fileID: 1280526699}
-  - {fileID: 950762575}
-  - {fileID: 1804557050}
-  - {fileID: 1001375546}
-  - {fileID: 665581134}
-  - {fileID: 390468075}
-  - {fileID: 1159940540}
-  - {fileID: 2079495393}
-  currentHealth: 3
-  numOfHearts: 3
   playerAlive: 0
   isPaused: 0
   timePlayed: 0
@@ -3103,7 +3089,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHealth: 3
-  currentHealth: 3
+  hearts:
+  - {fileID: 1249194145}
+  - {fileID: 363685823}
+  - {fileID: 1280526699}
+  - {fileID: 950762575}
+  - {fileID: 1804557050}
+  - {fileID: 1001375546}
+  - {fileID: 665581134}
+  - {fileID: 390468075}
+  - {fileID: 1159940540}
+  - {fileID: 2079495393}
   initHearts: 3
   maxHearts: 10
 --- !u!1 &1200497876

@@ -14,7 +14,7 @@ public abstract class CharacterHealth : MonoBehaviour
         currentHealth = initHealth;
     }
 
-    protected virtual void TakeDamage(int dmgAmount)
+    public virtual void TakeDamage(int dmgAmount)
     {
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
@@ -23,9 +23,8 @@ public abstract class CharacterHealth : MonoBehaviour
         }
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         animator.SetBool("dead", true);
-        Destroy(gameObject);
     }
 }

@@ -465,4 +465,14 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
+
+    //Esta función permite comprobar si una posición concreta de una sala concreta está disponible
+    public bool CheckPosition(Vector3 positionToCheck, int room)
+    {
+        if (rooms[room].emptyPositions.Contains(positionToCheck))
+        {
+            return true;
+        }
+        return false;
+    }
 }

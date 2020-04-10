@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 6157136335596524443}
   - component: {fileID: 5191958406930640144}
   - component: {fileID: 3002168867632701919}
+  - component: {fileID: 2749776434720002256}
   - component: {fileID: 471042489203671136}
+  - component: {fileID: 4989315538605183135}
   m_Layer: 8
   m_Name: Meganeura
   m_TagString: Enemy
@@ -148,11 +150,22 @@ MonoBehaviour:
     minVal: 1
     maxVal: 6
   calculatedFriends: 0
-  health: 20
   finalBoss: 0
   detectionRange: 0
   attackRange: 0
-  touchDamage: 1
+--- !u!114 &2749776434720002256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
 --- !u!114 &471042489203671136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +175,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3002168867632701916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a02001d4d2f5f54794c4de71c673038, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e40285f227f32b449b4201925a6ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initHealth: 20
+  popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
+    type: 3}
+--- !u!114 &4989315538605183135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

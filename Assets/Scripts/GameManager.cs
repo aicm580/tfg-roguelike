@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
 
+    public Transform player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
+
     public Toggle timerToogle;
     public Text timerText;
    
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour
         //Generamos el mapa del nivel
         mapGenerator.SetupMap();
         //Indicamos la posición inicial del jugador
-        PlayerController.playerInstance.transform.position = InitPlayerPosition();
+        player.transform.position = InitPlayerPosition();
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
     }
@@ -153,28 +155,8 @@ public class GameManager : MonoBehaviour
 
         return randomPosition;
     }
-    
-    //Esta función permite comprobar si una posición concreta de una sala concreta está disponible
-    public bool CheckPosition(Vector3 positionToCheck, int room)
-    {
-        if (mapGenerator.rooms[room].emptyPositions.Contains(positionToCheck))
-        {
-            return true;
-        }
-
-        return false;
-    }
-    
-
-    private void CheckIfAlive()
-    {
-        if (currentHealth <= 0)
-        {
-            GameOver();
-        }
-    }
-
-    private void GameOver()
+   
+    public void GameOver()
     {
         timerActive = false;
         playerAlive = false;

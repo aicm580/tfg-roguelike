@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class PlayerHealth : CharacterHealth
 {
     [SerializeField]
-    protected Image[] hearts;
-    [SerializeField]
     protected int initHearts = 3; //nº de corazones iniciales (llenos o no)
     [SerializeField]
     protected int maxHearts = 10; //nº de corazones máximo que puede recolectar
+    [SerializeField]
+    protected Image[] hearts;
 
     private int currentHearts; //nº de corazones actuales (llenos o no)
 
@@ -19,13 +19,19 @@ public class PlayerHealth : CharacterHealth
         SetUIHearts();
     }
 
-    protected override void TakeDamage(int dmgAmount)
+    public override void TakeDamage(int dmgAmount)
     {
         DecreaseHealthAnimation();
         base.TakeDamage(dmgAmount);
     }
 
-    private void Heal(int healAmount)
+    protected override void Die()
+    {
+        base.Die();
+        GameManager.instance.GameOver();
+    }
+
+    public void Heal(int healAmount)
     {
         IncreaseHealthAnimation();
         currentHealth += healAmount;
@@ -68,7 +74,6 @@ public class PlayerHealth : CharacterHealth
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
         hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", true);
-        currentHealth -= 1;
         Debug.Log("YOU LOST A LIFE");
     }
 

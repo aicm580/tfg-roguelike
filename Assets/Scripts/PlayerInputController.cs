@@ -28,35 +28,41 @@ public class PlayerInputController : MonoBehaviour
 
     void Update()
     {
-        //KEYBOARD INPUT MANAGEMENT (MOVEMENT)
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
-        //KEYBOARD INPUT MANAGEMETN (SPECIAL ABILITY)
-        if (Input.GetKeyDown(KeyCode.Space) && !abilityActive)
+        if (GameManager.instance.playerAlive)
         {
-            abilityActive = true;
-            StartCoroutine(DisableAbility());
-        }
+            //KEYBOARD INPUT MANAGEMENT (MOVEMENT)
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        //MOUSE INPUT MANAGEMENT
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        animator.SetFloat("Horizontal", lookDirection.x);
-        animator.SetFloat("Vertical", lookDirection.y);
+            //KEYBOARD INPUT MANAGEMETN (SPECIAL ABILITY)
+            if (Input.GetKeyDown(KeyCode.Space) && !abilityActive)
+            {
+                abilityActive = true;
+                StartCoroutine(DisableAbility());
+            }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            characteShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity);
+            //MOUSE INPUT MANAGEMENT
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            animator.SetFloat("Horizontal", lookDirection.x);
+            animator.SetFloat("Vertical", lookDirection.y);
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                characteShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        characterMovement.Move(movement);
+        if (GameManager.instance.playerAlive)
+        {
+            characterMovement.Move(movement);
 
-        firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
-        lookDirection = (mousePos - firepointPos).normalized;
-        bulletOrigin = firePoint.position + (Vector3)(lookDirection * 0.5f);
+            firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
+            lookDirection = (mousePos - firepointPos).normalized;
+            bulletOrigin = firePoint.position + (Vector3)(lookDirection * 0.5f);
+        }   
     }
 
     IEnumerator DisableAbility()

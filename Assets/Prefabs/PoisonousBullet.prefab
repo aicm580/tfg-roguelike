@@ -144,4 +144,5 @@ MonoBehaviour:
   bulletDamage: 2
   bulletSpeed: 5
   bulletLifetime: 0.7
+  bulletOwner: 1
   direction: {x: 0, y: 0}

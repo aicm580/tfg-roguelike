@@ -5,10 +5,10 @@ public class EnemyHealth : CharacterHealth
     [SerializeField]
     protected Transform popupDamageText;
 
-    public override void TakeDamage(int dmgAmount)
+    public override void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
         PopupDamage(dmgAmount);
-        base.TakeDamage(dmgAmount);
+        base.TakeDamage(dmgAmount, dmgOrigin);
     }
 
     private void PopupDamage(int dmgAmount)
@@ -19,9 +19,9 @@ public class EnemyHealth : CharacterHealth
         damagePopup.Setup(dmgAmount);
     }
 
-    protected override void Die()
+    protected override void Die(DamageOrigin dmgOrigin)
     {
-        base.Die();
+        base.Die(dmgOrigin);
         Destroy(gameObject);
     }
 }

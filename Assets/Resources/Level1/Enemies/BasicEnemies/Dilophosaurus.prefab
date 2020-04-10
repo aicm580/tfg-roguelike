@@ -103,7 +103,6 @@ MonoBehaviour:
     minVal: 0
     maxVal: 2
   calculatedFriends: 0
-  finalBoss: 0
   detectionRange: 6
   attackRange: 0
 --- !u!114 &4881704708861760205
@@ -161,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactOrigin: 1
 --- !u!1 &9140904020923553037
 GameObject:
   m_ObjectHideFlags: 0

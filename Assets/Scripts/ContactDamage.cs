@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContactDamage : MonoBehaviour
 {
+    [SerializeField]
+    private DamageOrigin contactOrigin;
     private float touchDelay = 0.22f; //tiempo a esperar para que la colisión vuelva a hacer daño
     private bool canTouch = true;
 
@@ -12,7 +14,7 @@ public class ContactDamage : MonoBehaviour
         //Si el gameObject colisiona con el jugador
         if (collision.gameObject.tag == "Player" && canTouch == true)
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, contactOrigin);
             canTouch = false;
             StartCoroutine(TouchDelay());
         }

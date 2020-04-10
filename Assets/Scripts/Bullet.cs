@@ -9,9 +9,10 @@ public class Bullet : MonoBehaviour
     public int bulletDamage = 5; //daño que inflige
     public float bulletSpeed = 5.0f; //velocidad de la bala
     public float bulletLifetime = 0.9f; //tiempo de vida de la bala
+    public DamageOrigin bulletOwner;
     [HideInInspector]
     public Vector2 direction;
-
+  
     private Rigidbody2D rb;
 
     private void Start()

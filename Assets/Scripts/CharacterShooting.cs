@@ -10,12 +10,13 @@ public class CharacterShooting : MonoBehaviour
 
     private bool canShoot = true;
 
-    public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation)
+    public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
     {
         if (canShoot && !GameManager.instance.isPaused)
         {
             Bullet bullet = (Bullet)Instantiate(bulletPrefab, originPosition, rotation);
             bullet.direction = direction;
+            bullet.bulletOwner = owner;
 
             canShoot = false;
             StartCoroutine(ShootDelay());

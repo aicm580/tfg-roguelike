@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+public enum DamageOrigin
+{
+    Player, NormalEnemy, Boss, Obstacle, Item,
+}
+
 public abstract class CharacterHealth : MonoBehaviour
 {
     [SerializeField]
@@ -14,17 +19,18 @@ public abstract class CharacterHealth : MonoBehaviour
         currentHealth = initHealth;
     }
 
-    public virtual void TakeDamage(int dmgAmount)
+    public virtual void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
         {
-            Die();
+            Die(dmgOrigin);
         }
     }
 
-    protected virtual void Die()
+    protected virtual void Die(DamageOrigin dmgOrigin)
     {
         animator.SetBool("dead", true);
+        Debug.Log("KILLER: " + dmgOrigin);
     }
 }

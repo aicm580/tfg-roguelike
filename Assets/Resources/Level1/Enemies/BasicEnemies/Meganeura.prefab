@@ -150,7 +150,6 @@ MonoBehaviour:
     minVal: 1
     maxVal: 6
   calculatedFriends: 0
-  finalBoss: 0
   detectionRange: 0
   attackRange: 0
 --- !u!114 &2749776434720002256
@@ -193,3 +192,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactOrigin: 1

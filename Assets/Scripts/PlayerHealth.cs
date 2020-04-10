@@ -19,15 +19,15 @@ public class PlayerHealth : CharacterHealth
         SetUIHearts();
     }
 
-    public override void TakeDamage(int dmgAmount)
+    public override void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
         DecreaseHealthAnimation();
-        base.TakeDamage(dmgAmount);
+        base.TakeDamage(dmgAmount, dmgOrigin);
     }
 
-    protected override void Die()
+    protected override void Die(DamageOrigin dmgOrigin)
     {
-        base.Die();
+        base.Die(dmgOrigin);
         GameManager.instance.GameOver();
     }
 

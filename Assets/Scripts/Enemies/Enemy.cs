@@ -24,8 +24,6 @@ public class Enemy : MonoBehaviour
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
     
    
-
-
     public bool DetectPlayer()
     {
         Vector2 direction = (GameManager.instance.player.transform.position - transform.position).normalized;

@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : CharacterHealth
+public enum DamageOrigin
 {
+    Player, NormalEnemy, Boss, Obstacle, Item,
+}
+
+public class PlayerHealth : MonoBehaviour
+{
+    [SerializeField]
+    protected int initHealth;
     [SerializeField]
     protected int initHearts = 3; //nº de corazones iniciales (llenos o no)
     [SerializeField]
@@ -10,24 +17,36 @@ public class PlayerHealth : CharacterHealth
     [SerializeField]
     protected Image[] hearts;
 
+    private int currentHealth;
     private int currentHearts; //nº de corazones actuales (llenos o no)
+    private Animator animator;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
+        animator = GetComponent<Animator>();
+        SetPlayerHealth();
+    }
+
+    public void SetPlayerHealth()
+    {
+        currentHealth = initHealth;
         currentHearts = initHearts;
         SetUIHearts();
     }
 
-    public override void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
+    public void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
         DecreaseHealthAnimation();
-        base.TakeDamage(dmgAmount, dmgOrigin);
+        currentHealth -= dmgAmount;
+        if (currentHealth <= 0)
+        {
+            Die(dmgOrigin);
+        }
     }
 
-    protected override void Die(DamageOrigin dmgOrigin)
+    private void Die(DamageOrigin dmgOrigin)
     {
-        base.Die(dmgOrigin);
+        animator.SetBool("dead", true);
         GameManager.instance.GameOver();
     }
 

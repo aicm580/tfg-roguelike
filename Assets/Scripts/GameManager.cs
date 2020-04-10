@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
         InitLevel();
 
         playerAlive = true;
+        player.GetComponent<PlayerHealth>().SetPlayerHealth();
 
         timePlayed = 0;
         timerActive = true;

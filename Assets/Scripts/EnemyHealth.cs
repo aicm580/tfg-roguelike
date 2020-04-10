@@ -1,14 +1,29 @@
 ﻿using UnityEngine;
 
-public class EnemyHealth : CharacterHealth
+public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField]
+    protected int initHealth;
     [SerializeField]
     protected Transform popupDamageText;
 
-    public override void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
+    private int currentHealth;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        currentHealth = initHealth;
+    }
+
+    public void TakeDamage(int dmgAmount)
     {
         PopupDamage(dmgAmount);
-        base.TakeDamage(dmgAmount, dmgOrigin);
+        currentHealth -= dmgAmount;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     private void PopupDamage(int dmgAmount)
@@ -19,9 +34,9 @@ public class EnemyHealth : CharacterHealth
         damagePopup.Setup(dmgAmount);
     }
 
-    protected override void Die(DamageOrigin dmgOrigin)
+    private void Die()
     {
-        base.Die(dmgOrigin);
+        animator.SetBool("dead", true);
         Destroy(gameObject);
     }
 }

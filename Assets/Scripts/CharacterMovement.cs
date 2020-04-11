@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField]
-    protected float moveSpeed;
+    public float moveSpeed;
 
     private Rigidbody2D rb;
 
@@ -15,5 +15,18 @@ public class CharacterMovement : MonoBehaviour
     public void Move(Vector2 movement)
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void MovementPoison(float poisonEffect, float poisonDuration)
+    {
+        moveSpeed -= poisonEffect;
+        StartCoroutine(PoisonDisappears(poisonEffect, poisonDuration));
+        Debug.Log(moveSpeed);
+    }
+
+    IEnumerator PoisonDisappears(float poisonEffect, float poisonDuration)
+    {
+        yield return new WaitForSeconds(poisonDuration);
+        moveSpeed += poisonEffect;
     }
 }

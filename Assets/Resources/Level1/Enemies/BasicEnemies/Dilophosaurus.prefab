@@ -104,7 +104,7 @@ MonoBehaviour:
     maxVal: 2
   calculatedFriends: 0
   detectionRange: 6
-  attackRange: 0
+  attackRange: 2
 --- !u!114 &4881704708861760205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2
 --- !u!114 &8371670761104094750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 0.6
+  shootDelay: 2
   bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
 --- !u!114 &2416011736958202333

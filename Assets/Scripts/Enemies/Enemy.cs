@@ -22,11 +22,25 @@ public class Enemy : MonoBehaviour
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
+
+    private Transform target;
+    private CharacterMovement characterMovement;
     
-   
+
+    private void Awake()
+    {
+        characterMovement = GetComponent<CharacterMovement>();
+        
+    }
+
+    private void Start()
+    {
+        target = GameManager.instance.player.transform;
+    }
+
     public bool DetectPlayer()
     {
-        Vector2 direction = (GameManager.instance.player.transform.position - transform.position).normalized;
+        Vector2 direction = GetDirectionToPlayer();
         Debug.DrawRay(transform.position, direction * detectionRange, Color.red);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer"));
@@ -37,12 +51,25 @@ public class Enemy : MonoBehaviour
             {
                 return true;
             }
-            else
-            {
-                Debug.Log(hit.collider.name);
-            }
         }
         return false;
+    }
+
+    public bool FollowPlayerWalking()
+    {
+        if (Vector2.Distance(transform.position, target.position) > attackRange)
+        {
+            Vector2 direction = GetDirectionToPlayer();
+            characterMovement.Move(direction);
+            return true;
+        }
+        return false;
+    }
+
+    public Vector2 GetDirectionToPlayer()
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+        return direction;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

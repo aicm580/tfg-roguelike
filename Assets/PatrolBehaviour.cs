@@ -21,7 +21,6 @@ public class PatrolBehaviour : StateMachineBehaviour
         if (animator.GetComponentInParent<Enemy>().DetectPlayer())
         {
             animator.SetBool("isFollowing", true);
-            Debug.Log("Enemy is following player");
         }
     }
 

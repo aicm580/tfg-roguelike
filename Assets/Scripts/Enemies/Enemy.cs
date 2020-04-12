@@ -12,6 +12,7 @@ public enum Biome
     Land, Water, 
 }
 
+[RequireComponent(typeof(FiniteStateMachine))]
 public class Enemy : MonoBehaviour
 {
     public EnemyType enemyType;
@@ -25,12 +26,13 @@ public class Enemy : MonoBehaviour
 
     private Transform target;
     private CharacterMovement characterMovement;
-    
+    private FiniteStateMachine fsm;
+
 
     private void Awake()
     {
-        characterMovement = GetComponent<CharacterMovement>();
-        
+        characterMovement = this.GetComponent<CharacterMovement>();
+        fsm = this.GetComponent<FiniteStateMachine>();
     }
 
     private void Start()

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -1385795010597343007}
   - component: {fileID: -351665198365209284}
   - component: {fileID: 8960580996104567138}
+  - component: {fileID: 4230139520493557199}
+  - component: {fileID: 162020067184044193}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -163,3 +165,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactOrigin: 2
+--- !u!114 &4230139520493557199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 3
+  biome: 0
+  friends:
+    minVal: 0
+    maxVal: 0
+  calculatedFriends: 0
+  detectionRange: 0
+  attackRange: 0
+--- !u!114 &162020067184044193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 11400000, guid: 6a3cc8244ab44994dbb5955801021a27, type: 2}

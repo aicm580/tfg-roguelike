@@ -12,6 +12,7 @@ public class Poison : MonoBehaviour
         if (collision.gameObject.GetComponent<CharacterMovement>() != null)
         {
             collision.gameObject.GetComponent<CharacterMovement>().MovementPoison(poisonEffect, poisonDuration);
+            Debug.Log("ENVENENADO");
         }
     }
 }

@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     private Transform target;
     private CharacterMovement characterMovement;
-    private FiniteStateMachine fsm;
+    FiniteStateMachine fsm;
 
 
     private void Awake()

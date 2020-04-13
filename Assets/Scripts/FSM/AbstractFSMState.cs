@@ -7,9 +7,19 @@ public enum ExecutionState
     NONE, ACTIVE, COMPLETED, TERMINATED,
 }
 
+public enum FSMStateType
+{
+    Idle, Patrol, Follow, Attack,  
+}
+
 public abstract class AbstractFSMState : ScriptableObject
 {
+    protected Enemy enemy;
+    protected FiniteStateMachine finiteStateMachine;
+
     public ExecutionState exeState { get; protected set; }
+    public FSMStateType stateType { get; protected set; }
+    public bool enteredState { get; protected set; }
 
     public virtual void OnEnable()
     {
@@ -18,8 +28,12 @@ public abstract class AbstractFSMState : ScriptableObject
 
     public virtual bool EnterState()
     {
-       exeState = ExecutionState.ACTIVE;
-        return true;
+        bool success = true;
+        success = (enemy != null);
+
+        exeState = ExecutionState.ACTIVE;
+        
+        return success;
     }
 
     public abstract void UpdateState();
@@ -28,5 +42,21 @@ public abstract class AbstractFSMState : ScriptableObject
     {
         exeState = ExecutionState.COMPLETED;
         return true;
+    }
+
+    public virtual void SetExecutingFSM(FiniteStateMachine fsm)
+    {
+        if (fsm != null)
+        {
+            finiteStateMachine = fsm;
+        }
+    }
+
+    public virtual void SetExecutingEnemy(Enemy currentEnemy)
+    {
+        if (currentEnemy != null)
+        {
+            enemy = currentEnemy;
+        }
     }
 }

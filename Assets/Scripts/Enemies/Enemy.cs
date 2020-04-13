@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +13,6 @@ public enum Biome
     Land, Water, 
 }
 
-[RequireComponent(typeof(FiniteStateMachine))]
 public class Enemy : MonoBehaviour
 {
     public EnemyType enemyType;
@@ -26,13 +26,11 @@ public class Enemy : MonoBehaviour
 
     private Transform target;
     private CharacterMovement characterMovement;
-    FiniteStateMachine fsm;
 
 
     private void Awake()
     {
         characterMovement = this.GetComponent<CharacterMovement>();
-        fsm = this.GetComponent<FiniteStateMachine>();
     }
 
     private void Start()

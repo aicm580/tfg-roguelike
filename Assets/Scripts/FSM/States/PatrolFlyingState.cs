@@ -1,37 +1,22 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PatrolFlyingState", menuName = "FSM/States/PatrolFlying", order = 3)]
-public class PatrolFlyingState : AbstractFSMState
+public class PatrolFlyingState : State
 {
-    public override void OnEnable()
+    public PatrolFlyingState(Enemy enemy, StateType state) : base(enemy, state) { }
+
+    private void Awake()
     {
-        base.OnEnable();
-        stateType = FSMStateType.Patrol;
-    }
-
-    public override bool EnterState()
-    {
-        enteredState = false;
-
-        if (base.EnterState())
-        {
-            enteredState = true;
-        }
-
-        return enteredState;
+        stateType = StateType.PatrolFlying;
     }
 
     public override void UpdateState()
     {
-        if (enteredState)
+        if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
-            Debug.Log("Updating patrol FLYING state");
-            if (!enemy.GetComponentInChildren<Renderer>().isVisible)
-            {
-                finiteStateMachine.EnterState(FSMStateType.Idle);
-            }
+            
+            
         }
     }
 }

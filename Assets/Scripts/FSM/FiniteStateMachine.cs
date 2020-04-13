@@ -4,30 +4,36 @@ using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour
 {
-    AbstractFSMState currentState;
+    Enemy enemy;
+    State currentState;
 
     [SerializeField]
-    List<AbstractFSMState> validStates;
-    Dictionary<FSMStateType, AbstractFSMState> fsmStates;
+    List<StateType> validStates;
+
+    List<State> states = new List<State>();
+    List<State> enemyStates = new List<State>();
 
     public void Awake()
     {
+        enemy = this.GetComponent<Enemy>();
         currentState = null;
+        states.Add(new IdleState(enemy, StateType.Idle));
+        states.Add(new PatrolWalkingState(enemy, StateType.PatrolWalking));
+        states.Add(new PatrolFlyingState(enemy, StateType.PatrolFlying));
 
-        Enemy enemy = GetComponent<Enemy>();
-
-        fsmStates = new Dictionary<FSMStateType, AbstractFSMState>();
-        foreach (AbstractFSMState state in validStates)
+        foreach (State state in states)
         {
-            state.SetExecutingFSM(this);
-            state.SetExecutingEnemy(enemy);
-            fsmStates.Add(state.stateType, state);
+            if (validStates.Contains(state.stateType))
+            {
+                enemyStates.Add(state);
+            }
         }
+        Debug.Log(enemyStates.Count);
     }
 
     public void Start()
     {
-        EnterState(FSMStateType.Idle);
+        EnterState(StateType.Idle);
     }
 
     public void Update()
@@ -40,7 +46,7 @@ public class FiniteStateMachine : MonoBehaviour
 
 
     #region STATE MANAGEMENT
-    public void EnterState(AbstractFSMState nextState)
+    public void EnterState(State nextState)
     {
         if (nextState == null)
         {
@@ -49,20 +55,21 @@ public class FiniteStateMachine : MonoBehaviour
 
         if (currentState != null)
         {
-            currentState.ExitState();
+            currentState.OnStateExit();
         }
 
         currentState = nextState;
-        currentState.EnterState();
+        currentState.OnStateEnter();
     }
 
-    public void EnterState(FSMStateType stateType)
+    public void EnterState(StateType stateType)
     {
+        /*
         if (fsmStates.ContainsKey(stateType))
         {
-            AbstractFSMState nextState = fsmStates[stateType];
+            State nextState = fsmStates[stateType];
             EnterState(nextState);
-        }
+        }*/
     }
     #endregion
 }

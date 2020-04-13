@@ -2,45 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IdleState", menuName = "FSM/States/Idle", order = 1)]
-public class IdleState : AbstractFSMState
+public class IdleState : State
 {
-    public override void OnEnable()
-    {
-        base.OnEnable();
-        stateType = FSMStateType.Idle;
-    }
+    public IdleState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    public override bool EnterState()
+    private void Awake()
     {
-        enteredState = base.EnterState();
-
-        if (enteredState)
-        {
-            Debug.Log("Entering Idle State");
-            Debug.Log(enemy.GetComponentInChildren<Renderer>());
-        }
-        
-        return enteredState;
+        stateType = StateType.Idle;
     }
 
     public override void UpdateState()
     {
-        if (enteredState)
+        if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
-            if (enemy.GetComponentInChildren<Renderer>().isVisible)
-            {
-                Debug.Log("VISIBLE!!!!");
-                enemy.GetComponentInChildren<Animator>().SetBool("isPatrolling", true);
-                finiteStateMachine.EnterState(FSMStateType.Patrol);
-            }
+            animator.SetBool("isPatrolling", true);
+           // enemy.fsm.EnterState(StateType.Patrol);
         }
-    }
-
-    public override bool ExitState()
-    {
-        base.ExitState();
-        Debug.Log("Exiting idle state");
-        return true;
     }
 }

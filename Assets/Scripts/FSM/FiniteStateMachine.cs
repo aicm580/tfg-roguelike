@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour
 {
+    [HideInInspector]
+    public int i = 0; 
+
     Enemy enemy;
     State currentState;
 
@@ -33,7 +36,7 @@ public class FiniteStateMachine : MonoBehaviour
 
     public void Start()
     {
-        EnterState(StateType.Idle);
+        EnterState(i);
     }
 
     public void Update()
@@ -46,8 +49,9 @@ public class FiniteStateMachine : MonoBehaviour
 
 
     #region STATE MANAGEMENT
-    public void EnterState(State nextState)
+    public void EnterState(int i)
     {
+        State nextState = enemyStates[i];
         if (nextState == null)
         {
             return;
@@ -60,16 +64,6 @@ public class FiniteStateMachine : MonoBehaviour
 
         currentState = nextState;
         currentState.OnStateEnter();
-    }
-
-    public void EnterState(StateType stateType)
-    {
-        /*
-        if (fsmStates.ContainsKey(stateType))
-        {
-            State nextState = fsmStates[stateType];
-            EnterState(nextState);
-        }*/
     }
     #endregion
 }

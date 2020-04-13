@@ -4,7 +4,13 @@ using UnityEngine;
 
 public enum StateType
 {
-    Idle, PatrolWalking, PatrolFlying, FollowWalking, FollowFlying, RangeAttack, MeleeAttack,
+    Idle,
+    PatrolWalking,
+    PatrolFlying,
+    FollowWalking,
+    FollowFlying,
+    RangeAttack,
+    MeleeAttack,
 }
 
 public abstract class State

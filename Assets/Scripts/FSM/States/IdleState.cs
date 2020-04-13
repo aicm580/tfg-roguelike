@@ -6,17 +6,13 @@ public class IdleState : State
 {
     public IdleState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    private void Awake()
-    {
-        stateType = StateType.Idle;
-    }
-
     public override void UpdateState()
     {
         if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
             animator.SetBool("isPatrolling", true);
-           // enemy.fsm.EnterState(StateType.Patrol);
+            enemy.fsm.i++;
+            enemy.fsm.EnterState(enemy.fsm.i);
         }
     }
 }

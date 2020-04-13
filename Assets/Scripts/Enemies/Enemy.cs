@@ -24,13 +24,18 @@ public class Enemy : MonoBehaviour
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
 
+    [HideInInspector]
+    public FiniteStateMachine fsm;
+
     private Transform target;
     private CharacterMovement characterMovement;
+    
 
 
     private void Awake()
     {
         characterMovement = this.GetComponent<CharacterMovement>();
+        fsm = this.GetComponent<FiniteStateMachine>();
     }
 
     private void Start()

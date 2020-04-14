@@ -8,10 +8,14 @@ public class PatrolWalkingState : State
 
     public override void UpdateState()
     {
-        if (enemy.GetComponentInChildren<Renderer>().isVisible)
+
+
+        if (enemy.DetectPlayer())
         {
-            
-            
+            animator.SetBool("isFollowing", true);
+            enemy.fsm.EnterNextState();
         }
     }
+
+    
 }

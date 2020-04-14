@@ -23,6 +23,10 @@ public class FiniteStateMachine : MonoBehaviour
         states.Add(new IdleState(enemy, StateType.Idle));
         states.Add(new PatrolWalkingState(enemy, StateType.PatrolWalking));
         states.Add(new PatrolFlyingState(enemy, StateType.PatrolFlying));
+        states.Add(new FollowWalkingState(enemy, StateType.FollowWalking));
+        states.Add(new FollowFlyingState(enemy, StateType.FollowFlying));
+        states.Add(new RangeAttackState(enemy, StateType.RangeAttack));
+        states.Add(new MeleeAttackState(enemy, StateType.MeleeAttack));
 
         foreach (State state in states)
         {
@@ -47,9 +51,9 @@ public class FiniteStateMachine : MonoBehaviour
         }
     }
 
-
     #region STATE MANAGEMENT
-    public void EnterState(int i)
+
+    private void EnterState(int i)
     {
         State nextState = enemyStates[i];
         if (nextState == null)
@@ -65,5 +69,24 @@ public class FiniteStateMachine : MonoBehaviour
         currentState = nextState;
         currentState.OnStateEnter();
     }
+
+    public void EnterNextState()
+    {
+        if (i < enemyStates.Count)
+        {
+            i++;
+        }
+        EnterState(i);
+    }
+
+    public void EnterPreviousState()
+    {
+        if (i > 0)
+        {
+            i--;
+        }
+        EnterState(i);
+    }
+
     #endregion
 }

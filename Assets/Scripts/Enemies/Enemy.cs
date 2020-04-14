@@ -26,10 +26,10 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector]
     public FiniteStateMachine fsm;
+    [HideInInspector]
+    public Transform target;
 
-    private Transform target;
     private CharacterMovement characterMovement;
-    
 
 
     private void Awake()
@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public bool FollowPlayerWalking()
+    public bool MoveTowardsPlayer()
     {
         if (Vector2.Distance(transform.position, target.position) > attackRange)
         {

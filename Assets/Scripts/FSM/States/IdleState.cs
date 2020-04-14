@@ -11,8 +11,8 @@ public class IdleState : State
         if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
             animator.SetBool("isPatrolling", true);
-            enemy.fsm.i++;
-            enemy.fsm.EnterState(enemy.fsm.i);
+            
+            enemy.fsm.EnterNextState();
         }
     }
 }

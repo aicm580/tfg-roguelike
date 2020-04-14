@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2.75
 --- !u!114 &2416011736958202333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +144,10 @@ MonoBehaviour:
     minVal: 1
     maxVal: 6
   calculatedFriends: 0
-  detectionRange: 0
-  attackRange: 0
+  detectionRange: 2.5
+  attackRange: 1
+  fsm: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &9030558723332455016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  i: 0
   validStates: 00000000020000000400000006000000
 --- !u!1 &9140904020923553037
 GameObject:
@@ -249,7 +252,7 @@ Animator:
   m_GameObject: {fileID: 9140904020923553037}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: f9e8b4b23fad8884496140a619782651, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

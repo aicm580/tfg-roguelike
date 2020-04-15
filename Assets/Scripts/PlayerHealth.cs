@@ -36,12 +36,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
-        DecreaseHealthAnimation();
-        currentHealth -= dmgAmount;
-        if (currentHealth <= 0)
+        if (currentHealth > 0)
         {
-            Die(dmgOrigin);
-        }
+            DecreaseHealthAnimation();
+            currentHealth -= dmgAmount;
+            if (currentHealth <= 0)
+            {
+                Die(dmgOrigin);
+            }
+        } 
     }
 
     private void Die(DamageOrigin dmgOrigin)

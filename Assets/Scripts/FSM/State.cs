@@ -5,12 +5,9 @@ using UnityEngine;
 public enum StateType
 {
     Idle,
-    PatrolWalking,
-    PatrolFlying,
-    FollowWalking,
-    FollowFlying,
-    RangeAttack,
-    MeleeAttack,
+    PatrolWalking, PatrolFlying,
+    FollowWalking, FollowFlying,
+    RangeAttack, MeleeAttack,
 }
 
 public abstract class State
@@ -28,6 +25,7 @@ public abstract class State
 
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
-   
+    public virtual void FixedUpdateState() { }
+
     public abstract void UpdateState();  //hacer un método abstracto obliga a las clases derivadas a implementarlo
 }

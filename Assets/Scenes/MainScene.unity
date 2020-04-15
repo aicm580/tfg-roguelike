@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 341589296}
   - component: {fileID: 341589295}
   - component: {fileID: 341589294}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaterTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

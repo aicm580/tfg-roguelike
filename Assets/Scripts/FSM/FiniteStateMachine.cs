@@ -51,6 +51,14 @@ public class FiniteStateMachine : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.FixedUpdateState();
+        }
+    }
+
     #region STATE MANAGEMENT
 
     private void EnterState(int i)

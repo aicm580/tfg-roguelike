@@ -9,13 +9,18 @@ public class FollowWalkingState : State
     public override void UpdateState()
     {
 
-        /*
-        if ()
+        
+        if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= enemy.attackRange)
         {
             animator.SetBool("isAttacking", true);
             enemy.fsm.EnterNextState();
-        }*/
+        }
     }
 
-    
+    public override void FixedUpdateState()
+    {
+        
+    }
+
+
 }

@@ -17,7 +17,7 @@ public class RangeAttackState : State
 
     public override void UpdateState()
     {
-        if (Vector2.Distance(animator.transform.position, enemy.target.position) <= enemy.attackRange)
+        if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= enemy.attackRange)
         {
             direction = enemy.GetDirectionToPlayer();
             bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.75f);

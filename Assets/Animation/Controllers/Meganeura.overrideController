@@ -8,4 +8,12 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Meganeura
   m_Controller: {fileID: 9100000, guid: 75249224cfd5eed44bc162c03414315f, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 860c5bee149dc3c408bf54c350bf0303, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3fe05fe296cc5e47bdf99079017b4e8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5be21e6c06533bb4e9684a1815a77913, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3fe05fe296cc5e47bdf99079017b4e8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7009b68ccd7c60f4ea7e7ee21cb1b1f0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3fe05fe296cc5e47bdf99079017b4e8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0adc8cdfd45a79f41ba6f409203fe010, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3fe05fe296cc5e47bdf99079017b4e8, type: 2}

@@ -12,9 +12,9 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Move(Vector2 movement)
+    public void Move(Vector2 movement, float multiplier)
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * multiplier * Time.fixedDeltaTime);
     }
 
     public void MovementPoison(float poisonEffect, float poisonDuration)

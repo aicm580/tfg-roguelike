@@ -57,7 +57,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (GameManager.instance.playerAlive)
         {
-            characterMovement.Move(movement);
+            characterMovement.Move(movement, 1);
 
             firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
             lookDirection = (mousePos - firepointPos).normalized;

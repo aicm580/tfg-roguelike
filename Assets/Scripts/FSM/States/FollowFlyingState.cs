@@ -20,7 +20,7 @@ public class FollowFlyingState : State
         if (Vector2.Distance(enemy.transform.position, enemy.target.position) > enemy.attackRange)
         {
             Vector2 direction = enemy.GetDirectionToPlayer();
-            characterMovement.Move(direction);
+            characterMovement.Move(direction, 1.8f);
         }
         //Si está suficientemente cerca, lo ataca
         else

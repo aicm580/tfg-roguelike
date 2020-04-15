@@ -24,18 +24,23 @@ public class Enemy : MonoBehaviour
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
 
+    public GameObject rayOrigin; 
+
     [HideInInspector]
     public FiniteStateMachine fsm;
     [HideInInspector]
     public Transform target;
+    [HideInInspector]
+    public CharacterMovement characterMovement;
 
-    private CharacterMovement characterMovement;
+    private Animator animator;
 
 
     private void Awake()
     {
-        characterMovement = this.GetComponent<CharacterMovement>();
-        fsm = this.GetComponent<FiniteStateMachine>();
+        characterMovement = GetComponent<CharacterMovement>();
+        fsm = GetComponent<FiniteStateMachine>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -65,7 +70,7 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, target.position) > attackRange)
         {
             Vector2 direction = GetDirectionToPlayer();
-            characterMovement.Move(direction);
+            characterMovement.Move(direction, 1.8f);
             return true;
         }
         return false;
@@ -75,6 +80,12 @@ public class Enemy : MonoBehaviour
     {
         Vector2 direction = (target.position - transform.position).normalized;
         return direction;
+    }
+
+    public void SetAnimatorDirection(float x, float y)
+    {
+        animator.SetFloat("Horizontal", x);
+        animator.SetFloat("Vertical", y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

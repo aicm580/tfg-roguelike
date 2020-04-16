@@ -147,7 +147,8 @@ MonoBehaviour:
   calculatedFriends: 0
   detectionRange: 0
   attackRange: 0
-  rayOrigin: {fileID: 0}
+  followSpeed: 0
+  rayOrigin: {fileID: 3003422148409956840}
   fsm: {fileID: 0}
   target: {fileID: 0}
   characterMovement: {fileID: 0}

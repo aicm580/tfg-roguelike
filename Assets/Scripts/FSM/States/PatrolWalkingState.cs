@@ -18,7 +18,7 @@ public class PatrolWalkingState : State
         masks = blockingLayer | detectionLayer | enemiesLayer;
         initialPos = enemy.transform.position;
         direction = new Vector2(1, 0);
-        rayOrigin = enemy.rayOrigin.transform;
+        rayOrigin = enemy.rightRayOrigin;
     }
 
     public override void UpdateState()
@@ -34,12 +34,19 @@ public class PatrolWalkingState : State
                 if (direction.x == 0)
                 {
                     direction.x = 1;
-                    rayOrigin.localPosition = new Vector3(0.35f, 0, 0);
+                    rayOrigin = enemy.rightRayOrigin;
                 }
                 else
                 {
                     direction.x *= -1;
-                    rayOrigin.localPosition = new Vector3(rayOrigin.localPosition.x * -1, 0, 0);
+                    if (direction.x == 1)
+                    {
+                        rayOrigin = enemy.rightRayOrigin;
+                    }
+                    else
+                    {
+                        rayOrigin = enemy.leftRayOrigin;
+                    }
                 }
                 direction.y = 0;
             }
@@ -48,17 +55,35 @@ public class PatrolWalkingState : State
                 if (direction.y == 0)
                 {
                     direction.y = 1;
-                    rayOrigin.localPosition = new Vector3(0, 0.35f, 0);
+                    rayOrigin = enemy.topRayOrigin;
                 } else
                 {
                     direction.y *= -1;
-                    rayOrigin.localPosition = new Vector3(0, rayOrigin.localPosition.y * -1, 0);
+                    if (direction.y == 1)
+                    {
+                        rayOrigin = enemy.topRayOrigin;
+                    }
+                    else
+                    {
+                        rayOrigin = enemy.bottomRayOrigin;
+                    }
                 }
                 direction.x = 0;
             }
-            enemy.SetAnimatorDirection(direction.x, direction.y);
+
             initialPos = enemy.transform.position;
-        }    
+
+            //Antes de cambiar la dirección del Animator, comprobamos que la nueva dirección sea válida
+            RaycastHit2D newHit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
+            if (!newHit)
+                enemy.SetAnimatorDirection(direction.x, direction.y);
+        }
+
+        //Comprobamos si el enemigo divisa al jugador
+        if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")))
+        {
+            enemy.fsm.EnterNextState();
+        }
     }
 
     public override void FixedUpdateState()

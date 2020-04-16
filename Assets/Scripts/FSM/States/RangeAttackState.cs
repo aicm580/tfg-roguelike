@@ -13,6 +13,7 @@ public class RangeAttackState : State
     public override void OnStateEnter()
     {
         characterShooting = enemy.GetComponent<CharacterShooting>();
+        animator.SetBool("isAttacking", true);
     }
 
     public override void UpdateState()
@@ -25,8 +26,13 @@ public class RangeAttackState : State
         }
         else
         {
-            animator.SetBool("isAttacking", false);
-            enemy.fsm.EnterPreviousState();
+            
+            //enemy.fsm.EnterPreviousState();
         }
+    }
+
+    public override void OnStateExit()
+    {
+        animator.SetBool("isAttacking", false);
     }
 }

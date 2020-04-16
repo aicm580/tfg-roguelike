@@ -23,8 +23,10 @@ public class Enemy : MonoBehaviour
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
+    public float followSpeed; //actuará como parámetro multiplier del método CharacterMovement.Move
 
-    public GameObject rayOrigin; 
+    [HideInInspector]
+    public Transform rightRayOrigin, leftRayOrigin, topRayOrigin, bottomRayOrigin;
 
     [HideInInspector]
     public FiniteStateMachine fsm;
@@ -32,15 +34,30 @@ public class Enemy : MonoBehaviour
     public Transform target;
     [HideInInspector]
     public CharacterMovement characterMovement;
+    [HideInInspector]
+    public Vector2 playerDirection, rayOrigin;
 
     private Animator animator;
-
+    
 
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         fsm = GetComponent<FiniteStateMachine>();
         animator = GetComponentInChildren<Animator>();
+
+        rightRayOrigin = new GameObject("RightRayOrigin").transform;
+        rightRayOrigin.position = transform.position + new Vector3(0.35f, 0, 0);
+        rightRayOrigin.SetParent(transform);
+        leftRayOrigin = new GameObject("LeftRayOrigin").transform;
+        leftRayOrigin.position = transform.position + new Vector3(-0.35f, 0, 0);
+        leftRayOrigin.SetParent(transform);
+        topRayOrigin = new GameObject("TopRayOrigin").transform;
+        topRayOrigin.position = transform.position + new Vector3(0, 0.37f, 0);
+        topRayOrigin.SetParent(transform);
+        bottomRayOrigin = new GameObject("BottomRayOrigin").transform;
+        bottomRayOrigin.position = transform.position + new Vector3(0, -0.37f, 0);
+        bottomRayOrigin.SetParent(transform);
     }
 
     private void Start()
@@ -48,12 +65,12 @@ public class Enemy : MonoBehaviour
         target = GameManager.instance.player.transform;
     }
 
-    public bool DetectPlayer()
+    public bool NeedChangeState(float range, int mask)
     {
-        Vector2 direction = GetDirectionToPlayer();
-        Debug.DrawRay(transform.position, direction * detectionRange, Color.red);
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer"));
+        playerDirection = GetDirectionToPlayer();
+        rayOrigin = GetRayOrigin(target.position);
+        Debug.DrawRay(rayOrigin, playerDirection * range, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, playerDirection, range, mask);
 
         if (hit)
         {
@@ -65,6 +82,39 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
+    public Vector2 GetDirectionToPlayer()
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+        return direction;
+    }
+
+    private Vector2 GetRayOrigin(Vector2 target)
+    {
+        Vector2 rayOrigin;
+        float rightDistance = Vector2.Distance(rightRayOrigin.position, target);
+        float leftDistance = Vector2.Distance(leftRayOrigin.position, target);
+        float topDistance = Vector2.Distance(topRayOrigin.position, target);
+        float bottomDistance = Vector2.Distance(bottomRayOrigin.position, target);
+        float min = Mathf.Min(rightDistance, leftDistance, topDistance, bottomDistance);
+
+        if (min == rightDistance)
+            rayOrigin = rightRayOrigin.position;
+        else if (min == leftDistance)
+            rayOrigin = leftRayOrigin.position;
+        else if (min == topDistance)
+            rayOrigin = topRayOrigin.position;
+        else
+            rayOrigin = bottomRayOrigin.position;
+        
+        return rayOrigin;
+    }
+
+    public void SetAnimatorDirection(float x, float y)
+    {
+        animator.SetFloat("Horizontal", x);
+        animator.SetFloat("Vertical", y);
+    }
+
     public bool MoveTowardsPlayer()
     {
         if (Vector2.Distance(transform.position, target.position) > attackRange)
@@ -74,18 +124,6 @@ public class Enemy : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public Vector2 GetDirectionToPlayer()
-    {
-        Vector2 direction = (target.position - transform.position).normalized;
-        return direction;
-    }
-
-    public void SetAnimatorDirection(float x, float y)
-    {
-        animator.SetFloat("Horizontal", x);
-        animator.SetFloat("Vertical", y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -100,5 +138,7 @@ public class Enemy : MonoBehaviour
                 GetComponent<EnemyHealth>().TakeDamage(damage);
             }
         }
+
+        Debug.Log("COLLISION");
     }
 }

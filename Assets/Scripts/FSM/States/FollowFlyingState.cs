@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class FollowFlyingState : State
 {
-    private CharacterMovement characterMovement;
-
+    Vector2 direction;
 
     public FollowFlyingState(Enemy enemy, StateType state) : base(enemy, state) { }
 
     public override void OnStateEnter()
     {
-        characterMovement = enemy.GetComponent<CharacterMovement>();
+        animator.SetBool("isFollowing", true);
     }
 
     public override void UpdateState()
@@ -20,13 +19,16 @@ public class FollowFlyingState : State
         if (Vector2.Distance(enemy.transform.position, enemy.target.position) > enemy.attackRange)
         {
             Vector2 direction = enemy.GetDirectionToPlayer();
-            characterMovement.Move(direction, 1.8f);
         }
         //Si está suficientemente cerca, lo ataca
         else
         {
-            animator.SetBool("isAttacking", true);
             enemy.fsm.EnterNextState();
         }
-    }   
+    }
+
+    public override void FixedUpdateState()
+    {
+        enemy.characterMovement.Move(direction, 1.9f);
+    }
 }

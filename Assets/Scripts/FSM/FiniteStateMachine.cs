@@ -35,7 +35,6 @@ public class FiniteStateMachine : MonoBehaviour
                 enemyStates.Add(state);
             }
         }
-        Debug.Log(enemyStates.Count);
     }
 
     public void Start()

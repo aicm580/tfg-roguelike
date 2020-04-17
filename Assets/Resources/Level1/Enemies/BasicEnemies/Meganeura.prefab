@@ -141,7 +141,7 @@ MonoBehaviour:
   enemyType: 2
   biome: 1
   friends:
-    minVal: 1
+    minVal: 2
     maxVal: 6
   calculatedFriends: 0
   detectionRange: 2
@@ -154,6 +154,8 @@ MonoBehaviour:
   fsm: {fileID: 0}
   target: {fileID: 0}
   characterMovement: {fileID: 0}
+  playerDirection: {x: 0, y: 0}
+  rayOrigin: {x: 0, y: 0}
 --- !u!114 &9030558723332455016
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class FollowWalkingState : State
     int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
     int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
     int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
+    bool hit;
     bool rightHit;
     bool leftHit;
     bool topHit;
@@ -33,48 +34,50 @@ public class FollowWalkingState : State
         //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
         else
         {
-            direction = Vector2.zero;
-            rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.6f, masks);
-            leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.6f, masks);
-            topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.6f, masks);
-            bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.6f, masks);
+            hit = Physics2D.Raycast(enemy.rayOrigin, enemy.playerDirection, 0.5f, masks);
+            if (!hit)
+            {
+                direction = enemy.playerDirection;
+            }
+            else //algo bloquea el camino más corto hacia el jugador
+            {
+                direction = Vector2.zero;
+                rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.5f, masks);
+                leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.5f, masks);
+                topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.5f, masks);
+                bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.5f, masks);
 
-            if (Mathf.Round(enemy.playerDirection.x) > 0 && !rightHit)
-            {
-                direction = Vector2.right;
-            }
-            //Si lo anterior no ha resultado, probamos a ir a la dirección y del player
-            else if (Mathf.Round(enemy.playerDirection.y) > 0 && !topHit)
-            {
-                //Debug.Log("Miramos de movernos en vertical");
-                direction = Vector2.up;
-            }
-            else if (Mathf.Round(enemy.playerDirection.x) < 0 && !leftHit)
-            {
-                direction = Vector2.left;
-            }
-            else if (Mathf.Round(enemy.playerDirection.y) < 0 && !bottomHit)
-            {
-                direction = Vector2.down;
-            }
-            //Si no se puede ir en dirección al player, se mueve en cualquier otra dirección disponible
-            else
-            {
-                if (!topHit)
-                    direction = Vector2.up;
-                else if (!rightHit)
-                    direction = Vector2.right;
-                else if (!bottomHit)
-                    direction = Vector2.down;
-                else
-                    direction = Vector2.left;
+                float enemyPosX = enemy.transform.position.x;
+                float enemyPosY = enemy.transform.position.y;
+                float targetPosX = enemy.target.position.x;
+                float targetPosY = enemy.target.position.y;
+
+
+                if (targetPosX >= enemyPosX + 0.5f)
+                {
+                    Debug.Log("está a la derecha");
+                    if (!rightHit)
+                        direction = Vector2.right;
+                    else if (targetPosY >= enemyPosY && !topHit)
+                        direction = Vector2.up;
+                    else if (targetPosY < enemyPosY && !bottomHit)
+                        direction = Vector2.down;
+                }
+                else if (targetPosX < enemyPosX && !leftHit)
+                {
+                    if (!leftHit)
+                        direction = Vector2.left;
+                    else if (targetPosY >= enemyPosY && !topHit)
+                        direction = Vector2.up;
+                    else if (targetPosY < enemyPosY && !bottomHit)
+                        direction = Vector2.down;
+                }
             }
         }
     }
     
     public override void FixedUpdateState()
     {
-        Debug.Log(direction);
         enemy.characterMovement.Move(direction, enemy.followSpeed);
     }
 }

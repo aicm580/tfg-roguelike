@@ -47,16 +47,16 @@ public class Enemy : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         rightRayOrigin = new GameObject("RightRayOrigin").transform;
-        rightRayOrigin.position = transform.position + new Vector3(0.35f, 0, 0);
+        rightRayOrigin.position = transform.position + new Vector3(0.41f, 0, 0);
         rightRayOrigin.SetParent(transform);
         leftRayOrigin = new GameObject("LeftRayOrigin").transform;
-        leftRayOrigin.position = transform.position + new Vector3(-0.35f, 0, 0);
+        leftRayOrigin.position = transform.position + new Vector3(-0.41f, 0, 0);
         leftRayOrigin.SetParent(transform);
         topRayOrigin = new GameObject("TopRayOrigin").transform;
-        topRayOrigin.position = transform.position + new Vector3(0, 0.37f, 0);
+        topRayOrigin.position = transform.position + new Vector3(0, 0.41f, 0);
         topRayOrigin.SetParent(transform);
         bottomRayOrigin = new GameObject("BottomRayOrigin").transform;
-        bottomRayOrigin.position = transform.position + new Vector3(0, -0.37f, 0);
+        bottomRayOrigin.position = transform.position + new Vector3(0, -0.41f, 0);
         bottomRayOrigin.SetParent(transform);
     }
 
@@ -140,5 +140,13 @@ public class Enemy : MonoBehaviour
         }
 
         Debug.Log("COLLISION");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            Debug.Log(collision.gameObject.name);
+        }
     }
 }

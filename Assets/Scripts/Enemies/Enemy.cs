@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
+    public float giveUpRange; //distancia a la que el enemigo deja de perseguir al jugador
     public float followSpeed; //actuará como parámetro multiplier del método CharacterMovement.Move
 
     [HideInInspector]

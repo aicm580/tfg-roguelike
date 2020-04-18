@@ -12,9 +12,8 @@ public class FollowWalkingState : State
 {
     Vector2 direction;
     Vector2 colDirection;
-    float timer = 0;
-    float timeToWait = 0.15f;
-    bool collisionDetected = false;
+    Vector2? destination;
+    
     int masks;
     int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
     int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
@@ -36,33 +35,21 @@ public class FollowWalkingState : State
 
     public override void UpdateState()
     {
-        /*
-        if (collisionDetected)
-        {
-            direction = colDirection;
-            timer += Time.deltaTime;
-            if (timer >= timeToWait)
-            {
-                timer = 0;
-                collisionDetected = false;
-            }
-        }*/
-
         //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
         if (enemy.NeedChangeState(enemy.attackRange, masks))
         {
             // enemy.fsm.EnterNextState();
         }
         //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
-        else
+        if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
         {
-            hit = Physics2D.Raycast(enemy.rayOrigin, enemy.playerDirection, 0.5f, masks);
-            hit1 = Physics2D.Raycast(enemy.rayOrigin1, enemy.playerDirection, 0.5f, masks);
-            hit2 = Physics2D.Raycast(enemy.rayOrigin2, enemy.playerDirection, 0.5f, masks);
-            rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.18f, masks);
-            leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.18f, masks);
-            topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.18f, masks);
-            bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.18f, masks);
+            hit = Physics2D.Raycast(enemy.rayOrigin, enemy.playerDirection, 0.8f, masks);
+            hit1 = Physics2D.Raycast(enemy.rayOrigin1, enemy.playerDirection, 0.8f, masks);
+            hit2 = Physics2D.Raycast(enemy.rayOrigin2, enemy.playerDirection, 0.8f, masks);
+            rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.2f, masks);
+            leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.2f, masks);
+            topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.2f, masks);
+            bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.2f, masks);
 
             if (!hit && !hit1 && !hit2 && !rightHit && !leftHit && !topHit && !bottomHit)
             {
@@ -72,17 +59,17 @@ public class FollowWalkingState : State
             {
                 direction = Vector2.zero;
                
-                rightTopHit = Physics2D.Raycast(enemy.rightTopOrigin, Vector2.right, 0.75f, masks);
-                rightBottomHit = Physics2D.Raycast(enemy.rightBottomOrigin, Vector2.right, 0.75f, masks);
+                rightTopHit = Physics2D.Raycast(enemy.rightTopOrigin, Vector2.right, 0.8f, masks);
+                rightBottomHit = Physics2D.Raycast(enemy.rightBottomOrigin, Vector2.right, 0.8f, masks);
                 
-                leftTopHit = Physics2D.Raycast(enemy.leftTopOrigin, Vector2.left, 0.75f, masks);
-                leftBottomHit = Physics2D.Raycast(enemy.leftBottomOrigin, Vector2.left, 0.75f, masks);
+                leftTopHit = Physics2D.Raycast(enemy.leftTopOrigin, Vector2.left, 0.8f, masks);
+                leftBottomHit = Physics2D.Raycast(enemy.leftBottomOrigin, Vector2.left, 0.8f, masks);
                
-                topRightHit = Physics2D.Raycast(enemy.topRightOrigin, Vector2.up, 0.75f, masks);
-                topLeftHit = Physics2D.Raycast(enemy.topLeftOrigin, Vector2.up, 0.75f, masks);
+                topRightHit = Physics2D.Raycast(enemy.topRightOrigin, Vector2.up, 0.8f, masks);
+                topLeftHit = Physics2D.Raycast(enemy.topLeftOrigin, Vector2.up, 0.8f, masks);
                 
-                bottomRightHit = Physics2D.Raycast(enemy.bottomRightOrigin, Vector2.down, 0.75f, masks);
-                bottomLeftHit = Physics2D.Raycast(enemy.bottomLeftOrigin, Vector2.down, 0.75f, masks);
+                bottomRightHit = Physics2D.Raycast(enemy.bottomRightOrigin, Vector2.down, 0.8f, masks);
+                bottomLeftHit = Physics2D.Raycast(enemy.bottomLeftOrigin, Vector2.down, 0.8f, masks);
 
                 float enemyPosX = enemy.transform.position.x;
                 float enemyPosY = enemy.transform.position.y;
@@ -134,11 +121,22 @@ public class FollowWalkingState : State
                     }     
                 }
             }
+            destination = enemy.transform.position + new Vector3(direction.x * 0.7f, direction.y * 0.7f, 0);
+        }
+
+        if (Vector2.Distance(enemy.target.position, enemy.transform.position) >= enemy.giveUpRange)
+        {
+            enemy.fsm.EnterPreviousState();
         }
     }
     
     public override void FixedUpdateState()
     {
         enemy.characterMovement.Move(direction, enemy.followSpeed);
+    }
+
+    public override void OnStateExit()
+    {
+        destination = null;
     }
 }

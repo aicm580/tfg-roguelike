@@ -26,7 +26,6 @@ public abstract class State
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
     public virtual void FixedUpdateState() { }
-    public virtual void OnTriggerEnterState(Collider2D collider) { }
 
     public abstract void UpdateState();  //hacer un método abstracto obliga a las clases derivadas a implementarlo
 }

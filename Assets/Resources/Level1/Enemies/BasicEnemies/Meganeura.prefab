@@ -146,6 +146,7 @@ MonoBehaviour:
   calculatedFriends: 0
   detectionRange: 2
   attackRange: 1
+  giveUpRange: 4
   followSpeed: 0
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
@@ -156,6 +157,16 @@ MonoBehaviour:
   characterMovement: {fileID: 0}
   playerDirection: {x: 0, y: 0}
   rayOrigin: {x: 0, y: 0}
+  rayOrigin1: {x: 0, y: 0}
+  rayOrigin2: {x: 0, y: 0}
+  rightTopOrigin: {x: 0, y: 0}
+  rightBottomOrigin: {x: 0, y: 0}
+  leftTopOrigin: {x: 0, y: 0}
+  leftBottomOrigin: {x: 0, y: 0}
+  bottomRightOrigin: {x: 0, y: 0}
+  bottomLeftOrigin: {x: 0, y: 0}
+  topRightOrigin: {x: 0, y: 0}
+  topLeftOrigin: {x: 0, y: 0}
 --- !u!114 &9030558723332455016
 MonoBehaviour:
   m_ObjectHideFlags: 0

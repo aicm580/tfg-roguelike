@@ -58,6 +58,14 @@ public class FiniteStateMachine : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (currentState != null)
+        {
+            currentState.OnTriggerEnterState(collider);
+        }
+    }
+
     #region STATE MANAGEMENT
 
     private void EnterState(int i)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,15 +11,19 @@ public enum Move
 public class FollowWalkingState : State
 {
     Vector2 direction;
+    Vector2 colDirection;
+    float timer = 0;
+    float timeToWait = 0.15f;
+    bool collisionDetected = false;
     int masks;
     int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
     int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
     int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
-    bool hit;
-    bool rightHit;
-    bool leftHit;
-    bool topHit;
-    bool bottomHit;
+    bool hit, hit1, hit2;
+    bool rightHit, rightTopHit, rightBottomHit;
+    bool leftHit, leftTopHit, leftBottomHit;
+    bool topHit, topRightHit, topLeftHit;
+    bool bottomHit, bottomRightHit, bottomLeftHit;
     Move lastMove;
 
     public FollowWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
@@ -31,6 +36,18 @@ public class FollowWalkingState : State
 
     public override void UpdateState()
     {
+        /*
+        if (collisionDetected)
+        {
+            direction = colDirection;
+            timer += Time.deltaTime;
+            if (timer >= timeToWait)
+            {
+                timer = 0;
+                collisionDetected = false;
+            }
+        }*/
+
         //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
         if (enemy.NeedChangeState(enemy.attackRange, masks))
         {
@@ -40,39 +57,54 @@ public class FollowWalkingState : State
         else
         {
             hit = Physics2D.Raycast(enemy.rayOrigin, enemy.playerDirection, 0.5f, masks);
-            if (!hit)
+            hit1 = Physics2D.Raycast(enemy.rayOrigin1, enemy.playerDirection, 0.5f, masks);
+            hit2 = Physics2D.Raycast(enemy.rayOrigin2, enemy.playerDirection, 0.5f, masks);
+            rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.18f, masks);
+            leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.18f, masks);
+            topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.18f, masks);
+            bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.18f, masks);
+
+            if (!hit && !hit1 && !hit2 && !rightHit && !leftHit && !topHit && !bottomHit)
             {
                 direction = enemy.playerDirection;
             }
             else //algo bloquea el camino más corto hacia el jugador
             {
                 direction = Vector2.zero;
-                rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.4f, masks);
-                leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.4f, masks);
-                topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.4f, masks);
-                bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.4f, masks);
+               
+                rightTopHit = Physics2D.Raycast(enemy.rightTopOrigin, Vector2.right, 0.75f, masks);
+                rightBottomHit = Physics2D.Raycast(enemy.rightBottomOrigin, Vector2.right, 0.75f, masks);
+                
+                leftTopHit = Physics2D.Raycast(enemy.leftTopOrigin, Vector2.left, 0.75f, masks);
+                leftBottomHit = Physics2D.Raycast(enemy.leftBottomOrigin, Vector2.left, 0.75f, masks);
+               
+                topRightHit = Physics2D.Raycast(enemy.topRightOrigin, Vector2.up, 0.75f, masks);
+                topLeftHit = Physics2D.Raycast(enemy.topLeftOrigin, Vector2.up, 0.75f, masks);
+                
+                bottomRightHit = Physics2D.Raycast(enemy.bottomRightOrigin, Vector2.down, 0.75f, masks);
+                bottomLeftHit = Physics2D.Raycast(enemy.bottomLeftOrigin, Vector2.down, 0.75f, masks);
 
                 float enemyPosX = enemy.transform.position.x;
                 float enemyPosY = enemy.transform.position.y;
                 float targetPosX = enemy.target.position.x;
                 float targetPosY = enemy.target.position.y;
                 
-                if (targetPosX >= enemyPosX + 0.1f && !rightHit && lastMove != Move.Left)
+                if (targetPosX >= enemyPosX && !rightHit && !rightTopHit && !rightBottomHit && lastMove != Move.Left)
                 {
                     direction = Vector2.right;
                     lastMove = Move.Right;    
                 }
-                else if (targetPosY >= enemyPosY && !topHit && lastMove != Move.Down)
+                else if (targetPosY > enemyPosY && !topHit && !topRightHit && !topLeftHit && lastMove != Move.Down)
                 {
                     direction = Vector2.up;
                     lastMove = Move.Up;
                 }
-                else if (targetPosX < enemyPosX - 0.1f && !leftHit && lastMove != Move.Right)
+                else if (targetPosX < enemyPosX && !leftHit && !leftTopHit && !leftBottomHit && lastMove != Move.Right)
                 {
                     direction = Vector2.left;
                     lastMove = Move.Left;
                 }
-                else if (targetPosY < enemyPosY && !bottomHit && lastMove != Move.Up)
+                else if (targetPosY < enemyPosY && !bottomHit && !bottomRightHit && !bottomLeftHit && lastMove != Move.Up)
                 {
                     direction = Vector2.down;
                     lastMove = Move.Down;
@@ -80,22 +112,22 @@ public class FollowWalkingState : State
                 
                 if (direction == Vector2.zero)
                 {
-                    if (!leftHit && lastMove != Move.Right)
+                    if (!leftHit && !leftTopHit && !leftBottomHit && lastMove != Move.Right)
                     {
                         direction = Vector2.left;
                         lastMove = Move.Left;
                     }
-                    else if (!topHit && lastMove != Move.Down)
+                    else if (!topHit && !topRightHit && !topLeftHit && lastMove != Move.Down)
                     {
                         direction = Vector2.up;
                         lastMove = Move.Up;
                     }
-                    else if (!rightHit)
+                    else if (!rightHit && !rightTopHit && !rightBottomHit && lastMove != Move.Left)
                     {
                         direction = Vector2.right;
                         lastMove = Move.Right;
                     }
-                    else if (!bottomHit)
+                    else if (!bottomHit && !bottomRightHit && !bottomLeftHit && lastMove != Move.Up)
                     {
                         direction = Vector2.down;
                         lastMove = Move.Down;

@@ -35,7 +35,9 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public CharacterMovement characterMovement;
     [HideInInspector]
-    public Vector2 playerDirection, rayOrigin;
+    public Vector2 playerDirection, rayOrigin, rayOrigin1, rayOrigin2;
+    [HideInInspector]
+    public Vector2 rightTopOrigin, rightBottomOrigin, leftTopOrigin, leftBottomOrigin, bottomRightOrigin, bottomLeftOrigin, topRightOrigin, topLeftOrigin;
 
     private Animator animator;
     
@@ -49,12 +51,15 @@ public class Enemy : MonoBehaviour
         rightRayOrigin = new GameObject("RightRayOrigin").transform;
         rightRayOrigin.position = transform.position + new Vector3(0.35f, 0, 0);
         rightRayOrigin.SetParent(transform);
+
         leftRayOrigin = new GameObject("LeftRayOrigin").transform;
         leftRayOrigin.position = transform.position + new Vector3(-0.35f, 0, 0);
         leftRayOrigin.SetParent(transform);
+
         topRayOrigin = new GameObject("TopRayOrigin").transform;
         topRayOrigin.position = transform.position + new Vector3(0, 0.35f, 0);
         topRayOrigin.SetParent(transform);
+
         bottomRayOrigin = new GameObject("BottomRayOrigin").transform;
         bottomRayOrigin.position = transform.position + new Vector3(0, -0.35f, 0);
         bottomRayOrigin.SetParent(transform);
@@ -68,7 +73,7 @@ public class Enemy : MonoBehaviour
     public bool NeedChangeState(float range, int mask)
     {
         playerDirection = GetDirectionToPlayer();
-        rayOrigin = GetRayOrigin(target.position);
+        GetRayOrigin(target.position);
         Debug.DrawRay(rayOrigin, playerDirection * range, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, playerDirection, range, mask);
 
@@ -88,25 +93,47 @@ public class Enemy : MonoBehaviour
         return direction;
     }
 
-    private Vector2 GetRayOrigin(Vector2 target)
+    private void GetRayOrigin(Vector2 target)
     {
-        Vector2 rayOrigin;
         float rightDistance = Vector2.Distance(rightRayOrigin.position, target);
         float leftDistance = Vector2.Distance(leftRayOrigin.position, target);
         float topDistance = Vector2.Distance(topRayOrigin.position, target);
         float bottomDistance = Vector2.Distance(bottomRayOrigin.position, target);
         float min = Mathf.Min(rightDistance, leftDistance, topDistance, bottomDistance);
 
+        rightTopOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y + 0.3f);
+        rightBottomOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y - 0.3f);
+        leftTopOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y + 0.33f);
+        leftBottomOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y - 0.3f);
+        bottomRightOrigin = new Vector2(bottomRayOrigin.position.x + 0.3f, bottomRayOrigin.position.y);
+        bottomLeftOrigin = new Vector2(bottomRayOrigin.position.x - 0.3f, bottomRayOrigin.position.y);
+        topRightOrigin = new Vector2(topRayOrigin.position.x + 0.3f, topRayOrigin.position.y);
+        topLeftOrigin = new Vector2(topRayOrigin.position.x - 0.3f, topRayOrigin.position.y);
+
         if (min == rightDistance)
+        {
             rayOrigin = rightRayOrigin.position;
+            rayOrigin1 = rightTopOrigin;
+            rayOrigin2 = rightBottomOrigin;
+        }
         else if (min == leftDistance)
+        {
             rayOrigin = leftRayOrigin.position;
+            rayOrigin1 = leftTopOrigin;
+            rayOrigin2 = leftBottomOrigin;
+        }
         else if (min == topDistance)
+        {
             rayOrigin = topRayOrigin.position;
+            rayOrigin1 = topRightOrigin;
+            rayOrigin2 = topLeftOrigin;
+        } 
         else
+        {
             rayOrigin = bottomRayOrigin.position;
-        
-        return rayOrigin;
+            rayOrigin1 = bottomRightOrigin;
+            rayOrigin2 = bottomLeftOrigin;
+        }  
     }
 
     public void SetAnimatorDirection(float x, float y)
@@ -139,4 +166,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+   
 }

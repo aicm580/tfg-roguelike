@@ -5,6 +5,7 @@ public class PatrolWalkingState : State
     Vector2 initialPos;
     Vector2 direction;
     Transform rayOrigin;
+    RaycastHit2D hit, hit1, hit2;
     int masks;
     int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
     int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
@@ -23,10 +24,12 @@ public class PatrolWalkingState : State
 
     public override void UpdateState()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
+        hit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
+        hit1 = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
+        hit2 = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
         Debug.DrawRay(rayOrigin.position, direction, Color.green);
 
-        if (hit || (Vector2.Distance(enemy.transform.position, initialPos) >= 1.5f))
+        if (hit || hit1 || hit2 || (Vector2.Distance(enemy.transform.position, initialPos) >= 1.5f))
         {
             float random = Random.Range(0f, 1f);
             if (random <= 0.5f)
@@ -40,13 +43,9 @@ public class PatrolWalkingState : State
                 {
                     direction.x *= -1;
                     if (direction.x == 1)
-                    {
                         rayOrigin = enemy.rightRayOrigin;
-                    }
                     else
-                    {
                         rayOrigin = enemy.leftRayOrigin;
-                    }
                 }
                 direction.y = 0;
             }
@@ -60,13 +59,9 @@ public class PatrolWalkingState : State
                 {
                     direction.y *= -1;
                     if (direction.y == 1)
-                    {
                         rayOrigin = enemy.topRayOrigin;
-                    }
                     else
-                    {
                         rayOrigin = enemy.bottomRayOrigin;
-                    }
                 }
                 direction.x = 0;
             }

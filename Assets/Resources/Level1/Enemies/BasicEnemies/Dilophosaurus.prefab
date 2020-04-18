@@ -161,7 +161,7 @@ MonoBehaviour:
     maxVal: 2
   calculatedFriends: 0
   detectionRange: 3.7
-  attackRange: 1.2
+  attackRange: 2
   giveUpRange: 6.2
   followSpeed: 2.2
   rightRayOrigin: {fileID: 0}

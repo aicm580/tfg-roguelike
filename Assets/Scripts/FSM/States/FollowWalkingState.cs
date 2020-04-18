@@ -38,7 +38,7 @@ public class FollowWalkingState : State
         //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
         if (enemy.NeedChangeState(enemy.attackRange, masks))
         {
-            // enemy.fsm.EnterNextState();
+            enemy.fsm.EnterNextState();
         }
         //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
         if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
@@ -121,7 +121,7 @@ public class FollowWalkingState : State
                     }     
                 }
             }
-            destination = enemy.transform.position + new Vector3(direction.x * 0.7f, direction.y * 0.7f, 0);
+            destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
         }
 
         if (Vector2.Distance(enemy.target.position, enemy.transform.position) >= enemy.giveUpRange)

@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
 
         rightTopOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y + 0.3f);
         rightBottomOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y - 0.3f);
-        leftTopOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y + 0.33f);
+        leftTopOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y + 0.3f);
         leftBottomOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y - 0.3f);
         bottomRightOrigin = new Vector2(bottomRayOrigin.position.x + 0.3f, bottomRayOrigin.position.y);
         bottomLeftOrigin = new Vector2(bottomRayOrigin.position.x - 0.3f, bottomRayOrigin.position.y);

@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.2
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -141,3 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdd21f507a32e4418ec7d6f8a546f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: 5
+  bulletSpeed: 5
+  bulletLifetime: 0.9
+  bulletOwner: 0
+  direction: {x: 0, y: 0}

@@ -24,6 +24,17 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Si la bala choca con un enemigo, comprobamos que la bala sea del jugador antes de infligir daño al enemigo
+        if (collision.gameObject.tag == "Enemy" && bulletOwner == DamageOrigin.Player)
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
+        }
+        //Si la bala choca con el jugador, comprobamos que la bala sea de un enemigo antes de infligir daño al jugador
+        else if (collision.gameObject.tag == "Player" && bulletOwner == DamageOrigin.NormalEnemy)
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.NormalEnemy);
+        }
+
         DestroyBullet();
     }
 

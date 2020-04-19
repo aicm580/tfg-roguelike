@@ -147,7 +147,7 @@ MonoBehaviour:
   detectionRange: 2
   attackRange: 1
   giveUpRange: 4
-  followSpeed: 0
+  followSpeed: 1.8
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}

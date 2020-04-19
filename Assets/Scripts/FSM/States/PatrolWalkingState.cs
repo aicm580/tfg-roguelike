@@ -29,9 +29,6 @@ public class PatrolWalkingState : State
         hit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
         hit1 = Physics2D.Raycast(rays[0], direction, 1, masks);
         hit2 = Physics2D.Raycast(rays[1], direction, 1, masks);
-        Debug.DrawRay(rayOrigin.position, direction, Color.green);
-        Debug.DrawRay(rays[0], direction, Color.green);
-        Debug.DrawRay(rays[1], direction, Color.green);
 
         if (hit || hit1 || hit2 || (Vector2.Distance(enemy.transform.position, initialPos) >= 1.5f))
         {

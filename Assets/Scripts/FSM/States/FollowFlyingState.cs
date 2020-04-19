@@ -29,6 +29,6 @@ public class FollowFlyingState : State
 
     public override void FixedUpdateState()
     {
-        enemy.characterMovement.Move(direction, 1.9f);
+        enemy.characterMovement.Move(direction, enemy.followSpeed);
     }
 }

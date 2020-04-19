@@ -14,12 +14,14 @@ public class EnemyHealth : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         currentHealth = initHealth;
+        Debug.Log(currentHealth);
     }
 
     public void TakeDamage(int dmgAmount)
     {
         PopupDamage(dmgAmount);
         currentHealth -= dmgAmount;
+        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();

@@ -8,12 +8,10 @@ public class PatrolFlyingState : State
 
     public override void UpdateState()
     {
-        /*
         //Comprobamos si el enemigo divisa al jugador
         if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")))
         {
             enemy.fsm.EnterNextState();
         }
-        */
     }
 }

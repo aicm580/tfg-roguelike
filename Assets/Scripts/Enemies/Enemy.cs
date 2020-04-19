@@ -167,18 +167,4 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Comprobamos si el enemigo colisiona con algo que le haga daño
-        if (collision.gameObject.tag == "Bullet")
-        {
-            //Comprobamos que la bala ha sido lanzada por el jugador
-            if (collision.gameObject.GetComponent<Bullet>().bulletOwner == DamageOrigin.Player)
-            {
-                int damage = collision.gameObject.GetComponent<Bullet>().bulletDamage;
-                GetComponent<EnemyHealth>().TakeDamage(damage);
-            }
-        }
-    }
 }

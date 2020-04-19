@@ -13,18 +13,23 @@ public class RangeAttackState : State
     public override void OnStateEnter()
     {
         characterShooting = enemy.GetComponent<CharacterShooting>();
-
-        if (characterShooting.canShoot)
-            animator.SetBool("isAttacking", true);
     }
 
     public override void UpdateState()
     {
-        if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= enemy.attackRange && characterShooting.canShoot)
+        if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= enemy.attackRange)
         {
-            direction = enemy.GetDirectionToPlayer();
-            bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.4f);
-            characterShooting.Shoot(bulletOrigin, direction, Quaternion.identity, DamageOrigin.NormalEnemy);
+            if (characterShooting.canShoot)
+            {
+                animator.SetBool("isAttacking", true);
+                direction = enemy.GetDirectionToPlayer();
+                bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.4f);
+                characterShooting.Shoot(bulletOrigin, direction, Quaternion.identity, DamageOrigin.NormalEnemy);
+            }
+            else
+            {
+                animator.SetBool("isAttacking", false);
+            }
         }
         else
         {

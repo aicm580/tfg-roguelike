@@ -81,9 +81,7 @@ public class Enemy : MonoBehaviour
         if (hit)
         {
             if (hit.collider.tag == "Player")
-            {
                 return true;
-            }
         }
         return false;
     }
@@ -112,29 +110,45 @@ public class Enemy : MonoBehaviour
         topLeftOrigin = new Vector2(topRayOrigin.position.x - 0.3f, topRayOrigin.position.y);
 
         if (min == rightDistance)
-        {
             rayOrigin = rightRayOrigin.position;
-            rayOrigin1 = rightTopOrigin;
-            rayOrigin2 = rightBottomOrigin;
-        }
         else if (min == leftDistance)
-        {
             rayOrigin = leftRayOrigin.position;
-            rayOrigin1 = leftTopOrigin;
-            rayOrigin2 = leftBottomOrigin;
-        }
         else if (min == topDistance)
-        {
             rayOrigin = topRayOrigin.position;
-            rayOrigin1 = topRightOrigin;
-            rayOrigin2 = topLeftOrigin;
-        } 
         else
-        {
             rayOrigin = bottomRayOrigin.position;
-            rayOrigin1 = bottomRightOrigin;
-            rayOrigin2 = bottomLeftOrigin;
-        }  
+
+        Vector2[] rays = GetOtherRays(rayOrigin);
+        rayOrigin1 = rays[0];
+        rayOrigin2 = rays[1];
+    }
+
+    public Vector2[] GetOtherRays(Vector3 ray)
+    {
+        Vector2[] rays = new Vector2[2];
+
+        if (ray == rightRayOrigin.position)
+        {
+            rays[0] = rightTopOrigin;
+            rays[1] = rightBottomOrigin;
+        }
+        else if (ray == leftRayOrigin.position)
+        {
+            rays[0] = leftTopOrigin;
+            rays[1] = leftBottomOrigin;
+        }
+        else if (ray == topRayOrigin.position)
+        {
+            rays[0] = topRightOrigin;
+            rays[1] = topLeftOrigin;
+        }
+        else if (ray == bottomRayOrigin.position)
+        {
+            rays[0] = bottomRightOrigin;
+            rays[1] = bottomLeftOrigin;
+        }
+
+        return rays;
     }
 
     public void SetAnimatorDirection(float x, float y)
@@ -167,6 +181,4 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
-   
 }

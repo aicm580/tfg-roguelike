@@ -183,6 +183,16 @@ public class GameManager : MonoBehaviour
         InitRun();
     }
 
+    public void NextLevel()
+    {
+        loadPanel.SetActive(true);
+        runIsReady = false;
+        StartCoroutine(DisableLoadPanel());
+        level++;
+        InitLevel();
+        runIsReady = true;
+    }
+
     private void Pause()
     {
         timerActive = false;

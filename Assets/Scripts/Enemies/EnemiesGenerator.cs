@@ -8,7 +8,8 @@ public class EnemiesGenerator : MonoBehaviour
     private MapGenerator mapGenerator;
     private GameManager gameManager;
 
-    private GameObject enemiesHolder;
+    [HideInInspector]
+    public GameObject enemiesHolder; 
 
     public List<GameObject> enemies = new List<GameObject>();
 

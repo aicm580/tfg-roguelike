@@ -34,6 +34,15 @@ public class PlayerHealth : MonoBehaviour
         SetUIHearts();
     }
 
+    public void Heal(int healAmount)
+    {
+        if (currentHealth < currentHearts)
+        {
+            currentHealth += healAmount;
+            IncreaseHealthAnimation();
+        }
+    }
+
     public void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
     {
         if (currentHealth > 0)
@@ -41,9 +50,7 @@ public class PlayerHealth : MonoBehaviour
             DecreaseHealthAnimation();
             currentHealth -= dmgAmount;
             if (currentHealth <= 0)
-            {
                 Die(dmgOrigin);
-            }
         } 
     }
 
@@ -53,22 +60,10 @@ public class PlayerHealth : MonoBehaviour
         GameManager.instance.GameOver();
     }
 
-    public void Heal(int healAmount)
-    {
-        IncreaseHealthAnimation();
-        currentHealth += healAmount;
-        if (currentHealth > maxHearts)
-        {
-            currentHealth = maxHearts;
-        }
-    }
-
     private void SetUIHearts()
     {
         if (currentHealth > currentHearts)
-        {
             currentHealth = initHearts;
-        }
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -101,6 +96,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void IncreaseHealthAnimation()
     {
-
+        hearts[currentHealth].GetComponent<Animator>().SetTrigger("winHeart");
+        hearts[currentHealth].GetComponent<Animator>().SetBool("empty", false);
+        Debug.Log("YOU WON A LIFE");
     }
 }

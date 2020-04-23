@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private bool runIsReady = false;
 
     private int level;
+    private int lastLevel = 2;
 
     public float timePlayed;
     private bool timerActive = false;
@@ -185,12 +186,19 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        loadPanel.SetActive(true);
-        runIsReady = false;
-        StartCoroutine(DisableLoadPanel());
-        level++;
-        InitLevel();
-        runIsReady = true;
+        if (level < lastLevel)
+        {
+            loadPanel.SetActive(true);
+            runIsReady = false;
+            StartCoroutine(DisableLoadPanel());
+            level++;
+            InitLevel();
+            runIsReady = true;
+        }
+        else
+        {
+            Debug.Log("GAME COMPLETED");
+        }
     }
 
     private void Pause()

@@ -1468,6 +1468,7 @@ GameObject:
   - component: {fileID: 576787812}
   - component: {fileID: 576787811}
   - component: {fileID: 576787810}
+  - component: {fileID: 576787814}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -1487,6 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2a698ebe2bbe844baca97ed7896e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesHolder: {fileID: 0}
   enemies: []
   enemiesPrefabs: []
   bossPrefab: {fileID: 0}
@@ -1518,12 +1520,12 @@ MonoBehaviour:
     minVal: 5
     maxVal: 7
   groundMap: {fileID: 1969577271}
-  groundTile: {fileID: 11400000, guid: fbb90dab2ef8c1249930fab3544d24a4, type: 2}
   wallMap: {fileID: 1729511995}
-  wallTile: {fileID: 11400000, guid: 9686af0cc931d714389439d84592127b, type: 2}
   obstacleMap: {fileID: 1744379945}
-  smallObstacleTile: {fileID: 11400000, guid: 6248df971f668044190115be775d4620, type: 2}
   waterMap: {fileID: 341589296}
+  groundTile: {fileID: 11400000, guid: fbb90dab2ef8c1249930fab3544d24a4, type: 2}
+  wallTile: {fileID: 11400000, guid: 9686af0cc931d714389439d84592127b, type: 2}
+  smallObstacleTile: {fileID: 11400000, guid: 6248df971f668044190115be775d4620, type: 2}
   waterTile: {fileID: 11400000, guid: b66a7288b04d3fb4d8727f779dc1a3e2, type: 2}
 --- !u!114 &576787812
 MonoBehaviour:
@@ -1570,6 +1572,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576787814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576787809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934c46acb5e4ad34aaa9949332723bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakablesHolder: {fileID: 0}
+  breakablesPrefabs: []
 --- !u!1 &577882521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,6 +3172,7 @@ MonoBehaviour:
   shootDelay: 0.22
   bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
     type: 3}
+  canShoot: 1
 --- !u!114 &1198681093
 MonoBehaviour:
   m_ObjectHideFlags: 0

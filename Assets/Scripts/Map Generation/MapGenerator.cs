@@ -19,21 +19,9 @@ public class MapGenerator : MonoBehaviour
     private List<Vector3Int> positions = new List<Vector3Int>();
 
     [SerializeField]
-    private Tilemap groundMap;
+    private Tilemap groundMap, wallMap, obstacleMap, waterMap;
     [SerializeField]
-    private TileBase groundTile;
-    [SerializeField]
-    private Tilemap wallMap;
-    [SerializeField]
-    private TileBase wallTile;
-    [SerializeField]
-    private Tilemap obstacleMap;
-    [SerializeField]
-    private TileBase smallObstacleTile;
-    [SerializeField]
-    private Tilemap waterMap;
-    [SerializeField]
-    private TileBase waterTile;
+    private TileBase groundTile, wallTile, smallObstacleTile, waterTile;
 
 
     public void SetupMap()

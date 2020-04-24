@@ -96,8 +96,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void IncreaseHealthAnimation()
     {
-        hearts[currentHealth].GetComponent<Animator>().SetTrigger("winHeart");
-        hearts[currentHealth].GetComponent<Animator>().SetBool("empty", false);
+        hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("findHeart");
+        hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", false);
         Debug.Log("YOU WON A LIFE");
     }
 }

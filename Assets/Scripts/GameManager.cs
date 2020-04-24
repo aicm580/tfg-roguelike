@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
+    private BreakableGenerator breakableGenerator;
 
     public Transform player;
     public GameObject gameOverPanel;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
+        breakableGenerator = GetComponent<BreakableGenerator>();
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
@@ -101,6 +103,8 @@ public class GameManager : MonoBehaviour
     { 
         //Generamos el mapa del nivel
         mapGenerator.SetupMap();
+        //Generamos los objetos rompibles del nivel
+        breakableGenerator.GenerateBreakables(level);
         //Indicamos la posición inicial del jugador
         player.transform.position = InitPlayerPosition();
         //Generamos los enemigos del nivel

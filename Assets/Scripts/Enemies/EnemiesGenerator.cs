@@ -6,11 +6,11 @@ using UnityEngine;
 public class EnemiesGenerator : MonoBehaviour
 {
     private MapGenerator mapGenerator;
-    private GameManager gameManager;
 
     [HideInInspector]
-    public GameObject enemiesHolder; 
+    public GameObject enemiesHolder;
 
+    [HideInInspector]
     public List<GameObject> enemies = new List<GameObject>();
 
     public List<GameObject> enemiesPrefabs;
@@ -23,7 +23,6 @@ public class EnemiesGenerator : MonoBehaviour
     void SetupEnemies(int lvl)
     {
         mapGenerator = GetComponent<MapGenerator>();
-        gameManager = GetComponent<GameManager>();
         
         if (GameObject.Find("EnemiesHolder"))
         {
@@ -37,7 +36,7 @@ public class EnemiesGenerator : MonoBehaviour
         {
             enemiesHolder = new GameObject("EnemiesHolder");
         }
-        
+
         //Vaciamos la lista de enemigos
         enemies.Clear();
 

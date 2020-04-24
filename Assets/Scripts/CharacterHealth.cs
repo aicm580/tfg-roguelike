@@ -27,7 +27,7 @@ public abstract class CharacterHealth : MonoBehaviour
 
     protected virtual void Die()
     {
-        animator.SetBool("dead", true);
+        //animator.SetBool("dead", true);
         Destroy(gameObject);
     }
 }

@@ -37,8 +37,9 @@ public class Bullet : MonoBehaviour
         //Si la bala choca con un objeto rompible, comprobamos que la bala sea del jugador antes de infligir daño
         else if (collision.gameObject.tag == "Breakable Object" && bulletOwner == DamageOrigin.Player)
         {
-
+            collision.gameObject.GetComponent<BreakableObject>().TakeDamage(bulletDamage);
         }
+        Debug.Log(collision.gameObject.name);
 
         DestroyBullet();
     }

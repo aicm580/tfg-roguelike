@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HeartHeal.cs" />
     <Compile Include="Assets\Scripts\IntRange.cs" />
+    <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Localization\LocalizationData.cs" />
     <Compile Include="Assets\Scripts\Localization\LocalizationManager.cs" />

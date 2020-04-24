@@ -238,7 +238,7 @@ public class MapGenerator : MonoBehaviour
                             RemoveFromEmptyList(currentRoom, leftLeftTile.pos);
                         }
                     }
-                    else if (j >= 2 && k >= 2 && j < currentRoom.roomWidth - 2 && k < currentRoom.roomHeight - 2)
+                    else if (j >= 3 && k >= 3 && j < currentRoom.roomWidth - 3 && k < currentRoom.roomHeight - 3)
                     {
                         //Añadimos piedras a la sala
                         Tile leftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord);

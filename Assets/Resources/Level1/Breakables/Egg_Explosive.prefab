@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5869621133876365742}
   - component: {fileID: 3516387625820924048}
   - component: {fileID: 6940148025408012996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg_Explosive
   m_TagString: Breakable Object
   m_Icon: {fileID: 0}

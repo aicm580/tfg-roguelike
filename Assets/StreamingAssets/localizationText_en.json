@@ -11,6 +11,7 @@
 	{"key": "resolution", "value": "Resolution"},
 	{"key": "gameScreen", "value": "Game Screen"},
 	{"key": "timerActive", "value": "Show Timer"},
+	{"key": "statsActive", "value": "Show Game Stats"},
 	{"key": "restart", "value": "Restart"},
 	{"key": "resume", "value": "Resume"},
 	{"key": "quit", "value": "Quit"}, 

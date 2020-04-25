@@ -39,7 +39,6 @@ public class StartupManager : MonoBehaviour
             screenHeight = PlayerPrefs.GetInt("ScreenHeight");
             Screen.SetResolution(screenWidth, screenHeight, Screen.fullScreen);
         }
-        
 
         StartCoroutine(StartIntro());
     }
@@ -54,5 +53,4 @@ public class StartupManager : MonoBehaviour
 
         SceneManager.LoadScene("MenuScene");
     }
-    
 }

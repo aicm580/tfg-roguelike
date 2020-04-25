@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
     public GameObject loadPanel;
 
     public Toggle timerToogle;
+    public Toggle statsToogle;
     public Text timerText;
+    public GameObject statsPanel;
    
     public bool playerAlive;
     public bool isPaused;
@@ -65,7 +67,9 @@ public class GameManager : MonoBehaviour
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
-        
+        bool showStats = PlayerPrefs.GetInt("GameStatsActive") == 1 ? true : false;
+        statsPanel.gameObject.SetActive(showStats);
+
         loadPanel.SetActive(true);
         StartCoroutine(DisableLoadPanel());
         InitRun();
@@ -217,6 +221,11 @@ public class GameManager : MonoBehaviour
     public void EnableOrDisableTimer()
     {
         timerText.gameObject.SetActive(timerToogle.isOn);
+    }
+    
+    public void EnableOrDisableGameStats()
+    {
+        statsPanel.gameObject.SetActive(statsToogle.isOn);
     }
 
     public void LoadMenu()

@@ -10,6 +10,7 @@
 	{"key": "fullScreen", "value": "Pantalla Completa"},
 	{"key": "resolution", "value": "Resolución"},
 	{"key": "timerActive", "value": "Mostrar cronómetro"},
+	{"key": "statsActive", "value": "Mostrar stats"},
 	{"key": "restart", "value": "Reiniciar"},
 	{"key": "resume", "value": "Reanudar"},
 	{"key": "quit", "value": "Salir"},

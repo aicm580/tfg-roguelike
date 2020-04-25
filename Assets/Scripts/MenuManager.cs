@@ -9,6 +9,7 @@ using System.Linq;
 public class MenuManager : MonoBehaviour
 {
     public Toggle timerToogle;
+    public Toggle statsToogle;
     public Toggle fullscreenToggle;
     public Dropdown resolutionDropdown;
     public Slider musicSlider;
@@ -29,7 +30,7 @@ public class MenuManager : MonoBehaviour
     {
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
 
-        //APARTADO "TIMER ACTIVE"
+        //APARTADO "SHOW TIMER"
         if (PlayerPrefs.HasKey("TimerActive"))
         {
             timerToogle.isOn = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
@@ -38,7 +39,17 @@ public class MenuManager : MonoBehaviour
         {
             timerToogle.isOn = false;
         }
-        
+
+        //APARTADO "SHOW GAME STATS"
+        if (PlayerPrefs.HasKey("GameStatsActive"))
+        {
+            statsToogle.isOn = PlayerPrefs.GetInt("GameStatsActive") == 1 ? true : false;
+        }
+        else
+        {
+            statsToogle.isOn = false;
+        }
+
         //APARTADO "FULL SCREEN"
         fullscreenToggle.isOn = Screen.fullScreen;
 
@@ -148,9 +159,7 @@ public class MenuManager : MonoBehaviour
             foreach (Text text in sceneTexts)
             {
                 if (text.GetComponent<LocalizedText>() != null)
-                {
                     text.GetComponent<LocalizedText>().UpdateText();
-                }
             }
         }
     }
@@ -179,6 +188,7 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetInt("ScreenHeight", Screen.height);
 
         PlayerPrefs.SetInt("TimerActive", timerToogle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("GameStatsActive", statsToogle.isOn ? 1 : 0);
 
         optionsPanel.SetActive(false);
     }

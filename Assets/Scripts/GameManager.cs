@@ -12,21 +12,26 @@ public class GameManager : MonoBehaviour
     private EnemiesGenerator enemiesGenerator;
     private BreakableGenerator breakableGenerator;
 
+    public ItemsManager itemsManager;
+    public Transform baseItemPrefab;
+
     public Transform player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
+    public GameObject optionsPanel;
 
     public Toggle timerToogle;
     public Toggle statsToogle;
     public Text timerText;
     public GameObject statsPanel;
-   
+    
     public bool playerAlive;
     public bool isPaused;
     private bool runIsReady = false;
 
-    private int level;
+    [HideInInspector]
+    public int level;
     private int lastLevel = 2;
 
     public float timePlayed;
@@ -113,6 +118,8 @@ public class GameManager : MonoBehaviour
         player.transform.position = InitPlayerPosition();
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
+        //Cargamos los items del nivel actual
+        itemsManager.LoadItems();
     }
 
     public void InitRun()
@@ -176,6 +183,7 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
+        optionsPanel.SetActive(false);
         pausePanel.SetActive(false);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
         Time.timeScale = 1f;
@@ -188,6 +196,7 @@ public class GameManager : MonoBehaviour
         loadPanel.SetActive(true);
         runIsReady = false;
         SaveStats();
+        itemsManager.ClearItems();
         StartCoroutine(DisableLoadPanel());
         InitRun();
     }

@@ -18,4 +18,9 @@ public class NormalEnemyHealth : CharacterHealth
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(dmgAmount);
     }
+
+    protected override void Die()
+    {
+        base.Die();
+    }
 }

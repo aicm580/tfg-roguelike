@@ -11,7 +11,7 @@ public class BreakableObject : CharacterHealth
 {
     [SerializeField]
     protected BreakableObjectType objectType;
-
+    
     private EnemiesGenerator enemiesGenerator;
 
     private void Awake()
@@ -50,7 +50,8 @@ public class BreakableObject : CharacterHealth
                 break;
 
             case BreakableObjectType.ItemContainer:
-
+                Item currentItem = ItemsManager.itemsManagerInstance.GetItemByProbability(6, 9);
+                ItemOnMap.SpawnItemOnMap(transform.position, currentItem);
                 break;
         }
 

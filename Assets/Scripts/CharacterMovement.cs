@@ -23,11 +23,9 @@ public class CharacterMovement : MonoBehaviour
         if (moveSpeed - poisonEffect <= 0.35f)
         {
             pEffect -= Mathf.Abs(moveSpeed - poisonEffect) + 0.35f;
-            Debug.Log("Modified poison effect: " + pEffect);
         }
         moveSpeed -= pEffect;
         StartCoroutine(PoisonDisappears(pEffect, poisonDuration));
-        Debug.Log("Move speed: " + moveSpeed);
     }
 
     IEnumerator PoisonDisappears(float poisonEffect, float poisonDuration)

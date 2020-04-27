@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 5404156109973139894}
   - component: {fileID: 5404156109973140041}
   - component: {fileID: 304181260431725268}
-  - component: {fileID: -5310348648963067600}
   m_Layer: 0
-  m_Name: PoisonousBullet
+  m_Name: Killer Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 03b3b03d94fe64ca991436d28accda10, type: 3}
-  m_Color: {r: 0.1779548, g: 0.5276567, b: 0.8773585, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -142,22 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdd21f507a32e4418ec7d6f8a546f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 3
-  bulletSpeed: 4.5
+  bulletDamage: 9
+  bulletSpeed: 5
   bulletLifetime: 0.7
-  bulletOwner: 1
+  bulletOwner: 0
   direction: {x: 0, y: 0}
---- !u!114 &-5310348648963067600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5404156109973140040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0d5c5b5435be149a5889ffe7fdd8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poisonEffect: 1.5
-  poisonDuration: 2.25

@@ -39,7 +39,6 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<BreakableObject>().TakeDamage(bulletDamage);
         }
-        Debug.Log(collision.gameObject.name);
 
         DestroyBullet();
     }

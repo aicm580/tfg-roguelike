@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ItemOnMap : MonoBehaviour
 {
-    public static ItemOnMap SpawnItemOnMap(Vector3 pos, Item item)
+    public static void SpawnItemOnMap(Vector3 pos, Item item)
     {
-        Transform itemTransform = Instantiate(GameManager.instance.baseItemPrefab, pos, Quaternion.identity);
-        ItemOnMap itemOnMap = itemTransform.GetComponent<ItemOnMap>();
-        itemOnMap.SetItem(item);
-
-        return itemOnMap;
+        if (item != null)
+        {
+            Transform itemTransform = Instantiate(ItemsManager.itemsManagerInstance.baseItemPrefab, pos, Quaternion.identity);
+            ItemOnMap itemOnMap = itemTransform.GetComponent<ItemOnMap>();
+            itemOnMap.SetItem(item);
+        }
     }
 
     private Item item;
@@ -25,5 +26,32 @@ public class ItemOnMap : MonoBehaviour
     {
         this.item = item;
         spriteRenderer.sprite = item.itemSprite;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            CharacterShooting playerShooting = collision.gameObject.GetComponent<CharacterShooting>();
+            CharacterMovement playerMovement = collision.gameObject.GetComponent<CharacterMovement>();
+            switch (item.itemName)
+            {
+                case "Rotten Mushroom":
+                    playerMovement.moveSpeed -= 0.35f;
+                    playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
+                    break;
+
+                case "":
+                    playerShooting.shootDelay -= 0.05f;
+                    break;
+
+                case " ":
+                    playerMovement.moveSpeed += 0.15f;
+                    break;
+
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

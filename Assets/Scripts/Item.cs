@@ -11,6 +11,4 @@ public class Item : ScriptableObject
     public Sprite itemSprite;
     [Range (0,9)]
     public int probability; //probabilidad, del 0 al 9, de que aparezca el item
-
-    public virtual void UseItem() { }
 }

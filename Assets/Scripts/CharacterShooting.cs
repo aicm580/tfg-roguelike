@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class CharacterShooting : MonoBehaviour
 {
-    [SerializeField]
-    protected float shootDelay = 0.2f;
-    [SerializeField]
-    protected Bullet bulletPrefab;
+    public float shootDelay = 0.2f;
+    public Bullet bulletPrefab;
     [HideInInspector]
     public bool canShoot = true;
 

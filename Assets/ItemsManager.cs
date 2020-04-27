@@ -5,11 +5,24 @@ using System.Linq;
 
 public class ItemsManager : MonoBehaviour
 {
+    public static ItemsManager itemsManagerInstance;
+
+    public Transform baseItemPrefab;
     public List<Item> items;
     private Dictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
 
     private void Awake()
     {
+        //Nos aseguramos de que solo haya 1 GameManager
+        if (itemsManagerInstance == null)
+        {
+            itemsManagerInstance = this;
+        }
+        else if (itemsManagerInstance != this)
+        {
+            Destroy(gameObject);
+        }
+
         ClearItems();
     }
 
@@ -23,10 +36,6 @@ public class ItemsManager : MonoBehaviour
             items.Add(item); //añadimos los items del nivel a la lista que contiene los items de los niveles anteriores
             itemDictionary.Add(item.itemName, item);
         }
-
-        Item currentItem = GetItemByProbability(6, 9);
-        if (currentItem != null)
-            ItemOnMap.SpawnItemOnMap(Vector3.zero, currentItem);
     }
 
     public Item GetItemByName(string itemName)

@@ -1539,9 +1539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsManager: {fileID: 1985604272}
-  baseItemPrefab: {fileID: 7996092803246516682, guid: b74dc734c4e013642a9d34100c571da1,
-    type: 3}
   player: {fileID: 1198681088}
   gameOverPanel: {fileID: 1427408104}
   pausePanel: {fileID: 1116039872}
@@ -5225,6 +5222,53 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1786011881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786011883}
+  - component: {fileID: 1786011882}
+  m_Layer: 0
+  m_Name: BulletAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786011882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786011881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de77098c1a3cef44d9a162ced16ab373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardBullet: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
+    type: 3}
+  poisonousBullet: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
+    type: 3}
+--- !u!4 &1786011883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786011881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1789694373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5994,6 +6038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be84dcc544b73f428fe573331a18228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseItemPrefab: {fileID: 7996092803246516682, guid: b74dc734c4e013642a9d34100c571da1,
+    type: 3}
   items: []
 --- !u!4 &1985604273
 Transform:

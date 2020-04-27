@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     private EnemiesGenerator enemiesGenerator;
     private BreakableGenerator breakableGenerator;
 
-    public ItemsManager itemsManager;
-    public Transform baseItemPrefab;
+
 
     public Transform player;
     public GameObject gameOverPanel;
@@ -119,7 +118,7 @@ public class GameManager : MonoBehaviour
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
         //Cargamos los items del nivel actual
-        itemsManager.LoadItems();
+        ItemsManager.itemsManagerInstance.LoadItems();
     }
 
     public void InitRun()
@@ -196,7 +195,7 @@ public class GameManager : MonoBehaviour
         loadPanel.SetActive(true);
         runIsReady = false;
         SaveStats();
-        itemsManager.ClearItems();
+        ItemsManager.itemsManagerInstance.ClearItems();
         StartCoroutine(DisableLoadPanel());
         InitRun();
     }

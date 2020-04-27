@@ -34,6 +34,7 @@ public class ItemOnMap : MonoBehaviour
         {
             CharacterShooting playerShooting = collision.gameObject.GetComponent<CharacterShooting>();
             CharacterMovement playerMovement = collision.gameObject.GetComponent<CharacterMovement>();
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             switch (item.itemName)
             {
                 case "Rotten Mushroom":
@@ -41,14 +42,22 @@ public class ItemOnMap : MonoBehaviour
                     playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
                     break;
 
-                case "":
+                case "item2":
                     playerShooting.shootDelay -= 0.05f;
                     break;
 
-                case " ":
+                case "item3":
                     playerMovement.moveSpeed += 0.15f;
                     break;
 
+                case "Saber Tooth":
+                    playerShooting.bulletPrefab = BulletAssets.instance.killerBullet;
+                    playerHealth.IncreaseCurrentHearts(2, 1); //pierde un corazón base
+                    break;
+
+                case "item5":
+                    playerHealth.IncreaseCurrentHearts(1, 0); //añade 1 corazón base, vacío 
+                    break;
             }
 
             Destroy(gameObject);

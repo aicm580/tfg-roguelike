@@ -5255,6 +5255,8 @@ MonoBehaviour:
     type: 3}
   poisonousBullet: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
+  killerBullet: {fileID: 304181260431725268, guid: 2fd230684bc0e134383efa3e5c6bef9d,
+    type: 3}
 --- !u!4 &1786011883
 Transform:
   m_ObjectHideFlags: 0

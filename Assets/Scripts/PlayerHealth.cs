@@ -54,6 +54,46 @@ public class PlayerHealth : MonoBehaviour
         } 
     }
 
+    public void IncreaseCurrentHearts(int totalAmount, int fullAmount)
+    {
+        int full = 0; 
+
+        for (int i = 0; i < totalAmount; i++)
+        {
+            if (currentHearts < maxHearts)
+            {
+                currentHearts++;
+                hearts[currentHearts - 1].enabled = true;
+
+                if (full < fullAmount)
+                {
+                    IncreaseHealthAnimation();
+                    full++;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    public void DecreaseCurrentHearts(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if (currentHearts > 0)
+            {
+                currentHearts--;
+                hearts[currentHearts - 1].enabled = false;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     private void Die(DamageOrigin dmgOrigin)
     {
         animator.SetBool("dead", true);

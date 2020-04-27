@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     private EnemiesGenerator enemiesGenerator;
     private BreakableGenerator breakableGenerator;
 
-
-
     public Transform player;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
@@ -24,8 +22,15 @@ public class GameManager : MonoBehaviour
     public Toggle statsToogle;
     public Text timerText;
     public GameObject statsPanel;
-    
+    public Text moveSpeedText;
+    public Text shootDelayText;
+    public Text bulletDamageText;
+    public Text bulletLifetimeText;
+    public Text bulletSpeedText;
+
+    [HideInInspector]
     public bool playerAlive;
+    [HideInInspector]
     public bool isPaused;
     private bool runIsReady = false;
 
@@ -33,19 +38,12 @@ public class GameManager : MonoBehaviour
     public int level;
     private int lastLevel = 2;
 
+    [HideInInspector]
     public float timePlayed;
     private bool timerActive = false;
 
-    public int damageDone;
-    public int totalDeaths;
-    public int deathsByBoss;
-    public int deathsByNormalEnemies;
-    public int totalKills;
-    public int normalEnemiesKilled;
-    public int bossesKilled;
-    public int wins;
-    public int travels;
-    public int maxLevelReached;
+    [HideInInspector]
+    public int damageDone, totalDeaths, deathsByBoss, deathsByNormalEnemies, totalKills, normalEnemiesKilled, bossesKilled, wins, travels, maxLevelReached;
 
     private StatsData stats;
 
@@ -144,6 +142,7 @@ public class GameManager : MonoBehaviour
 
         playerAlive = true;
         player.GetComponent<PlayerHealth>().SetPlayerHealth();
+        UpdateGameStats();
 
         timePlayed = 0;
         timerActive = true;
@@ -277,5 +276,17 @@ public class GameManager : MonoBehaviour
         }
 
         SaveManager.SaveStats(this);
+    }
+
+    public void UpdateGameStats()
+    {
+        CharacterMovement playerMovement = player.GetComponent<CharacterMovement>();
+        CharacterShooting playerShooting = player.GetComponent<CharacterShooting>();
+
+        moveSpeedText.text = "Move Speed: " + playerMovement.moveSpeed;
+        shootDelayText.text = "Shoot Delay: " + playerShooting.shootDelay;
+        bulletDamageText.text = "Bullet Damage: " + playerShooting.bulletPrefab.bulletDamage;
+        bulletSpeedText.text = "Bullet Speed: " + playerShooting.bulletPrefab.bulletSpeed;
+        bulletLifetimeText.text = "Bullet Lifetime: " + playerShooting.bulletPrefab.bulletLifetime;
     }
 }

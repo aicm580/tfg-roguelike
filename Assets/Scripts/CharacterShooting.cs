@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class CharacterShooting : MonoBehaviour
 {
     public float shootDelay = 0.2f;

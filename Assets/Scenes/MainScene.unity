@@ -1509,10 +1509,10 @@ MonoBehaviour:
     maxVal: 9
   roomWidth:
     minVal: 11
-    maxVal: 19
+    maxVal: 17
   roomHeight:
     minVal: 10
-    maxVal: 18
+    maxVal: 15
   corridorLength:
     minVal: 7
     maxVal: 9
@@ -1548,6 +1548,11 @@ MonoBehaviour:
   statsToogle: {fileID: 1202983314}
   timerText: {fileID: 505898312}
   statsPanel: {fileID: 1338237220}
+  moveSpeedText: {fileID: 1240208406}
+  shootDelayText: {fileID: 1134284928}
+  bulletDamageText: {fileID: 1868866265}
+  bulletLifetimeText: {fileID: 1909103129}
+  bulletSpeedText: {fileID: 2033526597}
   playerAlive: 0
   isPaused: 0
   level: 0

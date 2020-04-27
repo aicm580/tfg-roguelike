@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemOnMap : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class ItemOnMap : MonoBehaviour
             }
 
             Destroy(gameObject);
+            GameManager.instance.UpdateGameStats(); //actualizamos los stats en pantalla
         }
     }
 }

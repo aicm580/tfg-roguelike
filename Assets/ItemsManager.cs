@@ -33,7 +33,8 @@ public class ItemsManager : MonoBehaviour
         Item[] currentLevelItems = Resources.LoadAll<Item>(lvlName + "/Items");
         foreach (Item item in currentLevelItems)
         {
-            items.Add(item); //añadimos los items del nivel a la lista que contiene los items de los niveles anteriores
+            Item currentItem = Instantiate(item);
+            items.Add(currentItem); //añadimos los items del nivel a la lista que contiene los items de los niveles anteriores
             itemDictionary.Add(item.itemName, item);
         }
     }
@@ -48,7 +49,7 @@ public class ItemsManager : MonoBehaviour
         List<Item> itemsByProbability = new List<Item>();
         foreach (Item item in items)
         {
-            if (item.probability >= minProbability && item.probability <= maxProbability)
+            if (item.probability >= minProbability && item.probability <= maxProbability && item.amount > 0)
             {
                 itemsByProbability.Add(item);
             }
@@ -57,17 +58,13 @@ public class ItemsManager : MonoBehaviour
         if (itemsByProbability.Count > 0)
         {
             int random = Random.Range(0, itemsByProbability.Count);
+            itemsByProbability[random].amount--;
             return itemsByProbability[random];
         }
         else
         {
             return null; 
         }
-    }
-
-    public void ItemFound(Item item)
-    {
-
     }
 
     public void ClearItems()

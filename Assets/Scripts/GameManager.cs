@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
         loadPanel.SetActive(false);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
-        yield return new WaitForSeconds(1.85f);
+        yield return new WaitForSeconds(1.85f); //esperamos 1.85f antes de que los enemigos puedan empezar a perseguir
         enemiesActive = true;
     }
 

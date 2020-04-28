@@ -67,7 +67,7 @@ public class BreakableGenerator : MonoBehaviour
 
         float random = Random.Range(0f, 1f);
 
-        if (random > 0.8f && random <= 0.97f)
+        if (random > 0.3f && random <= 0.97f)
             nBreakables = 1;
         else if (random > 0.97f)
             nBreakables = 2;

@@ -9,7 +9,7 @@ public class MapGenerator : MonoBehaviour
     public IntRange roomWidth = new IntRange (11, 19);
     public IntRange roomHeight = new IntRange (10, 18); 
     public IntRange corridorLength = new IntRange (7, 9);
-    public IntRange corridorWidth = new IntRange (5,7);
+    public IntRange corridorWidth = new IntRange (5,6);
 
     public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
     private Corridor[] corridors;

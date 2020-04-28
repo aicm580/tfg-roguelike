@@ -1518,7 +1518,7 @@ MonoBehaviour:
     maxVal: 9
   corridorWidth:
     minVal: 5
-    maxVal: 7
+    maxVal: 6
   groundMap: {fileID: 1969577271}
   wallMap: {fileID: 1729511995}
   obstacleMap: {fileID: 1744379945}
@@ -1554,6 +1554,7 @@ MonoBehaviour:
   bulletLifetimeText: {fileID: 1909103129}
   bulletSpeedText: {fileID: 2033526597}
   playerAlive: 0
+  enemiesActive: 0
   isPaused: 0
   level: 0
   timePlayed: 0

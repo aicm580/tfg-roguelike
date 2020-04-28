@@ -39,7 +39,10 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator PoisonDisappears(float poisonEffect, float poisonDuration)
     {
         yield return new WaitForSeconds(poisonDuration);
-        moveSpeed += poisonEffect;
-        GameManager.instance.UpdateGameStats(); //modificamos los valores de los stats en pantalla, ya que la velocidad ha cambiado
+        if (GameManager.instance.enemiesActive)
+        {
+            moveSpeed += poisonEffect;
+            GameManager.instance.UpdateGameStats(); //modificamos los valores de los stats en pantalla, ya que la velocidad ha cambiado
+        }
     }
 }

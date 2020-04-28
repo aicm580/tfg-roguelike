@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class CharacterShooting : MonoBehaviour
 {
-    public float shootDelay = 0.2f;
+    public float defaultShootDelay = 0.2f;
+    [HideInInspector]
+    public float shootDelay;
+
+    public Bullet defaultBullet;
+    [HideInInspector]
     public Bullet bulletPrefab;
+
     [HideInInspector]
     public bool canShoot = true;
+
+    public void InitializeCharacterShooting()
+    {
+        bulletPrefab = defaultBullet;
+        shootDelay = defaultShootDelay;
+    }
 
     public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
     {

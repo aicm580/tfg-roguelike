@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private BreakableGenerator breakableGenerator;
 
     public Transform player;
+    private CharacterMovement playerMovement;
+    private CharacterShooting playerShooting;
+
     public GameObject gameOverPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
     public Text bulletSpeedText;
 
     [HideInInspector]
-    public bool playerAlive;
+    public bool playerAlive, enemiesActive;
     [HideInInspector]
     public bool isPaused;
     private bool runIsReady = false;
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
         breakableGenerator = GetComponent<BreakableGenerator>();
+        playerMovement = player.GetComponent<CharacterMovement>();
+        playerShooting = player.GetComponent<CharacterShooting>();
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
@@ -121,6 +126,8 @@ public class GameManager : MonoBehaviour
 
     public void InitRun()
     {
+        enemiesActive = false;
+
         stats = SaveManager.LoadStats();
         damageDone = 0;
         totalDeaths = 0;
@@ -137,11 +144,14 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         pausePanel.SetActive(false);
         gameOverPanel.SetActive(false);
-        level = 1; 
+
+        level = 1;
         InitLevel();
 
         playerAlive = true;
         player.GetComponent<PlayerHealth>().SetPlayerHealth();
+        playerShooting.InitializeCharacterShooting();
+        playerMovement.InitializeCharacterMovement();
         UpdateGameStats();
 
         timePlayed = 0;
@@ -159,11 +169,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
         loadPanel.SetActive(false);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
+        yield return new WaitForSeconds(1.85f);
+        enemiesActive = true;
     }
 
     Vector3 InitPlayerPosition()
     {
-        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 3.5f));
+        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 5f));
         Vector3 randomPosition = mapGenerator.rooms[0].emptyPositions[randomIndex];
 
         mapGenerator.rooms[0].emptyPositions.RemoveAt(randomIndex);
@@ -193,6 +205,7 @@ public class GameManager : MonoBehaviour
     {
         loadPanel.SetActive(true);
         runIsReady = false;
+        enemiesActive = false;
         SaveStats();
         ItemsManager.itemsManagerInstance.ClearItems();
         StartCoroutine(DisableLoadPanel());
@@ -280,9 +293,6 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameStats()
     {
-        CharacterMovement playerMovement = player.GetComponent<CharacterMovement>();
-        CharacterShooting playerShooting = player.GetComponent<CharacterShooting>();
-
         moveSpeedText.text = "Move Speed: " + playerMovement.moveSpeed;
         shootDelayText.text = "Shoot Delay: " + playerShooting.shootDelay;
         bulletDamageText.text = "Bullet Damage: " + playerShooting.bulletPrefab.bulletDamage;

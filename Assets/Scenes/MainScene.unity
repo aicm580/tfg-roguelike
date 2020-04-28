@@ -3165,6 +3165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMoveSpeed: 4
   moveSpeed: 4
 --- !u!114 &1198681092
 MonoBehaviour:
@@ -3178,7 +3179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultShootDelay: 0.35
   shootDelay: 0.22
+  defaultBullet: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
+    type: 3}
   bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
     type: 3}
   canShoot: 1

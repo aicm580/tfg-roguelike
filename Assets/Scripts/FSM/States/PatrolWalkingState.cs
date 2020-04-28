@@ -78,7 +78,7 @@ public class PatrolWalkingState : State
         rays = enemy.GetOtherRays(rayOrigin.position);
 
         //Comprobamos si el enemigo divisa al jugador
-        if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")))
+        if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")) && GameManager.instance.enemiesActive)
         {
             enemy.fsm.EnterNextState();
         }

@@ -50,8 +50,7 @@ public class BreakableObject : CharacterHealth
                 break;
 
             case BreakableObjectType.ItemContainer:
-                Item currentItem = ItemsManager.itemsManagerInstance.GetItemByProbability(6, 9);
-                ItemOnMap.SpawnItemOnMap(transform.position, currentItem);
+                SpawnItems(0, 1, 3); //poniendo un 0 como primer parámetro conseguimos un 100% de probabilidades de que el huevo spawnee un item
                 break;
         }
 

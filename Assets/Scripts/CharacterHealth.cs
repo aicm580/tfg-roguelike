@@ -30,4 +30,14 @@ public abstract class CharacterHealth : MonoBehaviour
         //animator.SetBool("dead", true);
         Destroy(gameObject);
     }
+
+    protected void SpawnItems(float minRandom, int minProbability, int maxProbability)
+    {
+        float random = Random.Range(0, 1f);
+        if (random >= minRandom)
+        {
+            Item currentItem = ItemsManager.itemsManagerInstance.GetItemByRarity(minProbability, maxProbability);
+            ItemOnMap.SpawnItemOnMap(transform.position, currentItem);
+        }
+    }
 }

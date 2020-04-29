@@ -61,7 +61,7 @@ public class PlayerInputController : MonoBehaviour
 
             firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
             lookDirection = (mousePos - firepointPos).normalized;
-            bulletOrigin = firePoint.position + (Vector3)(lookDirection * 0.5f);
+            bulletOrigin = firePoint.position + (Vector3)(lookDirection * 0.7f);
         }   
     }
 

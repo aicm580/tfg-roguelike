@@ -59,6 +59,10 @@ public class ItemOnMap : MonoBehaviour
                 case "item5":
                     playerHealth.IncreaseCurrentHearts(1, 0); //añade 1 corazón base, vacío 
                     break;
+
+                case "Heart":
+                    playerHealth.Heal(1);
+                    break;
             }
 
             Destroy(gameObject);

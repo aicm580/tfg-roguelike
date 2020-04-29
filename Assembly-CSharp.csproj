@@ -62,8 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ItemOnMap.cs" />
-    <Compile Include="Assets\ItemsManager.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BreakableGenerator.cs" />
     <Compile Include="Assets\Scripts\BreakableObject.cs" />
@@ -89,9 +87,10 @@
     <Compile Include="Assets\Scripts\FSM\States\RangeAttackState.cs" />
     <Compile Include="Assets\Scripts\Fuel.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\HeartHeal.cs" />
     <Compile Include="Assets\Scripts\IntRange.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ItemOnMap.cs" />
+    <Compile Include="Assets\Scripts\ItemsManager.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Localization\LocalizationData.cs" />
     <Compile Include="Assets\Scripts\Localization\LocalizationManager.cs" />

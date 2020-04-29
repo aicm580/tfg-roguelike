@@ -104,9 +104,9 @@ MonoBehaviour:
     minVal: 0
     maxVal: 2
   calculatedFriends: 0
-  detectionRange: 3.7
+  detectionRange: 3.8
   attackRange: 2
-  giveUpRange: 6.2
+  giveUpRange: 6.6
   followSpeed: 2.2
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMoveSpeed: 0
   moveSpeed: 0.8
 --- !u!114 &8371670761104094750
 MonoBehaviour:
@@ -184,9 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e40285f227f32b449b4201925a6ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 20
+  initHealth: 25
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
+  minRarity: 1
+  maxRarity: 3
 --- !u!114 &4730599111801766458
 MonoBehaviour:
   m_ObjectHideFlags: 0

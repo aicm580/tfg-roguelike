@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Heart
   itemDescription: 
   amount: 50
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 8201910288129674801, guid: 6491fa862947d3c488f53fb1cf4a8822,
+    type: 3}
   rarity: 1

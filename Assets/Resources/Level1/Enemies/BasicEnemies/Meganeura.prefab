@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMoveSpeed: 0
   moveSpeed: 0.5
 --- !u!114 &2416011736958202333
 MonoBehaviour:
@@ -154,6 +155,8 @@ MonoBehaviour:
   initHealth: 20
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
+  minRarity: 1
+  maxRarity: 3
 --- !u!114 &2574572701396338812
 MonoBehaviour:
   m_ObjectHideFlags: 0

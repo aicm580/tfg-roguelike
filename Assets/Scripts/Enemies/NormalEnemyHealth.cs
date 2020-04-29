@@ -5,6 +5,9 @@ public class NormalEnemyHealth : CharacterHealth
     [SerializeField]
     protected Transform popupDamageText;
 
+    public int minRarity;
+    public int maxRarity;
+
     public override void TakeDamage(int dmgAmount)
     {
         PopupDamage(dmgAmount);
@@ -23,6 +26,6 @@ public class NormalEnemyHealth : CharacterHealth
     {
         base.Die();
        
-        SpawnItems(0.95f, 1, 3); //Hay un 5% de probabilidades de que, al morir, el enemigo deje un item de rareza 1, 2 o 3
+        SpawnItems(0.95f, minRarity, maxRarity); //Hay un 5% de probabilidades de que, al morir, el enemigo deje un item
     }
 }

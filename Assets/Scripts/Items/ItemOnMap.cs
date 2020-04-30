@@ -18,6 +18,7 @@ public class ItemOnMap : MonoBehaviour
 
     private Item item;
     private SpriteRenderer spriteRenderer;
+    private int collisions = 0;
 
     private void Awake()
     {
@@ -32,7 +33,9 @@ public class ItemOnMap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collisions != 0)
+            Debug.Log("YA HA COLISIONADO ");
+        if (collision.gameObject.tag == "Player" && collisions == 0)
         {
             CharacterShooting playerShooting = collision.gameObject.GetComponent<CharacterShooting>();
             CharacterMovement playerMovement = collision.gameObject.GetComponent<CharacterMovement>();
@@ -41,7 +44,7 @@ public class ItemOnMap : MonoBehaviour
             {
                 case "Dilo's Heart":
                     playerHealth.IncreaseCurrentHearts(1, 0); //añade 1 corazón base, vacío 
-                    playerShooting.shootDelay += 0.06f;
+                    playerShooting.shootDelay += 0.04f;
                     break;
 
                 case "Heart":
@@ -66,9 +69,10 @@ public class ItemOnMap : MonoBehaviour
                     playerShooting.shootDelay -= 0.06f;
                     break;
             }
-
+            Debug.Log("Item: " + item.itemName);
             Destroy(gameObject);
             GameManager.instance.UpdateGameStats(); //actualizamos los stats en pantalla
+            collisions++;
         }
     }
 }

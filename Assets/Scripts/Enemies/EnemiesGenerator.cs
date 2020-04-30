@@ -155,7 +155,7 @@ public class EnemiesGenerator : MonoBehaviour
 
                         attempt++;
 
-                        if (attempt >= 5)
+                        if (attempt >= 7)
                         {
                             k++;
                         }

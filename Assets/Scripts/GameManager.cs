@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Item currentItem;
     public static GameManager instance;
 
     private MapGenerator mapGenerator;
@@ -121,7 +122,8 @@ public class GameManager : MonoBehaviour
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
         //Cargamos los items del nivel actual
-        ItemsManager.itemsManagerInstance.LoadItems();
+        ItemsManager.itemsManagerInstance.SetupItems();
+        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3 (2,2,0), currentItem);
     }
 
     public void InitRun()

@@ -1539,6 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentItem: {fileID: 11400000, guid: 1450182c6d3baac4ba7b3ac6a9d45cfa, type: 2}
   player: {fileID: 1198681088}
   gameOverPanel: {fileID: 1427408104}
   pausePanel: {fileID: 1116039872}
@@ -6050,6 +6051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be84dcc544b73f428fe573331a18228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemsHolder: {fileID: 0}
   baseItemPrefab: {fileID: 7996092803246516682, guid: b74dc734c4e013642a9d34100c571da1,
     type: 3}
   items: []

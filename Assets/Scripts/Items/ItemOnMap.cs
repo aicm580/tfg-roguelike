@@ -12,6 +12,7 @@ public class ItemOnMap : MonoBehaviour
             Transform itemTransform = Instantiate(ItemsManager.itemsManagerInstance.baseItemPrefab, pos, Quaternion.identity);
             ItemOnMap itemOnMap = itemTransform.GetComponent<ItemOnMap>();
             itemOnMap.SetItem(item);
+            itemTransform.parent = ItemsManager.itemsManagerInstance.itemsHolder.transform;
         }
     }
 
@@ -38,30 +39,31 @@ public class ItemOnMap : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             switch (item.itemName)
             {
-                case "Rotten Mushroom":
-                    playerMovement.moveSpeed -= 0.2f;
-                    playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
-                    break;
-
-                case "item2":
-                    playerShooting.shootDelay -= 0.05f;
-                    break;
-
-                case "item3":
-                    playerMovement.moveSpeed += 0.15f;
-                    break;
-
-                case "Saber Tooth":
-                    playerShooting.bulletPrefab = BulletAssets.instance.killerBullet;
-                    playerHealth.IncreaseCurrentHearts(2, 1); //pierde un corazón base
-                    break;
-
-                case "item5":
+                case "Dilo's Heart":
                     playerHealth.IncreaseCurrentHearts(1, 0); //añade 1 corazón base, vacío 
+                    playerShooting.shootDelay += 0.06f;
                     break;
 
                 case "Heart":
                     playerHealth.Heal(1);
+                    break;
+
+                case "Meganeura's Wing":
+                    playerMovement.moveSpeed += 0.15f;
+                    break;
+
+                case "Rotten Mushroom":
+                    playerMovement.moveSpeed -= 0.2f;
+                    playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
+                    break;
+                    
+                case "Saber Tooth":
+                    playerShooting.bulletPrefab = BulletAssets.instance.killerBullet;
+                    playerHealth.DecreaseCurrentHearts(1); //pierde un corazón base
+                    break;
+                    
+                case "Wollemia's Root":
+                    playerShooting.shootDelay -= 0.06f;
                     break;
             }
 

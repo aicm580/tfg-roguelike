@@ -7,6 +7,9 @@ public class ItemsManager : MonoBehaviour
 {
     public static ItemsManager itemsManagerInstance;
 
+    [HideInInspector]
+    public GameObject itemsHolder;
+
     public Transform baseItemPrefab;
     public List<Item> items;
     private Dictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
@@ -26,7 +29,25 @@ public class ItemsManager : MonoBehaviour
         ClearItems();
     }
 
-    public void LoadItems()
+    public void SetupItems()
+    {
+        itemsHolder = GameObject.Find("ItemsHolder");
+        if (itemsHolder != null)
+        {
+            foreach (Transform child in itemsHolder.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            itemsHolder = new GameObject("ItemsHolder");
+        }
+
+        LoadItems();
+    }
+
+    private void LoadItems()
     {
         string lvlName = "Level" + GameManager.instance.level;
 

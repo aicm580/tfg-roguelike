@@ -25,7 +25,7 @@ public class BreakableObject : CharacterHealth
         {
             case BreakableObjectType.Explosive:
                 bool playerHit = false; //el player tiene 2 colliders, pero solo queremos dañarlo 1 vez, por lo que utilizamos un bool para saber si ya se le ha dañado
-                Collider2D[] charactersInRange = Physics2D.OverlapCircleAll(transform.position, 2.5f);
+                Collider2D[] charactersInRange = Physics2D.OverlapCircleAll(transform.position, 2f);
 
                 foreach (Collider2D col in charactersInRange)
                 {

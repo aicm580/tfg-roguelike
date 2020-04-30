@@ -58,39 +58,31 @@ public class PlayerHealth : MonoBehaviour
     {
         int full = 0; 
 
-        for (int i = 0; i < totalAmount; i++)
+        for (int i = 0; i < totalAmount && currentHearts < maxHearts; i++)
         {
-            if (currentHearts < maxHearts)
-            {
-                currentHearts++;
-                hearts[currentHearts - 1].enabled = true;
+            currentHearts++;
+            hearts[currentHearts - 1].enabled = true;
 
-                if (full < fullAmount)
-                {
-                    IncreaseHealthAnimation();
-                    full++;
-                }
-            }
-            else
+            if (full < fullAmount)
             {
-                break;
+                full++;
+                Heal(1);
             }
         }
     }
 
     public void DecreaseCurrentHearts(int amount)
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < amount && currentHearts > 0; i++)
         {
-            if (currentHearts > 0)
-            {
-                currentHearts--;
-                hearts[currentHearts - 1].enabled = false;
-            }
-            else
-            {
-                break;
-            }
+            if (currentHealth == currentHearts)
+                currentHealth--;
+
+            hearts[currentHearts - 1].enabled = false;
+            currentHearts--;
+            
+            if (currentHearts <= 0)
+                Die(DamageOrigin.Item);
         }
     }
 

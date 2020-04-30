@@ -81,20 +81,20 @@ public class EnemiesGenerator : MonoBehaviour
          }
          else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
          {
-             int maxEnemies = (int)(mapGenerator.rooms[i].emptyPositions.Count / ((mapGenerator.rooms[i].roomWidth - 2 + mapGenerator.rooms[i].roomHeight - 2) / 1.45f));
-             int minEnemies = (int)System.Math.Floor(maxEnemies / 2f);
+             int maxEnemies = (int)(mapGenerator.rooms[i].emptyPositions.Count / ((mapGenerator.rooms[i].roomWidth - 2 + mapGenerator.rooms[i].roomHeight - 2) / 1.85f));
+             int minEnemies = (int)Mathf.Round(maxEnemies / 2f);
              nEnemies = Random.Range(minEnemies, maxEnemies);
              Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
-         }
+            Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
+        }
 
          mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
-         Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
 
          int enemiesCreated = 0;
 
          while (enemiesCreated < nEnemies)
          {
-             int friends;
+             int friends = 0;
              Biome enemyBiome; 
              GameObject enemyPrefab;
 
@@ -126,8 +126,9 @@ public class EnemiesGenerator : MonoBehaviour
              }
              else
              {
+                /*
                 friends = bossPrefab.GetComponent<Enemy>().friends.Randomize;
-                enemyBiome = bossPrefab.GetComponent<Enemy>().biome;
+                enemyBiome = bossPrefab.GetComponent<Enemy>().biome;*/
                 enemyPrefab = bossPrefab;
              }
 
@@ -181,7 +182,7 @@ public class EnemiesGenerator : MonoBehaviour
     {
         for (int i = -2; i <= 2; i++)
         {
-            for (int j = -2; j <= 2; j++)
+            for (int j = -1; j <= 1; j++)
             {
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 

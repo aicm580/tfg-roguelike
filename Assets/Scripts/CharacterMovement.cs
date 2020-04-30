@@ -5,7 +5,7 @@ public class CharacterMovement : MonoBehaviour
 {
     public float defaultMoveSpeed;
     [HideInInspector]
-    public float moveSpeed;
+    public float moveSpeed; //las modificaciones de velocidad ingame se aplican sobre este parámetro
 
     private Rigidbody2D rb;
 

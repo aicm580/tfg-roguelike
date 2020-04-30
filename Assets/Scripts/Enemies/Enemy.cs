@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = GameManager.instance.player.transform;
+        characterMovement.InitializeCharacterMovement();
     }
 
     public bool NeedChangeState(float range, int mask)

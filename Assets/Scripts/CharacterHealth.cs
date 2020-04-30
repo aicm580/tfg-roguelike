@@ -6,6 +6,8 @@ public abstract class CharacterHealth : MonoBehaviour
 {
     [SerializeField]
     protected int initHealth;
+    [SerializeField]
+    protected int minRarity, maxRarity;
 
     private int currentHealth;
     private Animator animator;

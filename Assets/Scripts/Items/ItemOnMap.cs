@@ -39,7 +39,7 @@ public class ItemOnMap : MonoBehaviour
             switch (item.itemName)
             {
                 case "Rotten Mushroom":
-                    playerMovement.moveSpeed -= 0.35f;
+                    playerMovement.moveSpeed -= 0.2f;
                     playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
                     break;
 

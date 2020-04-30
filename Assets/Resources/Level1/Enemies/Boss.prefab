@@ -42,8 +42,9 @@ GameObject:
   - component: {fileID: -1385795010597343007}
   - component: {fileID: -351665198365209284}
   - component: {fileID: 8960580996104567138}
-  - component: {fileID: 4230139520493557199}
   - component: {fileID: 162020067184044193}
+  - component: {fileID: -1198207592934227003}
+  - component: {fileID: -892356812386975920}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -127,7 +128,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactOrigin: 2
---- !u!114 &4230139520493557199
+--- !u!114 &162020067184044193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  validStates: 00000000010000000300000006000000
+--- !u!114 &-1198207592934227003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,12 +162,28 @@ MonoBehaviour:
   calculatedFriends: 0
   detectionRange: 0
   attackRange: 0
+  giveUpRange: 0
   followSpeed: 0
-  rayOrigin: {fileID: 3003422148409956840}
+  rightRayOrigin: {fileID: 0}
+  leftRayOrigin: {fileID: 0}
+  topRayOrigin: {fileID: 0}
+  bottomRayOrigin: {fileID: 0}
   fsm: {fileID: 0}
   target: {fileID: 0}
   characterMovement: {fileID: 0}
---- !u!114 &162020067184044193
+  playerDirection: {x: 0, y: 0}
+  rayOrigin: {x: 0, y: 0}
+  rayOrigin1: {x: 0, y: 0}
+  rayOrigin2: {x: 0, y: 0}
+  rightTopOrigin: {x: 0, y: 0}
+  rightBottomOrigin: {x: 0, y: 0}
+  leftTopOrigin: {x: 0, y: 0}
+  leftBottomOrigin: {x: 0, y: 0}
+  bottomRightOrigin: {x: 0, y: 0}
+  bottomLeftOrigin: {x: 0, y: 0}
+  topRightOrigin: {x: 0, y: 0}
+  topLeftOrigin: {x: 0, y: 0}
+--- !u!114 &-892356812386975920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,11 +192,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3002168867632701916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
+  m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i: 0
-  validStates: 00000000010000000300000006000000
+  defaultMoveSpeed: 0
+  moveSpeed: 0
 --- !u!1 &6733929719999026473
 GameObject:
   m_ObjectHideFlags: 0

@@ -261,8 +261,9 @@ public class MapGenerator : MonoBehaviour
                             }
                         }
 
-                        //Añadimos agua a la sala
-                        if (water < maxWater &&
+                        //Añadimos agua a la sala si no se trata de la última sala
+                        if (i != rooms.Length - 1 &&
+                            water < maxWater &&
                             leftTile.tileType == TileType.RoomFloor &&
                             bottomLeftTile.tileType != TileType.Water &&
                             topLeftTile.tileType != TileType.Water &&

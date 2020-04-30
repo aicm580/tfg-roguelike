@@ -5,9 +5,6 @@ public class NormalEnemyHealth : CharacterHealth
     [SerializeField]
     protected Transform popupDamageText;
 
-    public int minRarity;
-    public int maxRarity;
-
     public override void TakeDamage(int dmgAmount)
     {
         PopupDamage(dmgAmount);

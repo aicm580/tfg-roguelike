@@ -123,13 +123,11 @@ public class PlayerHealth : MonoBehaviour
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("loseHeart");
         hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", true);
-        Debug.Log("YOU LOST A LIFE");
     }
 
     private void IncreaseHealthAnimation()
     {
         hearts[currentHealth - 1].GetComponent<Animator>().SetTrigger("findHeart");
         hearts[currentHealth - 1].GetComponent<Animator>().SetBool("empty", false);
-        Debug.Log("YOU WON A LIFE");
     }
 }

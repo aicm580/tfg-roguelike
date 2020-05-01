@@ -9,20 +9,22 @@ public class PlayerInputController : MonoBehaviour
     public float abilityDuration = 3f; //tiempo que permanece activa la habilidad especial
 
     private CharacterMovement characterMovement;
-    private CharacterShooting characteShooting;
+    private CharacterShooting characterShooting;
 
     private Vector2 movement;
     private Vector2 mousePos;
     private Vector2 firepointPos;
     private Vector2 lookDirection;
     private Vector3 bulletOrigin = new Vector3();
+    private Vector3[] bulletsOrigins;
+    private Vector3[] bulletsDirections;
     private bool abilityActive = false;
     private Animator animator;
 
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
-        characteShooting = GetComponent<CharacterShooting>();
+        characterShooting = GetComponent<CharacterShooting>();
         animator = GetComponent<Animator>();
     }
 
@@ -30,6 +32,22 @@ public class PlayerInputController : MonoBehaviour
     {
         if (GameManager.instance.playerAlive)
         {
+            //MOUSE INPUT MANAGEMENT
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            animator.SetFloat("Horizontal", lookDirection.x);
+            animator.SetFloat("Vertical", lookDirection.y);
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
+                
+                /*
+                else if (characterShooting.shootType == ShootType.Radial)
+                {
+                    characterShooting.RadialShoot(bulletsOrigins, bulletsDirections, Quaternion.identity, DamageOrigin.Player);
+                }*/
+            }
+
             //KEYBOARD INPUT MANAGEMENT (MOVEMENT)
             movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             animator.SetFloat("Speed", movement.sqrMagnitude);
@@ -40,16 +58,6 @@ public class PlayerInputController : MonoBehaviour
                 abilityActive = true;
                 StartCoroutine(DisableAbility());
             }
-
-            //MOUSE INPUT MANAGEMENT
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            animator.SetFloat("Horizontal", lookDirection.x);
-            animator.SetFloat("Vertical", lookDirection.y);
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                characteShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
-            }
         }
     }
 
@@ -57,11 +65,18 @@ public class PlayerInputController : MonoBehaviour
     {
         if (GameManager.instance.playerAlive)
         {
+           bulletOrigin = firePoint.position;
+            /*
+            else if (characterShooting.shootType == ShootType.Radial)
+            {
+                bulletsOrigins = characterShooting.GetBulletsOrigins(firePoint.position);
+                bulletsDirections = characterShooting.GetRadialDirections(bulletsOrigins);
+            }*/
+
             characterMovement.Move(movement, 1);
 
             firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
             lookDirection = (mousePos - firepointPos).normalized;
-            bulletOrigin = firePoint.position + (Vector3)(lookDirection * 0.7f);
         }   
     }
 

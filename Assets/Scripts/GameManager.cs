@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
     public Item currentItem;
+    /*
     public Item currentItem1;
     public Item currentItem2;
     public Item currentItem3;
     public Item currentItem4;
     public Item currentItem5;
+    */
     public static GameManager instance;
 
     private MapGenerator mapGenerator;
@@ -128,12 +131,16 @@ public class GameManager : MonoBehaviour
         enemiesGenerator.GenerateEnemies(level);
         //Cargamos los items del nivel actual
         ItemsManager.itemsManagerInstance.SetupItems();
+
+       
         ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3 (2,2,0), currentItem);
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(1, 1, 0), currentItem1);
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3, 3, 0), currentItem2);
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4, 4, 0), currentItem3);
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4.5f, 4.5f, 0), currentItem4);
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3.5f, 3.5f, 0), currentItem5);
+        /*
+       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(1, 1, 0), currentItem1);
+       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3, 3, 0), currentItem2);
+       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4, 4, 0), currentItem3);
+       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4.5f, 4.5f, 0), currentItem4);
+       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3.5f, 3.5f, 0), currentItem5);
+       */
     }
 
     public void InitRun()

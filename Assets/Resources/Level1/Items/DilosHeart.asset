@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Dilo's Heart
   itemDescription: 
   amount: 2
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 8814801884992530059, guid: 47378525da386e045baa2d044fd2341c,
+    type: 3}
   rarity: 3

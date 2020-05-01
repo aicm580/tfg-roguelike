@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public float bulletLifetime = 0.9f; //tiempo de vida de la bala
     public DamageOrigin bulletOwner;
     [HideInInspector]
-    public Vector2 direction;
+    public Vector3 direction;
   
     private Rigidbody2D rb;
 
@@ -20,6 +20,12 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(direction.x * bulletSpeed, direction.y * bulletSpeed);
         Invoke("DestroyBullet", bulletLifetime);
+    }
+
+    private void FixedUpdate()
+    {
+        //rb.MovePosition(transform.position + direction * bulletSpeed * Time.deltaTime);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

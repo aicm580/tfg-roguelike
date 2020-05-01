@@ -24,6 +24,16 @@ public class CharacterMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * multiplier * Time.fixedDeltaTime);
     }
 
+    public void ChangeMoveSpeed(float moveSpeedModifier)
+    {
+        moveSpeed += moveSpeedModifier;
+
+        if (moveSpeed > 9)
+            moveSpeed = 9;
+        else if (moveSpeed < 1)
+            moveSpeed = 1;
+    }
+
     public void MovementPoison(float poisonEffect, float poisonDuration)
     {
         float pEffect = poisonEffect;

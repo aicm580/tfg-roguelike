@@ -1,6 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum ShootType
+{
+    NormalMouse,
+    OppositeMouse,
+    BidirectionalMouse,
+}
 
 public class CharacterShooting : MonoBehaviour
 {
@@ -12,6 +18,8 @@ public class CharacterShooting : MonoBehaviour
     [HideInInspector]
     public Bullet bulletPrefab;
 
+    public ShootType shootType;
+
     [HideInInspector]
     public bool canShoot = true;
 
@@ -21,11 +29,21 @@ public class CharacterShooting : MonoBehaviour
         shootDelay = defaultShootDelay;
     }
 
+    public void ChangeShootDelay(float shootDelayModifier)
+    {
+        shootDelay += shootDelayModifier;
+
+        if (shootDelay <= 0.04f)
+            shootDelay = 0.05f;
+    }
+
     public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
     {
+        if (shootType == ShootType.OppositeMouse)
+            direction *= -1;
         if (canShoot && !GameManager.instance.isPaused)
         {
-            Bullet bullet = (Bullet)Instantiate(bulletPrefab, originPosition, rotation);
+            Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * 0.65f), rotation);
             bullet.direction = direction;
             bullet.bulletOwner = owner;
 

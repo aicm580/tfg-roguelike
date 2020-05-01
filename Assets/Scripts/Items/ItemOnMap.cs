@@ -19,10 +19,12 @@ public class ItemOnMap : MonoBehaviour
     private Item item;
     private SpriteRenderer spriteRenderer;
     private int collisions = 0;
+    private BreakableGenerator breakableGenerator;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        breakableGenerator = FindObjectOfType<BreakableGenerator>();
     }
 
     public void SetItem(Item item)
@@ -42,9 +44,21 @@ public class ItemOnMap : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             switch (item.itemName)
             {
+                case "Crystal Clear Drop":
+                    
+
+                case "Rufo's Broken Mirror":
+                    playerShooting.shootType = ShootType.OppositeMouse;
+                    playerShooting.ChangeShootDelay(-0.075f);
+                    break;
+
                 case "Dilo's Heart":
                     playerHealth.IncreaseCurrentHearts(1, 0); //añade 1 corazón base, vacío 
-                    playerShooting.shootDelay += 0.04f;
+                    playerShooting.ChangeShootDelay(0.04f);
+                    break;
+
+                case "Four Leaf Clover":
+                    breakableGenerator.breakableMinRandom -= 0.1f; //aumenta en un 10% la probabilidad de que aparezcan objetos rompibles en próximos niveles
                     break;
 
                 case "Heart":
@@ -52,11 +66,11 @@ public class ItemOnMap : MonoBehaviour
                     break;
 
                 case "Meganeura's Wing":
-                    playerMovement.moveSpeed += 0.15f;
+                    playerMovement.ChangeMoveSpeed(0.15f);
                     break;
 
                 case "Rotten Mushroom":
-                    playerMovement.moveSpeed -= 0.2f;
+                    playerMovement.ChangeMoveSpeed(-0.2f);
                     playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
                     break;
                     
@@ -66,7 +80,7 @@ public class ItemOnMap : MonoBehaviour
                     break;
                     
                 case "Wollemia's Root":
-                    playerShooting.shootDelay -= 0.06f;
+                    playerShooting.ChangeShootDelay(-0.06f);
                     break;
             }
             Debug.Log("Item: " + item.itemName);

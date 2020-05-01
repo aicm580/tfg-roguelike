@@ -12,6 +12,8 @@ public class BreakableGenerator : MonoBehaviour
 
     public List<GameObject> breakablesPrefabs;
 
+    public float breakableMinRandom = 0.91f;
+
     private int level;
     private string lvlName;
 
@@ -20,9 +22,9 @@ public class BreakableGenerator : MonoBehaviour
     {
         mapGenerator = GetComponent<MapGenerator>();
 
-        if (GameObject.Find("BreakablesHolder"))
+        breakablesHolder = GameObject.Find("BreakablesHolder");
+        if (breakablesHolder != null)
         {
-            breakablesHolder = GameObject.Find("BreakablesHolder");
             foreach (Transform child in breakablesHolder.transform)
             {
                 Destroy(child.gameObject);
@@ -67,7 +69,7 @@ public class BreakableGenerator : MonoBehaviour
 
         float random = Random.Range(0f, 1f);
 
-        if (random > 0.3f && random <= 0.97f)
+        if (random > breakableMinRandom && random <= 0.97f)
             nBreakables = 1;
         else if (random > 0.97f)
             nBreakables = 2;

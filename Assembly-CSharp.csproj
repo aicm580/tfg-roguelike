@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Map Generation\Room.cs" />
     <Compile Include="Assets\Scripts\Map Generation\Tile.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\SaveManager.cs" />

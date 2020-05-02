@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //public GameObject explosionEffect;
-    
+    public BulletType bulletType;
     public int bulletDamage = 5; //daño que inflige
     public float bulletSpeed = 5.0f; //velocidad de la bala
     public float bulletLifetime = 0.9f; //tiempo de vida de la bala
@@ -20,12 +20,6 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(direction.x * bulletSpeed, direction.y * bulletSpeed);
         Invoke("DestroyBullet", bulletLifetime);
-    }
-
-    private void FixedUpdate()
-    {
-        //rb.MovePosition(transform.position + direction * bulletSpeed * Time.deltaTime);
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

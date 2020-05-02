@@ -155,10 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultShootDelay: 2
   shootDelay: 2
-  defaultBullet: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
-    type: 3}
+  defaultBulletType: 1
   bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
+  shootType: 0
   canShoot: 1
 --- !u!114 &2574572701396338812
 MonoBehaviour:

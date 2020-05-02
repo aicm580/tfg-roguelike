@@ -18,7 +18,9 @@ public class PlayerInputController : MonoBehaviour
     private Vector3 bulletOrigin = new Vector3();
     private Vector3[] bulletsOrigins;
     private Vector3[] bulletsDirections;
-    private bool abilityActive = false;
+    private bool abilityActive;
+    //private float lookAtBulletTime = 0;
+   // private float lookAtBulletEndTime = 0.25f;
     private Animator animator;
 
     void Awake()
@@ -34,18 +36,34 @@ public class PlayerInputController : MonoBehaviour
         {
             //MOUSE INPUT MANAGEMENT
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            
+            /*
+            if (lookAtBulletTime < lookAtBulletEndTime && lookAtBullet)
+            {
+                lookAtBulletTime += Time.deltaTime;
+                Debug.Log(lookAtBulletTime);
+            }
+            else
+            {
+                lookAtBullet = false;
+               
+            }*/
+
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
 
             if (Input.GetButtonDown("Fire1"))
             {
-                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
-                
                 /*
-                else if (characterShooting.shootType == ShootType.Radial)
+                if (characterShooting.shootType == ShootType.OppositeMouse && characterShooting.canShoot)
                 {
-                    characterShooting.RadialShoot(bulletsOrigins, bulletsDirections, Quaternion.identity, DamageOrigin.Player);
+                    animator.SetFloat("Horizontal", -lookDirection.x);
+                    animator.SetFloat("Vertical", -lookDirection.y);
+                    lookAtBullet = true;
+                    lookAtBulletTime = 0;
                 }*/
+
+                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
             }
 
             //KEYBOARD INPUT MANAGEMENT (MOVEMENT)

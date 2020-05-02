@@ -45,11 +45,7 @@ public class ItemOnMap : MonoBehaviour
             switch (item.itemName)
             {
                 case "Crystal Clear Drop":
-                    
-
-                case "Rufo's Broken Mirror":
-                    playerShooting.shootType = ShootType.OppositeMouse;
-                    playerShooting.ChangeShootDelay(-0.075f);
+                    playerShooting.shootType = ShootType.BidirectionalMouse;
                     break;
 
                 case "Dilo's Heart":
@@ -59,6 +55,10 @@ public class ItemOnMap : MonoBehaviour
 
                 case "Four Leaf Clover":
                     breakableGenerator.breakableMinRandom -= 0.1f; //aumenta en un 10% la probabilidad de que aparezcan objetos rompibles en próximos niveles
+                    break;
+                    
+                case "Gigantic Worm":
+                    playerShooting.bulletSize = 1; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
                     break;
 
                 case "Heart":
@@ -70,17 +70,18 @@ public class ItemOnMap : MonoBehaviour
                     break;
 
                 case "Rotten Mushroom":
-                    playerMovement.ChangeMoveSpeed(-0.2f);
-                    playerShooting.bulletPrefab = BulletAssets.instance.poisonousBullet;
+                    playerMovement.ChangeMoveSpeed(-0.18f);
+                    playerShooting.bulletPrefab = BulletAssets.instance.GetBulletByType(BulletType.Poisonous);
                     break;
-                    
+
                 case "Saber Tooth":
-                    playerShooting.bulletPrefab = BulletAssets.instance.killerBullet;
+                    playerShooting.bulletPrefab = BulletAssets.instance.GetBulletByType(BulletType.Killer);
+                    playerShooting.ChangeShootDelay(-0.035f);
                     playerHealth.DecreaseCurrentHearts(1); //pierde un corazón base
                     break;
                     
                 case "Wollemia's Root":
-                    playerShooting.ChangeShootDelay(-0.06f);
+                    playerShooting.ChangeShootDelay(-0.075f);
                     break;
             }
             Debug.Log("Item: " + item.itemName);

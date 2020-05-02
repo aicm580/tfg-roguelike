@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dffd6cfd811d8cf41b7d517a210dae43, type: 3}
-  m_Name: RufosBrokenMirror
+  m_Script: {fileID: 11500000, guid: c1671572d7ff11d43b38177b86fb3da8, type: 3}
+  m_Name: Rufo
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  amount: 0
-  itemSprite: {fileID: 0}
-  rarity: 0
+  playerName: Rufo
+  initHealth: 3
+  initHearts: 3
+  maxHearts: 10
+  shootDelay: 0.35
+  bulletSize: 0
+  bulletType: 0
+  shootType: 0
+  moveSpeed: 4
+  abilityDuration: 3

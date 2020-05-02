@@ -141,8 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdd21f507a32e4418ec7d6f8a546f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletType: 2
   bulletDamage: 9
   bulletSpeed: 5
   bulletLifetime: 0.7
   bulletOwner: 0
-  direction: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}

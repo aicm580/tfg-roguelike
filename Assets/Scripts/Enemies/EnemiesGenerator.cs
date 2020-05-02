@@ -187,7 +187,7 @@ public class EnemiesGenerator : MonoBehaviour
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
                 if (positionToCheck != randomPosition && enemies.Exists(x => x.transform.position == positionToCheck)
-                    || positionToCheck == GameManager.instance.player.transform.position)
+                    || positionToCheck == GameManager.instance.playerTransform.position)
                 {
                     return false;
                 }

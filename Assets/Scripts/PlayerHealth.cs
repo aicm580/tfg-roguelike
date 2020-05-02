@@ -9,28 +9,28 @@ public enum DamageOrigin
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    protected int initHealth;
+    protected int maxHearts; //nº de corazones máximo que puede recolectar
+
     [SerializeField]
-    protected int initHearts = 3; //nº de corazones iniciales (llenos o no)
+    protected GameObject heartPrefab;
     [SerializeField]
-    protected int maxHearts = 10; //nº de corazones máximo que puede recolectar
-    [SerializeField]
-    protected Image[] hearts;
+    protected Transform heartPanel;
+    protected GameObject[] hearts;
 
     private int currentHealth;
     private int currentHearts; //nº de corazones actuales (llenos o no)
     private Animator animator;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
-        SetPlayerHealth();
     }
 
-    public void SetPlayerHealth()
+    public void SetPlayerHealth(int initHealth, int initHearts, int maxHeart)
     {
         currentHealth = initHealth;
         currentHearts = initHearts;
+        maxHearts = maxHeart;
         SetUIHearts();
     }
 
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         for (int i = 0; i < totalAmount && currentHearts < maxHearts; i++)
         {
             currentHearts++;
-            hearts[currentHearts - 1].enabled = true;
+            hearts[currentHearts - 1].GetComponent<Image>().enabled = true;
 
             if (full < fullAmount)
             {
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
             if (currentHealth == currentHearts)
                 currentHealth--;
 
-            hearts[currentHearts - 1].enabled = false;
+            hearts[currentHearts - 1].GetComponent<Image>().enabled = false;
             currentHearts--;
             
             if (currentHearts <= 0)
@@ -94,11 +94,23 @@ public class PlayerHealth : MonoBehaviour
 
     private void SetUIHearts()
     {
-        if (currentHealth > currentHearts)
-            currentHealth = initHearts;
-
-        for (int i = 0; i < hearts.Length; i++)
+        foreach (Transform t in heartPanel)
         {
+            Destroy(t.gameObject);
+        }
+
+        hearts = new GameObject[maxHearts];
+
+        if (currentHealth > currentHearts)
+            currentHealth = currentHearts;
+
+        for (int i = 0; i < maxHearts; i++)
+        {
+            GameObject uiHeart = Instantiate(heartPrefab, heartPanel.transform.position, Quaternion.identity);
+            uiHeart.transform.SetParent(heartPanel);
+            uiHeart.transform.localScale = new Vector3(1, 1, 1);
+            hearts[i] = uiHeart;
+
             if (i >= currentHealth)
             {
                 hearts[i].GetComponent<Animator>().SetBool("empty", true);
@@ -110,11 +122,11 @@ public class PlayerHealth : MonoBehaviour
 
             if (i < currentHearts)
             {
-                hearts[i].enabled = true;
+                hearts[i].GetComponent<Image>().enabled = true;
             }
             else
             {
-                hearts[i].enabled = false;
+                hearts[i].GetComponent<Image>().enabled = false;
             }
         }
     }

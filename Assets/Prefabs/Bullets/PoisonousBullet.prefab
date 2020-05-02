@@ -142,11 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdd21f507a32e4418ec7d6f8a546f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletType: 1
   bulletDamage: 3
   bulletSpeed: 4.5
   bulletLifetime: 0.7
   bulletOwner: 1
-  direction: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!114 &-5310348648963067600
 MonoBehaviour:
   m_ObjectHideFlags: 0

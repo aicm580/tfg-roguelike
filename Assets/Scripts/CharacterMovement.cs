@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float defaultMoveSpeed;
-    [HideInInspector]
     public float moveSpeed; //las modificaciones de velocidad ingame se aplican sobre este parámetro
 
     private Rigidbody2D rb;
@@ -14,9 +12,9 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void InitializeCharacterMovement()
+    public void InitializeCharacterMovement(float speed)
     {
-        moveSpeed = defaultMoveSpeed;
+        moveSpeed = speed;
     }
 
     public void Move(Vector2 movement, float multiplier)

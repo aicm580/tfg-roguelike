@@ -8,20 +8,17 @@ public class GameManager : MonoBehaviour
 {
     
     public Item currentItem;
-    /*
-    public Item currentItem1;
-    public Item currentItem2;
-    public Item currentItem3;
-    public Item currentItem4;
-    public Item currentItem5;
-    */
+    
     public static GameManager instance;
 
     private MapGenerator mapGenerator;
     private EnemiesGenerator enemiesGenerator;
     private BreakableGenerator breakableGenerator;
 
-    public Transform player;
+    public Transform playerTransform;
+    [HideInInspector]
+    public PlayerCharacter playerChar;
+    public PlayerCharacter playerCharSO;
     private CharacterMovement playerMovement;
     private CharacterShooting playerShooting;
 
@@ -78,8 +75,8 @@ public class GameManager : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         enemiesGenerator = GetComponent<EnemiesGenerator>();
         breakableGenerator = GetComponent<BreakableGenerator>();
-        playerMovement = player.GetComponent<CharacterMovement>();
-        playerShooting = player.GetComponent<CharacterShooting>();
+        playerMovement = playerTransform.GetComponent<CharacterMovement>();
+        playerShooting = playerTransform.GetComponent<CharacterShooting>();
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
@@ -126,26 +123,20 @@ public class GameManager : MonoBehaviour
         //Generamos los objetos rompibles del nivel
         breakableGenerator.GenerateBreakables(level);
         //Indicamos la posición inicial del jugador
-        player.transform.position = InitPlayerPosition();
+        playerTransform.position = InitPlayerPosition();
         //Generamos los enemigos del nivel
         enemiesGenerator.GenerateEnemies(level);
         //Cargamos los items del nivel actual
         ItemsManager.itemsManagerInstance.SetupItems();
 
-       
-        ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3 (2,2,0), currentItem);
-        /*
-       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(1, 1, 0), currentItem1);
-       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3, 3, 0), currentItem2);
-       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4, 4, 0), currentItem3);
-       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(4.5f, 4.5f, 0), currentItem4);
-       ItemOnMap.SpawnItemOnMap(player.transform.position + new Vector3(3.5f, 3.5f, 0), currentItem5);
-       */
+        ItemOnMap.SpawnItemOnMap(playerTransform.position + new Vector3 (2,2,0), currentItem);
     }
 
     public void InitRun()
     {
         enemiesActive = false;
+
+        breakableGenerator.InitRandom();
 
         stats = SaveManager.LoadStats();
         damageDone = 0;
@@ -168,9 +159,10 @@ public class GameManager : MonoBehaviour
         InitLevel();
 
         playerAlive = true;
-        player.GetComponent<PlayerHealth>().SetPlayerHealth();
-        playerShooting.InitializeCharacterShooting();
-        playerMovement.InitializeCharacterMovement();
+        playerChar = playerCharSO;
+        playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
+        playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletType, playerChar.shootType);
+        playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
         UpdateGameStats();
 
         timePlayed = 0;

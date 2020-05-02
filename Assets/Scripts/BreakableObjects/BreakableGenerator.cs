@@ -11,14 +11,19 @@ public class BreakableGenerator : MonoBehaviour
     public GameObject breakablesHolder;
 
     public List<GameObject> breakablesPrefabs;
-
-    public float breakableMinRandom = 0.91f;
+    
+    private float defaultMinRandom = 0.91f;
+    public float breakableMinRandom;
 
     private int level;
     private string lvlName;
 
+    public void InitRandom()
+    {
+        breakableMinRandom = defaultMinRandom;
+    }
 
-    void SetupBreakables(int lvl)
+    private void SetupBreakables(int lvl)
     {
         mapGenerator = GetComponent<MapGenerator>();
 
@@ -45,7 +50,7 @@ public class BreakableGenerator : MonoBehaviour
     }
 
     //El contenido del array de prefabs de los enemigos dependerá del nivel
-    void LoadLevelBreakablesPrefabs()
+    private void LoadLevelBreakablesPrefabs()
     {
         breakablesPrefabs.Clear();
         lvlName = "Level" + level;
@@ -62,7 +67,7 @@ public class BreakableGenerator : MonoBehaviour
         }
     }
 
-    void CreateBreakablesInRoom(int i)
+    private void CreateBreakablesInRoom(int i)
     {
         int nBreakables = 0;
         int breakablesCreated = 0;
@@ -89,7 +94,7 @@ public class BreakableGenerator : MonoBehaviour
         }
     }
 
-    Vector3 RandomPosition(int room)
+    private Vector3 RandomPosition(int room)
     {
         int randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
         Vector3 randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];

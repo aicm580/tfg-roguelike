@@ -157,6 +157,48 @@ public class Enemy : MonoBehaviour
         animator.SetFloat("Vertical", y);
     }
 
+    public Vector2 ChangePatrolDirection(Vector2 direction)
+    {
+        float random = Random.Range(0f, 1f);
+        if (random <= 0.5f)
+        {
+            if (direction.x == 0)
+                direction.x = 1;
+            else
+                direction.x *= -1;
+
+            direction.y = 0;
+        }
+        else
+        {
+            if (direction.y == 0)
+                direction.y = 1;
+            else
+                direction.y *= -1;
+
+            direction.x = 0;
+        }
+
+        return direction;
+    }
+
+    public Transform ChangePatrolRayOrigin(Vector2 direction)
+    {
+        Transform rayOrigin = rightRayOrigin ;
+
+        if (direction.x == 1)
+            rayOrigin = rightRayOrigin;
+        else if (direction.x == -1)
+            rayOrigin = leftRayOrigin;
+
+        if (direction.y == 1)
+            rayOrigin = topRayOrigin;
+        else if (direction.x == -1)
+            rayOrigin = bottomRayOrigin;
+
+        return rayOrigin;
+    }
+
     public bool MoveTowardsPlayer()
     {
         if (Vector2.Distance(transform.position, target.position) > attackRange)

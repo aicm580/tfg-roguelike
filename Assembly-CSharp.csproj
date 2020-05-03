@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Enemies\FSM\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\MeleeAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolFlyingState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolWalkingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\RangeAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemies\NormalEnemyHealth.cs" />

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-public class PatrolWalkingState : State
+public class PatrolWalkingState : PatrolState
 {
+    public PatrolWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
+
     Vector2 initialPos;
     Vector2 direction;
     Transform rayOrigin;
@@ -12,9 +14,6 @@ public class PatrolWalkingState : State
     int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
     int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
    
-
-    public PatrolWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
-
     public override void OnStateEnter()
     {
         masks = blockingLayer | detectionLayer | enemiesLayer;
@@ -32,42 +31,9 @@ public class PatrolWalkingState : State
 
         if (hit || hit1 || hit2 || (Vector2.Distance(enemy.transform.position, initialPos) >= 1.5f))
         {
-            float random = Random.Range(0f, 1f);
-            if (random <= 0.5f)
-            {
-                if (direction.x == 0)
-                {
-                    direction.x = 1;
-                    rayOrigin = enemy.rightRayOrigin;
-                    
-                }
-                else
-                {
-                    direction.x *= -1;
-                    if (direction.x == 1)
-                        rayOrigin = enemy.rightRayOrigin;
-                    else
-                        rayOrigin = enemy.leftRayOrigin;
-                }
-                direction.y = 0;
-            }
-            else
-            {
-                if (direction.y == 0)
-                {
-                    direction.y = 1;
-                    rayOrigin = enemy.topRayOrigin;
-                } else
-                {
-                    direction.y *= -1;
-                    if (direction.y == 1)
-                        rayOrigin = enemy.topRayOrigin;
-                    else
-                        rayOrigin = enemy.bottomRayOrigin;
-                }
-                direction.x = 0;
-            }
-            
+            Vector2 dir = direction;
+            direction = ChangePatrolDirection(dir);
+            rayOrigin = ChangePatrolRayOrigin(direction);
             initialPos = enemy.transform.position;
 
             //Antes de cambiar la dirección del Animator, comprobamos que la nueva dirección sea válida

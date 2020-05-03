@@ -10,6 +10,8 @@ public enum Move
 
 public class FollowWalkingState : State
 {
+    public FollowWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
+
     Vector2 direction;
     Vector2 colDirection;
     Vector2? destination;
@@ -24,9 +26,7 @@ public class FollowWalkingState : State
     bool topHit, topRightHit, topLeftHit;
     bool bottomHit, bottomRightHit, bottomLeftHit;
     Move lastMove;
-
-    public FollowWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
-
+    
     public override void OnStateEnter()
     {
         masks = blockingLayer | detectionLayer | enemiesLayer;

@@ -27,5 +27,5 @@ public abstract class State
     public virtual void OnStateExit() { }
     public virtual void FixedUpdateState() { }
 
-    public abstract void UpdateState();  //hacer un método abstracto obliga a las clases derivadas a implementarlo
+    public virtual void UpdateState() { }  //hacer un método abstracto obliga a las clases derivadas a implementarlo
 }

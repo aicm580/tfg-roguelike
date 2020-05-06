@@ -1,20 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PatrolState : State
 {
     public PatrolState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    Vector2 initialPos;
-    Vector2 direction;
-    Transform rayOrigin;
-    Vector2[] rays;
-    RaycastHit2D hit, hit1, hit2;
-    int masks;
-    int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
+    protected Vector2 initialPos;
+    protected Vector2 direction;
+    protected Transform rayOrigin;
+    protected Vector2[] rays;
+   
+    protected void InitPatrol()
+    {
+        initialPos = enemy.transform.position;
+        direction = new Vector2(1, 0);
+        rayOrigin = enemy.rightRayOrigin;
+        rays = enemy.GetOtherRays(rayOrigin.position);
+    }
 
-    public Vector2 ChangePatrolDirection(Vector2 direction)
+    protected Vector2 ChangePatrolDirection(Vector2 direction)
     {
         float random = Random.Range(0f, 1f);
         if (random <= 0.5f)
@@ -39,7 +42,7 @@ public class PatrolState : State
         return direction;
     }
 
-    public Transform ChangePatrolRayOrigin(Vector2 direction)
+    protected Transform ChangePatrolRayOrigin(Vector2 direction)
     {
         Transform rayOrigin = enemy.rightRayOrigin;
 
@@ -54,5 +57,10 @@ public class PatrolState : State
             rayOrigin = enemy.bottomRayOrigin;
 
         return rayOrigin;
+    }
+
+    public override void FixedUpdateState()
+    {
+        enemy.characterMovement.Move(direction, 1);
     }
 }

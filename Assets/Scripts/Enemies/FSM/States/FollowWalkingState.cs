@@ -1,35 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum Move
-{
-    Right, Left, Up, Down,
-}
-
-public class FollowWalkingState : State
+public class FollowWalkingState : FollowState
 {
     public FollowWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    Vector2 direction;
-    Vector2 colDirection;
-    Vector2? destination;
+    int nextStateMask;
     
-    int masks;
-    int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
-    int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
-    int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
-    bool hit, hit1, hit2;
-    bool rightHit, rightTopHit, rightBottomHit;
-    bool leftHit, leftTopHit, leftBottomHit;
-    bool topHit, topRightHit, topLeftHit;
-    bool bottomHit, bottomRightHit, bottomLeftHit;
-    Move lastMove;
+    bool rightTopHit, rightBottomHit;
+    bool leftTopHit, leftBottomHit;
+    bool topRightHit, topLeftHit;
+    bool bottomRightHit, bottomLeftHit;
     
     public override void OnStateEnter()
     {
-        masks = blockingLayer | detectionLayer | enemiesLayer;
+        masks = blockingLayer | wallsLayer | enemiesLayer | waterLayer | playerLayer;
+        nextStateMask = blockingLayer | wallsLayer | enemiesLayer | playerLayer;
         animator.SetBool("isFollowing", true);
     }
 
@@ -38,20 +23,14 @@ public class FollowWalkingState : State
         if (GameManager.instance.enemiesActive)
         {
             //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
-            if (enemy.NeedChangeState(enemy.attackRange, masks))
+            if (enemy.NeedChangeState(enemy.attackRange, nextStateMask))
             {
                 enemy.fsm.EnterNextState();
             }
             //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
             if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
             {
-                hit = Physics2D.Raycast(enemy.rayOrigin, enemy.playerDirection, 0.8f, masks);
-                hit1 = Physics2D.Raycast(enemy.rayOrigin1, enemy.playerDirection, 0.8f, masks);
-                hit2 = Physics2D.Raycast(enemy.rayOrigin2, enemy.playerDirection, 0.8f, masks);
-                rightHit = Physics2D.Raycast(enemy.rightRayOrigin.position, Vector2.right, 0.2f, masks);
-                leftHit = Physics2D.Raycast(enemy.leftRayOrigin.position, Vector2.left, 0.2f, masks);
-                topHit = Physics2D.Raycast(enemy.topRayOrigin.position, Vector2.up, 0.2f, masks);
-                bottomHit = Physics2D.Raycast(enemy.bottomRayOrigin.position, Vector2.down, 0.2f, masks);
+                SetUpFollowRays();
 
                 if (!hit && !hit1 && !hit2 && !rightHit && !leftHit && !topHit && !bottomHit)
                 {
@@ -79,67 +58,36 @@ public class FollowWalkingState : State
                     float targetPosY = enemy.target.position.y;
 
                     if (targetPosX >= enemyPosX && !rightHit && !rightTopHit && !rightBottomHit && lastMove != Move.Left)
-                    {
-                        direction = Vector2.right;
-                        lastMove = Move.Right;
-                    }
+                        SetDirection(Vector2.right);
+
                     else if (targetPosY > enemyPosY && !topHit && !topRightHit && !topLeftHit && lastMove != Move.Down)
-                    {
-                        direction = Vector2.up;
-                        lastMove = Move.Up;
-                    }
+                        SetDirection(Vector2.up);
+
                     else if (targetPosX < enemyPosX && !leftHit && !leftTopHit && !leftBottomHit && lastMove != Move.Right)
-                    {
-                        direction = Vector2.left;
-                        lastMove = Move.Left;
-                    }
+                        SetDirection(Vector2.left);
+
                     else if (targetPosY < enemyPosY && !bottomHit && !bottomRightHit && !bottomLeftHit && lastMove != Move.Up)
-                    {
-                        direction = Vector2.down;
-                        lastMove = Move.Down;
-                    }
+                        SetDirection(Vector2.down);
 
                     if (direction == Vector2.zero)
                     {
                         if (!leftHit && !leftTopHit && !leftBottomHit && lastMove != Move.Right)
-                        {
-                            direction = Vector2.left;
-                            lastMove = Move.Left;
-                        }
+                            SetDirection(Vector2.left);
+
                         else if (!topHit && !topRightHit && !topLeftHit && lastMove != Move.Down)
-                        {
-                            direction = Vector2.up;
-                            lastMove = Move.Up;
-                        }
+                            SetDirection(Vector2.up);
+                        
                         else if (!rightHit && !rightTopHit && !rightBottomHit && lastMove != Move.Left)
-                        {
-                            direction = Vector2.right;
-                            lastMove = Move.Right;
-                        }
+                            SetDirection(Vector2.right);
+                        
                         else if (!bottomHit && !bottomRightHit && !bottomLeftHit && lastMove != Move.Up)
-                        {
-                            direction = Vector2.down;
-                            lastMove = Move.Down;
-                        }
+                            SetDirection(Vector2.down);
                     }
                 }
                 destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
             }
 
-            if (Vector2.Distance(enemy.target.position, enemy.transform.position) >= enemy.giveUpRange)
-            {
-                enemy.fsm.EnterPreviousState();
-            }
+            CheckGiveUp();
         }  
-    }
-    
-    public override void FixedUpdateState()
-    {
-        enemy.characterMovement.Move(direction, enemy.followSpeed);
-    }
-
-    public override void OnStateExit()
-    {
-        destination = null;
     }
 }

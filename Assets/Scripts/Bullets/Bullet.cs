@@ -24,20 +24,27 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Si la bala choca con un enemigo, comprobamos que la bala sea del jugador antes de infligir daño al enemigo
-        if (collision.gameObject.tag == "Enemy" && bulletOwner == DamageOrigin.Player)
+        if (bulletOwner == DamageOrigin.Player)
         {
-            collision.gameObject.GetComponent<NormalEnemyHealth>().TakeDamage(bulletDamage);
+            //Si la bala choca con un enemigo normal
+            if (collision.gameObject.tag == "Enemy")
+                collision.gameObject.GetComponent<NormalEnemyHealth>().TakeDamage(bulletDamage);
+            //Si la bala choca con un Boss
+            else if (collision.gameObject.tag == "Boss")
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(bulletDamage);
+            //Si la bala choca con un objeto rompible
+            else if (collision.gameObject.tag == "Breakable Object")
+                collision.gameObject.GetComponent<BreakableObject>().TakeDamage(bulletDamage);
         }
-        //Si la bala choca con el jugador, comprobamos que la bala sea de un enemigo antes de infligir daño al jugador
-        else if (collision.gameObject.tag == "Player" && bulletOwner == DamageOrigin.NormalEnemy)
+        //Si la bala de un enemigo normal choca con el jugador
+        else if (bulletOwner == DamageOrigin.NormalEnemy && collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.NormalEnemy);
         }
-        //Si la bala choca con un objeto rompible, comprobamos que la bala sea del jugador antes de infligir daño
-        else if (collision.gameObject.tag == "Breakable Object" && bulletOwner == DamageOrigin.Player)
+        //Si la bala de un Boss choca con el jugador
+        else if (bulletOwner == DamageOrigin.Boss && collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<BreakableObject>().TakeDamage(bulletDamage);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.Boss);
         }
 
         DestroyBullet();

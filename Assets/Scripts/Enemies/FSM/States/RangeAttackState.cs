@@ -6,6 +6,7 @@ public class RangeAttackState : State
 {
     private CharacterShooting characterShooting;
     private Vector2 direction;
+    private Quaternion angle;
     private Vector3 bulletOrigin = new Vector3();
 
     public RangeAttackState(Enemy enemy, StateType state) : base(enemy, state) { }

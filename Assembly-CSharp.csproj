@@ -74,12 +74,14 @@
     <Compile Include="Assets\Scripts\CharacterShooting.cs" />
     <Compile Include="Assets\Scripts\ContactDamage.cs" />
     <Compile Include="Assets\Scripts\CursorManager.cs" />
+    <Compile Include="Assets\Scripts\Enemies\BossHealth.cs" />
     <Compile Include="Assets\Scripts\Enemies\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemiesGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\FiniteStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\State.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowFlyingState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowWalkingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\MeleeAttackState.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Assets\Scripts\Enemies\FSM\States\RangeAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemies\NormalEnemyHealth.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\IntRange.cs" />
     <Compile Include="Assets\Scripts\Items\Fuel.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />

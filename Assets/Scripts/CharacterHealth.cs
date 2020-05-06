@@ -5,17 +5,17 @@ using UnityEngine;
 public abstract class CharacterHealth : MonoBehaviour
 {
     [SerializeField]
-    protected int initHealth;
+    protected int maxHealth;
     [SerializeField]
     protected int minRarity, maxRarity;
 
-    private int currentHealth;
+    protected int currentHealth;
     private Animator animator;
 
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        currentHealth = initHealth;
+        currentHealth = maxHealth;
     }
 
     public virtual void TakeDamage(int dmgAmount)

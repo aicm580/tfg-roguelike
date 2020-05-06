@@ -1,34 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FollowFlyingState : State
+public class FollowFlyingState : FollowState
 {
-    Vector2 direction;
-
     public FollowFlyingState(Enemy enemy, StateType state) : base(enemy, state) { }
 
     public override void OnStateEnter()
     {
+        masks = playerLayer | enemiesLayer;
         animator.SetBool("isFollowing", true);
     }
 
     public override void UpdateState()
     {
-        //Si el enemigo no está suficientemente cerca del jugador como para atacarlo, se acerca volando (sin tener en cuenta obstáculos)
-        if (Vector2.Distance(enemy.transform.position, enemy.target.position) > enemy.attackRange)
+        if (GameManager.instance.enemiesActive)
         {
-            direction = enemy.GetDirectionToPlayer();
-        }
-        //Si está suficientemente cerca, lo ataca
-        else
-        {
-            enemy.fsm.EnterNextState();
-        }
-    }
+            //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
+            if (enemy.NeedChangeState(enemy.attackRange, masks))
+                enemy.fsm.EnterNextState();
 
-    public override void FixedUpdateState()
-    {
-        enemy.characterMovement.Move(direction, enemy.followSpeed);
+            //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
+            if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
+            {
+                SetUpFollowRays();
+
+                if (!hit && !hit1 && !hit2 && !rightHit && !leftHit && !topHit && !bottomHit)
+                {
+                    direction = enemy.playerDirection;
+                }
+                else //algo bloquea el camino más corto hacia el jugador
+                {
+                    direction = Vector2.zero;
+
+                    float enemyPosX = enemy.transform.position.x;
+                    float enemyPosY = enemy.transform.position.y;
+                    float targetPosX = enemy.target.position.x;
+                    float targetPosY = enemy.target.position.y;
+
+                    if (targetPosX >= enemyPosX && !rightHit && lastMove != Move.Left)
+                        SetDirection(Vector2.right);
+                    
+                    else if (targetPosY > enemyPosY && !topHit && lastMove != Move.Down)
+                        SetDirection(Vector2.up);
+                    
+                    else if (targetPosX < enemyPosX && !leftHit && lastMove != Move.Right)
+                        SetDirection(Vector2.left);
+                    
+                    else if (targetPosY < enemyPosY && !bottomHit && lastMove != Move.Up)
+                        SetDirection(Vector2.down);
+
+                    if (direction == Vector2.zero)
+                    {
+                        if (!leftHit && lastMove != Move.Right)
+                            SetDirection(Vector2.left);
+                        
+                        else if (!topHit && lastMove != Move.Down)
+                            SetDirection(Vector2.up);
+                        
+                        else if (!rightHit && lastMove != Move.Left)
+                            SetDirection(Vector2.right);
+                        
+                        else if (!bottomHit && lastMove != Move.Up)
+                            SetDirection(Vector2.down);
+                    }
+                }
+                destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
+            }
+            CheckGiveUp();
+        }
     }
 }

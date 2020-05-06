@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - Enemy
   - Breakable Object
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -18,10 +19,10 @@ TagManager:
   - 
   - EnemiesLayer
   - BlockingLayer
-  - DetectionLayer
-  - Bullets
-  - 
-  - 
+  - WallsLayer
+  - WaterLayer
+  - BulletsLayer
+  - PlayerLayer
   - 
   - 
   - 

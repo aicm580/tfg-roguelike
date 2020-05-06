@@ -4,23 +4,12 @@ public class PatrolWalkingState : PatrolState
 {
     public PatrolWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    Vector2 initialPos;
-    Vector2 direction;
-    Transform rayOrigin;
-    Vector2[] rays;
     RaycastHit2D hit, hit1, hit2;
-    int masks;
-    int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
-    int detectionLayer = 1 << LayerMask.NameToLayer("DetectionLayer");
-    int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
    
     public override void OnStateEnter()
     {
-        masks = blockingLayer | detectionLayer | enemiesLayer;
-        initialPos = enemy.transform.position;
-        direction = new Vector2(1, 0);
-        rayOrigin = enemy.rightRayOrigin;
-        rays = enemy.GetOtherRays(rayOrigin.position);
+        masks = blockingLayer | wallsLayer | enemiesLayer | waterLayer;
+        InitPatrol();
     }
 
     public override void UpdateState()
@@ -44,14 +33,7 @@ public class PatrolWalkingState : PatrolState
         rays = enemy.GetOtherRays(rayOrigin.position);
 
         //Comprobamos si el enemigo divisa al jugador
-        if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")) && GameManager.instance.enemiesActive)
-        {
+        if (enemy.NeedChangeState(enemy.detectionRange, wallsLayer | playerLayer) && GameManager.instance.enemiesActive)
             enemy.fsm.EnterNextState();
-        }
-    }
-
-    public override void FixedUpdateState()
-    {
-        enemy.characterMovement.Move(direction, 1);
     }
 }

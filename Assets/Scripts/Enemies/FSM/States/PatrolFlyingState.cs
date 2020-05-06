@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PatrolFlyingState : PatrolState
 {
     public PatrolFlyingState(Enemy enemy, StateType state) : base(enemy, state) { }
 
-    Vector2 initialPos;
-    Vector2 direction;
-    Transform rayOrigin;
-    Vector2[] rays;
-    RaycastHit2D hit, hit1, hit2;
-    int masks;
-    int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
+    RaycastHit2D hit;
 
     public override void OnStateEnter()
     {
         masks = enemiesLayer;
-        initialPos = enemy.transform.position;
-        direction = new Vector2(1, 0);
-        rayOrigin = enemy.rightRayOrigin;
-        rays = enemy.GetOtherRays(rayOrigin.position);
+        InitPatrol();
     }
 
     public override void UpdateState()
@@ -42,14 +31,7 @@ public class PatrolFlyingState : PatrolState
         }
 
         //Comprobamos si el enemigo divisa al jugador
-        if (enemy.NeedChangeState(enemy.detectionRange, 1 << LayerMask.NameToLayer("DetectionLayer")))
-        {
+        if (enemy.NeedChangeState(enemy.detectionRange, playerLayer) && GameManager.instance.enemiesActive)
             enemy.fsm.EnterNextState();
-        }
-    }
-
-    public override void FixedUpdateState()
-    {
-        enemy.characterMovement.Move(direction, 1);
     }
 }

@@ -16,6 +16,13 @@ public abstract class State
     protected Animator animator;
     public StateType stateType;
 
+    protected int masks;
+    protected int blockingLayer = 1 << LayerMask.NameToLayer("BlockingLayer");
+    protected int wallsLayer = 1 << LayerMask.NameToLayer("WallsLayer");
+    protected int waterLayer = 1 << LayerMask.NameToLayer("WaterLayer");
+    protected int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
+    protected int playerLayer = 1 << LayerMask.NameToLayer("PlayerLayer");
+
     public State(Enemy enemy, StateType stateType)
     {
         this.enemy = enemy;

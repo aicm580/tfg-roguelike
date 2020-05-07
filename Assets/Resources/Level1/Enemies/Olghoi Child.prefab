@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2644507656640157039}
   - component: {fileID: 4694501337081202541}
   - component: {fileID: -2111108848501543287}
+  - component: {fileID: 2787665162568671127}
   - component: {fileID: 4881704708861760205}
   - component: {fileID: 2416011736958202333}
   - component: {fileID: 2574572701396338812}
-  - component: {fileID: 9137629122266250811}
-  - component: {fileID: 9030558723332455016}
+  - component: {fileID: 1551387896560665604}
   m_Layer: 8
-  m_Name: Meganeura
+  m_Name: Olghoi Child
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,49 +85,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35073853, y: 0.53479004}
   m_EdgeRadius: 0
---- !u!114 &4881704708861760205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789506304967602484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMoveSpeed: 0.6
-  moveSpeed: 0.5
---- !u!114 &2416011736958202333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789506304967602484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e40285f227f32b449b4201925a6ef99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initHealth: 20
-  popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
-    type: 3}
---- !u!114 &2574572701396338812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789506304967602484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contactOrigin: 1
---- !u!114 &9137629122266250811
+--- !u!114 &2787665162568671127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,16 +97,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
-  biome: 1
+  enemyType: 3
+  biome: 0
   friends:
-    minVal: 2
-    maxVal: 6
-  calculatedFriends: 0
-  detectionRange: 2
-  attackRange: 1
-  giveUpRange: 4
-  followSpeed: 1.8
+    minVal: 0
+    maxVal: 0
+  detectionRange: 8
+  attackRange: 1.7
+  giveUpRange: 15
+  followSpeed: 1.1
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}
@@ -168,7 +125,52 @@ MonoBehaviour:
   bottomLeftOrigin: {x: 0, y: 0}
   topRightOrigin: {x: 0, y: 0}
   topLeftOrigin: {x: 0, y: 0}
---- !u!114 &9030558723332455016
+--- !u!114 &4881704708861760205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789506304967602484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.65
+--- !u!114 &2416011736958202333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789506304967602484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e40285f227f32b449b4201925a6ef99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
+  currentHealth: 0
+  minRarity: 0
+  maxRarity: 0
+  probability: 0
+  popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
+    type: 3}
+--- !u!114 &2574572701396338812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789506304967602484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactOrigin: 2
+--- !u!114 &1551387896560665604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i: 0
-  validStates: 00000000020000000400000006000000
+  validStates: 000000000300000006000000
 --- !u!1 &9140904020923553037
 GameObject:
   m_ObjectHideFlags: 0

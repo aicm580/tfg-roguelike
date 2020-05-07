@@ -4,12 +4,14 @@ using UnityEngine;
 
 public abstract class CharacterHealth : MonoBehaviour
 {
-    [SerializeField]
-    protected int maxHealth;
+    public int maxHealth;
+    public int currentHealth;
+
     [SerializeField]
     protected int minRarity, maxRarity;
-
-    protected int currentHealth;
+    [SerializeField][Range(0,1)]
+    protected float probability; //probabilidad de que spawnee un item al morir
+    
     private Animator animator;
 
     protected virtual void Start()

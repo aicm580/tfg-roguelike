@@ -8,11 +8,14 @@ public enum StateType
     PatrolWalking, PatrolFlying,
     FollowWalking, FollowFlying,
     RangeAttack, MeleeAttack,
+
+    BossIntroState,
+    UndergroundMove, GenerateChilds,
 }
 
 public abstract class State
 {
-    protected Enemy enemy;
+    protected GameObject enemy;
     protected Animator animator;
     public StateType stateType;
 
@@ -23,7 +26,7 @@ public abstract class State
     protected int enemiesLayer = 1 << LayerMask.NameToLayer("EnemiesLayer");
     protected int playerLayer = 1 << LayerMask.NameToLayer("PlayerLayer");
 
-    public State(Enemy enemy, StateType stateType)
+    public State(GameObject enemy, StateType stateType)
     {
         this.enemy = enemy;
         animator = enemy.GetComponentInChildren<Animator>();

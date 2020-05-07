@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MeleeAttackState : State
 {
-    float attackSpeed = 3.8f;
+    Enemy enemyBehavior;
+    float attackSpeed = 1.8f;
     bool isAttacking;
     Vector2 direction;
 
-    public MeleeAttackState(Enemy enemy, StateType state) : base(enemy, state) { }
+    public MeleeAttackState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     public override void OnStateEnter()
     {
+        enemyBehavior = enemy.GetComponent<Enemy>();
         Vector2 initialPosition = enemy.transform.position;
         isAttacking = true;
     }
@@ -20,8 +22,8 @@ public class MeleeAttackState : State
     {
         if (isAttacking)
         {
-            direction = enemy.GetDirectionToPlayer();
-            if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= 0.3f)
+            direction = enemyBehavior.GetDirectionToPlayer();
+            if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= 0.3f)
                 isAttacking = false;
         }
         else
@@ -29,20 +31,19 @@ public class MeleeAttackState : State
             direction *= -1;
         }
            
-        if (Vector2.Distance(enemy.transform.position, enemy.target.position) <= enemy.attackRange)
+        if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= enemyBehavior.attackRange)
         {
             
         }
         else
         {
             animator.SetBool("isAttacking", false);
-            enemy.fsm.EnterPreviousState();
-            Debug.Log("enter previous");
+            enemyBehavior.fsm.EnterPreviousState();
         }
     }
 
     public override void FixedUpdateState()
     {
-        enemy.characterMovement.Move(direction, attackSpeed);
+        enemyBehavior.characterMovement.Move(direction, attackSpeed);
     }
 }

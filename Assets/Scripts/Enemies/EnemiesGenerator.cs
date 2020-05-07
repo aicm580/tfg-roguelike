@@ -9,12 +9,13 @@ public class EnemiesGenerator : MonoBehaviour
 
     [HideInInspector]
     public GameObject enemiesHolder;
-
     [HideInInspector]
     public List<GameObject> enemies = new List<GameObject>();
-
+    [HideInInspector]
     public List<GameObject> enemiesPrefabs;
+    [HideInInspector]
     public GameObject bossPrefab;
+    public HealthBar bossHealthBar;
 
     private int level;
     private string lvlName;
@@ -85,8 +86,8 @@ public class EnemiesGenerator : MonoBehaviour
              int minEnemies = (int)Mathf.Round(maxEnemies / 2f);
              nEnemies = Random.Range(minEnemies, maxEnemies);
              Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
-            Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
-        }
+             Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
+         }
 
          mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
 
@@ -126,9 +127,6 @@ public class EnemiesGenerator : MonoBehaviour
              }
              else
              {
-                /*
-                friends = bossPrefab.GetComponent<Enemy>().friends.Randomize;
-                enemyBiome = bossPrefab.GetComponent<Enemy>().biome;*/
                 enemyPrefab = bossPrefab;
              }
 
@@ -170,7 +168,7 @@ public class EnemiesGenerator : MonoBehaviour
                 GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
                 enemy.transform.position = position;
                 enemy.transform.parent = enemiesHolder.transform;
-                enemy.GetComponent<Enemy>().calculatedFriends = friends;
+                //enemy.GetComponent<Enemy>().calculatedFriends = friends;
                 enemies.Add(enemy);
                 enemiesCreated++;
              }
@@ -180,7 +178,7 @@ public class EnemiesGenerator : MonoBehaviour
     //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo, y que tampoco el player esté muy cerca
     private bool NotEnemiesNearby(Vector3 randomPosition, int room)
     {
-        for (int i = -2; i <= 2; i++)
+        for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
             {

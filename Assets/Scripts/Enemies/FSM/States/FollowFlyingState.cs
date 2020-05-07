@@ -2,10 +2,11 @@
 
 public class FollowFlyingState : FollowState
 {
-    public FollowFlyingState(Enemy enemy, StateType state) : base(enemy, state) { }
+    public FollowFlyingState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     public override void OnStateEnter()
     {
+        enemyBehavior = enemy.GetComponent<Enemy>();
         masks = playerLayer | enemiesLayer;
         animator.SetBool("isFollowing", true);
     }
@@ -15,8 +16,8 @@ public class FollowFlyingState : FollowState
         if (GameManager.instance.enemiesActive)
         {
             //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
-            if (enemy.NeedChangeState(enemy.attackRange, masks))
-                enemy.fsm.EnterNextState();
+            if (enemyBehavior.NeedChangeState(enemyBehavior.attackRange, masks))
+                enemyBehavior.fsm.EnterNextState();
 
             //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
             if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
@@ -25,7 +26,7 @@ public class FollowFlyingState : FollowState
 
                 if (!hit && !hit1 && !hit2 && !rightHit && !leftHit && !topHit && !bottomHit)
                 {
-                    direction = enemy.playerDirection;
+                    direction = enemyBehavior.playerDirection;
                 }
                 else //algo bloquea el camino más corto hacia el jugador
                 {
@@ -33,8 +34,8 @@ public class FollowFlyingState : FollowState
 
                     float enemyPosX = enemy.transform.position.x;
                     float enemyPosY = enemy.transform.position.y;
-                    float targetPosX = enemy.target.position.x;
-                    float targetPosY = enemy.target.position.y;
+                    float targetPosX = enemyBehavior.target.position.x;
+                    float targetPosY = enemyBehavior.target.position.y;
 
                     if (targetPosX >= enemyPosX && !rightHit && lastMove != Move.Left)
                         SetDirection(Vector2.right);

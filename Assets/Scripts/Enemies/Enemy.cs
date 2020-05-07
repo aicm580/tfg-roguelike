@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public Biome biome;
 
     public IntRange friends; //rango de número de enemigos igual que éste que le acompañan
-    public int calculatedFriends;
+    //public int calculatedFriends;
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        target = GameManager.instance.playerTransform.transform;
+        target = GameManager.instance.playerTransform;
     }
 
     public bool NeedChangeState(float range, int mask)
@@ -96,16 +96,7 @@ public class Enemy : MonoBehaviour
         float topDistance = Vector2.Distance(topRayOrigin.position, target);
         float bottomDistance = Vector2.Distance(bottomRayOrigin.position, target);
         float min = Mathf.Min(rightDistance, leftDistance, topDistance, bottomDistance);
-
-        rightTopOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y + 0.3f);
-        rightBottomOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y - 0.3f);
-        leftTopOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y + 0.3f);
-        leftBottomOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y - 0.3f);
-        bottomRightOrigin = new Vector2(bottomRayOrigin.position.x + 0.3f, bottomRayOrigin.position.y);
-        bottomLeftOrigin = new Vector2(bottomRayOrigin.position.x - 0.3f, bottomRayOrigin.position.y);
-        topRightOrigin = new Vector2(topRayOrigin.position.x + 0.3f, topRayOrigin.position.y);
-        topLeftOrigin = new Vector2(topRayOrigin.position.x - 0.3f, topRayOrigin.position.y);
-
+        
         if (min == rightDistance)
             rayOrigin = rightRayOrigin.position;
         else if (min == leftDistance)
@@ -123,6 +114,15 @@ public class Enemy : MonoBehaviour
     public Vector2[] GetOtherRays(Vector3 ray)
     {
         Vector2[] rays = new Vector2[2];
+        
+        rightTopOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y + 0.3f);
+        rightBottomOrigin = new Vector2(rightRayOrigin.position.x, rightRayOrigin.position.y - 0.3f);
+        leftTopOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y + 0.3f);
+        leftBottomOrigin = new Vector2(leftRayOrigin.position.x, leftRayOrigin.position.y - 0.3f);
+        bottomRightOrigin = new Vector2(bottomRayOrigin.position.x + 0.3f, bottomRayOrigin.position.y);
+        bottomLeftOrigin = new Vector2(bottomRayOrigin.position.x - 0.3f, bottomRayOrigin.position.y);
+        topRightOrigin = new Vector2(topRayOrigin.position.x + 0.3f, topRayOrigin.position.y);
+        topLeftOrigin = new Vector2(topRayOrigin.position.x - 0.3f, topRayOrigin.position.y);
 
         if (ray == rightRayOrigin.position)
         {
@@ -152,58 +152,5 @@ public class Enemy : MonoBehaviour
     {
         animator.SetFloat("Horizontal", x);
         animator.SetFloat("Vertical", y);
-    }
-
-    public Vector2 ChangePatrolDirection(Vector2 direction)
-    {
-        float random = Random.Range(0f, 1f);
-        if (random <= 0.5f)
-        {
-            if (direction.x == 0)
-                direction.x = 1;
-            else
-                direction.x *= -1;
-
-            direction.y = 0;
-        }
-        else
-        {
-            if (direction.y == 0)
-                direction.y = 1;
-            else
-                direction.y *= -1;
-
-            direction.x = 0;
-        }
-
-        return direction;
-    }
-
-    public Transform ChangePatrolRayOrigin(Vector2 direction)
-    {
-        Transform rayOrigin = rightRayOrigin ;
-
-        if (direction.x == 1)
-            rayOrigin = rightRayOrigin;
-        else if (direction.x == -1)
-            rayOrigin = leftRayOrigin;
-
-        if (direction.y == 1)
-            rayOrigin = topRayOrigin;
-        else if (direction.x == -1)
-            rayOrigin = bottomRayOrigin;
-
-        return rayOrigin;
-    }
-
-    public bool MoveTowardsPlayer()
-    {
-        if (Vector2.Distance(transform.position, target.position) > attackRange)
-        {
-            Vector2 direction = GetDirectionToPlayer();
-            characterMovement.Move(direction, 1.8f);
-            return true;
-        }
-        return false;
     }
 }

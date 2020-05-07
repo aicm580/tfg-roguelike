@@ -6,7 +6,7 @@ public class ContactDamage : MonoBehaviour
 {
     [SerializeField]
     private DamageOrigin contactOrigin;
-    private float touchDelay = 0.22f; //tiempo a esperar para que la colisión vuelva a hacer daño
+    private float touchDelay = 0.2f; //tiempo a esperar para que la colisión vuelva a hacer daño
     private bool canTouch = true;
 
     private void OnCollisionEnter2D(Collision2D collision)

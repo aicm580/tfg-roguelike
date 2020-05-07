@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    
     public Item currentItem;
     
     public static GameManager instance;

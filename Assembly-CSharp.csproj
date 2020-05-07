@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChildGenerator.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BreakableObjects\BreakableGenerator.cs" />
     <Compile Include="Assets\Scripts\BreakableObjects\BreakableObject.cs" />
@@ -80,15 +81,18 @@
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\FiniteStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\State.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\BossIntroState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowFlyingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowWalkingState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\GenerateChildsState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\MeleeAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolFlyingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\PatrolWalkingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\RangeAttackState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\UndergroundMoveState.cs" />
     <Compile Include="Assets\Scripts\Enemies\NormalEnemyHealth.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />

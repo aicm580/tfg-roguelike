@@ -2,7 +2,7 @@
 
 public class PatrolWalkingState : PatrolState
 {
-    public PatrolWalkingState(Enemy enemy, StateType state) : base(enemy, state) { }
+    public PatrolWalkingState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     RaycastHit2D hit, hit1, hit2;
    
@@ -28,12 +28,12 @@ public class PatrolWalkingState : PatrolState
             //Antes de cambiar la dirección del Animator, comprobamos que la nueva dirección sea válida
             RaycastHit2D newHit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
             if (!newHit)
-                enemy.SetAnimatorDirection(direction.x, direction.y);
+                enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
         }
-        rays = enemy.GetOtherRays(rayOrigin.position);
+        rays = enemyBehavior.GetOtherRays(rayOrigin.position);
 
         //Comprobamos si el enemigo divisa al jugador
-        if (enemy.NeedChangeState(enemy.detectionRange, wallsLayer | playerLayer) && GameManager.instance.enemiesActive)
-            enemy.fsm.EnterNextState();
+        if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, wallsLayer | playerLayer) && GameManager.instance.enemiesActive)
+            enemyBehavior.fsm.EnterNextState();
     }
 }

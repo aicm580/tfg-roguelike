@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour
@@ -7,7 +6,7 @@ public class FiniteStateMachine : MonoBehaviour
     [HideInInspector]
     public int i = 0; 
 
-    Enemy enemy;
+    GameObject enemy;
     State currentState;
 
     [SerializeField]
@@ -18,7 +17,7 @@ public class FiniteStateMachine : MonoBehaviour
 
     public void Awake()
     {
-        enemy = this.GetComponent<Enemy>();
+        enemy = this.gameObject;
         currentState = null;
         states.Add(new IdleState(enemy, StateType.Idle));
         states.Add(new PatrolWalkingState(enemy, StateType.PatrolWalking));
@@ -28,17 +27,29 @@ public class FiniteStateMachine : MonoBehaviour
         states.Add(new RangeAttackState(enemy, StateType.RangeAttack));
         states.Add(new MeleeAttackState(enemy, StateType.MeleeAttack));
 
+        states.Add(new BossIntroState(enemy, StateType.BossIntroState));
+        states.Add(new UndergroundMoveState(enemy, StateType.UndergroundMove));
+        states.Add(new GenerateChildsState(enemy, StateType.GenerateChilds));
+        
+        /*
         foreach (State state in states)
         {
             if (validStates.Contains(state.stateType))
             {
                 enemyStates.Add(state);
             }
-        }
+        }*/
     }
 
     public void Start()
     {
+        foreach (StateType s in validStates)
+        {
+            State state = states.Find(x => x.stateType == s);
+            if (state != null)
+                enemyStates.Add(state);
+        }
+
         EnterState(i);
     }
 

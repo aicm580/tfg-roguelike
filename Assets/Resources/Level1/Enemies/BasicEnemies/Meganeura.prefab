@@ -102,7 +102,6 @@ MonoBehaviour:
   friends:
     minVal: 2
     maxVal: 6
-  calculatedFriends: 0
   detectionRange: 2.8
   attackRange: 2
   giveUpRange: 6
@@ -154,6 +153,7 @@ MonoBehaviour:
   maxHealth: 20
   minRarity: 1
   maxRarity: 3
+  probability: 0.05
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
 --- !u!114 &2574572701396338812

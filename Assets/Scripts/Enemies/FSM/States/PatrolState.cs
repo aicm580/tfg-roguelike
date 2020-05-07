@@ -2,7 +2,9 @@
 
 public class PatrolState : State
 {
-    public PatrolState(Enemy enemy, StateType state) : base(enemy, state) { }
+    public PatrolState(GameObject enemy, StateType state) : base(enemy, state) { }
+
+    protected Enemy enemyBehavior;
 
     protected Vector2 initialPos;
     protected Vector2 direction;
@@ -11,10 +13,11 @@ public class PatrolState : State
    
     protected void InitPatrol()
     {
+        enemyBehavior = enemy.GetComponent<Enemy>();
         initialPos = enemy.transform.position;
         direction = new Vector2(1, 0);
-        rayOrigin = enemy.rightRayOrigin;
-        rays = enemy.GetOtherRays(rayOrigin.position);
+        rayOrigin = enemyBehavior.rightRayOrigin;
+        rays = enemyBehavior.GetOtherRays(rayOrigin.position);
     }
 
     protected Vector2 ChangePatrolDirection(Vector2 direction)
@@ -44,23 +47,23 @@ public class PatrolState : State
 
     protected Transform ChangePatrolRayOrigin(Vector2 direction)
     {
-        Transform rayOrigin = enemy.rightRayOrigin;
+        Transform rayOrigin = enemyBehavior.rightRayOrigin;
 
         if (direction.x == 1)
-            rayOrigin = enemy.rightRayOrigin;
+            rayOrigin = enemyBehavior.rightRayOrigin;
         else if (direction.x == -1)
-            rayOrigin = enemy.leftRayOrigin;
+            rayOrigin = enemyBehavior.leftRayOrigin;
 
         if (direction.y == 1)
-            rayOrigin = enemy.topRayOrigin;
+            rayOrigin = enemyBehavior.topRayOrigin;
         else if (direction.y == -1)
-            rayOrigin = enemy.bottomRayOrigin;
+            rayOrigin = enemyBehavior.bottomRayOrigin;
 
         return rayOrigin;
     }
 
     public override void FixedUpdateState()
     {
-        enemy.characterMovement.Move(direction, 1);
+        enemyBehavior.characterMovement.Move(direction, 1);
     }
 }

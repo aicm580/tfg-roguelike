@@ -71,11 +71,11 @@ public class ItemOnMap : MonoBehaviour
 
                 case "Rotten Mushroom":
                     playerMovement.ChangeMoveSpeed(-0.18f);
-                    playerShooting.bulletPrefab = BulletAssets.instance.GetBulletByType(BulletType.Poisonous);
+                    playerShooting.SetBulletType(BulletType.Poisonous);
                     break;
 
                 case "Saber Tooth":
-                    playerShooting.bulletPrefab = BulletAssets.instance.GetBulletByType(BulletType.Killer);
+                    playerShooting.SetBulletType(BulletType.Killer);
                     playerShooting.ChangeShootDelay(-0.035f);
                     playerHealth.DecreaseCurrentHearts(1); //pierde un corazón base
                     break;

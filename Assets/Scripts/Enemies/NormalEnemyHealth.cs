@@ -22,7 +22,6 @@ public class NormalEnemyHealth : CharacterHealth
     protected override void Die()
     {
         base.Die();
-       
-        SpawnItems(0.95f, minRarity, maxRarity); //Hay un 5% de probabilidades de que, al morir, el enemigo deje un item
+        SpawnItems(1f - probability, minRarity, maxRarity); 
     }
 }

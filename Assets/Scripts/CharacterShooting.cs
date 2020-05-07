@@ -12,17 +12,23 @@ public class CharacterShooting : MonoBehaviour
     public float shootDelay;
     public float bulletSize;
     public Bullet bulletPrefab;
-    public ShootType shootType;
+    public ShootType shootType; 
 
     [HideInInspector]
     public bool canShoot = true;
 
-    public void InitializeCharacterShooting(float delay, float size, BulletType bullet, ShootType shoot)
+
+    public void InitializeCharacterShooting(float delay, float size, BulletType type, ShootType shoot)
     {
         shootDelay = delay;
         bulletSize = size;
-        bulletPrefab = BulletAssets.instance.GetBulletByType(bullet);
+        bulletPrefab = BulletAssets.instance.GetBulletByType(type);
         shootType = shoot;
+    }
+
+    public void SetBulletType(BulletType type)
+    {
+        bulletPrefab = BulletAssets.instance.GetBulletByType(type);
     }
 
     public void ChangeShootDelay(float shootDelayModifier)

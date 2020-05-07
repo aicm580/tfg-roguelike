@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class IdleState : State
 {
-    public IdleState(Enemy enemy, StateType state) : base(enemy, state) { }
+    public IdleState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     public override void UpdateState()
     {
         if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
             animator.SetBool("isPatrolling", true);
-            enemy.fsm.EnterNextState();
+            enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }
     }
 }

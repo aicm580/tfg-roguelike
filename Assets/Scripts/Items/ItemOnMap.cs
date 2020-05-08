@@ -58,7 +58,7 @@ public class ItemOnMap : MonoBehaviour
                     break;
                     
                 case "Gigantic Worm":
-                    playerShooting.bulletSize = 1; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
+                    playerShooting.bulletSize = 0.5f; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
                     break;
 
                 case "Heart":

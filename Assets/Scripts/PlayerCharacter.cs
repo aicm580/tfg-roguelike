@@ -13,6 +13,7 @@ public class PlayerCharacter : ScriptableObject
 
     public float shootDelay;
     public float bulletSize;
+    public int bulletsAmount;
     public BulletType bulletType;
     public ShootType shootType;
 

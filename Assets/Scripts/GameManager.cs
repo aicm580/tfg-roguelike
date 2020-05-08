@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
         playerAlive = true;
         playerChar = playerCharSO;
         playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
-        playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletType, playerChar.shootType);
+        playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
         playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
         UpdateGameStats();
 

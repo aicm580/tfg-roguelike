@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Enemies\FSM\FiniteStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\State.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\BossIntroState.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FSM\States\BossOneShootState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowFlyingState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowState.cs" />
     <Compile Include="Assets\Scripts\Enemies\FSM\States\FollowWalkingState.cs" />

@@ -69,7 +69,7 @@ public class EnemiesGenerator : MonoBehaviour
         }
     }
 
-    void CreateEnemiesInRoom(int i)
+    private void CreateEnemiesInRoom(int i)
     {
          int nEnemies;
          if (i == 0 && level == 1) //si se trata de la primera sala del primer nivel
@@ -96,15 +96,16 @@ public class EnemiesGenerator : MonoBehaviour
          while (enemiesCreated < nEnemies)
          {
              int friends = 0;
-             Biome enemyBiome; 
-             GameObject enemyPrefab;
+             Biome enemyBiome;
+             GameObject enemy;
+             Vector3 position;
 
              //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
              //puesto que en esta sala solo se encontrará 1 enemigo, el jefe final, que no tendrá amigos nunca
              if (i != mapGenerator.rooms.Length - 1)
              {
                 int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
-                enemyPrefab = enemiesPrefabs[randomEnemy];
+                GameObject enemyPrefab = enemiesPrefabs[randomEnemy];
                 friends = enemyPrefab.GetComponent<Enemy>().friends.Randomize;
                 enemyBiome = enemyPrefab.GetComponent<Enemy>().biome;
 
@@ -124,55 +125,59 @@ public class EnemiesGenerator : MonoBehaviour
                         friends = enemyPrefab.GetComponent<Enemy>().friends.minVal;
                     }
                 }
+                Vector3 randomPos = RandomPosition(i);
+                Vector3 lastPos = new Vector3();
+
+                for (int j = 0; j < friends + 1; j++)
+                {
+                    if (j == 0)
+                    {
+                        position = randomPos;
+                    }
+                    else
+                    {
+                        int k = 1;
+                        int attempt = 0;
+                        do
+                        {
+                            position.x = lastPos.x + Random.Range(-k, k);
+                            position.y = lastPos.y + Random.Range(-k, k);
+                            position.z = 0;
+
+                            attempt++;
+
+                            if (attempt >= 7)
+                                k++;
+
+                        } while (!mapGenerator.CheckPosition(position, i));
+
+                        mapGenerator.rooms[i].emptyPositions.Remove(position);
+                    }
+
+                    lastPos = position;
+                    InstantiateEnemy(enemyPrefab, position, false);
+                    enemiesCreated++;
+                }
              }
              else
              {
-                enemyPrefab = bossPrefab;
-             }
-
-             Vector3 randomPos = RandomPosition(i);
-             Vector3 lastPos = new Vector3();
-
-             for (int j = 0; j < friends + 1; j++)
-             {
-                Vector3 position;
-
-                if (j == 0)
-                {
-                    position = randomPos;
-                }
-                else
-                {
-                    int k = 1;
-                    int attempt = 0;
-                    do
-                    {
-                        position.x = lastPos.x + Random.Range(-k, k);
-                        position.y = lastPos.y + Random.Range(-k, k);
-                        position.z = 0;
-
-                        attempt++;
-
-                        if (attempt >= 7)
-                        {
-                            k++;
-                        }
-
-                    } while (!mapGenerator.CheckPosition(position, i));
-
-                    mapGenerator.rooms[i].emptyPositions.Remove(position);
-                }
-
-                lastPos = position;
-
-                GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
-                enemy.transform.position = position;
-                enemy.transform.parent = enemiesHolder.transform;
-                //enemy.GetComponent<Enemy>().calculatedFriends = friends;
-                enemies.Add(enemy);
+                BoxCollider2D boxCol = bossPrefab.GetComponent<BoxCollider2D>();
+                position = RandomPositionWithOverlap(i, boxCol.size);
+                mapGenerator.rooms[i].emptyPositions.Remove(position);
+                InstantiateEnemy(bossPrefab, position, true);
                 enemiesCreated++;
              }
          }
+    }
+
+    private void InstantiateEnemy(GameObject prefab, Vector3 position, bool isBoss)
+    {
+        GameObject enemy = Instantiate(prefab, position, Quaternion.identity) as GameObject;
+        enemy.transform.parent = enemiesHolder.transform;
+        //enemy.GetComponent<Enemy>().calculatedFriends = friends;
+
+        if (!isBoss)
+            enemies.Add(enemy);
     }
 
     //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo, y que tampoco el player esté muy cerca
@@ -208,5 +213,23 @@ public class EnemiesGenerator : MonoBehaviour
         mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
 
         return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
+    }
+
+    public Vector3 RandomPositionWithOverlap(int room, Vector2 boxSize)
+    {
+        int randomIndex;
+        Vector3 randomPosition;
+        Collider2D col;
+
+        do
+        {
+            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+
+            col = Physics2D.OverlapBox(randomPosition, new Vector2(boxSize.x, boxSize.y), 0);
+
+        } while (col != null);
+
+        return randomPosition; //devolvemos la posición en la que colocar un nuevo enemigo
     }
 }

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootDelay: 2
   bulletSize: 0
+  bulletsAmount: 1
   bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
   shootType: 0

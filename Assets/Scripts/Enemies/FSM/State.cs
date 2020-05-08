@@ -9,8 +9,7 @@ public enum StateType
     FollowWalking, FollowFlying,
     RangeAttack, MeleeAttack,
 
-    BossIntroState,
-    UndergroundMove, GenerateChilds,
+    BossIntroState, BossOneShootState, UndergroundMove, GenerateChilds,
 }
 
 public abstract class State

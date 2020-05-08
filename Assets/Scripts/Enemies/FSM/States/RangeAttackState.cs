@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RangeAttackState : State
 {
+    public RangeAttackState(GameObject enemy, StateType state) : base(enemy, state) { }
+
     private CharacterShooting characterShooting;
     private Enemy enemyBehavior;
     private Vector2 direction;
     private Quaternion angle;
     private Vector3 bulletOrigin = new Vector3();
-
-    public RangeAttackState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     public override void OnStateEnter()
     {

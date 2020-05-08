@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 3002168867632701921}
   - component: {fileID: -1385795010597343007}
   - component: {fileID: -351665198365209284}
+  - component: {fileID: 4385807594964503118}
   - component: {fileID: 8960580996104567138}
   - component: {fileID: 9169562056107090274}
   - component: {fileID: 8427520012358571228}
   - component: {fileID: -1733064268775260785}
   - component: {fileID: -4573742441337111331}
-  - component: {fileID: 4385807594964503118}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Boss
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 3002168867632701916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 59.718544, y: 85.37095, z: -61.9375}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4689678125208169927}
   m_Father: {fileID: 0}
@@ -52,7 +52,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00942868, y: -0.0014125332}
+  m_Offset: {x: 0.066682816, y: 0.0027046204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -63,7 +63,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15347672, y: 0.2605155}
+  m_Size: {x: 0.9556694, y: 1.6256638}
   m_EdgeRadius: 0
 --- !u!50 &-351665198365209284
 Rigidbody2D:
@@ -86,85 +86,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8960580996104567138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contactOrigin: 2
---- !u!114 &9169562056107090274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootDelay: 0
-  bulletSize: 0
-  bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
-    type: 3}
-  shootType: 0
-  canShoot: 1
---- !u!114 &8427520012358571228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0739c390fb388404ba404711fabb785d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  minRarity: 3
-  maxRarity: 5
-  probability: 0.82
-  fuel: {fileID: 8939236747754090481, guid: 3ddaa32fa2a880b41b2131e2eec84dd5, type: 3}
---- !u!114 &-1733064268775260785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7296f1c71cb1b8c4ea5f59787ef98aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childPrefab: {fileID: 2789506304967602484, guid: 2cd041cb8de02924db5b5113ae7f33f3,
-    type: 3}
-  childsPerRound: 4
-  timeBetweenRounds: 10
---- !u!114 &-4573742441337111331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002168867632701916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  i: 0
-  validStates: 070000000800000009000000
 --- !u!114 &4385807594964503118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +126,87 @@ MonoBehaviour:
   bottomLeftOrigin: {x: 0, y: 0}
   topRightOrigin: {x: 0, y: 0}
   topLeftOrigin: {x: 0, y: 0}
+--- !u!114 &8960580996104567138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactOrigin: 2
+--- !u!114 &9169562056107090274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootDelay: 0
+  bulletSize: 0.5
+  bulletsAmount: 6
+  bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
+    type: 3}
+  shootType: 2
+  canShoot: 1
+--- !u!114 &8427520012358571228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0739c390fb388404ba404711fabb785d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  minRarity: 3
+  maxRarity: 5
+  probability: 0.85
+  fuel: {fileID: 8939236747754090481, guid: 3ddaa32fa2a880b41b2131e2eec84dd5, type: 3}
+  healthBar: {fileID: 0}
+--- !u!114 &-1733064268775260785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7296f1c71cb1b8c4ea5f59787ef98aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childPrefab: {fileID: 2789506304967602484, guid: 2cd041cb8de02924db5b5113ae7f33f3,
+    type: 3}
+  childsPerRound: 4
+  timeBetweenRounds: 10
+--- !u!114 &-4573742441337111331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e04ee8293c4954bacb61570462d1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  validStates: 0700000008000000090000000a000000
 --- !u!1 &6733929719999026473
 GameObject:
   m_ObjectHideFlags: 0

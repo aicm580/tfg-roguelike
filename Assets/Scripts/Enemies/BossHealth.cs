@@ -4,7 +4,7 @@ public class BossHealth : CharacterHealth
 {
     [SerializeField]
     protected GameObject fuel;
-    
+    [HideInInspector]
     public HealthBar healthBar;
 
     protected override void Start()

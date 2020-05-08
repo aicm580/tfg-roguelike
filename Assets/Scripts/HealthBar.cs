@@ -12,7 +12,6 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
         barShadows.fillAmount = (float)health / (float)maxHealth - 0.018f;
-        EnableHealthBar();
     }
 
     public void SetMaxHealth (int maxHealth)

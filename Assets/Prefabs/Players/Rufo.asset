@@ -18,6 +18,7 @@ MonoBehaviour:
   maxHearts: 10
   shootDelay: 0.35
   bulletSize: 0
+  bulletsAmount: 1
   bulletType: 0
   shootType: 0
   moveSpeed: 4

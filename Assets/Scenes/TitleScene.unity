@@ -242,7 +242,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 462037486}
   musicSource: {fileID: 462037485}
-  sounds: []
+  sounds:
+  - name: Footstep
+    clip: {fileID: 8300000, guid: 501a644d8cf588f4b9c5118be3ccbdbc, type: 3}
+    volume: 0.291
+    pitch: 3
+    loop: 0
+  music: []
 --- !u!4 &462037484
 Transform:
   m_ObjectHideFlags: 0

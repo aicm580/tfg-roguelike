@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    //public GameObject explosionEffect;
     public BulletType bulletType;
     public int bulletDamage = 5; //daño que inflige
     public float bulletSpeed = 5.0f; //velocidad de la bala
     public float bulletLifetime = 0.9f; //tiempo de vida de la bala
     public DamageOrigin bulletOwner;
+
+    public GameObject explosionEffect;
+
     [HideInInspector]
     public Vector3 direction;
   
@@ -52,8 +54,8 @@ public class Bullet : MonoBehaviour
 
     private void DestroyBullet()
     {
-        //GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        //Destroy(explosion, 5f); //esperamos 5f para destruir la explosion
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        Destroy(explosion, explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); //esperamos para destruir la explosion
         Destroy(gameObject);
     }
 }

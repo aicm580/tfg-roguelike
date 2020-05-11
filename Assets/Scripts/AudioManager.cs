@@ -1,5 +1,4 @@
-﻿using UnityEngine.Audio;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -9,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource musicSource;
     public Sound[] sounds;
+    public Sound[] music;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Play(string name)
+    public void PlaySFX(string name)
     {
         Sound sound = Array.Find(sounds, s => s.name == name);
 
@@ -37,6 +37,24 @@ public class AudioManager : MonoBehaviour
         sfxSource.clip = sound.clip;
         sfxSource.volume = sound.volume;
         sfxSource.pitch = sound.pitch;
+        sfxSource.loop = sound.loop;
         sfxSource.PlayOneShot(sound.clip, sound.volume);
+    }
+
+    public void PlayMusic(string name)
+    {
+        Sound sound = Array.Find(music, s => s.name == name);
+
+        if (sound == null)
+        {
+            Debug.LogWarning("Music '" + name + "' not found");
+            return;
+        }
+
+        musicSource.clip = sound.clip;
+        musicSource.volume = sound.volume;
+        musicSource.pitch = sound.pitch;
+        musicSource.loop = sound.loop;
+        musicSource.PlayOneShot(sound.clip, sound.volume);
     }
 }

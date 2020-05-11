@@ -44,7 +44,7 @@ public class CharacterShooting : MonoBehaviour
 
     private void InstantiateBullet(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
     {
-        Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * 0.65f), rotation);
+        Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * 0.6f), rotation);
         bullet.direction = direction;
         bullet.bulletOwner = owner;
 

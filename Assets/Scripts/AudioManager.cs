@@ -8,7 +8,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource musicSource;
     public Sound[] sounds;
-    public Sound[] music;
 
     void Awake()
     {
@@ -43,7 +42,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string name)
     {
-        Sound sound = Array.Find(music, s => s.name == name);
+        Sound sound = Array.Find(sounds, s => s.name == name);
 
         if (sound == null)
         {
@@ -55,6 +54,6 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = sound.volume;
         musicSource.pitch = sound.pitch;
         musicSource.loop = sound.loop;
-        musicSource.PlayOneShot(sound.clip, sound.volume);
+        musicSource.Play();
     }
 }

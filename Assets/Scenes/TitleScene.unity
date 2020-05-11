@@ -243,12 +243,21 @@ MonoBehaviour:
   sfxSource: {fileID: 462037486}
   musicSource: {fileID: 462037485}
   sounds:
-  - name: Footstep
-    clip: {fileID: 8300000, guid: 501a644d8cf588f4b9c5118be3ccbdbc, type: 3}
+  - name: PickItem
+    clip: {fileID: 8300000, guid: aaa9345fc5b00ea40b9cb0abb4bfa928, type: 3}
     volume: 0.291
-    pitch: 3
+    pitch: 1
     loop: 0
-  music: []
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 53cf359ba6723ed46bd1f96e7304cd83, type: 3}
+    volume: 0.548
+    pitch: 1
+    loop: 0
+  - name: GameBackground
+    clip: {fileID: 8300000, guid: 509b714987751894ea3ae2ac980e7304, type: 3}
+    volume: 0.291
+    pitch: 1
+    loop: 1
 --- !u!4 &462037484
 Transform:
   m_ObjectHideFlags: 0

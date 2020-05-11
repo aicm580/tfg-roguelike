@@ -64,6 +64,7 @@ public class PlayerInputController : MonoBehaviour
                 }*/
 
                 characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
+                AudioManager.audioManagerInstance.PlaySFX("Shoot");
             }
 
             //KEYBOARD INPUT MANAGEMENT (MOVEMENT)
@@ -92,10 +93,6 @@ public class PlayerInputController : MonoBehaviour
             }*/
 
             characterMovement.Move(movement, 1);
-            /*
-            if (movement.sqrMagnitude > 0)
-                AudioManager.audioManagerInstance.PlaySFX("Footstep");
-            */
 
             firepointPos = new Vector2(firePoint.position.x, firePoint.position.y);
             lookDirection = (mousePos - firepointPos).normalized;

@@ -82,8 +82,6 @@ public class GameManager : MonoBehaviour
         bool showStats = PlayerPrefs.GetInt("GameStatsActive") == 1 ? true : false;
         statsPanel.gameObject.SetActive(showStats);
 
-        AudioManager.audioManagerInstance.PlayMusic("GameBackground");
-
         loadPanel.SetActive(true);
         StartCoroutine(DisableLoadPanel());
         InitRun();
@@ -168,6 +166,8 @@ public class GameManager : MonoBehaviour
 
         timePlayed = 0;
         timerActive = true;
+
+        AudioManager.audioManagerInstance.PlayMusic("GameBackground");
 
         runIsReady = true;
     }

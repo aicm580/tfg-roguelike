@@ -47,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            AudioManager.audioManagerInstance.PlaySFX("LoseHeart");
             DecreaseHealthAnimation();
             currentHealth -= dmgAmount;
             if (currentHealth <= 0)

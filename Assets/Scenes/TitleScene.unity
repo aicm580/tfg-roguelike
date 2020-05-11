@@ -258,6 +258,16 @@ MonoBehaviour:
     volume: 0.291
     pitch: 1
     loop: 1
+  - name: LoseHeart
+    clip: {fileID: 8300000, guid: 7e98a4f6f090f194abeed847326fae5d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 8f1baa1f91eca5d4c95d987597abe838, type: 3}
+    volume: 0.45
+    pitch: 1
+    loop: 0
 --- !u!4 &462037484
 Transform:
   m_ObjectHideFlags: 0

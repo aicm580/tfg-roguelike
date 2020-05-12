@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: f61aa1d1a796a004d814b9b2b705a334
+guid: f2f2fce014572614694e1060e0bbe965
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5715621457377548257
-    second: Heart_Lost_0
+      213: 5306301194510768492
+    second: Olghoi_0
   - first:
-      213: 7680981167701175256
-    second: Heart_Lost_1
+      213: -1002708178371432167
+    second: Olghoi_1
   - first:
-      213: 7432819504684081970
-    second: Heart_Lost_2
+      213: 2695535887849082899
+    second: Olghoi_2
   - first:
-      213: -8918594569357271702
-    second: Heart_Lost_3
+      213: 7662480092220707500
+    second: Olghoi_3
   - first:
-      213: 1102531716107977767
-    second: Heart_Lost_4
+      213: -2503143144035122633
+    second: Olghoi_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -62,7 +62,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heart_Lost_0
+      name: Olghoi_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,41 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0347f430af3cf974da5851c0d3d10a8a
-      internalID: -5715621457377548257
+      spriteID: b508e960928fa354598edbb897c3d42b
+      internalID: 5306301194510768492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_Lost_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6abd807a6d86b1f488f53c5e4edfa1d0
-      internalID: 7680981167701175256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Heart_Lost_2
+      name: Olghoi_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,41 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 513bec56a05eb3f4b8c4f8f369cd3a44
-      internalID: 7432819504684081970
+      spriteID: 81e7566027f8a114bbaf173697f9a8f5
+      internalID: -1002708178371432167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_Lost_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbd9072fecfd0d64e80d4c5d485196c2
-      internalID: -8918594569357271702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Heart_Lost_4
+      name: Olghoi_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,8 +166,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66f40d9f2a5b6084e898ce427da23879
-      internalID: 1102531716107977767
+      spriteID: 7887f7775d6024b4d9bd9771b979df60
+      internalID: 2695535887849082899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83ed1eaf5db0ba1429a898b06873ad3f
+      internalID: 7662480092220707500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ece3e18034fc8ba45a9d1039d80e77f8
+      internalID: -2503143144035122633
       vertices: []
       indices: 
       edges: []
@@ -217,7 +217,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a29b85a0223bd7e449060e1ffd1d1887
+    spriteID: 87d25ab3c390fc141b21a72f7bfadd3b
     internalID: 0
     vertices: []
     indices: 

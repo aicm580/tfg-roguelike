@@ -754,7 +754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 349397556}
   barShadows: {fileID: 616063587}
-  bar: {fileID: 349397554}
 --- !u!1 &366926269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3492,6 +3491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootDelay: 0.22
   bulletSize: 0
+  bulletsAmount: 0
   bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
     type: 3}
   shootType: 0
@@ -4494,6 +4494,8 @@ MonoBehaviour:
   - {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e, type: 3}
   - {fileID: 304181260431725268, guid: 2fd230684bc0e134383efa3e5c6bef9d, type: 3}
   - {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03, type: 3}
+  explosion: {fileID: 7942517521082008494, guid: 201a5c5f14d9b734393a88df1980a04a,
+    type: 3}
 --- !u!4 &1786011883
 Transform:
   m_ObjectHideFlags: 0

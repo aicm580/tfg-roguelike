@@ -14,6 +14,7 @@ public class BulletAssets : MonoBehaviour
     public static BulletAssets instance { get; private set; }
 
     public Bullet[] bullets;
+    public GameObject explosion;
 
     private Dictionary<BulletType, Bullet> bulletDictionary = new Dictionary<BulletType, Bullet>();
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,19 +6,22 @@ public class Bullet : MonoBehaviour
     public int bulletDamage = 5; //daño que inflige
     public float bulletSpeed = 5.0f; //velocidad de la bala
     public float bulletLifetime = 0.9f; //tiempo de vida de la bala
-    public DamageOrigin bulletOwner;
+    public Color explosionColor;
 
-    public GameObject explosionEffect;
+    [HideInInspector]
+    public DamageOrigin bulletOwner;
 
     [HideInInspector]
     public Vector3 direction;
   
     private Rigidbody2D rb;
+    private GameObject bulletExplosion;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(direction.x * bulletSpeed, direction.y * bulletSpeed);
+        bulletExplosion = Instantiate(BulletAssets.instance.explosion);
         Invoke("DestroyBullet", bulletLifetime);
     }
 
@@ -54,7 +55,8 @@ public class Bullet : MonoBehaviour
 
     private void DestroyBullet()
     {
-        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        bulletExplosion.GetComponent<SpriteRenderer>().color = explosionColor;
+        GameObject explosion = Instantiate(bulletExplosion, transform.position + (direction * 0.15f), Quaternion.identity);
         Destroy(explosion, explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); //esperamos para destruir la explosion
         Destroy(gameObject);
     }

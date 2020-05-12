@@ -147,9 +147,8 @@ MonoBehaviour:
   bulletDamage: 3
   bulletSpeed: 4.5
   bulletLifetime: 0.7
+  explosionColor: {r: 0.3372549, g: 1, b: 0, a: 1}
   bulletOwner: 1
-  explosionEffect: {fileID: 7942517521082008494, guid: 201a5c5f14d9b734393a88df1980a04a,
-    type: 3}
   direction: {x: 0, y: 0, z: 0}
 --- !u!114 &-5310348648963067600
 MonoBehaviour:

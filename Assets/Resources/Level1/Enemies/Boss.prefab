@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8427520012358571228}
   - component: {fileID: -1733064268775260785}
   - component: {fileID: -4573742441337111331}
+  - component: {fileID: 3677169988405681095}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Boss
@@ -52,7 +53,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.066682816, y: 0.0027046204}
+  m_Offset: {x: -0.07870674, y: 0.14794159}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -63,7 +64,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9556694, y: 1.6256638}
+  m_Size: {x: 0.6150398, y: 0.9534302}
   m_EdgeRadius: 0
 --- !u!50 &-351665198365209284
 Rigidbody2D:
@@ -207,6 +208,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i: 0
   validStates: 0700000008000000090000000a000000
+--- !u!95 &3677169988405681095
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002168867632701916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 212d45fc9925c8f43ba46883e2c33306, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6733929719999026473
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +296,8 @@ SpriteRenderer:
   m_SortingLayerID: 911409267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5bc00562c570eb84aa82b193ee334b49, type: 3}
+  m_Sprite: {fileID: 5306301194510768492, guid: f2f2fce014572614694e1060e0bbe965,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

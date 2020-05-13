@@ -149,7 +149,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  currentHealth: 0
   minRarity: 0
   maxRarity: 0
   probability: 0
   objectType: 0
+  explosionPrefab: {fileID: 5344042619687345061, guid: 52f67449697abf04a8d92229797f1144,
+    type: 3}

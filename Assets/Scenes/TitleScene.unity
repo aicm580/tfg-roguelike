@@ -245,27 +245,32 @@ MonoBehaviour:
   sounds:
   - name: PickItem
     clip: {fileID: 8300000, guid: aaa9345fc5b00ea40b9cb0abb4bfa928, type: 3}
-    volume: 0.291
+    volume: 0.3
     pitch: 1
     loop: 0
   - name: GameOver
     clip: {fileID: 8300000, guid: 53cf359ba6723ed46bd1f96e7304cd83, type: 3}
-    volume: 0.548
+    volume: 0.38
     pitch: 1
     loop: 0
   - name: GameBackground
     clip: {fileID: 8300000, guid: 509b714987751894ea3ae2ac980e7304, type: 3}
-    volume: 0.291
+    volume: 0.1
     pitch: 1
     loop: 1
   - name: LoseHeart
     clip: {fileID: 8300000, guid: 7e98a4f6f090f194abeed847326fae5d, type: 3}
-    volume: 0.5
+    volume: 0.28
     pitch: 1
     loop: 0
   - name: Shoot
     clip: {fileID: 8300000, guid: 8f1baa1f91eca5d4c95d987597abe838, type: 3}
-    volume: 0.45
+    volume: 0.32
+    pitch: 1
+    loop: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: d74ebcc7b2b683d499ae435336da8d99, type: 3}
+    volume: 0.53
     pitch: 1
     loop: 0
 --- !u!4 &462037484

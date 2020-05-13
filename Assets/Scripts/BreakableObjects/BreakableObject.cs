@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum BreakableObjectType
 {
@@ -11,6 +9,8 @@ public class BreakableObject : CharacterHealth
 {
     [SerializeField]
     protected BreakableObjectType objectType;
+    [SerializeField]
+    protected GameObject explosionPrefab;
     
     private EnemiesGenerator enemiesGenerator;
 
@@ -24,8 +24,13 @@ public class BreakableObject : CharacterHealth
         switch (objectType)
         {
             case BreakableObjectType.Explosive:
+                AudioManager.audioManagerInstance.PlaySFX("Explosion");
+                GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                float destroyTime = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+                Destroy(explosion, destroyTime);
+
                 bool playerHit = false; //el player tiene 2 colliders, pero solo queremos dañarlo 1 vez, por lo que utilizamos un bool para saber si ya se le ha dañado
-                Collider2D[] charactersInRange = Physics2D.OverlapCircleAll(transform.position, 2f);
+                Collider2D[] charactersInRange = Physics2D.OverlapCircleAll(transform.position, 1.75f);
 
                 foreach (Collider2D col in charactersInRange)
                 {
@@ -40,6 +45,7 @@ public class BreakableObject : CharacterHealth
                         col.GetComponent<NormalEnemyHealth>().TakeDamage(10);
                     }
                 }
+                
                 break;
 
             case BreakableObjectType.EnemyContainer:

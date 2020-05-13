@@ -12,7 +12,7 @@ public class BreakableGenerator : MonoBehaviour
 
     public List<GameObject> breakablesPrefabs;
     
-    private float defaultMinRandom = 0.91f;
+    private float defaultMinRandom = 0.1f; //0.91f
     public float breakableMinRandom;
 
     private int level;

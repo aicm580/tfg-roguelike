@@ -30,7 +30,9 @@ public class MeleeAttackState : State
         {
             direction *= -1;
         }
-           
+
+        enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+
         if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= enemyBehavior.attackRange)
         {
             

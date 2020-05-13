@@ -45,6 +45,8 @@ public class FollowState : State
             lastMove = Move.Right;
         else if (direction == Vector2.left)
             lastMove = Move.Left;
+
+        enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
     }
 
     protected void CheckGiveUp()

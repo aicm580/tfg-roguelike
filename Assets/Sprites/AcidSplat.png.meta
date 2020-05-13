@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: f2f2fce014572614694e1060e0bbe965
+guid: 7d96df89e28b55f4f9c792136687f232
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5306301194510768492
-    second: Olghoi_0
+      213: -1937807326998932550
+    second: AcidSplat_0
   - first:
-      213: -1002708178371432167
-    second: Olghoi_1
+      213: -4854881654088601127
+    second: AcidSplat_1
   - first:
-      213: 2695535887849082899
-    second: Olghoi_2
+      213: 1063237056770142624
+    second: AcidSplat_2
   - first:
-      213: 7662480092220707500
-    second: Olghoi_3
+      213: 5511812139553003973
+    second: AcidSplat_3
   - first:
-      213: -2503143144035122633
-    second: Olghoi_4
+      213: -8831887280285884464
+    second: AcidSplat_4
   - first:
-      213: -5342726558359614523
-    second: Olghoi_5
-  - first:
-      213: 8845553660197014174
-    second: Olghoi_6
-  - first:
-      213: 7742680770430791251
-    second: Olghoi_7
-  - first:
-      213: 4503319128100942581
-    second: Olghoi_8
-  - first:
-      213: -1698562567750699082
-    second: Olghoi_9
+      213: -2352627107771326926
+    second: AcidSplat_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -125,118 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Olghoi_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dfcc35d9c6387d4e9ebc00e1d43f768
-      internalID: 5306301194510768492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca71af0ff12eb8e4e9cbeff584986abf
-      internalID: -1002708178371432167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f6cc306f2b5f264bb5da7a5fd921ed9
-      internalID: 2695535887849082899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 215b0672865ea3f4d96637440c9afe22
-      internalID: 7662480092220707500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 913bca405df3b5e4696396997ec45546
-      internalID: -2503143144035122633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_5
+      name: AcidSplat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,41 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c957b8e36ca2a3344afa1b03cb55e049
-      internalID: -5342726558359614523
+      spriteID: f20a100c8323c1f4e86386027727cb33
+      internalID: -1937807326998932550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olghoi_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67a4f37b6487bd7429297b06a1b254a5
-      internalID: 8845553660197014174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_7
+      name: AcidSplat_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,41 +148,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9025c519cc7a5247b26b1ec38c4d759
-      internalID: 7742680770430791251
+      spriteID: 7696cc7809bc55945ab9911075784759
+      internalID: -4854881654088601127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olghoi_8
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08d6fbc1204d73d44b755b6f37b89343
-      internalID: 4503319128100942581
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_9
+      name: AcidSplat_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,8 +169,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df546daf5f20f8e4e856e1d6a71f8480
-      internalID: -1698562567750699082
+      spriteID: e552cdeec65182e44850073dac093a9a
+      internalID: 1063237056770142624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AcidSplat_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988d0e9cb98d12449ab8440ad7269da9
+      internalID: 5511812139553003973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AcidSplat_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f5ddc1d54a4d6e458383e5cd4e477bc
+      internalID: -8831887280285884464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AcidSplat_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c22c1941e946f564db8305703ab996cc
+      internalID: -2352627107771326926
       vertices: []
       indices: 
       edges: []
@@ -337,7 +241,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 87d25ab3c390fc141b21a72f7bfadd3b
+    spriteID: eb31588d7cc3cdc47b9cd526faa6d3c9
     internalID: 0
     vertices: []
     indices: 

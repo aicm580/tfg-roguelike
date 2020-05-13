@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(direction.x * bulletSpeed, direction.y * bulletSpeed);
-        bulletExplosion = Instantiate(BulletAssets.instance.explosion);
+        bulletExplosion = BulletAssets.instance.explosion;
         Invoke("DestroyBullet", bulletLifetime);
     }
 
@@ -57,7 +57,8 @@ public class Bullet : MonoBehaviour
     {
         bulletExplosion.GetComponent<SpriteRenderer>().color = explosionColor;
         GameObject explosion = Instantiate(bulletExplosion, transform.position + (direction * 0.15f), Quaternion.identity);
-        Destroy(explosion, explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); //esperamos para destruir la explosion
+        float destroyTime = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        Destroy(explosion, destroyTime); //esperamos para destruir la explosion
         Destroy(gameObject);
     }
 }

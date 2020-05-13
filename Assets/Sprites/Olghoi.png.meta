@@ -17,6 +17,15 @@ TextureImporter:
   - first:
       213: -2503143144035122633
     second: Olghoi_4
+  - first:
+      213: -5342726558359614523
+    second: Olghoi_5
+  - first:
+      213: 8845553660197014174
+    second: Olghoi_6
+  - first:
+      213: 7742680770430791251
+    second: Olghoi_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -114,6 +123,111 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e1701195c8cc44494c16df7ab866c9
+      internalID: 5306301194510768492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f919f6962ad2342a2f1a7575b8b024
+      internalID: -1002708178371432167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a029abf240e8f4f98cafaa3f49e2e7
+      internalID: 2695535887849082899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c8d91fa264b51446af1ee63a5b4777a
+      internalID: 7662480092220707500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be13f6fe898b88f4493744d20bbcb898
+      internalID: -2503143144035122633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Olghoi_5
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -124,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b508e960928fa354598edbb897c3d42b
-      internalID: 5306301194510768492
+      spriteID: e0dcd11f7c74c5442a3128e559db7ff4
+      internalID: -5342726558359614523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olghoi_1
+      name: Olghoi_6
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e7566027f8a114bbaf173697f9a8f5
-      internalID: -1002708178371432167
+      spriteID: bf1431e79d29d5c43ad31ccc5a165e10
+      internalID: 8845553660197014174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Olghoi_2
+      name: Olghoi_7
       rect:
         serializedVersion: 2
         x: 64
@@ -166,50 +280,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7887f7775d6024b4d9bd9771b979df60
-      internalID: 2695535887849082899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83ed1eaf5db0ba1429a898b06873ad3f
-      internalID: 7662480092220707500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Olghoi_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ece3e18034fc8ba45a9d1039d80e77f8
-      internalID: -2503143144035122633
+      spriteID: 30eb3e2db16d4a14e91e06556fb1c6c4
+      internalID: 7742680770430791251
       vertices: []
       indices: 
       edges: []

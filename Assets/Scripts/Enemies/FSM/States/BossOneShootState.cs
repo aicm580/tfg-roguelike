@@ -8,7 +8,6 @@ public class BossOneShootState : State
 
     private CharacterShooting characterShooting;
     private float timer;
-    private float delay = 1f;
 
     public override void OnStateEnter()
     {
@@ -18,12 +17,13 @@ public class BossOneShootState : State
 
     public override void UpdateState()
     {
-        if (timer < delay)
+        if (timer < characterShooting.shootDelay)
         {
             timer += Time.deltaTime;
         }
         else
         {
+            animator.SetTrigger("split");
             characterShooting.Shoot(enemy.transform.position, Vector2.zero, Quaternion.identity, DamageOrigin.Boss);
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }

@@ -16,7 +16,7 @@ public class BossIntroState : State
     {
         if (enemyBehavior.NeedChangeState(7.5f, masks))
         {
-            animator.SetTrigger("intro");
+            animator.SetTrigger("appear");
             enemy.GetComponent<BossHealth>().healthBar.EnableHealthBar();
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }

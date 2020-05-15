@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public enum DamageOrigin
@@ -20,10 +21,13 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     private int currentHearts; //nº de corazones actuales (llenos o no)
     private Animator animator;
+    private SpriteRenderer spriteRend;
+    private Color dmgColor = new Color(250f/255f, 131f/255f, 131f/255f);
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRend = GetComponent<SpriteRenderer>();
     }
 
     public void SetPlayerHealth(int initHealth, int initHearts, int maxHeart)
@@ -47,12 +51,20 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            spriteRend.color = dmgColor;
+            StartCoroutine(ReturnToWhite());
             AudioManager.audioManagerInstance.PlaySFX("LoseHeart");
             DecreaseHealthAnimation();
             currentHealth -= dmgAmount;
             if (currentHealth <= 0)
                 Die(dmgOrigin);
         } 
+    }
+
+    IEnumerator ReturnToWhite()
+    {
+        yield return new WaitForSeconds(0.15f);
+        spriteRend.color = Color.white;
     }
 
     public void IncreaseCurrentHearts(int totalAmount, int fullAmount)

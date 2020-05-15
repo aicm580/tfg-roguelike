@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dffd6cfd811d8cf41b7d517a210dae43, type: 3}
-  m_Name: WollemiasRoot
+  m_Name: FastGrowingMushroom
   m_EditorClassIdentifier: 
-  itemName: Wollemia's Root
-  itemDescription: 
+  itemName: Fast Growing Mushroom
   amount: 4
   itemSprite: {fileID: -7855203551248514480, guid: f72d4c551472a8e4498c62c5398ff68d,
     type: 3}

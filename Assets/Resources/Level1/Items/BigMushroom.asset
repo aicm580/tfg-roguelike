@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: BigMushroom
   m_EditorClassIdentifier: 
   itemName: Big Mushroom
-  itemDescription: 
   amount: 1
   itemSprite: {fileID: 4639506938558671751, guid: f72d4c551472a8e4498c62c5398ff68d,
     type: 3}
-  rarity: 5
+  rarity: 4

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SaberTooth
   m_EditorClassIdentifier: 
   itemName: Saber Tooth
-  itemDescription: 
   amount: 1
   itemSprite: {fileID: 1801263428120863714, guid: f72d4c551472a8e4498c62c5398ff68d,
     type: 3}
-  rarity: 4
+  rarity: 5

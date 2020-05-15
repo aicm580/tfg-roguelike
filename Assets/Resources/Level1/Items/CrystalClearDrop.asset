@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Crystal Clear Drop
   itemDescription: 
   amount: 1
-  itemSprite: {fileID: 21300000, guid: 39863dd113769499488ded9f37cd3ef4, type: 3}
+  itemSprite: {fileID: -488721925442295091, guid: f72d4c551472a8e4498c62c5398ff68d,
+    type: 3}
   rarity: 5

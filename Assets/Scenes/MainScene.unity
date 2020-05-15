@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: {fileID: 11400000, guid: d8722c5dc16d5bd449a4a07516879fa0, type: 2}
+  currentItem: {fileID: 11400000, guid: 1d6784bcf5df2bb43a6ad0a368f2c75e, type: 2}
   playerTransform: {fileID: 1482285138}
   playerChar: {fileID: 0}
   playerCharSO: {fileID: 11400000, guid: b127b468abf547f4ba6cd30e076c6487, type: 2}

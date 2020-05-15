@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Rotten Mushroom
   itemDescription: -0.35 speed, Poisonous Bullets
   amount: 3
-  itemSprite: {fileID: 21300000, guid: aa94c6da14ecf4a8690f02549a9ac6a7, type: 3}
+  itemSprite: {fileID: -6099050445329199328, guid: f72d4c551472a8e4498c62c5398ff68d,
+    type: 3}
   rarity: 2

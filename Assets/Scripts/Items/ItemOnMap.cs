@@ -35,8 +35,6 @@ public class ItemOnMap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collisions != 0)
-            Debug.Log("YA HA COLISIONADO ");
         if (collision.gameObject.tag == "Player" && collisions == 0)
         {
             CharacterShooting playerShooting = collision.gameObject.GetComponent<CharacterShooting>();
@@ -44,6 +42,10 @@ public class ItemOnMap : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             switch (item.itemName)
             {
+                case "Big Mushroom":
+                    playerShooting.bulletSize = 0.35f; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
+                    break;
+
                 case "Crystal Clear Drop":
                     playerShooting.shootType = ShootType.BidirectionalMouse;
                     break;
@@ -53,14 +55,14 @@ public class ItemOnMap : MonoBehaviour
                     playerShooting.ChangeShootDelay(0.04f);
                     break;
 
+                case "Fast Growing Mushroom":
+                    playerShooting.ChangeShootDelay(-0.075f);
+                    break;
+
                 case "Four Leaf Clover":
                     breakableGenerator.breakableMinRandom -= 0.1f; //aumenta en un 10% la probabilidad de que aparezcan objetos rompibles en próximos niveles
                     break;
-                    
-                case "Gigantic Worm":
-                    playerShooting.bulletSize = 0.5f; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
-                    break;
-
+                 
                 case "Heart":
                     playerHealth.Heal(1);
                     break;
@@ -79,12 +81,9 @@ public class ItemOnMap : MonoBehaviour
                     playerShooting.ChangeShootDelay(-0.035f);
                     playerHealth.DecreaseCurrentHearts(1); //pierde un corazón base
                     break;
-                    
-                case "Wollemia's Root":
-                    playerShooting.ChangeShootDelay(-0.075f);
-                    break;
             }
             Debug.Log("Item: " + item.itemName);
+            AudioManager.audioManagerInstance.PlaySFX("PickItem");
             Destroy(gameObject);
             GameManager.instance.UpdateGameStats(); //actualizamos los stats en pantalla
             collisions++;

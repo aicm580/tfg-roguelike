@@ -6,7 +6,6 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string itemName;
-    public string itemDescription;
     public int amount; //veces que un item puede ser recogido
     public Sprite itemSprite;
     [Range (1,5)]

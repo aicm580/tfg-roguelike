@@ -153,6 +153,7 @@ MonoBehaviour:
   minRarity: 0
   maxRarity: 0
   probability: 0
+  breakableObjectName: Explosive Egg
   objectType: 0
   explosionPrefab: {fileID: 5344042619687345061, guid: 52f67449697abf04a8d92229797f1144,
     type: 3}

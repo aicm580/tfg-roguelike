@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 
-public enum EnemyType
-{
-    Velociraptor, Dilophosaurus, Meganeura, Olghoïkhorkhoï, 
-} 
-
 public enum Biome
 {
     Land, Water, 
@@ -12,7 +7,8 @@ public enum Biome
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyType enemyType;
+    public string enemyName;
+    public DamageOrigin dmgOriginType;
     public Biome biome;
 
     public IntRange friends; //rango de número de enemigos igual que éste que le acompañan
@@ -61,11 +57,18 @@ public class Enemy : MonoBehaviour
         bottomRayOrigin = new GameObject("BottomRayOrigin").transform;
         bottomRayOrigin.position = transform.position + new Vector3(0, -0.35f, 0);
         bottomRayOrigin.SetParent(transform);
+
+        target = GameManager.instance.playerTransform;
     }
 
     private void Start()
     {
-        target = GameManager.instance.playerTransform;
+        ContactDamage contactDmg = GetComponent<ContactDamage>();
+        if (contactDmg != null)
+        {
+            contactDmg.contactOriginType = dmgOriginType;
+            contactDmg.contactOriginName = enemyName;
+        }
     }
 
     public bool NeedChangeState(float range, int mask)

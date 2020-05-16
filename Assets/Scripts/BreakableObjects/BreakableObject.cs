@@ -8,6 +8,8 @@ public enum BreakableObjectType
 public class BreakableObject : CharacterHealth
 {
     [SerializeField]
+    protected string breakableObjectName;
+    [SerializeField]
     protected BreakableObjectType objectType;
     [SerializeField]
     protected GameObject explosionPrefab;
@@ -29,16 +31,14 @@ public class BreakableObject : CharacterHealth
                 float destroyTime = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
                 Destroy(explosion, destroyTime);
 
-                bool playerHit = false; //el player tiene 2 colliders, pero solo queremos dañarlo 1 vez, por lo que utilizamos un bool para saber si ya se le ha dañado
                 Collider2D[] charactersInRange = Physics2D.OverlapCircleAll(transform.position, 1.75f);
 
                 foreach (Collider2D col in charactersInRange)
                 {
                     Debug.Log(col.gameObject.name);
-                    if (col.GetComponent<PlayerHealth>() != null && !playerHit)
+                    if (col.GetComponent<PlayerHealth>() != null)
                     {
-                        playerHit = true; 
-                        col.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.Item);
+                        col.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.Obstacle, breakableObjectName);
                     } 
                     else if (col.GetComponent<NormalEnemyHealth>() != null)
                     {

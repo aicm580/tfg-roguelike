@@ -19,8 +19,6 @@ public class PlayerInputController : MonoBehaviour
     private Vector3[] bulletsOrigins;
     private Vector3[] bulletsDirections;
     private bool abilityActive;
-    //private float lookAtBulletTime = 0;
-   // private float lookAtBulletEndTime = 0.25f;
     private Animator animator;
 
     void Awake()
@@ -36,35 +34,13 @@ public class PlayerInputController : MonoBehaviour
         {
             //MOUSE INPUT MANAGEMENT
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-            /*
-            if (lookAtBulletTime < lookAtBulletEndTime && lookAtBullet)
-            {
-                lookAtBulletTime += Time.deltaTime;
-                Debug.Log(lookAtBulletTime);
-            }
-            else
-            {
-                lookAtBullet = false;
-               
-            }*/
 
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
 
             if (Input.GetButtonDown("Fire1"))
             {
-                /*
-                if (characterShooting.shootType == ShootType.OppositeMouse && characterShooting.canShoot)
-                {
-                    animator.SetFloat("Horizontal", -lookDirection.x);
-                    animator.SetFloat("Vertical", -lookDirection.y);
-                    lookAtBullet = true;
-                    lookAtBulletTime = 0;
-                }*/
-
-                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player);
-                AudioManager.audioManagerInstance.PlaySFX("Shoot");
+                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player, GameManager.instance.playerName);
             }
 
             //KEYBOARD INPUT MANAGEMENT (MOVEMENT)
@@ -84,13 +60,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (GameManager.instance.playerAlive)
         {
-           bulletOrigin = firePoint.position;
-            /*
-            else if (characterShooting.shootType == ShootType.Radial)
-            {
-                bulletsOrigins = characterShooting.GetBulletsOrigins(firePoint.position);
-                bulletsDirections = characterShooting.GetRadialDirections(bulletsOrigins);
-            }*/
+            bulletOrigin = firePoint.position;
 
             characterMovement.Move(movement, 1);
 

@@ -148,8 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f519adf856c312943bb9ada47735ebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
+  currentHealth: 0
   minRarity: 1
   maxRarity: 3
   probability: 1
+  breakableObjectName: Item Egg
   objectType: 2
+  explosionPrefab: {fileID: 0}

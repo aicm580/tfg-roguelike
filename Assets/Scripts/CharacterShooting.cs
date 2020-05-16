@@ -42,16 +42,17 @@ public class CharacterShooting : MonoBehaviour
             shootDelay = 0.05f;
     }
 
-    private void InstantiateBullet(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
+    private void InstantiateBullet(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin ownerType, string ownerName)
     {
         Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * 0.6f), rotation);
         bullet.direction = direction;
-        bullet.bulletOwner = owner;
+        bullet.bulletOwnerType = ownerType;
+        bullet.bulletOwnerName = ownerName;
 
         bullet.transform.localScale += new Vector3(bulletSize, bulletSize, 0);
     }
 
-    private void InstantiateRadialBullets(int nBullets, Vector2 originPos, DamageOrigin owner)
+    private void InstantiateRadialBullets(int nBullets, Vector2 originPos, DamageOrigin ownerType, string ownerName)
     {
         float angleStep = 360f / nBullets;
         float angle = 0f;
@@ -63,31 +64,33 @@ public class CharacterShooting : MonoBehaviour
             Vector2 bulletPosVector = new Vector2(bulletPosX, bulletPosY);
             Vector2 bulletDirection = (bulletPosVector - originPos).normalized;
 
-            InstantiateBullet(originPos, bulletDirection, Quaternion.identity, owner);
+            InstantiateBullet(originPos, bulletDirection, Quaternion.identity, ownerType, ownerName);
 
             angle += angleStep;
         }
     }
 
-    public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin owner)
+    public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin ownerType, string ownerName)
     {
         if (canShoot && !GameManager.instance.isPaused)
         {
             switch (shootType)
             {
                 case ShootType.NormalMouse:
-                    InstantiateBullet(originPosition, direction, rotation, owner);
+                    InstantiateBullet(originPosition, direction, rotation, ownerType, ownerName);
                     break;
 
                 case ShootType.BidirectionalMouse:
-                    InstantiateBullet(originPosition, direction, rotation, owner);
-                    InstantiateBullet(originPosition, -direction, rotation, owner);
+                    InstantiateBullet(originPosition, direction, rotation, ownerType, ownerName);
+                    InstantiateBullet(originPosition, -direction, rotation, ownerType, ownerName);
                     break;
 
                 case ShootType.Radial:
-                    InstantiateRadialBullets(bulletsAmount, originPosition, owner);
+                    InstantiateRadialBullets(bulletsAmount, originPosition, ownerType, ownerName);
                     break;
             }
+
+            AudioManager.audioManagerInstance.PlaySFX("Shoot");
 
             canShoot = false;
             StartCoroutine(ShootDelay());

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public PlayerCharacter playerChar;
     public PlayerCharacter playerCharSO;
+    [HideInInspector]
+    public string playerName;
     private CharacterMovement playerMovement;
     private CharacterShooting playerShooting;
 
@@ -159,6 +161,7 @@ public class GameManager : MonoBehaviour
 
         playerAlive = true;
         playerChar = playerCharSO;
+        playerName = playerChar.playerName;
         playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
         playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
         playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
@@ -209,6 +212,7 @@ public class GameManager : MonoBehaviour
     {
         optionsPanel.SetActive(false);
         pausePanel.SetActive(false);
+        AudioManager.audioManagerInstance.musicSource.volume += 0.06f;
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
         Time.timeScale = 1f;
         isPaused = false;
@@ -246,6 +250,7 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         timerActive = false;
+        AudioManager.audioManagerInstance.musicSource.volume -= 0.06f;
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
         pausePanel.SetActive(true);
         Time.timeScale = 0f;

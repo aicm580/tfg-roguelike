@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
+  enemyName: Meganeura
+  dmgOriginType: 1
   biome: 1
   friends:
     minVal: 2
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  currentHealth: 0
   minRarity: 1
   maxRarity: 3
   probability: 0.05
@@ -168,7 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactOrigin: 1
+  contactOriginType: 0
+  contactOriginName: 
 --- !u!114 &9030558723332455016
 MonoBehaviour:
   m_ObjectHideFlags: 0

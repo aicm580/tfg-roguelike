@@ -9,7 +9,9 @@ public class Bullet : MonoBehaviour
     public Color explosionColor;
 
     [HideInInspector]
-    public DamageOrigin bulletOwner;
+    public DamageOrigin bulletOwnerType;
+    [HideInInspector]
+    public string bulletOwnerName;
 
     [HideInInspector]
     public Vector3 direction;
@@ -27,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (bulletOwner == DamageOrigin.Player)
+        if (bulletOwnerType == DamageOrigin.Player)
         {
             //Si la bala choca con un enemigo normal
             if (collision.gameObject.tag == "Enemy")
@@ -40,14 +42,14 @@ public class Bullet : MonoBehaviour
                 collision.gameObject.GetComponent<BreakableObject>().TakeDamage(bulletDamage);
         }
         //Si la bala de un enemigo normal choca con el jugador
-        else if (bulletOwner == DamageOrigin.NormalEnemy && collision.gameObject.tag == "Player")
+        else if (bulletOwnerType == DamageOrigin.NormalEnemy && collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.NormalEnemy);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.NormalEnemy, bulletOwnerName);
         }
         //Si la bala de un Boss choca con el jugador
-        else if (bulletOwner == DamageOrigin.Boss && collision.gameObject.tag == "Player")
+        else if (bulletOwnerType == DamageOrigin.Boss && collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.Boss);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, DamageOrigin.Boss, bulletOwnerName);
         }
 
         DestroyBullet();

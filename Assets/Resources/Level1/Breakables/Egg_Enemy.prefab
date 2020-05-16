@@ -149,7 +149,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
+  currentHealth: 0
   minRarity: 0
   maxRarity: 0
   probability: 0
+  breakableObjectName: Dinosaur Egg
   objectType: 1
+  explosionPrefab: {fileID: 0}

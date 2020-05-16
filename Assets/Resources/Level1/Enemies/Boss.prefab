@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 3
+  enemyName: "Olgho\xEF-Khorkho\xEF"
+  dmgOriginType: 2
   biome: 0
   friends:
     minVal: 0
@@ -139,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactOrigin: 2
+  contactOriginType: 0
+  contactOriginName: 
 --- !u!114 &9169562056107090274
 MonoBehaviour:
   m_ObjectHideFlags: 0

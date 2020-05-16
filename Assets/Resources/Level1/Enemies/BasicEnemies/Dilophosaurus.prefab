@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5511fd831da4a034085220c5278919d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 1
+  enemyName: Dilophosaurus
+  dmgOriginType: 1
   biome: 0
   friends:
     minVal: 0
@@ -170,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9781f9d8ce252574090993822cb6097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactOrigin: 1
+  contactOriginType: 0
+  contactOriginName: 
 --- !u!114 &8754552785920666826
 MonoBehaviour:
   m_ObjectHideFlags: 0

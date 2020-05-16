@@ -79,7 +79,7 @@ public class ItemOnMap : MonoBehaviour
                 case "Saber Tooth":
                     playerShooting.SetBulletType(BulletType.Killer);
                     playerShooting.ChangeShootDelay(-0.035f);
-                    playerHealth.DecreaseCurrentHearts(1); //pierde un corazón base
+                    playerHealth.DecreaseCurrentHearts(1, item.itemName); //pierde un corazón base
                     break;
             }
             Debug.Log("Item: " + item.itemName);

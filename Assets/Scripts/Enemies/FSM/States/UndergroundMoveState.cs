@@ -34,7 +34,6 @@ public class UndergroundMoveState : State
         {
             enemy.transform.position = FindNewPosition();
             animator.SetTrigger("appear");
-            Debug.Log("appear");
             enemy.GetComponent<FiniteStateMachine>().EnterPreviousState(); 
         }
         else if (timer >= delay && !disappear)

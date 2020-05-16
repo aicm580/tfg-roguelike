@@ -273,6 +273,11 @@ MonoBehaviour:
     volume: 0.53
     pitch: 1
     loop: 0
+  - name: PickFuel
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
 --- !u!4 &462037484
 Transform:
   m_ObjectHideFlags: 0

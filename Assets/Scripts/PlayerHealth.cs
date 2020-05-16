@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum DamageOrigin
+public enum DamageOrigin 
 {
     Player, NormalEnemy, Boss, Obstacle, Item,
 }
@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin)
+    public void TakeDamage(int dmgAmount, DamageOrigin dmgOrigin, string dmgName)
     {
         if (currentHealth > 0)
         {
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
             DecreaseHealthAnimation();
             currentHealth -= dmgAmount;
             if (currentHealth <= 0)
-                Die(dmgOrigin);
+                Die(dmgOrigin, dmgName);
         } 
     }
 
@@ -84,7 +84,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void DecreaseCurrentHearts(int amount)
+    public void DecreaseCurrentHearts(int amount, string dmgOriginName)
     {
         for (int i = 0; i < amount && currentHearts > 0; i++)
         {
@@ -95,13 +95,14 @@ public class PlayerHealth : MonoBehaviour
             currentHearts--;
             
             if (currentHearts <= 0)
-                Die(DamageOrigin.Item);
+                Die(DamageOrigin.Item, dmgOriginName);
         }
     }
 
-    private void Die(DamageOrigin dmgOrigin)
+    private void Die(DamageOrigin dmgOrigin, string dmgOriginName)
     {
         animator.SetBool("dead", true);
+        Debug.Log(dmgOriginName);
         GameManager.instance.GameOver();
     }
 

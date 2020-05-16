@@ -28,5 +28,15 @@
 	{"key": "timeRecord", "value": "Time Record:"},
 	{"key": "travels", "value": "Travels:"},
 	{"key": "maxLevel", "value": "Max Level Reached:"},
-	{"key": "loadingTravel", "value": "Preparing time machine ..."}
+	{"key": "loadingTravel", "value": "Preparing time machine ..."}, 
+	{"key": "killedBy", "value": "Killed by"},
+
+	{"key": "Explosive Egg", "value": "Explosive Egg"},
+	{"key": "Dinosaur Egg", "value": "Dinosaur Egg"},
+	{"key": "Item Egg", "value": "Item Egg"},
+	{"key": "Saber Tooth", "value": "Saber Tooth"},
+	{"key": "Dilophosaurus", "value": "Dilophosaurus"},
+	{"key": "Meganeura", "value": "Meganeura"},
+	{"key": "Raptor", "value": "Raptor"},
+	{"key": "Olghoï-Khorkhoï", "value": "Olghoï-Khorkhoï"}
 ]}

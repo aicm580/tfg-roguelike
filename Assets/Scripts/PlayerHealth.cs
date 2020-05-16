@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
     {
         animator.SetBool("dead", true);
         Debug.Log(dmgOriginName);
-        GameManager.instance.GameOver();
+        GameManager.instance.GameOver(dmgOriginName);
     }
 
     private void SetUIHearts()

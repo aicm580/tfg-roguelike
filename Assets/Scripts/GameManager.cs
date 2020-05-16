@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public Text bulletDamageText;
     public Text bulletLifetimeText;
     public Text bulletSpeedText;
+    public Text ripText;
+    public Text killerText;
 
     [HideInInspector]
     public bool playerAlive, enemiesActive;
@@ -198,10 +200,12 @@ public class GameManager : MonoBehaviour
         return randomPosition;
     }
    
-    public void GameOver()
+    public void GameOver(string dmgOriginName)
     {
         timerActive = false;
         playerAlive = false;
+        ripText.text = "RIP " + playerName.ToUpper();
+        killerText.text = LocalizationManager.localizationInstance.GetLocalizedValue(dmgOriginName);
         gameOverPanel.SetActive(true);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
         AudioManager.audioManagerInstance.PlaySFX("GameOver");

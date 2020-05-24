@@ -64,6 +64,7 @@ public class PatrolState : State
 
     public override void FixedUpdateState()
     {
-        enemyBehavior.characterMovement.Move(direction, 1);
+        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
+            enemyBehavior.characterMovement.Move(direction, 1);
     }
 }

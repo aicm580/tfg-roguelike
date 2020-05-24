@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,6 +38,10 @@ public class GameManager : MonoBehaviour
     public Text bulletSpeedText;
     public Text playerText;
     public Text killerText;
+
+    public GameObject itemPanel;
+    public Text itemNameText;
+    public Text itemEffectText;
 
     [HideInInspector]
     public bool playerAlive, enemiesActive;
@@ -157,6 +160,7 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         pausePanel.SetActive(false);
         gameOverPanel.SetActive(false);
+        itemPanel.SetActive(false);
 
         level = 1;
         InitLevel();
@@ -312,6 +316,21 @@ public class GameManager : MonoBehaviour
         }
 
         SaveManager.SaveStats(this);
+    }
+
+    public void ShowItemPanel(string itemName)
+    {
+        itemPanel.gameObject.SetActive(true);
+        string itemDescription = itemName + " Effect";
+        itemNameText.text = LocalizationManager.localizationInstance.GetLocalizedValue(itemName);
+        itemEffectText.text = LocalizationManager.localizationInstance.GetLocalizedValue(itemDescription); ;
+        StartCoroutine(DisableItemPanel());
+    }
+
+    private IEnumerator DisableItemPanel()
+    {
+        yield return new WaitForSeconds(3.5f);
+        itemPanel.SetActive(false);
     }
 
     public void UpdateGameStats()

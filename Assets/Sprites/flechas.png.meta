@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 2ecc6032ea17c0e429d6c958fee04194
+guid: 7575f50a41fd196438a9a6362df9fb81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6543418653442720702
-    second: dilo_0
+      213: 3833895849690059128
+    second: flechas_0
   - first:
-      213: -2183439530725571761
-    second: dilo_1
+      213: 8180256446945823853
+    second: flechas_1
   - first:
-      213: 7339071549788517908
-    second: dilo_2
+      213: -1669216093427929785
+    second: flechas_2
   - first:
-      213: -2567946626095771466
-    second: dilo_3
+      213: -7950089591994213770
+    second: flechas_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dilo_0
+      name: flechas_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ef74cbcf5938044098de0b2627cfbbc
-      internalID: -6543418653442720702
+      spriteID: e5f413618b653d64f80152efbdcf7939
+      internalID: 3833895849690059128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dilo_1
+      name: flechas_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,41 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bfd91d3c92a7ea4bb8fa5582b6b72e0
-      internalID: -2183439530725571761
+      spriteID: 3d40b8fd2d2fe804fab2c48b0a51fed9
+      internalID: 8180256446945823853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dilo_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f02a8f381785abd4497c41c8b6791dba
-      internalID: 7339071549788517908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dilo_3
+      name: flechas_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,8 +163,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b772538c6a6744c9280b26c493d1bb
-      internalID: -2567946626095771466
+      spriteID: dc92288de05e2dd4e864eb51aa6aa3a0
+      internalID: -1669216093427929785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flechas_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: effcece89e016f843a97dfb39cedc95b
+      internalID: -7950089591994213770
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9412896cc296e4a4ab8cec4bfd4c74a4
+    spriteID: d20fe01470e1bf54cb50df570a2f462a
     internalID: 0
     vertices: []
     indices: 

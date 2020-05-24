@@ -6,7 +6,12 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     public Transform firePoint;
-    public float abilityDuration = 3f; //tiempo que permanece activa la habilidad especial
+    public float abilityDuration = 2f; //tiempo que permanece activa la habilidad especial
+
+    [HideInInspector]
+    public bool abilityActive;
+
+    private bool abilityAvailable = true;
 
     private CharacterMovement characterMovement;
     private CharacterShooting characterShooting;
@@ -16,9 +21,7 @@ public class PlayerInputController : MonoBehaviour
     private Vector2 firepointPos;
     private Vector2 lookDirection;
     private Vector3 bulletOrigin = new Vector3();
-    private Vector3[] bulletsOrigins;
-    private Vector3[] bulletsDirections;
-    private bool abilityActive;
+
     private Animator animator;
 
     void Awake()
@@ -48,7 +51,7 @@ public class PlayerInputController : MonoBehaviour
             animator.SetFloat("Speed", movement.sqrMagnitude);
 
             //KEYBOARD INPUT MANAGEMETN (SPECIAL ABILITY)
-            if (Input.GetKeyDown(KeyCode.Space) && !abilityActive)
+            if (Input.GetKeyDown(KeyCode.Space) && !abilityActive && abilityAvailable)
             {
                 abilityActive = true;
                 StartCoroutine(DisableAbility());
@@ -73,5 +76,8 @@ public class PlayerInputController : MonoBehaviour
     {
         yield return new WaitForSeconds(abilityDuration);
         abilityActive = false;
+        abilityAvailable = false;
+        yield return new WaitForSeconds(5f);
+        abilityAvailable = true;
     }
 }

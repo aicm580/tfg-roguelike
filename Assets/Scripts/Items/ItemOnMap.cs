@@ -84,6 +84,7 @@ public class ItemOnMap : MonoBehaviour
             }
             Debug.Log("Item: " + item.itemName);
             AudioManager.audioManagerInstance.PlaySFX("PickItem");
+            GameManager.instance.ShowItemPanel(item.itemName);
             Destroy(gameObject);
             GameManager.instance.UpdateGameStats(); //actualizamos los stats en pantalla
             collisions++;

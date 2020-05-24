@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MeleeAttackState : State
 {
@@ -20,7 +18,7 @@ public class MeleeAttackState : State
 
     public override void UpdateState()
     {
-        if (isAttacking)
+        if (isAttacking && !enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
         {
             direction = enemyBehavior.GetDirectionToPlayer();
             if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= 0.3f)
@@ -33,13 +31,8 @@ public class MeleeAttackState : State
 
         enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
 
-        if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= enemyBehavior.attackRange)
+        if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) > enemyBehavior.attackRange)
         {
-            
-        }
-        else
-        {
-            animator.SetBool("isAttacking", false);
             enemyBehavior.fsm.EnterPreviousState();
         }
     }

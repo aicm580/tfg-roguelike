@@ -45,8 +45,6 @@ public class FollowState : State
             lastMove = Move.Right;
         else if (direction == Vector2.left)
             lastMove = Move.Left;
-
-        enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
     }
 
     protected void CheckGiveUp()
@@ -57,7 +55,11 @@ public class FollowState : State
 
     public override void FixedUpdateState()
     {
-        enemyBehavior.characterMovement.Move(direction, enemyBehavior.followSpeed);
+        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
+        {
+            enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+            enemyBehavior.characterMovement.Move(direction, enemyBehavior.followSpeed);
+        }
     }
 
     public override void OnStateExit()

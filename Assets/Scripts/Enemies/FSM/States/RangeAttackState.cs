@@ -22,26 +22,17 @@ public class RangeAttackState : State
     {
         if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= enemyBehavior.attackRange)
         {
-            if (characterShooting.canShoot)
+            if (characterShooting.canShoot && !enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
             {
-                animator.SetBool("isAttacking", true);
                 direction = enemyBehavior.GetDirectionToPlayer();
+                enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
                 bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.46f);
                 characterShooting.Shoot(bulletOrigin, direction, 0.6f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
-            }
-            else
-            {
-                animator.SetBool("isAttacking", false);
             }
         }
         else
         {
             enemyBehavior.fsm.EnterPreviousState();
         }
-    }
-
-    public override void OnStateExit()
-    {
-        animator.SetBool("isAttacking", false);
     }
 }

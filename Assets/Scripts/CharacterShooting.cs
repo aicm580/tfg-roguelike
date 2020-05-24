@@ -42,9 +42,9 @@ public class CharacterShooting : MonoBehaviour
             shootDelay = 0.05f;
     }
 
-    private void InstantiateBullet(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin ownerType, string ownerName)
+    private void InstantiateBullet(Vector3 originPosition, Vector2 direction, float offset, Quaternion rotation, DamageOrigin ownerType, string ownerName)
     {
-        Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * 0.6f), rotation);
+        Bullet bullet = Instantiate(bulletPrefab, originPosition + (Vector3)(direction * offset), rotation);
         bullet.direction = direction;
         bullet.bulletOwnerType = ownerType;
         bullet.bulletOwnerName = ownerName;
@@ -52,7 +52,7 @@ public class CharacterShooting : MonoBehaviour
         bullet.transform.localScale += new Vector3(bulletSize, bulletSize, 0);
     }
 
-    private void InstantiateRadialBullets(int nBullets, Vector2 originPos, DamageOrigin ownerType, string ownerName)
+    private void InstantiateRadialBullets(int nBullets, Vector2 originPos, float offset, DamageOrigin ownerType, string ownerName)
     {
         float angleStep = 360f / nBullets;
         float angle = 0f;
@@ -64,29 +64,29 @@ public class CharacterShooting : MonoBehaviour
             Vector2 bulletPosVector = new Vector2(bulletPosX, bulletPosY);
             Vector2 bulletDirection = (bulletPosVector - originPos).normalized;
 
-            InstantiateBullet(originPos, bulletDirection, Quaternion.identity, ownerType, ownerName);
+            InstantiateBullet(originPos, bulletDirection, offset, Quaternion.identity, ownerType, ownerName);
 
             angle += angleStep;
         }
     }
 
-    public void Shoot(Vector3 originPosition, Vector2 direction, Quaternion rotation, DamageOrigin ownerType, string ownerName)
+    public void Shoot(Vector3 originPosition, Vector2 direction, float offset, Quaternion rotation, DamageOrigin ownerType, string ownerName)
     {
         if (canShoot && !GameManager.instance.isPaused)
         {
             switch (shootType)
             {
                 case ShootType.NormalMouse:
-                    InstantiateBullet(originPosition, direction, rotation, ownerType, ownerName);
+                    InstantiateBullet(originPosition, direction, offset, rotation, ownerType, ownerName);
                     break;
 
                 case ShootType.BidirectionalMouse:
-                    InstantiateBullet(originPosition, direction, rotation, ownerType, ownerName);
-                    InstantiateBullet(originPosition, -direction, rotation, ownerType, ownerName);
+                    InstantiateBullet(originPosition, direction, offset, rotation, ownerType, ownerName);
+                    InstantiateBullet(originPosition, -direction, offset, rotation, ownerType, ownerName);
                     break;
 
                 case ShootType.Radial:
-                    InstantiateRadialBullets(bulletsAmount, originPosition, ownerType, ownerName);
+                    InstantiateRadialBullets(bulletsAmount, originPosition, offset, ownerType, ownerName);
                     break;
             }
 

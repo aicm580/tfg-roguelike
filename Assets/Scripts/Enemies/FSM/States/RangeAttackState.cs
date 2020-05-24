@@ -27,7 +27,7 @@ public class RangeAttackState : State
                 animator.SetBool("isAttacking", true);
                 direction = enemyBehavior.GetDirectionToPlayer();
                 bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.46f);
-                characterShooting.Shoot(bulletOrigin, direction, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
+                characterShooting.Shoot(bulletOrigin, direction, 0.6f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
             }
             else
             {

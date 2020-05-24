@@ -40,7 +40,7 @@ public class PlayerInputController : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1"))
             {
-                characterShooting.Shoot(bulletOrigin, lookDirection, Quaternion.identity, DamageOrigin.Player, GameManager.instance.playerName);
+                characterShooting.Shoot(bulletOrigin, lookDirection, 0.875f, Quaternion.identity, DamageOrigin.Player, GameManager.instance.playerName);
             }
 
             //KEYBOARD INPUT MANAGEMENT (MOVEMENT)

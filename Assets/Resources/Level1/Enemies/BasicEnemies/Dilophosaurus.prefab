@@ -104,10 +104,10 @@ MonoBehaviour:
   friends:
     minVal: 0
     maxVal: 2
-  detectionRange: 4.5
+  detectionRange: 4.8
   attackRange: 3
   giveUpRange: 8
-  followSpeed: 2.35
+  followSpeed: 2.55
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}
@@ -275,7 +275,8 @@ SpriteRenderer:
   m_SortingLayerID: 911409267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7cefe9e9e8c984bbd9ff43235be8f54f, type: 3}
+  m_Sprite: {fileID: -6543418653442720702, guid: 2ecc6032ea17c0e429d6c958fee04194,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public Text bulletDamageText;
     public Text bulletLifetimeText;
     public Text bulletSpeedText;
-    public Text ripText;
+    public Text playerText;
     public Text killerText;
 
     [HideInInspector]
@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     {
         timerActive = false;
         playerAlive = false;
-        ripText.text = "RIP " + playerName.ToUpper();
+        playerText.text = playerName.ToUpper();
         killerText.text = LocalizationManager.localizationInstance.GetLocalizedValue(dmgOriginName);
         gameOverPanel.SetActive(true);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);

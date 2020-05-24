@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRend;
     private Color dmgColor = new Color(250f/255f, 131f/255f, 131f/255f);
+    private Color initColor = new Color(255f/255f, 245f/255f, 189f/255f);
 
     private void Awake()
     {
@@ -64,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator ReturnToWhite()
     {
         yield return new WaitForSeconds(0.15f);
-        spriteRend.color = Color.white;
+        spriteRend.color = initColor;
     }
 
     public void IncreaseCurrentHearts(int totalAmount, int fullAmount)

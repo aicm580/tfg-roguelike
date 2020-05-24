@@ -26,7 +26,7 @@ public class BossOneShootState : State
         else
         {
             animator.SetTrigger("split");
-            characterShooting.Shoot(enemy.transform.position, Vector2.zero, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
+            characterShooting.Shoot(enemy.transform.position, Vector2.zero, 0.6f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }
     }

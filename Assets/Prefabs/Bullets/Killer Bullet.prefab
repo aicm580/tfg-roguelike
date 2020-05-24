@@ -147,5 +147,6 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletLifetime: 0.7
   explosionColor: {r: 0.6431373, g: 0.15294118, b: 0, a: 1}
-  bulletOwner: 0
+  bulletOwnerType: 0
+  bulletOwnerName: 
   direction: {x: 0, y: 0, z: 0}

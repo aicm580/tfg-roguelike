@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Item currentItem;
+    //public Item currentItem;
     
     public static GameManager instance;
 
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         //Cargamos los items del nivel actual
         ItemsManager.itemsManagerInstance.SetupItems();
 
-        ItemOnMap.SpawnItemOnMap(playerTransform.position + new Vector3 (2,2,0), currentItem);
+        //ItemOnMap.SpawnItemOnMap(playerTransform.position + new Vector3 (2,2,0), currentItem);
     }
 
     public void InitRun()

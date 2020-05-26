@@ -14,6 +14,10 @@ public class PatrolWalkingState : PatrolState
 
     public override void UpdateState()
     {
+        //Comprobamos si el enemigo divisa al jugador
+        if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, wallsLayer | playerLayer) && GameManager.instance.enemiesActive)
+            enemyBehavior.fsm.EnterNextState();
+
         hit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
         hit1 = Physics2D.Raycast(rays[0], direction, 1, masks);
         hit2 = Physics2D.Raycast(rays[1], direction, 1, masks);
@@ -31,9 +35,5 @@ public class PatrolWalkingState : PatrolState
                 enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
         }
         rays = enemyBehavior.GetOtherRays(rayOrigin.position);
-
-        //Comprobamos si el enemigo divisa al jugador
-        if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, wallsLayer | playerLayer) && GameManager.instance.enemiesActive)
-            enemyBehavior.fsm.EnterNextState();
     }
 }

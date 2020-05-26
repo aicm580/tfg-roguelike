@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "new Player Character", menuName = "Player Character")]
 public class PlayerCharacter : ScriptableObject
@@ -19,5 +17,5 @@ public class PlayerCharacter : ScriptableObject
 
     public float moveSpeed;
 
-    public int abilityDuration;
+    public float abilityDuration;
 }

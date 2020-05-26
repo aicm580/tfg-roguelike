@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     public Transform firePoint;
-    public float abilityDuration = 2f; //tiempo que permanece activa la habilidad especial
 
+    [HideInInspector]
+    public float abilityDuration; //tiempo que permanece activa la habilidad especial
     [HideInInspector]
     public bool abilityActive;
 

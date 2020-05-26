@@ -169,8 +169,10 @@ public class GameManager : MonoBehaviour
         playerChar = playerCharSO;
         playerName = playerChar.playerName;
         playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
+        playerTransform.GetComponent<PlayerInputController>().abilityDuration = playerChar.abilityDuration;
         playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
         playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
+
         UpdateGameStats();
 
         timePlayed = 0;

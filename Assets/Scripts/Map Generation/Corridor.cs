@@ -62,7 +62,7 @@ public class Corridor
             direction = (Direction)directionInt;
         }
 
-        Debug.Log(direction);
+        //Debug.Log(direction);
 
         corridorLength = length.Randomize; //establecemos una longitud del pasillo aleatoria
         corridorWidth = width.Randomize; //establecemos una anchura del pasillo aleatoria

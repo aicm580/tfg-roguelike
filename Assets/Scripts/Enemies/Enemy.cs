@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Biome biome;
 
     public IntRange friends; //rango de número de enemigos igual que éste que le acompañan
-    //public int calculatedFriends;
+    public int calculatedFriends;
 
     public float detectionRange; //distancia a la que el enemigo ve al jugador
     public float attackRange; //distancia a la que el enemigo empieza a atacar al jugador

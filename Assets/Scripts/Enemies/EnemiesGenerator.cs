@@ -20,6 +20,7 @@ public class EnemiesGenerator : MonoBehaviour
     private int level;
     private string lvlName;
 
+    private bool possible;
 
     void SetupEnemies(int lvl)
     {
@@ -85,8 +86,8 @@ public class EnemiesGenerator : MonoBehaviour
              int maxEnemies = (int)(mapGenerator.rooms[i].emptyPositions.Count / ((mapGenerator.rooms[i].roomWidth - 2 + mapGenerator.rooms[i].roomHeight - 2) / 1.85f));
              int minEnemies = (int)Mathf.Round(maxEnemies / 2f);
              nEnemies = Random.Range(minEnemies, maxEnemies);
-             Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
-             Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
+             //Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
+             //Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
          }
 
          mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
@@ -96,8 +97,8 @@ public class EnemiesGenerator : MonoBehaviour
          while (enemiesCreated < nEnemies)
          {
              int friends = 0;
+             possible = true; 
              Biome enemyBiome;
-             GameObject enemy;
              Vector3 position;
 
              //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
@@ -126,8 +127,15 @@ public class EnemiesGenerator : MonoBehaviour
                     }
                 }
                 Vector3 randomPos = RandomPosition(i);
-                Vector3 lastPos = new Vector3();
 
+                if (!possible) //si ya no es posible colocar enemigos en una posición random, paramos de crearlos
+                {
+                    Debug.Log("ROTURA SOLUCIONADA");
+                    break;
+                }
+                   
+                Vector3 lastPos = new Vector3();
+                
                 for (int j = 0; j < friends + 1; j++)
                 {
                     if (j == 0)
@@ -138,6 +146,7 @@ public class EnemiesGenerator : MonoBehaviour
                     {
                         int k = 1;
                         int attempt = 0;
+                        bool breakLoop = false; 
                         do
                         {
                             position.x = lastPos.x + Random.Range(-k, k);
@@ -146,16 +155,34 @@ public class EnemiesGenerator : MonoBehaviour
 
                             attempt++;
 
-                            if (attempt >= 7)
+                            if (attempt >= 12)
+                            {
                                 k++;
+                                attempt = 0;
+                            }
+
+                            if (k > 4)
+                            {
+                                breakLoop = true;
+                                break;
+                            }
 
                         } while (!mapGenerator.CheckPosition(position, i));
 
+                        if (breakLoop)
+                        {
+                            Debug.Log("Enemigos a generar en la sala " + i + ": " + nEnemies);
+                            Debug.Log("Nº amigos a generar: " + friends);
+                            friends = j - 1;
+                            Debug.Log("Nº de amigos cambiado a " + friends);
+                            break;
+                        }
+                         
                         mapGenerator.rooms[i].emptyPositions.Remove(position);
                     }
 
                     lastPos = position;
-                    InstantiateEnemy(enemyPrefab, position, false);
+                    InstantiateEnemy(enemyPrefab, position, false, friends);
                     enemiesCreated++;
                 }
              }
@@ -164,17 +191,17 @@ public class EnemiesGenerator : MonoBehaviour
                 BoxCollider2D boxCol = bossPrefab.GetComponent<BoxCollider2D>();
                 position = RandomPositionWithOverlap(i, boxCol.size);
                 mapGenerator.rooms[i].emptyPositions.Remove(position);
-                InstantiateEnemy(bossPrefab, position, true);
+                InstantiateEnemy(bossPrefab, position, true, friends);
                 enemiesCreated++;
              }
          }
     }
 
-    private void InstantiateEnemy(GameObject prefab, Vector3 position, bool isBoss)
+    private void InstantiateEnemy(GameObject prefab, Vector3 position, bool isBoss, int friends)
     {
         GameObject enemy = Instantiate(prefab, position, Quaternion.identity) as GameObject;
         enemy.transform.parent = enemiesHolder.transform;
-        //enemy.GetComponent<Enemy>().calculatedFriends = friends;
+        enemy.GetComponent<Enemy>().calculatedFriends = friends;
 
         if (!isBoss)
             enemies.Add(enemy);
@@ -183,9 +210,9 @@ public class EnemiesGenerator : MonoBehaviour
     //Esta función examina que no haya enemigos muy cerca de donde creamos el nuevo enemigo, y que tampoco el player esté muy cerca
     private bool NotEnemiesNearby(Vector3 randomPosition, int room)
     {
-        for (int i = -1; i <= 1; i++)
+        for (int i = -2; i <= 2; i++)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int j = -2; j <= 2; j++)
             {
                 Vector3 positionToCheck = new Vector3(randomPosition.x + i, randomPosition.y + j, 0);
 
@@ -201,13 +228,21 @@ public class EnemiesGenerator : MonoBehaviour
 
     Vector3 RandomPosition(int room)
     {
+        int attempt = 0;
         int randomIndex;
         Vector3 randomPosition;
 
         do
         {
             randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];            
+            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+
+            attempt++;
+            if (attempt > 50)
+            {
+                possible = false;
+                break;
+            }
         } while (!NotEnemiesNearby(randomPosition, room));
 
         mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos

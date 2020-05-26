@@ -29,7 +29,7 @@ public class PatrolFlyingState : PatrolState
             initialPos = enemy.transform.position;
 
             //Antes de cambiar la dirección del Animator, comprobamos que la nueva dirección sea válida
-            RaycastHit2D newHit = Physics2D.Raycast(rayOrigin.position, direction, 1.5f, masks);
+            RaycastHit2D newHit = Physics2D.Raycast(rayOrigin.position, direction, 1.2f, masks);
             if (!newHit)
                 enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
         }

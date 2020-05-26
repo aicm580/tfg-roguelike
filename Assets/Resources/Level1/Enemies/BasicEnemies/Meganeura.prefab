@@ -103,10 +103,10 @@ MonoBehaviour:
   friends:
     minVal: 2
     maxVal: 6
-  detectionRange: 2.8
-  attackRange: 2
-  giveUpRange: 6
-  followSpeed: 1.8
+  detectionRange: 3.2
+  attackRange: 2.5
+  giveUpRange: 6.3
+  followSpeed: 2.55
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}

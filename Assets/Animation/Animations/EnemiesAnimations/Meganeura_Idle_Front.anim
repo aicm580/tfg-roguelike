@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dilophosaurus_Idle
+  m_Name: Meganeura_Idle_Front
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -6543418653442720702, guid: 2ecc6032ea17c0e429d6c958fee04194,
+      value: {fileID: -422836913278089278, guid: 3fc2b41257de47847945d487150ede47,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -41,7 +41,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -6543418653442720702, guid: 2ecc6032ea17c0e429d6c958fee04194, type: 3}
+    - {fileID: -422836913278089278, guid: 3fc2b41257de47847945d487150ede47, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

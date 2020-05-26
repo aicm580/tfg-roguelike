@@ -7,7 +7,7 @@ public class FollowFlyingState : FollowState
     public override void OnStateEnter()
     {
         enemyBehavior = enemy.GetComponent<Enemy>();
-        masks = playerLayer | enemiesLayer;
+        masks = playerLayer | enemiesLayer | wallsLayer;
         animator.SetBool("isFollowing", true);
     }
 

@@ -8,6 +8,7 @@ public class PatrolState : State
 
     protected Vector2 initialPos;
     protected Vector2 direction;
+    protected Vector2? destination;
     protected Transform rayOrigin;
     protected Vector2[] rays;
    

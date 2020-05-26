@@ -22,4 +22,4 @@ MonoBehaviour:
   bulletType: 0
   shootType: 0
   moveSpeed: 4
-  abilityDuration: 3
+  abilityDuration: 2

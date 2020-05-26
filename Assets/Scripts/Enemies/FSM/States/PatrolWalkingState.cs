@@ -19,6 +19,8 @@ public class PatrolWalkingState : PatrolState
             enemyBehavior.fsm.EnterNextState();
 
         hit = Physics2D.Raycast(rayOrigin.position, direction, 1, masks);
+        Debug.DrawRay(rayOrigin.position, direction * 1f, Color.yellow);
+
         hit1 = Physics2D.Raycast(rays[0], direction, 1, masks);
         hit2 = Physics2D.Raycast(rays[1], direction, 1, masks);
 

@@ -102,8 +102,24 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die(DamageOrigin dmgOrigin, string dmgOriginName)
     {
-        animator.SetBool("dead", true);
         Debug.Log(dmgOriginName);
+
+        switch (dmgOrigin)
+        {
+            case DamageOrigin.Boss:
+                GameManager.instance.deathsByBoss++;
+                break;
+            case DamageOrigin.NormalEnemy:
+                GameManager.instance.deathsByNormalEnemies++;
+                break;
+            case DamageOrigin.Item:
+                GameManager.instance.deathsByItems++;
+                break;
+            case DamageOrigin.Obstacle:
+                GameManager.instance.deathsByObstacles++;
+                break;
+        }
+
         GameManager.instance.GameOver(dmgOriginName);
     }
 

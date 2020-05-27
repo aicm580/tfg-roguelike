@@ -47,5 +47,4 @@ public static class SaveManager
             return null;
         }
     }
-
 }

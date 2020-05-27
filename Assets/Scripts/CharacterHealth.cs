@@ -23,6 +23,7 @@ public abstract class CharacterHealth : MonoBehaviour
 
     public virtual void TakeDamage(int dmgAmount)
     {
+        GameManager.instance.damageDone += dmgAmount;
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
         {

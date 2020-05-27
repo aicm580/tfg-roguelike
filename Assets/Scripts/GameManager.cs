@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private CharacterShooting playerShooting;
 
     public GameObject gameOverPanel;
+    public GameObject winPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
     public GameObject optionsPanel;
@@ -54,11 +55,11 @@ public class GameManager : MonoBehaviour
     private int lastLevel = 2;
 
     [HideInInspector]
-    public float timePlayed;
-    private bool timerActive = false;
-
+    public int totalDeaths, deathsByBoss, deathsByNormalEnemies, deathsByItems, deathsByObstacles,
+               damageDone, totalKills, normalEnemiesKilled, bossesKilled, wins, travels, maxLevelReached;
     [HideInInspector]
-    public int damageDone, totalDeaths, deathsByBoss, deathsByNormalEnemies, totalKills, normalEnemiesKilled, bossesKilled, wins, travels, maxLevelReached;
+    public float timePlayed, recordTime;
+    private bool timerActive = false;
 
     private StatsData stats;
 
@@ -207,18 +208,6 @@ public class GameManager : MonoBehaviour
         return randomPosition;
     }
    
-    public void GameOver(string dmgOriginName)
-    {
-        timerActive = false;
-        playerAlive = false;
-        playerText.text = playerName.ToUpper();
-        killerText.text = LocalizationManager.localizationInstance.GetLocalizedValue(dmgOriginName);
-        gameOverPanel.SetActive(true);
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
-        AudioManager.audioManagerInstance.PlaySFX("GameOver");
-        AudioManager.audioManagerInstance.musicSource.Stop();
-    }
-
     public void Resume()
     {
         optionsPanel.SetActive(false);
@@ -241,6 +230,28 @@ public class GameManager : MonoBehaviour
         InitRun();
     }
 
+    public void GameOver(string dmgOriginName)
+    {
+        timerActive = false;
+        playerAlive = false;
+        playerText.text = playerName.ToUpper();
+        killerText.text = LocalizationManager.localizationInstance.GetLocalizedValue(dmgOriginName);
+        gameOverPanel.SetActive(true);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
+        AudioManager.audioManagerInstance.musicSource.Stop();
+        AudioManager.audioManagerInstance.PlaySFX("GameOver");
+    }
+
+    private void Win()
+    {
+        Debug.Log("GAME COMPLETED");
+        wins++;
+        timerActive = false;
+        playerAlive = false;
+        winPanel.SetActive(true);
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
+    }
+
     public void NextLevel()
     {
         if (level < lastLevel)
@@ -254,7 +265,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("GAME COMPLETED");
+            Win();
         }
     }
 
@@ -298,24 +309,27 @@ public class GameManager : MonoBehaviour
         if (stats != null)
         {
             damageDone += stats.damageDone;
-            totalDeaths += stats.totalDeaths;
+            totalDeaths = deathsByBoss + deathsByNormalEnemies + deathsByItems + deathsByObstacles + stats.totalDeaths;
             deathsByBoss += stats.deathsByBoss;
             deathsByNormalEnemies += stats.deathsByNormalEnemies;
-            totalKills += stats.totalKills;
+            deathsByItems += stats.deathsByItems;
+            deathsByObstacles += stats.deathsByObstacles;
+            totalKills = normalEnemiesKilled + bossesKilled + stats.totalKills;
             normalEnemiesKilled += stats.normalEnemiesKilled;
             bossesKilled += stats.bossesKilled;
             wins += stats.wins;
             travels = stats.travels + 1;
-            timePlayed += stats.timePlayed;
-
+            
             if (stats.maxLevelReached <= level)
-            {
                 maxLevelReached = level;
-            }
             else
-            {
                 maxLevelReached = stats.maxLevelReached;
-            }  
+
+            //Si ha ganado esta partida, miramos si ha cumplido unn tiempo récord
+            if (wins > stats.wins && stats.recordTime > timePlayed) 
+                recordTime = timePlayed;
+
+            timePlayed += stats.timePlayed;
         }
 
         SaveManager.SaveStats(this);

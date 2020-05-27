@@ -27,6 +27,7 @@ public class BossHealth : CharacterHealth
     protected override void Die()
     {
         base.Die();
+        GameManager.instance.bossesKilled++;
         healthBar.DisableHealthBar();
         Destroy(enemiesHolder);
         SpawnItems(0.2f, minRarity, maxRarity); //Hay un 80% de probabilidades de que, al morir, el enemigo deje un item

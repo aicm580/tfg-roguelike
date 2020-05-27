@@ -62,7 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\Sound.cs" />
     <Compile Include="Assets\Scripts\BreakableObjects\BreakableGenerator.cs" />
     <Compile Include="Assets\Scripts\BreakableObjects\BreakableObject.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
@@ -115,7 +116,6 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\SaveManager.cs" />
-    <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\StartupManager.cs" />
     <Compile Include="Assets\Scripts\StatsData.cs" />
     <Compile Include="Assets\Scripts\StatsPanelManager.cs" />

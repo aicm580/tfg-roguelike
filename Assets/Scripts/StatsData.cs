@@ -7,14 +7,12 @@ public class StatsData
 {
     public int damageDone;
     public int totalDeaths;
-    public int deathsByBoss;
-    public int deathsByNormalEnemies;
+    public int deathsByBoss, deathsByNormalEnemies, deathsByItems, deathsByObstacles;
     public int totalKills;
-    public int normalEnemiesKilled;
-    public int bossesKilled;
+    public int normalEnemiesKilled, bossesKilled;
     public int wins;
     public int travels;
-    public float timePlayed;
+    public float timePlayed, recordTime;
     public int maxLevelReached;
 
 
@@ -24,12 +22,15 @@ public class StatsData
         totalDeaths = game.totalDeaths;
         deathsByBoss = game.deathsByBoss;
         deathsByNormalEnemies = game.deathsByNormalEnemies;
+        deathsByItems = game.deathsByItems;
+        deathsByObstacles = game.deathsByObstacles;
         totalKills = game.totalKills;
         normalEnemiesKilled = game.normalEnemiesKilled;
         bossesKilled = game.bossesKilled;
         wins = game.wins;
         travels = game.travels;
         timePlayed = game.timePlayed;
+        recordTime = game.recordTime;
         maxLevelReached = game.maxLevelReached;
     }
 }

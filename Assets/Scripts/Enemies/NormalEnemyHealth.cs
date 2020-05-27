@@ -22,6 +22,7 @@ public class NormalEnemyHealth : CharacterHealth
     protected override void Die()
     {
         base.Die();
+        GameManager.instance.normalEnemiesKilled++;
         SpawnItems(1f - probability, minRarity, maxRarity); 
     }
 }

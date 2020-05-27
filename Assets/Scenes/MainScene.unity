@@ -1655,12 +1655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709e85d61dca2d4c9d2faaf64ebc745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: {fileID: 11400000, guid: 3e141d58d17d7e4469935a774b526001, type: 2}
   playerTransform: {fileID: 1482285138}
   playerChar: {fileID: 0}
   playerCharSO: {fileID: 11400000, guid: b127b468abf547f4ba6cd30e076c6487, type: 2}
   playerName: 
   gameOverPanel: {fileID: 1427408104}
+  winPanel: {fileID: 0}
   pausePanel: {fileID: 1116039872}
   loadPanel: {fileID: 670345714}
   optionsPanel: {fileID: 1202983312}
@@ -1682,17 +1682,20 @@ MonoBehaviour:
   enemiesActive: 0
   isPaused: 0
   level: 0
-  timePlayed: 0
-  damageDone: 0
   totalDeaths: 0
   deathsByBoss: 0
   deathsByNormalEnemies: 0
+  deathsByItems: 0
+  deathsByObstacles: 0
+  damageDone: 0
   totalKills: 0
   normalEnemiesKilled: 0
   bossesKilled: 0
   wins: 0
   travels: 0
   maxLevelReached: 0
+  timePlayed: 0
+  recordTime: 0
 --- !u!4 &576787813
 Transform:
   m_ObjectHideFlags: 0
@@ -2973,6 +2976,25 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1477953423409711020, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1202983312}
+    - target: {fileID: 1477953423409711020, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477953423409711020, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000956418, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d5d45f38af630d4d9ecf07ce6d00eb3, type: 3}
 --- !u!224 &1202983311 stripped
@@ -3832,6 +3854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1202552482}
   abilityDuration: 3
+  abilityActive: 0
 --- !u!114 &1482285131
 MonoBehaviour:
   m_ObjectHideFlags: 0

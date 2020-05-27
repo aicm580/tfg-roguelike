@@ -155,6 +155,7 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetString("UserLanguage", languages[selectedLang]);
 
             Text[] sceneTexts = FindObjectsOfType<Text>();
+            Debug.Log(sceneTexts.Length);
             foreach (Text text in sceneTexts)
             {
                 if (text.GetComponent<LocalizedText>() != null)
@@ -188,8 +189,6 @@ public class MenuManager : MonoBehaviour
 
         PlayerPrefs.SetInt("TimerActive", timerToogle.isOn ? 1 : 0);
         PlayerPrefs.SetInt("GameStatsActive", statsToogle.isOn ? 1 : 0);
-
-        optionsPanel.SetActive(false);
     }
 
     public void QuitGame()

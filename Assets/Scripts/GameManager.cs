@@ -146,6 +146,8 @@ public class GameManager : MonoBehaviour
         totalDeaths = 0;
         deathsByBoss = 0;
         deathsByNormalEnemies = 0;
+        deathsByObstacles = 0;
+        deathsByItems = 0;
         totalKills = 0;
         normalEnemiesKilled = 0;
         bossesKilled = 0;
@@ -326,8 +328,10 @@ public class GameManager : MonoBehaviour
                 maxLevelReached = stats.maxLevelReached;
 
             //Si ha ganado esta partida, miramos si ha cumplido unn tiempo récord
-            if (wins > stats.wins && stats.recordTime > timePlayed) 
+            if (wins > stats.wins && stats.recordTime > timePlayed)
                 recordTime = timePlayed;
+            else
+                recordTime = stats.recordTime;
 
             timePlayed += stats.timePlayed;
         }

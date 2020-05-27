@@ -99,13 +99,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(isPaused) //si ya está pausado, reanudamos
-            {
                 Resume();
-            }
             else if (playerAlive) //si no está pausado y el jugador sigue vivo, pausamos
-            {
                 Pause();
-            }
         }
 
         if (timerActive)
@@ -166,12 +162,7 @@ public class GameManager : MonoBehaviour
         InitLevel();
 
         playerAlive = true;
-        playerChar = playerCharSO;
-        playerName = playerChar.playerName;
-        playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
-        playerTransform.GetComponent<PlayerInputController>().abilityDuration = playerChar.abilityDuration;
-        playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
-        playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
+        InitializePlayer();
 
         UpdateGameStats();
 
@@ -183,7 +174,17 @@ public class GameManager : MonoBehaviour
         runIsReady = true;
     }
 
-    IEnumerator DisableLoadPanel()
+    private void InitializePlayer()
+    {
+        playerChar = playerCharSO;
+        playerName = playerChar.playerName;
+        playerTransform.GetComponent<PlayerHealth>().SetPlayerHealth(playerChar.initHealth, playerChar.initHearts, playerChar.maxHearts);
+        playerTransform.GetComponent<PlayerInputController>().abilityDuration = playerChar.abilityDuration;
+        playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
+        playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
+    }
+
+    private IEnumerator DisableLoadPanel()
     {
         while (!runIsReady)
         {
@@ -196,7 +197,7 @@ public class GameManager : MonoBehaviour
         enemiesActive = true;
     }
 
-    Vector3 InitPlayerPosition()
+    private Vector3 InitPlayerPosition()
     {
         int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 5f));
         Vector3 randomPosition = mapGenerator.rooms[0].emptyPositions[randomIndex];

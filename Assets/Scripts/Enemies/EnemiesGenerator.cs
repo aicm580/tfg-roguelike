@@ -161,7 +161,7 @@ public class EnemiesGenerator : MonoBehaviour
                                 attempt = 0;
                             }
 
-                            if (k > 4)
+                            if (k > 3)
                             {
                                 breakLoop = true;
                                 break;

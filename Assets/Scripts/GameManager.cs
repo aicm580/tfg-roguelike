@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
     public Toggle statsToogle;
     public Text timerText;
     public GameObject statsPanel;
-    public Text moveSpeedText;
-    public Text shootDelayText;
-    public Text bulletDamageText;
-    public Text bulletLifetimeText;
-    public Text bulletSpeedText;
+    public Text moveSpeedValue;
+    public Text shootDelayValue;
+    public Text bulletDamageValue;
+    public Text bulletLifetimeValue;
+    public Text bulletSpeedValue;
     public Text playerText;
     public Text killerText;
 
@@ -356,10 +356,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameStats()
     {
-        moveSpeedText.text = "Move Speed: " + playerMovement.moveSpeed;
-        shootDelayText.text = "Shoot Delay: " + playerShooting.shootDelay;
-        bulletDamageText.text = "Bullet Damage: " + playerShooting.bulletPrefab.bulletDamage;
-        bulletSpeedText.text = "Bullet Speed: " + playerShooting.bulletPrefab.bulletSpeed;
-        bulletLifetimeText.text = "Bullet Lifetime: " + playerShooting.bulletPrefab.bulletLifetime;
+        moveSpeedValue.text = playerMovement.moveSpeed.ToString();
+        shootDelayValue.text = playerShooting.shootDelay.ToString();
+        bulletDamageValue.text = playerShooting.bulletPrefab.bulletDamage.ToString();
+        bulletSpeedValue.text = playerShooting.bulletPrefab.bulletSpeed.ToString();
+        bulletLifetimeValue.text = playerShooting.bulletPrefab.bulletLifetime.ToString();
     }
 }

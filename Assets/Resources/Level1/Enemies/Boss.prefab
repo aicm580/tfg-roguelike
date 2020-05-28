@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDelay: 2
-  bulletSize: 0.5
+  bulletSize: 0.55
   bulletsAmount: 8
-  bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
+  bulletPrefab: {fileID: 304181260431725268, guid: 120bb0ce3ed5cc643b246c551db81820,
     type: 3}
   shootType: 2
   canShoot: 1

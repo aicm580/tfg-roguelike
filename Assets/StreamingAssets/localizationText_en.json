@@ -38,6 +38,11 @@
 	{"key": "moveRight", "value": "Move right"},
 	{"key": "moveUp", "value": "Move up"},
 	{"key": "moveDown", "value": "Move down"},
+	{"key": "moveSpeed", "value": "Move speed:"},
+	{"key": "shootDelay", "value": "Cadency:"},
+	{"key": "bulletDamage", "value": "Bullet damage:"},
+	{"key": "bulletSpeed", "value": "Bullet speed:"},
+	{"key": "bulletLifetime", "value": "Bullet lifetime:"},
 
 	{"key": "Explosive Egg", "value": "Explosive Egg"},
 	{"key": "Dinosaur Egg", "value": "Dinosaur Egg"},

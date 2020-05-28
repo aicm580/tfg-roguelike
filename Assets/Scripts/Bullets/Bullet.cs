@@ -58,9 +58,10 @@ public class Bullet : MonoBehaviour
     private void DestroyBullet()
     {
         bulletExplosion.GetComponent<SpriteRenderer>().color = explosionColor;
+        bulletExplosion.transform.localScale = transform.localScale; //el tamaño de la explosión debe ser el mismo que el de la bala
         GameObject explosion = Instantiate(bulletExplosion, transform.position + (direction * 0.15f), Quaternion.identity);
         float destroyTime = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
-        Destroy(explosion, destroyTime); //esperamos para destruir la explosion
+        Destroy(explosion, destroyTime); //esperamos para destruir la explosión
         Destroy(gameObject);
     }
 }

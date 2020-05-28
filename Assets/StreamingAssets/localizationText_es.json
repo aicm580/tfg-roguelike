@@ -37,6 +37,11 @@
 	{"key": "moveRight", "value": "Mover a la derecha"},
 	{"key": "moveUp", "value": "Mover arriba"},
 	{"key": "moveDown", "value": "Mover abajo"},
+	{"key": "moveSpeed", "value": "Movimiento:"},
+	{"key": "shootDelay", "value": "Cadencia:"},
+	{"key": "bulletDamage", "value": "Daño:"},
+	{"key": "bulletSpeed", "value": "Velocidad bala:"},
+	{"key": "bulletLifetime", "value": "Duración bala:"},
 
 	{"key": "Explosive Egg", "value": "Huevo Explosivo"},
 	{"key": "Dinosaur Egg", "value": "Huevo de dinosaurio"},

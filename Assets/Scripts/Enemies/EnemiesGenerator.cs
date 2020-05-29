@@ -15,7 +15,6 @@ public class EnemiesGenerator : MonoBehaviour
     public List<GameObject> enemiesPrefabs;
     [HideInInspector]
     public GameObject bossPrefab;
-    public HealthBar bossHealthBar;
 
     private int level;
     private string lvlName;

@@ -5,7 +5,7 @@ public enum BulletType
 {
     Normal, 
     Poisonous, 
-    ImprovedPoisonous,
+    OlgoiPoison,
     Killer,
 }
 

@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public Text itemNameText;
     public Text itemEffectText;
 
+    public HealthBar bossHealthBar;
+
     [HideInInspector]
     public bool playerAlive, enemiesActive;
     [HideInInspector]
@@ -234,6 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string dmgOriginName)
     {
+        bossHealthBar.DisableHealthBar();
         timerActive = false;
         playerAlive = false;
         playerText.text = playerName.ToUpper();

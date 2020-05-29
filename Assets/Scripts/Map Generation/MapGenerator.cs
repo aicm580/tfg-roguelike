@@ -248,7 +248,8 @@ public class MapGenerator : MonoBehaviour
                         Tile bottomLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord - 1);
                         Tile topLeftTile = tiles.Find(x => x.pos.x == xCoord - 1 && x.pos.y == yCoord + 1);
 
-                        if (random > 0.965f)
+                        //Si es la última sala hay más posibilidad de que aparezcan obstáculos
+                        if ((random > 0.965f && i != rooms.Length - 1) || (random > 0.925f && i == rooms.Length - 1))
                         {
                             if (smallObstacles < maxSmallObstacles &&
                                 leftTile.tileType != TileType.SmallObstacle &&

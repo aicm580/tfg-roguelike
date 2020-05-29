@@ -1776,7 +1776,6 @@ MonoBehaviour:
   enemies: []
   enemiesPrefabs: []
   bossPrefab: {fileID: 0}
-  bossHealthBar: {fileID: 349397557}
 --- !u!114 &576787811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,6 +1846,7 @@ MonoBehaviour:
   itemPanel: {fileID: 1735519718}
   itemNameText: {fileID: 1256226641}
   itemEffectText: {fileID: 119104412}
+  bossHealthBar: {fileID: 349397557}
   playerAlive: 0
   enemiesActive: 0
   isPaused: 0

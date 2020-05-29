@@ -28,7 +28,7 @@ public class FiniteStateMachine : MonoBehaviour
         states.Add(new MeleeAttackState(enemy, StateType.MeleeAttack));
 
         states.Add(new BossIntroState(enemy, StateType.BossIntroState));
-        states.Add(new BossOneShootState(enemy, StateType.BossOneShootState));
+        states.Add(new BossShootState(enemy, StateType.BossShootState));
         states.Add(new UndergroundMoveState(enemy, StateType.UndergroundMove));
         states.Add(new GenerateChildsState(enemy, StateType.GenerateChilds));
         

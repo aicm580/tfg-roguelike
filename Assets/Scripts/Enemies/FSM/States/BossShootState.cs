@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BossOneShootState : State
+public class BossShootState : State
 {
-    public BossOneShootState(GameObject enemy, StateType state) : base(enemy, state) { }
+    public BossShootState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     private Enemy enemyBehavior;
     private CharacterShooting characterShooting;
@@ -26,7 +24,7 @@ public class BossOneShootState : State
         else
         {
             animator.SetTrigger("split");
-            characterShooting.Shoot(enemy.transform.position, Vector2.zero, 0.6f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
+            characterShooting.Shoot(enemy.transform.position, Vector2.zero, 0.85f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }
     }

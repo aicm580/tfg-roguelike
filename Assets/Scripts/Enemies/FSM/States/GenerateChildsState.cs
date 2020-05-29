@@ -9,6 +9,7 @@ public class GenerateChildsState : State
 
     private float timer;
     private bool roundActive = true;
+    private bool underground;
     private Vector2 randomPos;
 
     public override void OnStateEnter()
@@ -29,18 +30,24 @@ public class GenerateChildsState : State
             }
 
             roundActive = false;
+            underground = true;
+            animator.SetTrigger("disappear");
             timer = 0;
         }
         else if (timer < childGenerator.timeBetweenRounds)
         {
             timer += Time.deltaTime;
+            if(timer > childGenerator.timeBetweenRounds / 2f && underground)
+            {
+                animator.SetTrigger("appear");
+                underground = false;
+            }
         }
         else
         {
             roundActive = true;
         }
     }
-
 
     private Vector3 RandomPosition(int room)
     {

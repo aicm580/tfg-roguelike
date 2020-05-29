@@ -13,7 +13,7 @@ public class BossHealth : CharacterHealth
     {
         base.Start();
         enemiesHolder = GameObject.Find("EnemiesHolder");
-        healthBar = GameObject.Find("GameManager").GetComponent<EnemiesGenerator>().bossHealthBar;
+        healthBar = GameManager.instance.bossHealthBar;
         healthBar.DisableHealthBar();
         healthBar.SetMaxHealth(maxHealth);
     }

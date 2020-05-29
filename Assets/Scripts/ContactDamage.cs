@@ -7,7 +7,8 @@ public class ContactDamage : MonoBehaviour
     public DamageOrigin contactOriginType;
     [HideInInspector]
     public string contactOriginName;
-    private float touchDelay = 0.2f; //tiempo a esperar para que la colisión vuelva a hacer daño
+    private float touchDelay = 0.35f; //tiempo a esperar para que la colisión vuelva a hacer daño
+    private float collisionStayTimer;
     private bool canTouch = true;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -19,6 +20,23 @@ public class ContactDamage : MonoBehaviour
             canTouch = false;
             StartCoroutine(TouchDelay());
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //Si el jugador se mantiene en la colisión con el enemigo, recibirá daño cada segundo
+            if (collisionStayTimer >= 1)
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, contactOriginType, contactOriginName);
+                collisionStayTimer = 0;
+            }
+            else
+            {
+                collisionStayTimer += Time.deltaTime;
+            }
+        }   
     }
 
     IEnumerator TouchDelay()

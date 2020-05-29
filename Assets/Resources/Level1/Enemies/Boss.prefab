@@ -53,7 +53,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0046157837, y: 0.19348907}
+  m_Offset: {x: -0.00019454956, y: 0.16912842}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -64,7 +64,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4668579, y: 0.8623352}
+  m_Size: {x: 0.424469, y: 0.8136139}
   m_EdgeRadius: 0
 --- !u!50 &-351665198365209284
 Rigidbody2D:
@@ -106,7 +106,7 @@ MonoBehaviour:
     minVal: 0
     maxVal: 0
   calculatedFriends: 0
-  detectionRange: 3.5
+  detectionRange: 3.65
   attackRange: 0
   giveUpRange: 0
   followSpeed: 0
@@ -155,9 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 2
-  bulletSize: 0.55
-  bulletsAmount: 8
+  shootDelay: 1.6
+  bulletSize: 0.8
+  bulletsAmount: 12
   bulletPrefab: {fileID: 304181260431725268, guid: 120bb0ce3ed5cc643b246c551db81820,
     type: 3}
   shootType: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0739c390fb388404ba404711fabb785d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   currentHealth: 0
   minRarity: 3
   maxRarity: 5
@@ -195,8 +195,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childPrefab: {fileID: 2789506304967602484, guid: 2cd041cb8de02924db5b5113ae7f33f3,
     type: 3}
+  childOriginPrefab: {fileID: 1845934378330639818, guid: cd815458903826c4180d8a3815bd30c6,
+    type: 3}
   childsPerRound: 4
-  timeBetweenRounds: 10
+  timeBetweenRounds: 8
 --- !u!114 &-4573742441337111331
 MonoBehaviour:
   m_ObjectHideFlags: 0

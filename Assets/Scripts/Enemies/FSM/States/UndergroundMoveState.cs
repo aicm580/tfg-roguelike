@@ -9,7 +9,7 @@ public class UndergroundMoveState : State
     private MapGenerator mapGenerator;
     private BoxCollider2D boxCol;
     private float timer;
-    private float delay = 1.35f;
+    private float delay = 1.1f;
     private bool disappear = false;
 
     public override void OnStateEnter()
@@ -25,16 +25,15 @@ public class UndergroundMoveState : State
 
     public override void UpdateState()
     {
-        if (bossHealth.currentHealth <= bossHealth.maxHealth / 2)
-        {
-            enemy.GetComponent<FiniteStateMachine>().EnterNextState();
-        }
-
         if (timer >= delay * 2)
         {
             enemy.transform.position = FindNewPosition();
             animator.SetTrigger("appear");
-            enemy.GetComponent<FiniteStateMachine>().EnterPreviousState(); 
+
+            if (bossHealth.currentHealth <= bossHealth.maxHealth - bossHealth.maxHealth / 2f)
+                enemy.GetComponent<FiniteStateMachine>().EnterNextState();
+            else
+                enemy.GetComponent<FiniteStateMachine>().EnterPreviousState(); 
         }
         else if (timer >= delay && !disappear)
         {

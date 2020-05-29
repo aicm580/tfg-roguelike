@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum StateType
 {
@@ -9,7 +7,7 @@ public enum StateType
     FollowWalking, FollowFlying,
     RangeAttack, MeleeAttack,
 
-    BossIntroState, BossOneShootState, UndergroundMove, GenerateChilds,
+    BossIntroState, BossShootState, UndergroundMove, GenerateChilds,
 }
 
 public abstract class State

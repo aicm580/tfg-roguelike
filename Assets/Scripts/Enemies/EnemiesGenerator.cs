@@ -63,7 +63,7 @@ public class EnemiesGenerator : MonoBehaviour
     {
         SetupEnemies(lvl);
 
-        for (int i = 0; i < mapGenerator.rooms.Length; i++)
+        for (int i = 0; i < MapGenerator.rooms.Length; i++)
         {
             CreateEnemiesInRoom(i);
         }
@@ -76,20 +76,20 @@ public class EnemiesGenerator : MonoBehaviour
          {
              nEnemies = 2;
          }
-         else if (i == mapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
+         else if (i == MapGenerator.rooms.Length - 1) //si se trata de la última sala, solo debe tener 1 enemigo final
          {
              nEnemies = 1;
          }
          else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
          {
-             int maxEnemies = (int)(mapGenerator.rooms[i].emptyPositions.Count / ((mapGenerator.rooms[i].roomWidth - 2 + mapGenerator.rooms[i].roomHeight - 2) / 1.85f));
+             int maxEnemies = (int)(MapGenerator.rooms[i].emptyPositions.Count / ((MapGenerator.rooms[i].roomWidth - 2 + MapGenerator.rooms[i].roomHeight - 2) / 1.85f));
              int minEnemies = (int)Mathf.Round(maxEnemies / 2f);
              nEnemies = Random.Range(minEnemies, maxEnemies);
              //Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
              //Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);
          }
 
-         mapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
+         MapGenerator.rooms[i].nEnemies = nEnemies; //guardamos el nº de enemigos en la info de la sala
 
          int enemiesCreated = 0;
 
@@ -102,7 +102,7 @@ public class EnemiesGenerator : MonoBehaviour
 
              //Trataremos diferente la generación de enemigos en la última sala que en el resto de salas,
              //puesto que en esta sala solo se encontrará 1 enemigo, el jefe final, que no tendrá amigos nunca
-             if (i != mapGenerator.rooms.Length - 1)
+             if (i != MapGenerator.rooms.Length - 1)
              {
                 int randomEnemy = Random.Range(0, enemiesPrefabs.Count); //el resultado máximo será enemiesPrefabs.Count-1
                 GameObject enemyPrefab = enemiesPrefabs[randomEnemy];
@@ -129,7 +129,6 @@ public class EnemiesGenerator : MonoBehaviour
 
                 if (!possible) //si ya no es posible colocar enemigos en una posición random, paramos de crearlos
                 {
-                    Debug.Log("ROTURA SOLUCIONADA");
                     break;
                 }
                    
@@ -177,7 +176,7 @@ public class EnemiesGenerator : MonoBehaviour
                             break;
                         }
                          
-                        mapGenerator.rooms[i].emptyPositions.Remove(position);
+                        MapGenerator.rooms[i].emptyPositions.Remove(position);
                     }
 
                     lastPos = position;
@@ -189,7 +188,7 @@ public class EnemiesGenerator : MonoBehaviour
              {
                 BoxCollider2D boxCol = bossPrefab.GetComponent<BoxCollider2D>();
                 position = RandomPositionWithOverlap(i, boxCol.size);
-                mapGenerator.rooms[i].emptyPositions.Remove(position);
+                MapGenerator.rooms[i].emptyPositions.Remove(position);
                 InstantiateEnemy(bossPrefab, position, true, friends);
                 enemiesCreated++;
              }
@@ -233,8 +232,8 @@ public class EnemiesGenerator : MonoBehaviour
 
         do
         {
-            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+            randomIndex = Random.Range(0, MapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = MapGenerator.rooms[room].emptyPositions[randomIndex];
 
             attempt++;
             if (attempt > 50)
@@ -244,7 +243,7 @@ public class EnemiesGenerator : MonoBehaviour
             }
         } while (!NotEnemiesNearby(randomPosition, room));
 
-        mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
+        MapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
 
         return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
     }
@@ -257,8 +256,8 @@ public class EnemiesGenerator : MonoBehaviour
 
         do
         {
-            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+            randomIndex = Random.Range(0, MapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = MapGenerator.rooms[room].emptyPositions[randomIndex];
 
             col = Physics2D.OverlapBox(randomPosition, new Vector2(boxSize.x, boxSize.y), 0);
 

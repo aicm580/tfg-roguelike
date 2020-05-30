@@ -6,13 +6,15 @@ public class BossHealth : CharacterHealth
     protected GameObject fuel;
     [HideInInspector]
     public HealthBar healthBar;
-
+    
     private GameObject enemiesHolder;
+    private string enemyName;
 
     protected override void Start()
     {
         base.Start();
         enemiesHolder = GameObject.Find("EnemiesHolder");
+        enemyName = GetComponent<Enemy>().enemyName;
         healthBar = GameManager.instance.bossHealthBar;
         healthBar.DisableHealthBar();
         healthBar.SetMaxHealth(maxHealth);
@@ -27,10 +29,12 @@ public class BossHealth : CharacterHealth
     protected override void Die()
     {
         base.Die();
+        AudioManager.audioManagerInstance.PlaySFX(enemyName + " Die");
         GameManager.instance.bossesKilled++;
         healthBar.DisableHealthBar();
         Destroy(enemiesHolder);
-        SpawnItems(0.2f, minRarity, maxRarity); //Hay un 80% de probabilidades de que, al morir, el enemigo deje un item
-        Instantiate(fuel, transform.position + new Vector3(0.35f, 0.35f, 0), Quaternion.identity);
+        SpawnItems(1f - probability, minRarity, maxRarity);
+        Vector3 pos = MapGenerator.RandomPositionAtDistance(MapGenerator.rooms.Length - 1, transform.position, 2, 6);
+        Instantiate(fuel, pos, Quaternion.identity);  
     }
 }

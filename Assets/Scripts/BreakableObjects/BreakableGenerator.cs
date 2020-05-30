@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -25,8 +24,6 @@ public class BreakableGenerator : MonoBehaviour
 
     private void SetupBreakables(int lvl)
     {
-        mapGenerator = GetComponent<MapGenerator>();
-
         breakablesHolder = GameObject.Find("BreakablesHolder");
         if (breakablesHolder != null)
         {
@@ -61,7 +58,7 @@ public class BreakableGenerator : MonoBehaviour
     {
         SetupBreakables(lvl);
 
-        for (int i = 0; i < mapGenerator.rooms.Length - 1; i++) //la última sala no debe tener objetos rompibles
+        for (int i = 0; i < MapGenerator.rooms.Length - 1; i++) //la última sala no debe tener objetos rompibles
         {
             CreateBreakablesInRoom(i);
         }
@@ -85,7 +82,6 @@ public class BreakableGenerator : MonoBehaviour
             int randomEnemy = Random.Range(0, breakablesPrefabs.Count);
             breakablePrefab = breakablesPrefabs[randomEnemy];
 
-
             Vector3 randomPos = RandomPosition(i);
 
             GameObject breakable = Instantiate(breakablePrefab, randomPos, Quaternion.identity) as GameObject;
@@ -96,9 +92,9 @@ public class BreakableGenerator : MonoBehaviour
 
     private Vector3 RandomPosition(int room)
     {
-        int randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-        Vector3 randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
-        mapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
+        int randomIndex = Random.Range(0, MapGenerator.rooms[room].emptyPositions.Count);
+        Vector3 randomPosition = MapGenerator.rooms[room].emptyPositions[randomIndex];
+        MapGenerator.rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
 
         return randomPosition; //devolvemos la posición en la que colocar un nuevo elemento
     }

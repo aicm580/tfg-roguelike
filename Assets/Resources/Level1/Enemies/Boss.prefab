@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 1.6
+  shootDelay: 1.65
   bulletSize: 0.8
   bulletsAmount: 12
   bulletPrefab: {fileID: 304181260431725268, guid: 120bb0ce3ed5cc643b246c551db81820,
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0739c390fb388404ba404711fabb785d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 25
   currentHealth: 0
   minRarity: 3
   maxRarity: 5

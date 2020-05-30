@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
     public IntRange corridorLength = new IntRange (7, 9);
     public IntRange corridorWidth = new IntRange (5,6);
 
-    public Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
+    public static Room[] rooms; //tiene que ser pública, ya que deberá ser accesible desde el GameManager
     private Corridor[] corridors;
 
     [HideInInspector]
@@ -464,5 +464,25 @@ public class MapGenerator : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    //Esta función sirve para, dadas una sala, una posición y una distancia mínima,
+    //encontrar una posición random en la sala cuya distancia de la posición dada sé encuentre entre
+    //la distancia mínima dada y distancia máxima dada
+    public static Vector3 RandomPositionAtDistance(int room, Vector3 pos, float minDist, float maxDist)
+    {
+        Vector3 randomPos;
+        int randomIndex;
+        float distance;
+        do
+        {
+            randomIndex = Random.Range(0, rooms[room].emptyPositions.Count);
+            randomPos = rooms[room].emptyPositions[randomIndex];
+            distance = Vector2.Distance(pos, randomPos);
+        } while (distance < minDist || distance > maxDist);
+
+        rooms[room].emptyPositions.RemoveAt(randomIndex); //ya no se trata de una posición vacía, así que la eliminamos
+
+        return randomPos; //devolvemos la posición en la que colocar un nuevo elemento
     }
 }

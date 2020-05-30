@@ -6,7 +6,6 @@ public class UndergroundMoveState : State
 
     private BossHealth bossHealth;
     private EnemiesGenerator enemiesGenerator;
-    private MapGenerator mapGenerator;
     private BoxCollider2D boxCol;
     private float timer;
     private float delay = 1.1f;
@@ -16,7 +15,6 @@ public class UndergroundMoveState : State
     {
         GameObject gameManager = GameObject.Find("GameManager");
         enemiesGenerator = gameManager.GetComponent<EnemiesGenerator>();
-        mapGenerator = gameManager.GetComponent<MapGenerator>();
         bossHealth = enemy.GetComponent<BossHealth>();
         boxCol = enemy.GetComponent<BoxCollider2D>();
         timer = 0;
@@ -51,7 +49,7 @@ public class UndergroundMoveState : State
         Vector2 newPos;
         do
         {
-            newPos = enemiesGenerator.RandomPositionWithOverlap(mapGenerator.rooms.Length - 1, boxCol.size + new Vector2(0.5f, 0.5f));
+            newPos = enemiesGenerator.RandomPositionWithOverlap(MapGenerator.rooms.Length - 1, boxCol.size + new Vector2(0.5f, 0.5f));
         }
         while (Vector2.Distance(enemy.transform.position, newPos) < 0.5f);
             

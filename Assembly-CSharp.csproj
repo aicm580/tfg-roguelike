@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\StartupManager.cs" />
     <Compile Include="Assets\Scripts\StatsData.cs" />
     <Compile Include="Assets\Scripts\StatsPanelManager.cs" />
+    <Compile Include="Assets\Scripts\UIButton.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

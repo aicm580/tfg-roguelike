@@ -1,14 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class NormalEnemyHealth : CharacterHealth
 {
     [SerializeField]
     protected Transform popupDamageText;
 
+    private SpriteRenderer spriteRend;
+    public Color dmgColor = new Color(255f/255f, 177f/255f, 177f/255f);
+
+    protected override void Start()
+    {
+        base.Start();
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
+    }
+
     public override void TakeDamage(int dmgAmount)
     {
+        spriteRend.color = dmgColor;
+        StartCoroutine(ReturnToOriginalColor());
+
         PopupDamage(dmgAmount);
         base.TakeDamage(dmgAmount);
+    }
+
+    private IEnumerator ReturnToOriginalColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        spriteRend.color = Color.white;
     }
 
     private void PopupDamage(int dmgAmount)

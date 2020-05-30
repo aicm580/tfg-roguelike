@@ -26,7 +26,6 @@ public class BreakableObject : CharacterHealth
         switch (objectType)
         {
             case BreakableObjectType.Explosive:
-                AudioManager.audioManagerInstance.PlaySFX("Explosion");
                 GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 float destroyTime = explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
                 Destroy(explosion, destroyTime);

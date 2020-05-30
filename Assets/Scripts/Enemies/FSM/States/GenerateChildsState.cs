@@ -25,7 +25,7 @@ public class GenerateChildsState : State
         {
             for (int i = 0; i < childGenerator.childsPerRound; i++)
             {
-                randomPos = RandomPosition(mapGenerator.rooms.Length - 1);
+                randomPos = RandomPosition(MapGenerator.rooms.Length - 1);
                 childGenerator.GenerateChild(randomPos);
             }
 
@@ -57,8 +57,8 @@ public class GenerateChildsState : State
 
         do
         {
-            randomIndex = Random.Range(0, mapGenerator.rooms[room].emptyPositions.Count);
-            randomPosition = mapGenerator.rooms[room].emptyPositions[randomIndex];
+            randomIndex = Random.Range(0, MapGenerator.rooms[room].emptyPositions.Count);
+            randomPosition = MapGenerator.rooms[room].emptyPositions[randomIndex];
 
             col = Physics2D.OverlapBox(randomPosition, new Vector2(0.9f, 0.9f), 0, masks);
 

@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
+        spriteRend.color = initColor;
     }
 
     public void SetPlayerHealth(int initHealth, int initHearts, int maxHeart)
@@ -65,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator ReturnToWhite()
     {
         yield return new WaitForSeconds(0.15f);
-        spriteRend.color = initColor;
+        spriteRend.color = initColor;        
     }
 
     public void IncreaseCurrentHearts(int totalAmount, int fullAmount)

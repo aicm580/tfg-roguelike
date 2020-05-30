@@ -27,9 +27,8 @@ public class MenuManager : MonoBehaviour
     private float musicSliderValue;
     private float sfxVol;
     private float sfxSliderValue;
-    
 
-    private void Start()
+    private void Awake()
     {
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
 
@@ -51,8 +50,12 @@ public class MenuManager : MonoBehaviour
             resolutionOptions.Add(option);
         }
         resolutionDropdown.AddOptions(resolutionOptions);
+    }
 
+    private void Start()
+    {
         SetOptionsPanelValues();
+        AudioManager.audioManagerInstance.PlayMusic("MenuMusic");
     }
 
     public void SetOptionsPanelValues()
@@ -100,6 +103,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartNewLevel()
     {
+        AudioManager.audioManagerInstance.musicSource.Stop();
         SceneManager.LoadScene("LoadScene");
     }
        

@@ -4222,7 +4222,7 @@ MonoBehaviour:
   shootDelay: 0.22
   bulletSize: 0
   bulletsAmount: 0
-  bulletPrefab: {fileID: 304181260431725268, guid: 9bc00beaf910c0741b7c1ca8c21d4b2e,
+  bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
   shootType: 0
   canShoot: 1
@@ -4239,6 +4239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  currentColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &1482285133
 Animator:
   serializedVersion: 3
@@ -4357,7 +4358,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -2286333068121298461, guid: 85af4824c27ab194486ec4f7a39009f4,
     type: 3}
-  m_Color: {r: 1, g: 0.9607843, b: 0.7411765, a: 1}
+  m_Color: {r: 1, g: 0.9964265, b: 0.9764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

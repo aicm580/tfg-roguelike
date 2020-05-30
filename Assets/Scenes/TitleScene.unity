@@ -278,6 +278,56 @@ MonoBehaviour:
     volume: 0.33
     pitch: 1
     loop: 0
+  - name: Olghoi Khorkhoi Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Dilophosaurus Shoot
+    clip: {fileID: 8300000, guid: be43657811c333f41b577043188d38f8, type: 3}
+    volume: 0.31
+    pitch: 1
+    loop: 0
+  - name: Dilophosaurus Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Olghoi Khorkhoi Shoot
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Meganeura Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Raptor Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 3be7ef52fb4799c49ba00cfb92fe6c8b, type: 3}
+    volume: 0.03
+    pitch: 1
+    loop: 1
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: 5c6a4127e1ffe824d87504d95257d531, type: 3}
+    volume: 0.31
+    pitch: 1
+    loop: 0
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: 996752b7bfbf3cd4f9855fd805686628, type: 3}
+    volume: 0.982
+    pitch: 1
+    loop: 0
+  - name: NewRunButtonClick
+    clip: {fileID: 8300000, guid: fbf66c7552cfb5c4dae8f28d2ed99d48, type: 3}
+    volume: 0.185
+    pitch: 1
+    loop: 0
 --- !u!4 &462037484
 Transform:
   m_ObjectHideFlags: 0

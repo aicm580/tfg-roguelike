@@ -204,10 +204,10 @@ public class GameManager : MonoBehaviour
 
     private Vector3 InitPlayerPosition()
     {
-        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(mapGenerator.rooms[0].emptyPositions.Count / 5f));
-        Vector3 randomPosition = mapGenerator.rooms[0].emptyPositions[randomIndex];
+        int randomIndex = Random.Range(0, (int)System.Math.Ceiling(MapGenerator.rooms[0].emptyPositions.Count / 5f));
+        Vector3 randomPosition = MapGenerator.rooms[0].emptyPositions[randomIndex];
 
-        mapGenerator.rooms[0].emptyPositions.RemoveAt(randomIndex);
+        MapGenerator.rooms[0].emptyPositions.RemoveAt(randomIndex);
 
         return randomPosition;
     }
@@ -270,6 +270,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(level);
             Win();
         }
     }

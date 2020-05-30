@@ -243,76 +243,6 @@ MonoBehaviour:
   sfxSource: {fileID: 462037486}
   musicSource: {fileID: 462037485}
   sounds:
-  - name: PickItem
-    clip: {fileID: 8300000, guid: aaa9345fc5b00ea40b9cb0abb4bfa928, type: 3}
-    volume: 0.3
-    pitch: 1
-    loop: 0
-  - name: GameOver
-    clip: {fileID: 8300000, guid: 53cf359ba6723ed46bd1f96e7304cd83, type: 3}
-    volume: 0.38
-    pitch: 1
-    loop: 0
-  - name: GameBackground
-    clip: {fileID: 8300000, guid: 509b714987751894ea3ae2ac980e7304, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 1
-  - name: LoseHeart
-    clip: {fileID: 8300000, guid: 7e98a4f6f090f194abeed847326fae5d, type: 3}
-    volume: 0.28
-    pitch: 1
-    loop: 0
-  - name: Shoot
-    clip: {fileID: 8300000, guid: 8f1baa1f91eca5d4c95d987597abe838, type: 3}
-    volume: 0.32
-    pitch: 1
-    loop: 0
-  - name: Explosion
-    clip: {fileID: 8300000, guid: d74ebcc7b2b683d499ae435336da8d99, type: 3}
-    volume: 0.53
-    pitch: 1
-    loop: 0
-  - name: PickFuel
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: Olghoi Khorkhoi Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: Dilophosaurus Shoot
-    clip: {fileID: 8300000, guid: be43657811c333f41b577043188d38f8, type: 3}
-    volume: 0.31
-    pitch: 1
-    loop: 0
-  - name: Dilophosaurus Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: Olghoi Khorkhoi Shoot
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: Meganeura Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: Raptor Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
-    pitch: 1
-    loop: 0
-  - name: MenuMusic
-    clip: {fileID: 8300000, guid: 3be7ef52fb4799c49ba00cfb92fe6c8b, type: 3}
-    volume: 0.03
-    pitch: 1
-    loop: 1
   - name: ButtonClick
     clip: {fileID: 8300000, guid: 88b90e22100dc0146bace44db47dfbec, type: 3}
     volume: 1
@@ -323,14 +253,89 @@ MonoBehaviour:
     volume: 0.27
     pitch: 1
     loop: 0
+  - name: Dilophosaurus Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Dilophosaurus Shoot
+    clip: {fileID: 8300000, guid: be43657811c333f41b577043188d38f8, type: 3}
+    volume: 0.48
+    pitch: 1
+    loop: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: d74ebcc7b2b683d499ae435336da8d99, type: 3}
+    volume: 0.53
+    pitch: 1
+    loop: 0
+  - name: GameBackground
+    clip: {fileID: 8300000, guid: 509b714987751894ea3ae2ac980e7304, type: 3}
+    volume: 0.08
+    pitch: 1
+    loop: 1
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 53cf359ba6723ed46bd1f96e7304cd83, type: 3}
+    volume: 0.38
+    pitch: 1
+    loop: 0
+  - name: LoseHeart
+    clip: {fileID: 8300000, guid: 7e98a4f6f090f194abeed847326fae5d, type: 3}
+    volume: 0.28
+    pitch: 1
+    loop: 0
+  - name: Meganeura Die
+    clip: {fileID: 8300000, guid: 6a15dda7b27f67e4b8110f95adb19bc5, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Meganeura Hit
+    clip: {fileID: 8300000, guid: d1b470d78ff3229498b8d8aba6422731, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 3be7ef52fb4799c49ba00cfb92fe6c8b, type: 3}
+    volume: 0.028
+    pitch: 1
+    loop: 1
   - name: NewRunButtonClick
     clip: {fileID: 8300000, guid: fbf66c7552cfb5c4dae8f28d2ed99d48, type: 3}
     volume: 0.185
     pitch: 1
     loop: 0
+  - name: Olghoi Khorkhoi Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Olghoi Khorkhoi Shoot
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: PickFuel
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: PickItem
+    clip: {fileID: 8300000, guid: aaa9345fc5b00ea40b9cb0abb4bfa928, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Player Shoot
+    clip: {fileID: 8300000, guid: 8f1baa1f91eca5d4c95d987597abe838, type: 3}
+    volume: 0.325
+    pitch: 1
+    loop: 0
+  - name: Raptor Die
+    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    volume: 0.33
+    pitch: 1
+    loop: 0
   - name: SaveButton
-    clip: {fileID: 8300000, guid: 5e2931603af285d4b900f791b920e321, type: 3}
-    volume: 0.255
+    clip: {fileID: 8300000, guid: 5c6a4127e1ffe824d87504d95257d531, type: 3}
+    volume: 0.41
     pitch: 1
     loop: 0
 --- !u!4 &462037484

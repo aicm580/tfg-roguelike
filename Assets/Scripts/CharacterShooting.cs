@@ -14,7 +14,8 @@ public class CharacterShooting : MonoBehaviour
     public float bulletSize;
     public int bulletsAmount;
     public Bullet bulletPrefab;
-    public ShootType shootType; 
+    public ShootType shootType;
+    public string shootSound;
 
     [HideInInspector]
     public bool canShoot = true;
@@ -90,7 +91,7 @@ public class CharacterShooting : MonoBehaviour
                     break;
             }
 
-            AudioManager.audioManagerInstance.PlaySFX("Shoot");
+            AudioManager.audioManagerInstance.PlaySFX(shootSound);
 
             canShoot = false;
             StartCoroutine(ShootDelay());

@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.8
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &8371670761104094750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +159,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
     type: 3}
   shootType: 0
+  shootSound: Dilophosaurus Shoot
   canShoot: 1
 --- !u!114 &2574572701396338812
 MonoBehaviour:
@@ -194,6 +194,7 @@ MonoBehaviour:
   probability: 0.1
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
+  dmgColor: {r: 1, g: 0.69411767, b: 0.69411767, a: 1}
 --- !u!114 &4730599111801766458
 MonoBehaviour:
   m_ObjectHideFlags: 0

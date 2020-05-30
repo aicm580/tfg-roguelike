@@ -21,6 +21,11 @@ public class BreakableObject : CharacterHealth
         enemiesGenerator = GameManager.instance.GetComponent<EnemiesGenerator>();
     }
 
+    protected override void Start()
+    {
+        charName = breakableObjectName;
+    }
+
     protected override void Die()
     {
         switch (objectType)

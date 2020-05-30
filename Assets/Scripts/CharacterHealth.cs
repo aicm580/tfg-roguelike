@@ -10,8 +10,11 @@ public abstract class CharacterHealth : MonoBehaviour
     protected int minRarity, maxRarity;
     [SerializeField][Range(0,1)]
     protected float probability; //probabilidad de que spawnee un item al morir
-    
+
+    protected string charName;
+
     private Animator animator;
+   
 
     protected virtual void Start()
     {
@@ -25,10 +28,13 @@ public abstract class CharacterHealth : MonoBehaviour
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
             Die();
+        else
+            AudioManager.audioManagerInstance.PlaySFX(charName + " Hit");
     }
     
     protected virtual void Die()
     {
+        AudioManager.audioManagerInstance.PlaySFX(charName + " Die");
         Destroy(gameObject);
     }
 

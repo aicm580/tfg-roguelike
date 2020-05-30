@@ -13,6 +13,7 @@ public class BossHealth : CharacterHealth
     protected override void Start()
     {
         base.Start();
+        charName = GetComponent<Enemy>().enemyName;
         enemiesHolder = GameObject.Find("EnemiesHolder");
         enemyName = GetComponent<Enemy>().enemyName;
         healthBar = GameManager.instance.bossHealthBar;

@@ -12,6 +12,7 @@ public class NormalEnemyHealth : CharacterHealth
     protected override void Start()
     {
         base.Start();
+        charName = GetComponent<Enemy>().enemyName;
         spriteRend = GetComponentInChildren<SpriteRenderer>();
     }
 

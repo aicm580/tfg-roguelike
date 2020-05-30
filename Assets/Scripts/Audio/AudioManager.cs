@@ -56,4 +56,10 @@ public class AudioManager : MonoBehaviour
         musicSource.loop = sound.loop;
         musicSource.Play();
     }
+
+    [ContextMenu("Sort Sounds By Name")]
+    void DoSortSounds()
+    {
+        System.Array.Sort(sounds, (a, b) => a.name.CompareTo(b.name));
+    }
 }

@@ -297,6 +297,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
+        AudioManager.audioManagerInstance.musicSource.Stop();
         SaveStats();
         Time.timeScale = 1f;
         isPaused = false;

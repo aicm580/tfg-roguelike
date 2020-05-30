@@ -9,7 +9,7 @@ public class UIButton : MonoBehaviour
         AudioManager.audioManagerInstance.PlaySFX("ButtonHover");
     }
 
-    public void OnMouseClick()
+    public void OnMouseClickSelect()
     {
         if (!currentlySelected)
             AudioManager.audioManagerInstance.PlaySFX("ButtonClick");
@@ -17,14 +17,23 @@ public class UIButton : MonoBehaviour
         currentlySelected = true;
     }
 
+    public void NotSelected()
+    {
+        currentlySelected = false;
+    }
+
+    public void OnMouseClick()
+    {
+        AudioManager.audioManagerInstance.PlaySFX("ButtonClick");
+    }
+
     public void OnStartNewRun()
     {
         AudioManager.audioManagerInstance.PlaySFX("NewRunButtonClick");
     }
 
-    public void NotSelected()
+    public void OnSave()
     {
-        currentlySelected = false;
+        AudioManager.audioManagerInstance.PlaySFX("SaveButton");
     }
-    
 }

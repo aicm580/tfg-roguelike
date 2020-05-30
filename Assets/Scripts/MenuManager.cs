@@ -55,7 +55,9 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         SetOptionsPanelValues();
-        AudioManager.audioManagerInstance.PlayMusic("MenuMusic");
+
+        if (SceneManager.GetActiveScene().name == "MenuScene")
+            AudioManager.audioManagerInstance.PlayMusic("MenuMusic");
     }
 
     public void SetOptionsPanelValues()

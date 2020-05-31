@@ -8,7 +8,6 @@ public class IdleState : State
     {
         if (enemy.GetComponentInChildren<Renderer>().isVisible)
         {
-            animator.SetBool("isPatrolling", true);
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();
         }
     }

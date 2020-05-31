@@ -51,11 +51,11 @@ public class Enemy : MonoBehaviour
         leftRayOrigin.SetParent(transform);
 
         topRayOrigin = new GameObject("TopRayOrigin").transform;
-        topRayOrigin.position = transform.position + new Vector3(0, 0.35f, 0);
+        topRayOrigin.position = transform.position + new Vector3(0, 0.38f, 0);
         topRayOrigin.SetParent(transform);
 
         bottomRayOrigin = new GameObject("BottomRayOrigin").transform;
-        bottomRayOrigin.position = transform.position + new Vector3(0, -0.35f, 0);
+        bottomRayOrigin.position = transform.position + new Vector3(0, -0.38f, 0);
         bottomRayOrigin.SetParent(transform);
 
         target = GameManager.instance.playerTransform;

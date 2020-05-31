@@ -6,10 +6,12 @@ public class CharacterMovement : MonoBehaviour
     public float moveSpeed; //las modificaciones de velocidad ingame se aplican sobre este parámetro
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     public void InitializeCharacterMovement(float speed)
@@ -40,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
             pEffect -= Mathf.Abs(moveSpeed - poisonEffect) + 0.35f;
         }
         moveSpeed -= pEffect;
-        
+        animator.SetBool("poisoned", true);
         GameManager.instance.UpdateGameStats(); //modificamos los valores de los stats en pantalla, ya que la velocidad ha cambiado
         StartCoroutine(PoisonDisappears(pEffect, poisonDuration));
     }
@@ -48,6 +50,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator PoisonDisappears(float poisonEffect, float poisonDuration)
     {
         yield return new WaitForSeconds(poisonDuration);
+        animator.SetBool("poisoned", false);
         if (GameManager.instance.enemiesActive)
         {
             moveSpeed += poisonEffect;

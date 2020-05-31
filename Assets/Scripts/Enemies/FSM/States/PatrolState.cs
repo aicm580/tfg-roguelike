@@ -5,20 +5,15 @@ public class PatrolState : State
     public PatrolState(GameObject enemy, StateType state) : base(enemy, state) { }
 
     protected Enemy enemyBehavior;
-
-    protected Vector2 initialPos;
+    
     protected Vector2 direction;
     protected Vector2? destination;
     protected Transform rayOrigin;
     protected Vector2[] rays;
    
-    protected void InitPatrol()
+    public override void OnStateEnter()
     {
         enemyBehavior = enemy.GetComponent<Enemy>();
-        initialPos = enemy.transform.position;
-        direction = new Vector2(1, 0);
-        rayOrigin = enemyBehavior.rightRayOrigin;
-        rays = enemyBehavior.GetOtherRays(rayOrigin.position);
     }
 
     protected Vector2 ChangePatrolDirection(Vector2 direction)
@@ -30,7 +25,6 @@ public class PatrolState : State
                 direction.x = 1;
             else
                 direction.x *= -1;
-
             direction.y = 0;
         }
         else
@@ -39,10 +33,8 @@ public class PatrolState : State
                 direction.y = 1;
             else
                 direction.y *= -1;
-
             direction.x = 0;
         }
-
         return direction;
     }
 
@@ -66,6 +58,14 @@ public class PatrolState : State
     public override void FixedUpdateState()
     {
         if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
+        {
+            enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+            animator.SetBool("isMoving", direction.sqrMagnitude > 0 ? true : false);
             enemyBehavior.characterMovement.Move(direction, 1);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false); //si la habilidad especial está activada, el enemigo no debe moverse
+        }
     }
 }

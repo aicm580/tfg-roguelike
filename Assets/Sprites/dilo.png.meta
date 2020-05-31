@@ -14,6 +14,30 @@ TextureImporter:
   - first:
       213: -2567946626095771466
     second: dilo_3
+  - first:
+      213: -5030868782551352175
+    second: dilo_4
+  - first:
+      213: 7136404408365136983
+    second: dilo_5
+  - first:
+      213: 2671806573565908605
+    second: dilo_6
+  - first:
+      213: -7163714468296723863
+    second: dilo_7
+  - first:
+      213: 7817888306197755648
+    second: dilo_8
+  - first:
+      213: -7198547549501944674
+    second: dilo_9
+  - first:
+      213: 2122599889199658468
+    second: dilo_10
+  - first:
+      213: 1416021472661422570
+    second: dilo_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -121,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ef74cbcf5938044098de0b2627cfbbc
+      spriteID: 986a0d581f8dddf42be492b938979611
       internalID: -6543418653442720702
       vertices: []
       indices: 
@@ -129,6 +153,48 @@ TextureImporter:
       weights: []
     - serializedVersion: 2
       name: dilo_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e54c0f3d5521f548be3c9e83a8bc531
+      internalID: -2183439530725571761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7592a77560735241b71c0fd4f05dea0
+      internalID: 7339071549788517908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_3
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +208,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bfd91d3c92a7ea4bb8fa5582b6b72e0
-      internalID: -2183439530725571761
+      spriteID: bf6e8b9abf048f848aad17b42aac085a
+      internalID: -2567946626095771466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dilo_2
+      name: dilo_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394e871b7555a9641bcdcea582764609
+      internalID: -5030868782551352175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a73e17aa8d661f2439b38d7b722e002b
+      internalID: 7136404408365136983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_6
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +271,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f02a8f381785abd4497c41c8b6791dba
-      internalID: 7339071549788517908
+      spriteID: 2f7904ddd47d7854d9abfc59b150a722
+      internalID: 2671806573565908605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dilo_3
+      name: dilo_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1dc37f128224d949933be318287ba50
+      internalID: -7163714468296723863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f0ac2abe13954428a178382166a0ca
+      internalID: 7817888306197755648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_9
       rect:
         serializedVersion: 2
         x: 0
@@ -184,8 +334,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b772538c6a6744c9280b26c493d1bb
-      internalID: -2567946626095771466
+      spriteID: 053cfce8233176b4199fd9297875220c
+      internalID: -7198547549501944674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed851c190a3b93478b265d4b5f5d35c
+      internalID: 2122599889199658468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dilo_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1be0a3d02f28744b1428acb948c082
+      internalID: 1416021472661422570
       vertices: []
       indices: 
       edges: []

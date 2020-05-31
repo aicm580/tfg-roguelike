@@ -16,6 +16,7 @@ public class BossIntroState : State
     {
         if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, masks))
         {
+            AudioManager.audioManagerInstance.PlaySFX(enemyBehavior.enemyName + " Appear");
             animator.SetTrigger("appear");
             enemy.GetComponent<BossHealth>().healthBar.EnableHealthBar();
             enemy.GetComponent<FiniteStateMachine>().EnterNextState();

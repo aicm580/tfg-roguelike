@@ -23,12 +23,12 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRend;
     private Color dmgColor = new Color(250f/255f, 131f/255f, 131f/255f);
-    private Color initColor = new Color(255f/255f, 245f/255f, 189f/255f);
+    private Color initColor = Color.white;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        spriteRend = GetComponent<SpriteRenderer>();
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
         spriteRend.color = initColor;
     }
 
@@ -144,22 +144,14 @@ public class PlayerHealth : MonoBehaviour
             hearts[i] = uiHeart;
 
             if (i >= currentHealth)
-            {
                 hearts[i].GetComponent<Animator>().SetBool("empty", true);
-            }
             else
-            {
                 hearts[i].GetComponent<Animator>().SetBool("empty", false);
-            }
 
             if (i < currentHearts)
-            {
                 hearts[i].GetComponent<Image>().enabled = true;
-            }
             else
-            {
                 hearts[i].GetComponent<Image>().enabled = false;
-            }
         }
     }
 

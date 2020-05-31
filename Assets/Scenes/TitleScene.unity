@@ -254,8 +254,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - name: Dilophosaurus Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
-    volume: 0.33
+    clip: {fileID: 8300000, guid: 028a9f2b9b288494b8bd577705362a8c, type: 3}
+    volume: 0.37
+    pitch: 1
+    loop: 0
+  - name: Dilophosaurus Hit
+    clip: {fileID: 8300000, guid: 6f93731804d1bf04b8d36dfd3302d975, type: 3}
+    volume: 0.37
     pitch: 1
     loop: 0
   - name: Dilophosaurus Shoot
@@ -263,7 +268,7 @@ MonoBehaviour:
     volume: 0.48
     pitch: 1
     loop: 0
-  - name: Explosion
+  - name: Explosive Egg Die
     clip: {fileID: 8300000, guid: d74ebcc7b2b683d499ae435336da8d99, type: 3}
     volume: 0.53
     pitch: 1
@@ -303,13 +308,33 @@ MonoBehaviour:
     volume: 0.185
     pitch: 1
     loop: 0
+  - name: Olghoi Khorkhoi Appear
+    clip: {fileID: 8300000, guid: 699056c21d9c6b54bba3207225b300c0, type: 3}
+    volume: 0.36
+    pitch: 1
+    loop: 0
+  - name: Olghoi Khorkhoi Child Die
+    clip: {fileID: 8300000, guid: cf562221d2637aa48a349d64afecbff1, type: 3}
+    volume: 0.34
+    pitch: 1
+    loop: 0
+  - name: Olghoi Khorkhoi Child Hit
+    clip: {fileID: 8300000, guid: a07327fb8e6f10641929d0906d748bb8, type: 3}
+    volume: 0.21
+    pitch: 1
+    loop: 0
   - name: Olghoi Khorkhoi Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    clip: {fileID: 8300000, guid: e658cf0011335394a9d515c964299534, type: 3}
     volume: 0.33
     pitch: 1
     loop: 0
+  - name: Olghoi Khorkhoi Hit
+    clip: {fileID: 8300000, guid: a07327fb8e6f10641929d0906d748bb8, type: 3}
+    volume: 0.34
+    pitch: 1
+    loop: 0
   - name: Olghoi Khorkhoi Shoot
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    clip: {fileID: 8300000, guid: 688bd6ac77ad8584da5aa287b93c681b, type: 3}
     volume: 0.33
     pitch: 1
     loop: 0
@@ -329,8 +354,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - name: Raptor Die
-    clip: {fileID: 8300000, guid: 24fdb4b180e2df947885e5c3cb91b31a, type: 3}
+    clip: {fileID: 8300000, guid: 3f23e87699f31d7419de50bc3f06570e, type: 3}
     volume: 0.33
+    pitch: 1
+    loop: 0
+  - name: Raptor Hit
+    clip: {fileID: 8300000, guid: 26af77faae9d8424686ea6c8fbbdf848, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 0
   - name: SaveButton

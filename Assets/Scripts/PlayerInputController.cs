@@ -29,7 +29,7 @@ public class PlayerInputController : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         characterShooting = GetComponent<CharacterShooting>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()

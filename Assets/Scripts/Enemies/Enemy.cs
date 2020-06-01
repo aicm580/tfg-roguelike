@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
         return direction;
     }
 
-    private void GetRayOrigin(Vector2 target)
+    public void GetRayOrigin(Vector2 target)
     {
         float rightDistance = Vector2.Distance(rightRayOrigin.position, target);
         float leftDistance = Vector2.Distance(leftRayOrigin.position, target);

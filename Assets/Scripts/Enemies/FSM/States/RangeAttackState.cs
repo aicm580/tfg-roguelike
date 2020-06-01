@@ -7,7 +7,6 @@ public class RangeAttackState : State
     private CharacterShooting characterShooting;
     private Enemy enemyBehavior;
     private Vector2 direction;
-    private Quaternion angle;
     private Vector3 bulletOrigin = new Vector3();
 
     public override void OnStateEnter()
@@ -18,19 +17,21 @@ public class RangeAttackState : State
 
     public override void UpdateState()
     {
-        if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= enemyBehavior.attackRange)
+        if (GameManager.instance.enemiesActive)
         {
-            if (characterShooting.canShoot && !enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
+            float distance = Vector2.Distance(enemy.transform.position, enemyBehavior.target.position);
+            if (distance <= enemyBehavior.attackRange && characterShooting.canShoot &&
+                !enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
             {
                 direction = enemyBehavior.GetDirectionToPlayer();
                 enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
-                bulletOrigin = enemy.transform.position + (Vector3)(direction * 0.46f);
-                characterShooting.Shoot(bulletOrigin, direction, 0.35f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
+                bulletOrigin = enemy.transform.position;
+                characterShooting.Shoot(bulletOrigin, direction, 0.65f, Quaternion.identity, enemyBehavior.dmgOriginType, enemyBehavior.enemyName);
             }
-        }
-        else
-        {
-            enemyBehavior.fsm.EnterPreviousState();
+            else if (distance > enemyBehavior.attackRange)
+            {
+                enemyBehavior.fsm.EnterPreviousState();
+            }
         }
     }
 }

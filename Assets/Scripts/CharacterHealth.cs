@@ -41,7 +41,6 @@ public abstract class CharacterHealth : MonoBehaviour
     protected void SpawnItems(float minRandom, int minProbability, int maxProbability)
     {
         float random = Random.Range(0, 1f);
-        Debug.Log("Random:" + random);
         if (random >= minRandom)
         {
             Item currentItem = ItemsManager.itemsManagerInstance.GetItemByRarity(minProbability, maxProbability);

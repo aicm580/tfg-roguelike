@@ -16,7 +16,7 @@ public class FollowWalkingState : FollowState
         enemyBehavior = enemy.GetComponent<Enemy>();
         masks = blockingLayer | wallsLayer | enemiesLayer | waterLayer | playerLayer;
         nextStateMask = blockingLayer | wallsLayer | enemiesLayer | playerLayer;
-        animator.SetBool("isFollowing", true);
+        destination = null;
     }
 
     public override void UpdateState()
@@ -25,9 +25,10 @@ public class FollowWalkingState : FollowState
         {
             //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
             if (enemyBehavior.NeedChangeState(enemyBehavior.attackRange, nextStateMask))
-            {
                 enemyBehavior.fsm.EnterNextState();
-            }
+
+            CheckGiveUp();
+
             //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
             if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
             {
@@ -87,8 +88,27 @@ public class FollowWalkingState : FollowState
                 }
                 destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
             }
-
-            CheckGiveUp();
         }  
+    }
+
+    public override void FixedUpdateState()
+    {
+        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive &&
+            GameManager.instance.enemiesActive)
+        {
+            animator.SetBool("isMoving", direction.sqrMagnitude > 0 ? true : false);
+            enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+            enemyBehavior.characterMovement.Move(direction, enemyBehavior.followSpeed);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false); //si la habilidad especial está activada, el enemigo no debe moverse
+        }
+    }
+
+    public override void OnStateExit()
+    {
+        animator.SetBool("isMoving", false);
+        destination = null;
     }
 }

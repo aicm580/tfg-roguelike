@@ -40,7 +40,7 @@ public class ItemOnMap : MonoBehaviour
             switch (item.itemName)
             {
                 case "Big Mushroom":
-                    playerShooting.bulletSize = 0.35f; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
+                    playerShooting.bulletSize = 0.38f; //con esto, se incrementa el tamaño de la bala (y su collider), lo que facilita herir enemigos
                     break;
 
                 case "Crystal Clear Drop":
@@ -65,7 +65,7 @@ public class ItemOnMap : MonoBehaviour
                     break;
 
                 case "Meganeura's Wing":
-                    playerMovement.ChangeMoveSpeed(0.15f);
+                    playerMovement.ChangeMoveSpeed(0.22f);
                     break;
 
                 case "Rotten Mushroom":

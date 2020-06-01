@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
         loadPanel.SetActive(false);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
-        yield return new WaitForSeconds(1.85f); //esperamos 1.85f antes de que los enemigos puedan empezar a perseguir
+        yield return new WaitForSeconds(1.1f); //esperamos 1.1f antes de que los enemigos puedan empezar a perseguir
         enemiesActive = true;
     }
 
@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         timerActive = true;
+        enemiesActive = true;
     }
 
     public void Restart()
@@ -239,6 +240,7 @@ public class GameManager : MonoBehaviour
         bossHealthBar.DisableHealthBar();
         timerActive = false;
         playerAlive = false;
+        enemiesActive = false;
         playerText.text = playerName.ToUpper();
         killerText.text = LocalizationManager.localizationInstance.GetLocalizedValue(dmgOriginName);
         gameOverPanel.SetActive(true);
@@ -253,6 +255,7 @@ public class GameManager : MonoBehaviour
         wins++;
         timerActive = false;
         playerAlive = false;
+        enemiesActive = false;
         winPanel.SetActive(true);
         CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
     }
@@ -262,6 +265,7 @@ public class GameManager : MonoBehaviour
         if (level < lastLevel)
         {
             loadPanel.SetActive(true);
+            enemiesActive = false;
             runIsReady = false;
             StartCoroutine(DisableLoadPanel());
             level++;

@@ -8,7 +8,7 @@ public class FollowFlyingState : FollowState
     {
         enemyBehavior = enemy.GetComponent<Enemy>();
         masks = playerLayer | enemiesLayer | wallsLayer;
-        animator.SetBool("isFollowing", true);
+        destination = null;
     }
 
     public override void UpdateState()
@@ -18,6 +18,8 @@ public class FollowFlyingState : FollowState
             //Si el jugador está en el rango de ataque del enemigo y nada se interpone entre ellos, se pasa al estado de ataque
             if (enemyBehavior.NeedChangeState(enemyBehavior.attackRange, masks))
                 enemyBehavior.fsm.EnterNextState();
+
+            CheckGiveUp();
 
             //Si no está en el rango de ataque, el enemigo debe acercarse al jugador
             if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
@@ -66,7 +68,21 @@ public class FollowFlyingState : FollowState
                 }
                 destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
             }
-            CheckGiveUp();
         }
+    }
+
+    public override void FixedUpdateState()
+    {
+        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive &&
+            GameManager.instance.enemiesActive)
+        {
+            enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+            enemyBehavior.characterMovement.Move(direction, enemyBehavior.followSpeed);
+        }
+    }
+
+    public override void OnStateExit()
+    {
+        destination = null;
     }
 }

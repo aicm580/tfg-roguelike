@@ -2,43 +2,47 @@
 
 public class MeleeAttackState : State
 {
-    Enemy enemyBehavior;
-    float attackSpeed = 1.8f;
-    bool isAttacking;
-    Vector2 direction;
-
     public MeleeAttackState(GameObject enemy, StateType state) : base(enemy, state) { }
+
+    Enemy enemyBehavior;
+    Vector2 direction;
+    Vector2? destination;
+    float attackSpeed = 2.1f;
 
     public override void OnStateEnter()
     {
         enemyBehavior = enemy.GetComponent<Enemy>();
-        Vector2 initialPosition = enemy.transform.position;
-        isAttacking = true;
+        masks = playerLayer | enemiesLayer | wallsLayer;
+        destination = null;
     }
 
     public override void UpdateState()
     {
-        if (isAttacking && !enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
+        if (GameManager.instance.enemiesActive)
         {
-            direction = enemyBehavior.GetDirectionToPlayer();
-            if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) <= 0.3f)
-                isAttacking = false;
-        }
-        else
-        {
-            direction *= -1;
-        }
+            if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) > enemyBehavior.attackRange)
+                enemyBehavior.fsm.EnterPreviousState();
 
-        enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+            if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)
+            {
+                direction = Vector2.zero;
 
-        if (Vector2.Distance(enemy.transform.position, enemyBehavior.target.position) > enemyBehavior.attackRange)
-        {
-            enemyBehavior.fsm.EnterPreviousState();
+                //Si el enemigo está a rango de ataque y nada se interpone entre él y el jugador
+                if (enemyBehavior.NeedChangeState(enemyBehavior.attackRange, masks))
+                {
+                    direction = enemyBehavior.playerDirection;
+                    enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
+                }
+                 
+                destination = enemy.transform.position + new Vector3(direction.x * 0.25f, direction.y * 0.25f, 0);
+            }
         }
     }
 
     public override void FixedUpdateState()
     {
-        enemyBehavior.characterMovement.Move(direction, attackSpeed);
+        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive &&
+            GameManager.instance.enemiesActive) 
+            enemyBehavior.characterMovement.Move(direction, enemyBehavior.followSpeed + attackSpeed);
     }
 }

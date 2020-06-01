@@ -105,10 +105,10 @@ MonoBehaviour:
     minVal: 0
     maxVal: 2
   calculatedFriends: 0
-  detectionRange: 4.65
-  attackRange: 2.5
-  giveUpRange: 8
-  followSpeed: 2.35
+  detectionRange: 6
+  attackRange: 2.9
+  giveUpRange: 9
+  followSpeed: 3.1
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
   currentHealth: 0
   minRarity: 1
   maxRarity: 3
-  probability: 0.1
+  probability: 0.15
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
   dmgColor: {r: 1, g: 0.69411767, b: 0.69411767, a: 1}

@@ -82,8 +82,8 @@ public class EnemiesGenerator : MonoBehaviour
          }
          else //si no se trata de la primera sala del primer nivel ni de la última sala de cualquier nivel       
          {
-             int maxEnemies = (int)(MapGenerator.rooms[i].emptyPositions.Count / ((MapGenerator.rooms[i].roomWidth - 2 + MapGenerator.rooms[i].roomHeight - 2) / 1.85f));
-             int minEnemies = (int)Mathf.Round(maxEnemies / 2f);
+             int maxEnemies = (int)(MapGenerator.rooms[i].emptyPositions.Count / ((MapGenerator.rooms[i].roomWidth - 2 + MapGenerator.rooms[i].roomHeight - 2) / 2f));
+             int minEnemies = (int)Mathf.Round(maxEnemies / 1.7f);
              nEnemies = Random.Range(minEnemies, maxEnemies);
              //Debug.Log("minEnemies: " + minEnemies + ", maxEnemies: " + maxEnemies);
              //Debug.Log("Nº enemigos a generar en la sala " + i + ": " + nEnemies);

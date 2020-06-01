@@ -47,6 +47,96 @@ TextureImporter:
   - first:
       213: -3034708651362540583
     second: Meganeura2_14
+  - first:
+      213: 5840636399470038026
+    second: Meganeura_0
+  - first:
+      213: -4365529022100782986
+    second: Meganeura_1
+  - first:
+      213: -6732274973966160776
+    second: Meganeura_2
+  - first:
+      213: 5211796002854918744
+    second: Meganeura_3
+  - first:
+      213: -2909560735432683299
+    second: Meganeura_4
+  - first:
+      213: -4880452629381574495
+    second: Meganeura_5
+  - first:
+      213: -9132252176870589873
+    second: Meganeura_6
+  - first:
+      213: -2679820945709430167
+    second: Meganeura_7
+  - first:
+      213: 3099011826734777671
+    second: Meganeura_8
+  - first:
+      213: -4357953333633080249
+    second: Meganeura_9
+  - first:
+      213: -8211757203608085856
+    second: Meganeura_10
+  - first:
+      213: 27680439385943015
+    second: Meganeura_11
+  - first:
+      213: -1247477606941394944
+    second: Meganeura_12
+  - first:
+      213: -7437578646807718350
+    second: Meganeura_13
+  - first:
+      213: -2325496739623024378
+    second: Meganeura_14
+  - first:
+      213: 160612508221725935
+    second: Meganeura_15
+  - first:
+      213: -2675268969662334024
+    second: Meganeura_16
+  - first:
+      213: -7328552387072489638
+    second: Meganeura_17
+  - first:
+      213: 3054365998218999190
+    second: Meganeura_18
+  - first:
+      213: 5570695781337325849
+    second: Meganeura_19
+  - first:
+      213: 2024082847463341110
+    second: Meganeura_20
+  - first:
+      213: -2186537168845403442
+    second: Meganeura_21
+  - first:
+      213: -6512113245857048510
+    second: Meganeura_22
+  - first:
+      213: 6494908278125304152
+    second: Meganeura_23
+  - first:
+      213: -1523980465406105940
+    second: Meganeura_24
+  - first:
+      213: -9045411775639855838
+    second: Meganeura_25
+  - first:
+      213: 4956895682712906437
+    second: Meganeura_26
+  - first:
+      213: 5167847908279555020
+    second: Meganeura_27
+  - first:
+      213: 5837652912121462719
+    second: Meganeura_28
+  - first:
+      213: 8203464163565446924
+    second: Meganeura_29
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -140,7 +230,322 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura2_0
+      name: Meganeura_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e7409434b1d85b4a90e4fa2df070caa
+      internalID: 5840636399470038026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd08fbd319611b045a0acbf24e030731
+      internalID: -4365529022100782986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f996b1efd0c614e86c36546257f550
+      internalID: -6732274973966160776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf53bd1b2f3e9e445aa9704134f43ad8
+      internalID: 5211796002854918744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67549df282e03984e962382bba0c4341
+      internalID: -2909560735432683299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2415ef0f09ea44db14395248c923b0
+      internalID: -4880452629381574495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a0e1984f4b49e4e9c078b06813b3d1
+      internalID: -9132252176870589873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d303a2a74b883d54488af448fba3b50d
+      internalID: -2679820945709430167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c459b1d568ebcc94a92802dfd6005c58
+      internalID: 3099011826734777671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee7ae9bb6173acb4ba76527218394ac7
+      internalID: -4357953333633080249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00facdd571068ed489acc2770d94fb75
+      internalID: -8211757203608085856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280dc60b2166f974093c9bd291e9a98c
+      internalID: 27680439385943015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e38d5c1ccc18734eb52950bb0acf063
+      internalID: -1247477606941394944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f43721945564d4985124f990bf014d
+      internalID: -7437578646807718350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1a962e55a10a94593a1430f9682a80
+      internalID: -2325496739623024378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_15
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +559,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eac4b9d98a0990408a9a6bcbc5c60ff
-      internalID: -422836913278089278
+      spriteID: 6585005daaed870419d8bd34c2cfacf6
+      internalID: 160612508221725935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_1
+      name: Meganeura_16
       rect:
         serializedVersion: 2
         x: 32
@@ -175,14 +580,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73280d329dd48fe4392e4407619fe377
-      internalID: -8456844858259961021
+      spriteID: b6805956f3b0a394781a3b2c28709531
+      internalID: -2675268969662334024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_2
+      name: Meganeura_17
       rect:
         serializedVersion: 2
         x: 64
@@ -196,14 +601,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14f1a1b46881cba4a98d52b1acb8e480
-      internalID: 1539678252208911387
+      spriteID: 72ec7a3d71112e34088f8bc79f8bfaf5
+      internalID: -7328552387072489638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_3
+      name: Meganeura_18
       rect:
         serializedVersion: 2
         x: 0
@@ -217,14 +622,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 204ed64558ab8f549bf045ad6d2643e7
-      internalID: 7450001942728155094
+      spriteID: 3be119850c846f542a1161977042b9cb
+      internalID: 3054365998218999190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_4
+      name: Meganeura_19
       rect:
         serializedVersion: 2
         x: 32
@@ -238,14 +643,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a449f9f2090a62f489d88856d45f82d6
-      internalID: -27028347261603293
+      spriteID: 6f99f37ef78e7214dbf0749c476e330e
+      internalID: 5570695781337325849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_5
+      name: Meganeura_20
       rect:
         serializedVersion: 2
         x: 64
@@ -259,14 +664,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93674385616f7774a9d24067ee11f930
-      internalID: -3065563601994942598
+      spriteID: af1d894e214082345922bc78d024fc65
+      internalID: 2024082847463341110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_6
+      name: Meganeura_21
       rect:
         serializedVersion: 2
         x: 96
@@ -280,14 +685,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc68c5dbfef59594f9d3c3ad6b7009d7
-      internalID: -1891402547521703391
+      spriteID: 774f0734273caa8409a18748092d3f3a
+      internalID: -2186537168845403442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_7
+      name: Meganeura_22
       rect:
         serializedVersion: 2
         x: 0
@@ -301,14 +706,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fbfd658cff36d04f80a12d34b66ec7a
-      internalID: -2938680313024701177
+      spriteID: a18bc20a306ce6147bd5dd7a21b41295
+      internalID: -6512113245857048510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_8
+      name: Meganeura_23
       rect:
         serializedVersion: 2
         x: 32
@@ -322,14 +727,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2089aa9a9a67c694593a72bd55cda0ba
-      internalID: -2823274805972440333
+      spriteID: c2dce897a5aa7c044a492c5ce207d8fe
+      internalID: 6494908278125304152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_9
+      name: Meganeura_24
       rect:
         serializedVersion: 2
         x: 64
@@ -343,14 +748,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c75ff58a92ac5b341b4951d360566612
-      internalID: 5418705764631394102
+      spriteID: e2099323f2aadcc46b2f6c0230e713ef
+      internalID: -1523980465406105940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_10
+      name: Meganeura_25
       rect:
         serializedVersion: 2
         x: 96
@@ -364,14 +769,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e83bcf89c661d5418ab5093f09a227d
-      internalID: 2881188596612654531
+      spriteID: 428ff7de738150b4aa97779706141f41
+      internalID: -9045411775639855838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_11
+      name: Meganeura_26
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +790,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88f7c761bfff0b04ea8997cecd1dc919
-      internalID: -9110373269019951026
+      spriteID: 9665c3a1d481d484884a59274430611a
+      internalID: 4956895682712906437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_12
+      name: Meganeura_27
       rect:
         serializedVersion: 2
         x: 32
@@ -406,14 +811,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: facad398a796e1a4ba798d38e139f70d
-      internalID: 7997825286776019054
+      spriteID: 7b4f60a74679273488f0c4d0b7501edd
+      internalID: 5167847908279555020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_13
+      name: Meganeura_28
       rect:
         serializedVersion: 2
         x: 64
@@ -427,14 +832,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 333cce24b9f37c348bda31b5effb6e1d
-      internalID: -7823480820664894897
+      spriteID: 29692dddd7fe68546a9424053f931891
+      internalID: 5837652912121462719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura2_14
+      name: Meganeura_29
       rect:
         serializedVersion: 2
         x: 96
@@ -448,8 +853,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d4a17f058834764c9f194f608b9d854
-      internalID: -3034708651362540583
+      spriteID: adebe63c24905a74ba0df766e11349dd
+      internalID: 8203464163565446924
       vertices: []
       indices: 
       edges: []

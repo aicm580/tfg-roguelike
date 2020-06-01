@@ -55,17 +55,11 @@ public class PatrolState : State
         return rayOrigin;
     }
 
-    public override void FixedUpdateState()
+    protected void FindNewDirection()
     {
-        if (!enemyBehavior.target.GetComponent<PlayerInputController>().abilityActive)
-        {
-            enemyBehavior.SetAnimatorDirection(direction.x, direction.y);
-            animator.SetBool("isMoving", direction.sqrMagnitude > 0 ? true : false);
-            enemyBehavior.characterMovement.Move(direction, 1);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false); //si la habilidad especial está activada, el enemigo no debe moverse
-        }
+        Vector2 dir = direction;
+        direction = ChangePatrolDirection(dir);
+        rayOrigin = ChangePatrolRayOrigin(direction);
+        rays = enemyBehavior.GetOtherRays(rayOrigin.position);
     }
 }

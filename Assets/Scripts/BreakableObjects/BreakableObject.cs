@@ -23,6 +23,7 @@ public class BreakableObject : CharacterHealth
 
     protected override void Start()
     {
+        base.Start();
         charName = breakableObjectName;
     }
 

@@ -86,7 +86,7 @@ public class FollowWalkingState : FollowState
                             SetDirection(Vector2.down);
                     }
                 }
-                destination = enemy.transform.position + new Vector3(direction.x * 0.65f, direction.y * 0.65f, 0);
+                destination = enemy.transform.position + new Vector3(direction.x * 0.375f, direction.y * 0.375f, 0);
             }
         }  
     }
@@ -108,7 +108,6 @@ public class FollowWalkingState : FollowState
 
     public override void OnStateExit()
     {
-        animator.SetBool("isMoving", false);
         destination = null;
     }
 }

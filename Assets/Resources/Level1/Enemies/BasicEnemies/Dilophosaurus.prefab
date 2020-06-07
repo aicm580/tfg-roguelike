@@ -108,7 +108,7 @@ MonoBehaviour:
   detectionRange: 6
   attackRange: 2.9
   giveUpRange: 9
-  followSpeed: 3.1
+  followSpeed: 3.2
   rightRayOrigin: {fileID: 0}
   leftRayOrigin: {fileID: 0}
   topRayOrigin: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabcda6d257898a4d8f756906390b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.3
+  moveSpeed: 0.35
 --- !u!114 &8371670761104094750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92a3ad4ba104f4abbca268ba21d971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 2
+  shootDelay: 1.9
   bulletSize: 0
   bulletsAmount: 1
   bulletPrefab: {fileID: 304181260431725268, guid: 6e819cb540de625499f2fdef76277f03,
@@ -191,10 +191,10 @@ MonoBehaviour:
   currentHealth: 0
   minRarity: 1
   maxRarity: 3
-  probability: 0.15
+  probability: 0.18
+  dmgColor: {r: 1, g: 0.69411767, b: 0.69411767, a: 1}
   popupDamageText: {fileID: 1638688649704690398, guid: 9804427d724cfcb4d84f2e8258da798c,
     type: 3}
-  dmgColor: {r: 1, g: 0.69411767, b: 0.69411767, a: 1}
 --- !u!114 &4730599111801766458
 MonoBehaviour:
   m_ObjectHideFlags: 0

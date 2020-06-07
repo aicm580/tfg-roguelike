@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i: 0
-  validStates: 000000000300000006000000
+  validStates: 000000000300000007000000
 --- !u!1 &9140904020923553037
 GameObject:
   m_ObjectHideFlags: 0

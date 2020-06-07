@@ -21,12 +21,14 @@ public class GameManager : MonoBehaviour
     public string playerName;
     private CharacterMovement playerMovement;
     private CharacterShooting playerShooting;
+    private PlayerInputController playerAbility;
 
     public GameObject gameOverPanel;
     public GameObject winPanel;
     public GameObject pausePanel;
     public GameObject loadPanel;
     public GameObject optionsPanel;
+    public GameObject abilityInfoPanel;
 
     public Toggle timerToogle;
     public Toggle statsToogle;
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
         breakableGenerator = GetComponent<BreakableGenerator>();
         playerMovement = playerTransform.GetComponent<CharacterMovement>();
         playerShooting = playerTransform.GetComponent<CharacterShooting>();
+        playerAbility = playerTransform.GetComponent<PlayerInputController>();
 
         bool showTimer = PlayerPrefs.GetInt("TimerActive") == 1 ? true : false;
         timerText.gameObject.SetActive(showTimer);
@@ -156,7 +159,7 @@ public class GameManager : MonoBehaviour
         wins = 0;
         travels = 0;
         maxLevelReached = level;
-
+        
         Time.timeScale = 1f;
         isPaused = false;
         pausePanel.SetActive(false);
@@ -173,7 +176,7 @@ public class GameManager : MonoBehaviour
 
         timePlayed = 0;
         timerActive = true;
-
+        
         AudioManager.audioManagerInstance.PlayMusic("GameBackground");
 
         runIsReady = true;
@@ -187,6 +190,7 @@ public class GameManager : MonoBehaviour
         playerTransform.GetComponent<PlayerInputController>().abilityDuration = playerChar.abilityDuration;
         playerShooting.InitializeCharacterShooting(playerChar.shootDelay, playerChar.bulletSize, playerChar.bulletsAmount, playerChar.bulletType, playerChar.shootType);
         playerMovement.InitializeCharacterMovement(playerChar.moveSpeed);
+        playerAbility.InitializeCharacterAbility();
     }
 
     private IEnumerator DisableLoadPanel()
@@ -197,9 +201,31 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.85f); //para que de tiempo a leer la frase de carga
         loadPanel.SetActive(false);
-        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
-        yield return new WaitForSeconds(1.1f); //esperamos 1.1f antes de que los enemigos puedan empezar a perseguir
+
+        if (stats == null || stats.travels < 2)
+        {
+            abilityInfoPanel.SetActive(true);
+            timerActive = false;
+            isPaused = true;
+            CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.basicCursor);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
+            yield return new WaitForSeconds(1.1f); //esperamos 1.1f antes de que los enemigos puedan empezar a perseguir
+            enemiesActive = true;
+        }
+    }
+
+    public void InfoUnderstood()
+    {
+        abilityInfoPanel.SetActive(false);
         enemiesActive = true;
+        isPaused = false;
+        timerActive = true;
+        CursorManager.cursorInstance.SetCursor(CursorManager.cursorInstance.gameCursor);
+        Time.timeScale = 1f;
     }
 
     private Vector3 InitPlayerPosition()

@@ -18,7 +18,7 @@ public class PatrolFlyingState : PatrolState
         if (GameManager.instance.enemiesActive)
         {
             //Comprobamos si el enemigo divisa al jugador
-            if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, playerLayer))
+            if (enemyBehavior.NeedChangeState(enemyBehavior.detectionRange, wallsLayer | playerLayer))
                 enemyBehavior.fsm.EnterNextState();
 
             if (destination.HasValue == false || Vector2.Distance(enemy.transform.position, destination.Value) <= 0.1f)

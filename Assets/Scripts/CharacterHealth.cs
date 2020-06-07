@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class CharacterHealth : MonoBehaviour
 {
@@ -14,16 +15,22 @@ public abstract class CharacterHealth : MonoBehaviour
     protected string charName;
 
     private Animator animator;
-   
+    private SpriteRenderer spriteRend;
+    public Color dmgColor = new Color(255f / 255f, 177f / 255f, 177f / 255f);
+
 
     protected virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
         currentHealth = maxHealth;
     }
 
     public virtual void TakeDamage(int dmgAmount)
     {
+        spriteRend.color = dmgColor;
+        StartCoroutine(ReturnToOriginalColor());
+
         GameManager.instance.damageDone += dmgAmount;
         currentHealth -= dmgAmount;
         if (currentHealth <= 0)
@@ -31,7 +38,13 @@ public abstract class CharacterHealth : MonoBehaviour
         else
             AudioManager.audioManagerInstance.PlaySFX(charName + " Hit");
     }
-    
+
+    private IEnumerator ReturnToOriginalColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        spriteRend.color = Color.white;
+    }
+
     protected virtual void Die()
     {
         AudioManager.audioManagerInstance.PlaySFX(charName + " Die");

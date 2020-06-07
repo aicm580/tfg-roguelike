@@ -25,21 +25,13 @@ public class FiniteStateMachine : MonoBehaviour
         states.Add(new FollowWalkingState(enemy, StateType.FollowWalking));
         states.Add(new FollowFlyingState(enemy, StateType.FollowFlying));
         states.Add(new RangeAttackState(enemy, StateType.RangeAttack));
-        states.Add(new MeleeAttackState(enemy, StateType.MeleeAttack));
+        states.Add(new MeleeFlyingAttackState(enemy, StateType.MeleeFlyingAttack));
+        states.Add(new MeleeWalkingAttackState(enemy, StateType.MeleeWalkingAttack));
 
         states.Add(new BossIntroState(enemy, StateType.BossIntroState));
         states.Add(new BossShootState(enemy, StateType.BossShootState));
         states.Add(new UndergroundMoveState(enemy, StateType.UndergroundMove));
         states.Add(new GenerateChildsState(enemy, StateType.GenerateChilds));
-        
-        /*
-        foreach (State state in states)
-        {
-            if (validStates.Contains(state.stateType))
-            {
-                enemyStates.Add(state);
-            }
-        }*/
     }
 
     public void Start()

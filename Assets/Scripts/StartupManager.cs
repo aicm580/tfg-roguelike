@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class StartupManager : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public GameObject logoPanel;
 
     private float musicVol;
     private float sfxVol;
@@ -48,6 +49,7 @@ public class StartupManager : MonoBehaviour
         {
             yield return null;
         }
+        logoPanel.SetActive(true);
         yield return new WaitForSeconds(0.85f); //para que de tiempo a ver el logo
 
         SceneManager.LoadScene("MenuScene");

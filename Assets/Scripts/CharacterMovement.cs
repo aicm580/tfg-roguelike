@@ -42,7 +42,6 @@ public class CharacterMovement : MonoBehaviour
             pEffect -= Mathf.Abs(moveSpeed - poisonEffect) + 0.35f;
         }
         moveSpeed -= pEffect;
-        animator.SetBool("poisoned", true);
         GameManager.instance.UpdateGameStats(); //modificamos los valores de los stats en pantalla, ya que la velocidad ha cambiado
         StartCoroutine(PoisonDisappears(pEffect, poisonDuration));
     }
@@ -50,7 +49,6 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator PoisonDisappears(float poisonEffect, float poisonDuration)
     {
         yield return new WaitForSeconds(poisonDuration);
-        animator.SetBool("poisoned", false);
         if (GameManager.instance.enemiesActive)
         {
             moveSpeed += poisonEffect;

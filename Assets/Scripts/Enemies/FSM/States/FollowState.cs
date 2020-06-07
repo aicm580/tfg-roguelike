@@ -24,10 +24,10 @@ public class FollowState : State
 
     protected void SetUpFollowRays()
     {
-        hit = Physics2D.Raycast(enemyBehavior.rayOrigin, enemyBehavior.playerDirection, 0.8f, masks);
-        Debug.DrawRay(enemyBehavior.rayOrigin, enemyBehavior.playerDirection * 0.8f, Color.red);
-        hit1 = Physics2D.Raycast(enemyBehavior.rayOrigin1, enemyBehavior.playerDirection, 0.8f, masks);
-        hit2 = Physics2D.Raycast(enemyBehavior.rayOrigin2, enemyBehavior.playerDirection, 0.8f, masks);
+        hit = Physics2D.Raycast(enemyBehavior.rayOrigin, enemyBehavior.playerDirection, 0.9f, masks);
+        Debug.DrawRay(enemyBehavior.rayOrigin, enemyBehavior.playerDirection * 0.9f, Color.red);
+        hit1 = Physics2D.Raycast(enemyBehavior.rayOrigin1, enemyBehavior.playerDirection, 0.9f, masks);
+        hit2 = Physics2D.Raycast(enemyBehavior.rayOrigin2, enemyBehavior.playerDirection, 0.9f, masks);
         rightHit = Physics2D.Raycast(enemyBehavior.rightRayOrigin.position, Vector2.right, 0.2f, masks);
         leftHit = Physics2D.Raycast(enemyBehavior.leftRayOrigin.position, Vector2.left, 0.2f, masks);
         topHit = Physics2D.Raycast(enemyBehavior.topRayOrigin.position, Vector2.up, 0.2f, masks);

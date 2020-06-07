@@ -28,7 +28,7 @@ public class UndergroundMoveState : State
             enemy.transform.position = FindNewPosition();
             animator.SetTrigger("appear");
 
-            if (bossHealth.currentHealth <= bossHealth.maxHealth - bossHealth.maxHealth / 2f)
+            if (bossHealth.currentHealth <= bossHealth.maxHealth / 2f)
                 enemy.GetComponent<FiniteStateMachine>().EnterNextState();
             else
                 enemy.GetComponent<FiniteStateMachine>().EnterPreviousState(); 

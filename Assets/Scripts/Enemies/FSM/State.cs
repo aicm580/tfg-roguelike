@@ -5,7 +5,8 @@ public enum StateType
     Idle,
     PatrolWalking, PatrolFlying,
     FollowWalking, FollowFlying,
-    RangeAttack, MeleeAttack,
+    RangeAttack,
+    MeleeFlyingAttack, MeleeWalkingAttack,
 
     BossIntroState, BossShootState, UndergroundMove, GenerateChilds,
 }

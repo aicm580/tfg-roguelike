@@ -11,7 +11,9 @@ public class PlayerInputController : MonoBehaviour
     public float abilityDuration; //tiempo que permanece activa la habilidad especial
     [HideInInspector]
     public bool abilityActive;
+    public GameObject abilityPanel;
 
+    private float abilityTimer;
     private bool abilityAvailable = true;
 
     private CharacterMovement characterMovement;
@@ -42,7 +44,7 @@ public class PlayerInputController : MonoBehaviour
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !abilityActive)
             {
                 characterShooting.Shoot(bulletOrigin, lookDirection, 0.875f, Quaternion.identity, DamageOrigin.Player, GameManager.instance.playerName);
             }
@@ -54,9 +56,27 @@ public class PlayerInputController : MonoBehaviour
             //KEYBOARD INPUT MANAGEMETN (SPECIAL ABILITY)
             if (Input.GetKeyDown(KeyCode.Space) && !abilityActive && abilityAvailable)
             {
+                abilityTimer = 0;
                 abilityActive = true;
-                StartCoroutine(DisableAbility());
+                abilityAvailable = false;
+                abilityPanel.SetActive(true);
             }
+
+            if (abilityActive && abilityTimer >= abilityDuration)
+            {
+                abilityActive = false;
+                abilityAvailable = false;
+                abilityPanel.SetActive(false);
+                abilityTimer = 0;
+            }
+            else if(abilityActive)
+            {
+                abilityTimer += Time.deltaTime;
+            }
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0);
         }
     }
 
@@ -73,12 +93,11 @@ public class PlayerInputController : MonoBehaviour
         }   
     }
 
-    IEnumerator DisableAbility()
+    public void InitializeCharacterAbility()
     {
-        yield return new WaitForSeconds(abilityDuration);
+        abilityTimer = 0;
         abilityActive = false;
-        abilityAvailable = false;
-        yield return new WaitForSeconds(5f);
         abilityAvailable = true;
+        abilityPanel.SetActive(false);
     }
 }

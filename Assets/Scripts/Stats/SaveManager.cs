@@ -8,6 +8,7 @@ public static class SaveManager
     public static void SaveStats(GameManager game)
     {
         string path = Application.persistentDataPath + "/stats.dat";
+        Debug.Log(path);
         FileStream file = new FileStream(path, FileMode.Create);
 
         try

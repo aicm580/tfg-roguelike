@@ -69,7 +69,7 @@ public class ItemOnMap : MonoBehaviour
                     break;
 
                 case "Rotten Mushroom":
-                    playerMovement.ChangeMoveSpeed(-0.18f);
+                    playerMovement.ChangeMoveSpeed(-0.14f);
                     playerShooting.SetBulletType(BulletType.Poisonous);
                     break;
 
